@@ -56,3 +56,41 @@ export const ROUTE_LABELS: Record<string, string> = {
 export function errorText(error: unknown): string {
   return error instanceof Error ? error.message : String(error)
 }
+
+const STATE_WORDS: Record<string, string> = {
+  RECEIVED: 'received', PREPARED: 'prepared', EXTRACTED: 'read', SPLIT: 'read (several invoices)',
+  NOT_INVOICE: 'not an invoice', FAILED: 'failed', CHECKED: 'checked', MATCHED: 'compared with the PO and deliveries',
+  AUTO_APPROVED: 'approved automatically', NEEDS_REVIEW: 'sent to review', APPROVED: 'approved',
+  APPROVED_PARTIAL: 'partly approved', REJECTED: 'rejected', ON_HOLD: 'put on hold',
+}
+const ACTION_WORDS: Record<string, string> = {
+  approve: 'Approved', approve_partial: 'Received part approved', reject: 'Rejected', hold: 'Put on hold',
+}
+
+// One audit event in plain words: a title, and an optional detail line.
+export function eventText(e: { action: string; data: Record<string, unknown> }): { title: string; detail?: string } {
+  const d = e.data as Record<string, string | boolean | string[] | undefined>
+  switch (e.action) {
+    case 'document.received':
+      return { title: 'Received', detail: String(d.filename ?? '') }
+    case 'document.state_changed':
+    case 'invoice.state_changed':
+      return { title: `${e.action.startsWith('document') ? 'Document' : 'Invoice'} ${STATE_WORDS[String(d.to)] ?? d.to}`,
+               detail: Array.isArray(d.labels) && d.labels.length ? d.labels.join(', ') : Array.isArray(d.raised) && d.raised.length ? d.raised.join(', ') : undefined }
+    case 'field.corrected':
+      return { title: `Corrected ${FIELD_LABELS[String(d.field)] ?? d.field}`,
+               detail: `${d.from ?? '—'} → ${d.to ?? 'none'}${d.picked_on_page ? ' (picked on the page)' : ''}` }
+    case 'invoice.rechecked':
+      return { title: 'Checked again', detail: String(d.why ?? '') }
+    case 'review.decided':
+      return { title: ACTION_WORDS[String(d.action)] ?? String(d.action), detail: String(d.note ?? '') }
+    case 'review.released':
+      return { title: 'Released back to review', detail: String(d.note ?? '') }
+    case 'review.reprocess_requested':
+      return { title: 'Asked for a fresh read', detail: String(d.note ?? '') }
+    case 'document.reread':
+      return { title: 'Read again by the model', detail: d.model ? String(d.model) : undefined }
+    default:
+      return { title: e.action }
+  }
+}

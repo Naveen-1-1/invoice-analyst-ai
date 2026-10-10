@@ -60,12 +60,13 @@ def inbox_run(
     speed: float = typer.Option(2.0, help="Real seconds per simulated day; 0 = everything arrives at once"),
     fresh: bool = typer.Option(False, help="Ignore answers cached before this run (a resumed run still reuses its own)"),
     limit: int | None = typer.Option(None, help="Only the first N arrivals"),
+    only: str | None = typer.Option(None, help="Only these arrivals (comma-separated refs, or @file), renumbered"),
     worker: bool = typer.Option(False, "--worker", help="Also process the run in this process, until it finishes"),
 ) -> None:
     """Start an inbox run: schedule every arrival; the worker (make worker, or --worker) reads and checks them."""
     from .inbox.feed import feed, status
 
-    fed = asyncio.run(feed(set_name, label=label, seconds_per_day=speed, fresh=fresh, limit=limit))
+    fed = asyncio.run(feed(set_name, label=label, seconds_per_day=speed, fresh=fresh, limit=limit, only=_ids(only)))
     typer.echo(f"Inbox run {fed.run_id} (workspace {fed.workspace_id}): {fed.documents} arrivals from {fed.first_date} "
                f"to {fed.last_date}, over about {fed.seconds / 60:.0f} min")
     if worker:
@@ -81,6 +82,20 @@ def inbox_status(run: int = typer.Argument(..., help="Inbox run number")) -> Non
     from .inbox.feed import status
 
     typer.echo(status(run))
+
+
+@inbox_app.command("advance")
+def inbox_advance(run: int = typer.Argument(..., help="Inbox run number")) -> None:
+    """Check and decide whatever can be now (no model calls), and rewrite the run's results file."""
+    from .db.engine import session_factory
+    from .db.models import Run
+    from .inbox.results import write_results
+    from .worker.sequencer import advance
+
+    with session_factory()() as s:
+        workspace_id = s.get(Run, run).workspace_id
+    print(f"checked or decided {advance(workspace_id)} invoice(s)")
+    write_results(run)
 
 
 async def _work_until_finished(run_id: int) -> None:

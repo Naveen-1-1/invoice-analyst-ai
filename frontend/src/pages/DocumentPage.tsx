@@ -8,7 +8,8 @@ import { TierBadge } from '@/components/TierBadge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ROUTE_LABELS, errorText, formatDateTime } from '@/lib/format'
+import { ROUTE_LABELS, errorText, eventText, formatDateTime } from '@/lib/format'
+import { STATE_LABELS } from '@/lib/review'
 
 export function DocumentPage() {
   const { documentId } = useParams({ from: '/documents/$documentId' })
@@ -38,6 +39,19 @@ export function DocumentPage() {
         <div className="flex flex-wrap items-center gap-3">
           <h1 className="text-xl font-semibold">{d.bench_doc_id ?? d.filename}</h1>
           {invoice && <TierBadge tier={invoice.conf_tier} />}
+          {invoice && (
+            <span className="text-sm text-muted-foreground">
+              {STATE_LABELS[invoice.state] ?? invoice.state}
+              {['NEEDS_REVIEW', 'ON_HOLD', 'APPROVED_PARTIAL'].includes(invoice.state) && (
+                <>
+                  {' · '}
+                  <Link to="/review/$invoiceId" params={{ invoiceId: String(invoice.id) }} className="text-foreground underline-offset-4 hover:underline">
+                    open in review
+                  </Link>
+                </>
+              )}
+            </span>
+          )}
         </div>
         <p className="text-sm text-muted-foreground">
           {ROUTE_LABELS[d.route ?? ''] ?? d.route} · {d.pages.length} page{d.pages.length === 1 ? '' : 's'} · state{' '}
@@ -92,14 +106,18 @@ export function DocumentPage() {
               </TabsContent>
               <TabsContent value="trail" className="pt-2">
                 <ol className="space-y-2 text-sm">
-                  {d.events.map((e) => (
-                    <li key={e.seq} className="border-l-2 pl-3">
-                      <div className="font-medium">{e.action.replace(/^(document|invoice)\./, '').replace('_', ' ')}{' '}
-                        {typeof e.data.to === 'string' && <span className="text-muted-foreground">→ {e.data.to}</span>}
-                      </div>
-                      <div className="text-xs text-muted-foreground">{formatDateTime(e.occurred_at)} · {e.actor}</div>
-                    </li>
-                  ))}
+                  {d.events.map((e) => {
+                    const { title, detail } = eventText(e)
+                    return (
+                      <li key={e.seq} className={`border-l-2 pl-3 ${e.actor === 'user' ? 'border-sky-400' : ''}`}>
+                        <div className="font-medium">{title}</div>
+                        {detail && <div className="text-muted-foreground">{detail}</div>}
+                        <div className="text-xs text-muted-foreground">
+                          {formatDateTime(e.occurred_at)} · {e.actor === 'user' ? 'you' : e.actor === 'llm' ? 'the model' : 'the system'}
+                        </div>
+                      </li>
+                    )
+                  })}
                 </ol>
               </TabsContent>
             </Tabs>

@@ -11,17 +11,18 @@ import { useLiveEvents } from '@/lib/useLiveEvents'
 
 type Column = { key: string; title: string; hint: string; match: (c: CardOut) => boolean }
 
-const raised = (c: CardOut) => (c.findings.block ?? 0) + (c.findings.review ?? 0) > 0
-const checked = (c: CardOut) => c.invoice_state === 'CHECKED' || c.invoice_state === 'MATCHED'
+const decided = (c: CardOut) => ['APPROVED', 'APPROVED_PARTIAL', 'REJECTED'].includes(c.invoice_state ?? '')
+const inReview = (c: CardOut) => ['NEEDS_REVIEW', 'ON_HOLD'].includes(c.invoice_state ?? '')
 
 const COLUMNS: Column[] = [
   { key: 'arrived', title: 'Arrived', hint: 'Waiting to be read', match: (c) => c.state === 'RECEIVED' },
   { key: 'reading', title: 'Reading', hint: 'Prepared; the model is reading it', match: (c) => c.state === 'PREPARED' },
-  { key: 'read', title: 'Read', hint: 'Waiting for its turn in the checks (arrival order)',
-    match: (c) => ['EXTRACTED', 'SPLIT'].includes(c.state) && !checked(c) },
-  { key: 'clean', title: 'Checked: clean', hint: 'Nothing found', match: (c) => checked(c) && !raised(c) },
-  { key: 'attention', title: 'Checked: findings', hint: 'Something to review, or payment blocked',
-    match: (c) => checked(c) && raised(c) },
+  { key: 'checking', title: 'Checking', hint: 'Read; checked in arrival order, then decided',
+    match: (c) => ['EXTRACTED', 'SPLIT'].includes(c.state) && ['EXTRACTED', 'CHECKED', 'MATCHED'].includes(c.invoice_state ?? '') },
+  { key: 'auto', title: 'Approved automatically', hint: 'Clean, high confidence, PO matched, under USD 10,000',
+    match: (c) => c.invoice_state === 'AUTO_APPROVED' },
+  { key: 'review', title: 'Needs review', hint: 'Waiting for you (including held)', match: inReview },
+  { key: 'decided', title: 'Decided by you', hint: 'Approved, partly approved or rejected', match: decided },
   { key: 'other', title: 'Not invoices / failed', hint: 'Statements, other documents, unreadable files',
     match: (c) => c.state === 'NOT_INVOICE' || c.state === 'FAILED' },
 ]
@@ -111,7 +112,7 @@ export function BoardPage() {
               {new Date(b.llm_paused_until).toLocaleTimeString()}. Nothing is lost; it resumes on its own.
             </div>
           )}
-          <div className="grid gap-3 [grid-template-columns:repeat(auto-fill,minmax(14rem,1fr))] xl:grid-cols-6">
+          <div className="grid gap-3 [grid-template-columns:repeat(auto-fill,minmax(14rem,1fr))] xl:grid-cols-7">
             {columns.map((col) => (
               <section key={col.key} className="flex min-h-40 flex-col rounded-lg border bg-muted/40" aria-label={col.title}>
                 <header className="border-b px-2.5 py-2">
@@ -127,9 +128,7 @@ export function BoardPage() {
               </section>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground">
-            Next milestones add the decision (approve automatically or send to review) and payment columns.
-          </p>
+          <p className="text-xs text-muted-foreground">The next milestone adds payment columns (scheduled, paid).</p>
         </>
       )}
     </div>

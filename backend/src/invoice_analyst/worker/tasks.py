@@ -2,7 +2,8 @@
 
   arrive(...)            store the file, record the document (once, even if the job is retried), then read it
   read_document(id)      prepare + model + locate values; a rate-limit cooldown reschedules the job for when it ends
-  advance_workspace(id)  check invoices in arrival order; at most one queued and one running per workspace
+  advance_workspace(id)  check invoices in arrival order, then decide; at most one queued and one running each
+  reread_invoice(id)     review 'reprocess': read the document again ignoring the cache, then check it again
 """
 
 from __future__ import annotations
@@ -16,8 +17,9 @@ from sqlalchemy import select
 
 from ..config import ROOT, settings
 from ..db.engine import session_factory
-from ..db.models import Document, Workspace
-from ..extraction.extract import read, receive
+from ..db.models import Document, Invoice, StepRun, Workspace
+from ..decision import review
+from ..extraction.extract import read, receive, reread
 from ..llm.client import CooldownError, LlmClient
 from . import sequencer
 from .app import app
@@ -92,3 +94,40 @@ async def read_document(document_id: int) -> None:
 @app.task(queue="checks", retry=RetryStrategy(max_attempts=3, wait=5))
 async def advance_workspace(workspace_id: int) -> None:
     await asyncio.to_thread(sequencer.advance, workspace_id)
+
+
+def _step(step_run_id: int, status: str, explanation: str | None = None) -> tuple[int, set[int]]:
+    """Update the re-read's step and return (document id, ids of the document's invoices under review)."""
+    with session_factory().begin() as s:
+        step = s.get(StepRun, step_run_id)
+        step.status = status
+        now = dt.datetime.now(dt.timezone.utc)
+        if status == "running":
+            step.started_at = now
+        else:
+            step.finished_at, step.explanation = now, explanation
+        ids = set(s.scalars(select(Invoice.id).where(Invoice.document_id == step.document_id,
+                                                     Invoice.state.in_(review.IN_REVIEW))))
+        return step.document_id, ids
+
+
+def _after_reread(step_run_id: int, ids: set[int], message: str) -> None:
+    with session_factory().begin() as s:
+        for invoice in s.scalars(select(Invoice).where(Invoice.id.in_(ids))):
+            if invoice.state in review.IN_REVIEW:
+                review.refresh(s, invoice, "read again by the model")
+    _step(step_run_id, "done", message)
+
+
+@app.task(queue="read", retry=WaitOutCooldown())
+async def reread_invoice(step_run_id: int) -> None:
+    doc_id, ids = await asyncio.to_thread(_step, step_run_id, "running")
+    try:
+        message = await reread(doc_id, ids, settings=settings(), sessions=session_factory(), llm=llm())
+    except CooldownError:
+        await asyncio.to_thread(_step, step_run_id, "queued", "Waiting for the model API's cooldown.")
+        raise
+    except Exception as exc:
+        await asyncio.to_thread(_step, step_run_id, "failed", f"{type(exc).__name__}: {exc}"[:500])
+        raise
+    await asyncio.to_thread(_after_reread, step_run_id, ids, message)

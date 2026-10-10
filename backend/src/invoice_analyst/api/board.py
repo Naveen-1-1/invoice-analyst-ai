@@ -75,7 +75,8 @@ def get_board(workspace_id: int, s: Session = Depends(db)) -> out.BoardOut:
             vendor=first.vendor_name if first else None, invoice_number=first.invoice_number if first else None,
             total=first.total if first else None, currency=first.currency if first else None,
             tier=first.conf_tier if first else None, invoice_state=first.state if first else None,
-            findings=dict(findings[first.id]) if first else {}, codes=codes[first.id][:4] if first else []))
+            findings=dict(findings[first.id]) if first else {}, codes=codes[first.id][:4] if first else [],
+            invoice_id=first.id if first else None, labels=list(first.review_labels or []) if first else []))
     run = s.scalars(select(Run).where(Run.workspace_id == ws.id).order_by(Run.id.desc())).first()
     llm = s.get(LlmState, 1)
     worker_seen = s.scalar(text("SELECT max(last_heartbeat) FROM procrastinate_workers"))

@@ -3,6 +3,9 @@
   planted catch rate   per planted type: did the expected check fire on that invoice?
   per-check accuracy   for every check the labels cover: true/false alarms and misses, precision, recall
   matching accuracy    vendor, our company (addressee), purchase order
+  decisions            straight-through rate; false auto-approvals (approved with no person although the labels
+                       expect a problem, or with the total, number or vendor read wrong: the key safety number,
+                       target 0); why the rest went to review, and how many of those had nothing actually wrong
 A check 'fires' when its outcome is fail or warn. Raises the labels can't judge (round totals, stamps, charges
 not on the PO, ...) are counted separately, not as false alarms.
 """
@@ -29,6 +32,24 @@ def _family(code: str) -> str | None:
     return None
 
 
+INFO_ONLY = {"doctype.credit_note"}  # shown to the reviewer, never a reason to stop an automatic approval
+
+
+def _norm(text: str | None) -> str:
+    return "".join(ch for ch in (text or "").upper() if ch.isalnum())
+
+
+def _read_wrong(got: dict, lab: dict) -> list[str]:
+    wrong = []
+    if got["total"] is None or lab["total"] is None or abs(got["total"] - lab["total"]) > 0.01:
+        wrong.append("total")
+    if _norm(got["invoice_number"]) != _norm(lab["invoice_number"]):
+        wrong.append("invoice number")
+    if got["vendor_code"] != lab["vendor_code"]:
+        wrong.append("vendor")
+    return wrong
+
+
 def _expected_families(expect: list[str]) -> set[str]:
     fams = set()
     for e in expect:
@@ -44,6 +65,10 @@ def evaluate(run: str, set_name: str = "dev") -> tuple[str, dict[str, Any]]:
     unlabeled: Counter = Counter()
     matching: dict[str, Counter] = defaultdict(Counter)
     misses, false_alarms = [], []
+    decisions: Counter = Counter()
+    review_labels: Counter = Counter()
+    needless_labels: Counter = Counter()
+    false_auto: list[str] = []
     for item in labels["items"]:
         res = results.get(item["seq"])
         if res is None:
@@ -87,6 +112,23 @@ def evaluate(run: str, set_name: str = "dev") -> tuple[str, dict[str, Any]]:
             if lab["planted"]:
                 want = _expected_families(lab["expect"]) - {"match.no_po"}
                 planted[lab["planted"]]["caught" if want <= set(fired) else "missed"] += 1
+            if got_inv["doc_type"] in ("invoice", "credit_note"):
+                problems = sorted((_expected_families(lab["expect"]) | set(item["expect"])) - INFO_ONLY)
+                wrong = _read_wrong(got_inv, lab)
+                decisions["bills"] += 1
+                state = got_inv["state"]
+                if state == "AUTO_APPROVED":
+                    decisions["auto_approved"] += 1
+                    if problems or wrong:
+                        false_auto.append(f"{item['ref']}: " + ", ".join(problems + [f"{w} read wrong" for w in wrong]))
+                elif state in ("NEEDS_REVIEW", "ON_HOLD", "APPROVED", "APPROVED_PARTIAL", "REJECTED"):
+                    decisions["reviewed"] += 1
+                    review_labels.update(got_inv.get("review_labels") or [])
+                    if not problems and not wrong:
+                        decisions["reviewed_nothing_wrong"] += 1
+                        needless_labels.update(got_inv.get("review_labels") or [])
+                else:
+                    decisions["undecided"] += 1
             matching["vendor"]["right" if got_inv["vendor_code"] == lab["vendor_code"] else "wrong"] += 1
             matching["addressee"]["right" if (got_inv["entity"] is None) == (lab["entity_code"] is None) else "wrong"] += 1
             if lab["po_number"] and lab["vendor_code"]:
@@ -110,12 +152,26 @@ def evaluate(run: str, set_name: str = "dev") -> tuple[str, dict[str, Any]]:
         p, r = pr(c)
         note = f"{c['explained_by_duplicate']} more on duplicate copies" if c["explained_by_duplicate"] else ""
         lines.append(f"| {fam} | {c['tp']} | {c['fp']} | {c['fn']} | {p} | {r} | {note} |")
+    bills = decisions["bills"] or 1
+    lines += ["", "## Decisions", "",
+              f"- bills (invoices and credit notes): {decisions['bills']}",
+              f"- approved automatically (straight through): {decisions['auto_approved']} "
+              f"({decisions['auto_approved'] / bills:.0%})",
+              f"- **false auto-approvals: {len(false_auto)}**",
+              f"- sent to review: {decisions['reviewed']} ({decisions['reviewed'] / bills:.0%}); with nothing actually "
+              f"wrong: {decisions['reviewed_nothing_wrong']}",
+              *([f"- not decided yet: {decisions['undecided']}"] if decisions["undecided"] else []),
+              *[f"  - {f}" for f in false_auto],
+              "", "| review label | invoices | of which nothing wrong |", "|---|---|---|",
+              *[f"| {k} | {v} | {needless_labels[k]} |" for k, v in review_labels.most_common()]]
     lines += ["", "## Matching", ""] + [f"- {k}: {c['right']}/{c['right'] + c['wrong']} right" for k, c in matching.items()]
     lines += ["", "## Raised but not judged by the labels", "", ", ".join(f"{k} {v}" for k, v in sorted(unlabeled.items())) or "none",
               "", f"## Misses ({len(misses)})", "", *[f"- {m}" for m in misses],
               "", f"## False alarms ({len(false_alarms)})", "", *[f"- {f}" for f in false_alarms]]
     report = {"planted": {k: dict(v) for k, v in planted.items()}, "checks": {k: dict(v) for k, v in tally.items()},
               "matching": {k: dict(v) for k, v in matching.items()}, "unlabeled": dict(unlabeled),
-              "misses": misses, "false_alarms": false_alarms}
+              "misses": misses, "false_alarms": false_alarms, "decisions": dict(decisions),
+              "false_auto_approvals": false_auto, "review_labels": dict(review_labels),
+              "review_labels_nothing_wrong": dict(needless_labels)}
     (run_dir(run) / "ap_eval.json").write_text(json.dumps(report, indent=1) + "\n")
     return "\n".join(lines), report

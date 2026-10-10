@@ -3041,8 +3041,8 @@
      "vendor_code": "V0103",
      "entity_code": "E0065",
      "po_number": null,
-     "total": 179.62,
-     "currency": "USD",
+     "total": 3314.2,
+     "currency": "ZAR",
      "planted": null,
      "natural": [
       "match.no_po"
@@ -3112,8 +3112,8 @@
      "vendor_code": "V0021",
      "entity_code": "E0009",
      "po_number": null,
-     "total": 162.48,
-     "currency": "EUR",
+     "total": 3247.51,
+     "currency": "NAD",
      "planted": null,
      "natural": [
       "match.no_po"
@@ -3514,8 +3514,8 @@
      "vendor_code": "V0058",
      "entity_code": null,
      "po_number": "ORD-2698",
-     "total": 92.66,
-     "currency": "USD",
+     "total": 1966.16,
+     "currency": "ZAR",
      "planted": "wrong_addressee",
      "natural": [],
      "expect": [
@@ -3681,8 +3681,8 @@
      "vendor_code": "V0062",
      "entity_code": "E0026",
      "po_number": "4500421384",
-     "total": 194.71,
-     "currency": "USD",
+     "total": 3581.1,
+     "currency": "NAD",
      "planted": null,
      "natural": [],
      "expect": [],

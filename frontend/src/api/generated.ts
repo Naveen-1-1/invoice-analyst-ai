@@ -24,6 +24,22 @@ import type {
 } from '@tanstack/react-query';
 
 import { customFetch } from './fetcher';
+export interface ReasonLine {
+  kind: string;
+  code?: string | null;
+  text: string;
+}
+
+export interface ApprovalOut {
+  id: number;
+  kind: string;
+  amount: string;
+  currency: string;
+  reasons: ReasonLine[];
+  rules_ver: string;
+  created_at: string;
+}
+
 export type WorkspaceOutStates = {[key: string]: number};
 
 export interface WorkspaceOut {
@@ -64,6 +80,8 @@ export interface CardOut {
   invoice_state: string | null;
   findings: CardOutFindings;
   codes: string[];
+  invoice_id: number | null;
+  labels: string[];
 }
 
 export interface BoardOut {
@@ -80,6 +98,12 @@ export interface BodyUploadDocuments {
   files: (Blob | File)[];
 }
 
+export interface CapOut {
+  usd_estimate: string | null;
+  cap_usd: string;
+  rates_as_of: string;
+}
+
 export type CheckOutEvidence = { [key: string]: unknown };
 
 export interface CheckOut {
@@ -91,6 +115,37 @@ export interface CheckOut {
   message: string;
   evidence: CheckOutEvidence;
   related_invoice_id: number | null;
+}
+
+export interface CorrectionIn {
+  field: string;
+  text: string | null;
+  page_no?: number | null;
+  bbox?: number[] | null;
+}
+
+export type DecisionInAction = typeof DecisionInAction[keyof typeof DecisionInAction];
+
+
+export const DecisionInAction = {
+  approve: 'approve',
+  approve_partial: 'approve_partial',
+  reject: 'reject',
+  hold: 'hold',
+  release: 'release',
+} as const;
+
+export interface DecisionIn {
+  action: DecisionInAction;
+  note: string;
+  override?: boolean;
+}
+
+export interface DecisionOut {
+  id: number;
+  action: string;
+  note: string;
+  decided_at: string;
 }
 
 export type PageOutQuality = { [key: string]: unknown };
@@ -210,6 +265,99 @@ export interface HTTPValidationError {
   detail?: ValidationError[];
 }
 
+export interface MatchOut {
+  line_no: number;
+  description: string | null;
+  po_line_no: number | null;
+  qty_invoiced: string | null;
+  qty_received_avail: string | null;
+  qty_approved: string | null;
+  price_inv: string | null;
+  price_po: string | null;
+  variance_pct: string | null;
+  outcome: string;
+}
+
+export interface ReprocessIn {
+  note: string;
+}
+
+export interface TaskOut {
+  id: number;
+  status: string;
+  labels: string[];
+  reasons: ReasonLine[];
+  created_at: string;
+  resolved_at: string | null;
+}
+
+export interface SplitLineOut {
+  line_no: number;
+  description: string | null;
+  amount: string;
+  approved: string;
+  why: string;
+}
+
+export interface SplitOut {
+  currency: string;
+  total: string;
+  approved_net: string;
+  approved_tax: string;
+  approved: string;
+  held: string;
+  lines: SplitLineOut[];
+}
+
+export interface StepOut {
+  status: string;
+  explanation: string | null;
+  started_at: string | null;
+  finished_at: string | null;
+}
+
+export interface ReviewDetail {
+  invoice_id: number;
+  document_id: number;
+  workspace_id: number;
+  state: string;
+  doc_type: string;
+  labels: string[];
+  task: TaskOut | null;
+  decisions: DecisionOut[];
+  approvals: ApprovalOut[];
+  approved_so_far: string;
+  po_number: string | null;
+  matches: MatchOut[];
+  partial: SplitOut | null;
+  blocks: string[];
+  actions: string[];
+  correctable: string[];
+  reread: StepOut | null;
+  cap: CapOut;
+}
+
+export interface ReviewItemOut {
+  task_id: number;
+  invoice_id: number;
+  document_id: number;
+  workspace_id: number;
+  workspace: string;
+  seq: number | null;
+  filename: string;
+  doc_type: string;
+  state: string;
+  vendor_name: string | null;
+  invoice_number: string | null;
+  due_date: string | null;
+  total: string | null;
+  currency: string | null;
+  conf_tier: string | null;
+  labels: string[];
+  blocks: number;
+  created_at: string;
+}
+
 export type RunOutTiers = {[key: string]: number};
 
 export interface RunOut {
@@ -231,6 +379,15 @@ export interface UploadOut {
   workspace_id?: number | null;
   error?: string | null;
 }
+
+export interface WordOut {
+  t: string;
+  bbox: number[];
+}
+
+export type ListReviewQueueParams = {
+workspace_id?: number | null;
+};
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -529,6 +686,588 @@ export const useUploadDocuments = <TError = HTTPValidationError,
       > => {
       return useMutation(getUploadDocumentsMutationOptions(options), queryClient);
     }
+
+export const getListReviewQueueUrl = (params?: ListReviewQueueParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : String(value))
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/review?${stringifiedParams}` : `/api/review`
+}
+
+/**
+ * Open review tasks: payment-blocking ones first, then by due date (soonest first), then arrival order.
+ * @summary Listreviewqueue
+ */
+export const listReviewQueue = async (params?: ListReviewQueueParams, options?: Parameters<typeof customFetch>[1]): Promise<ReviewItemOut[]> => {
+
+  return customFetch<ReviewItemOut[]>(getListReviewQueueUrl(params),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListReviewQueueQueryKey = (params?: ListReviewQueueParams,) => {
+    return [
+    `/api/review`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+
+export const getListReviewQueueQueryOptions = <TData = Awaited<ReturnType<typeof listReviewQueue>>, TError = HTTPValidationError>(params?: ListReviewQueueParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listReviewQueue>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListReviewQueueQueryKey(params);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listReviewQueue>>> = ({ signal }) => listReviewQueue(params, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listReviewQueue>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ListReviewQueueQueryResult = NonNullable<Awaited<ReturnType<typeof listReviewQueue>>>
+export type ListReviewQueueQueryError = HTTPValidationError
+
+
+export function useListReviewQueue<TData = Awaited<ReturnType<typeof listReviewQueue>>, TError = HTTPValidationError>(
+ params: undefined |  ListReviewQueueParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listReviewQueue>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listReviewQueue>>,
+          TError,
+          Awaited<ReturnType<typeof listReviewQueue>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListReviewQueue<TData = Awaited<ReturnType<typeof listReviewQueue>>, TError = HTTPValidationError>(
+ params?: ListReviewQueueParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listReviewQueue>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listReviewQueue>>,
+          TError,
+          Awaited<ReturnType<typeof listReviewQueue>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListReviewQueue<TData = Awaited<ReturnType<typeof listReviewQueue>>, TError = HTTPValidationError>(
+ params?: ListReviewQueueParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listReviewQueue>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Listreviewqueue
+ */
+
+export function useListReviewQueue<TData = Awaited<ReturnType<typeof listReviewQueue>>, TError = HTTPValidationError>(
+ params?: ListReviewQueueParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listReviewQueue>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getListReviewQueueQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getGetInvoiceReviewUrl = (invoiceId: number,) => {
+
+
+
+
+  return `/api/invoices/${invoiceId}/review`
+}
+
+/**
+ * @summary Getinvoicereview
+ */
+export const getInvoiceReview = async (invoiceId: number, options?: Parameters<typeof customFetch>[1]): Promise<ReviewDetail> => {
+
+  return customFetch<ReviewDetail>(getGetInvoiceReviewUrl(invoiceId),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetInvoiceReviewQueryKey = (invoiceId: number,) => {
+    return [
+    `/api/invoices/${invoiceId}/review`
+    ] as const;
+    }
+
+
+export const getGetInvoiceReviewQueryOptions = <TData = Awaited<ReturnType<typeof getInvoiceReview>>, TError = HTTPValidationError>(invoiceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInvoiceReview>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetInvoiceReviewQueryKey(invoiceId);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getInvoiceReview>>> = ({ signal }) => getInvoiceReview(invoiceId, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: invoiceId !== null && invoiceId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getInvoiceReview>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetInvoiceReviewQueryResult = NonNullable<Awaited<ReturnType<typeof getInvoiceReview>>>
+export type GetInvoiceReviewQueryError = HTTPValidationError
+
+
+export function useGetInvoiceReview<TData = Awaited<ReturnType<typeof getInvoiceReview>>, TError = HTTPValidationError>(
+ invoiceId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInvoiceReview>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getInvoiceReview>>,
+          TError,
+          Awaited<ReturnType<typeof getInvoiceReview>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetInvoiceReview<TData = Awaited<ReturnType<typeof getInvoiceReview>>, TError = HTTPValidationError>(
+ invoiceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInvoiceReview>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getInvoiceReview>>,
+          TError,
+          Awaited<ReturnType<typeof getInvoiceReview>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetInvoiceReview<TData = Awaited<ReturnType<typeof getInvoiceReview>>, TError = HTTPValidationError>(
+ invoiceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInvoiceReview>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Getinvoicereview
+ */
+
+export function useGetInvoiceReview<TData = Awaited<ReturnType<typeof getInvoiceReview>>, TError = HTTPValidationError>(
+ invoiceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInvoiceReview>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetInvoiceReviewQueryOptions(invoiceId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getCorrectFieldUrl = (invoiceId: number,) => {
+
+
+
+
+  return `/api/invoices/${invoiceId}/corrections`
+}
+
+/**
+ * Replace one value (typed, or picked on the page); the checks run again on the corrected invoice.
+ * @summary Correctfield
+ */
+export const correctField = async (invoiceId: number,
+    correctionIn: CorrectionIn, options?: Parameters<typeof customFetch>[1]): Promise<ReviewDetail> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<ReviewDetail>(getCorrectFieldUrl(invoiceId),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(correctionIn)
+  }
+);}
+
+
+
+
+
+export const getCorrectFieldMutationKey = () => ['correctField'] as const;
+
+export const getCorrectFieldMutationOptions = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof correctField>>, TError,CorrectFieldMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof correctField>>, TError,CorrectFieldMutationVariables, TContext> => {
+
+const mutationKey = getCorrectFieldMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof correctField>>, CorrectFieldMutationVariables> = (props) => {
+          const {invoiceId,data} = props ?? {};
+
+          return  correctField(invoiceId,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type CorrectFieldMutationResult = NonNullable<Awaited<ReturnType<typeof correctField>>>
+    export type CorrectFieldMutationBody = CorrectionIn
+    export type CorrectFieldMutationError = HTTPValidationError
+    export type CorrectFieldMutationVariables = {invoiceId: number;data: CorrectionIn}
+
+    /**
+ * @summary Correctfield
+ */
+export const useCorrectField = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof correctField>>, TError,CorrectFieldMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof correctField>>,
+        TError,
+        CorrectFieldMutationVariables,
+        TContext
+      > => {
+      return useMutation(getCorrectFieldMutationOptions(options), queryClient);
+    }
+
+export const getDecideInvoiceUrl = (invoiceId: number,) => {
+
+
+
+
+  return `/api/invoices/${invoiceId}/decision`
+}
+
+/**
+ * Approve, approve the received part, reject, hold or release; every action needs a note.
+ * @summary Decideinvoice
+ */
+export const decideInvoice = async (invoiceId: number,
+    decisionIn: DecisionIn, options?: Parameters<typeof customFetch>[1]): Promise<ReviewDetail> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<ReviewDetail>(getDecideInvoiceUrl(invoiceId),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(decisionIn)
+  }
+);}
+
+
+
+
+
+export const getDecideInvoiceMutationKey = () => ['decideInvoice'] as const;
+
+export const getDecideInvoiceMutationOptions = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof decideInvoice>>, TError,DecideInvoiceMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof decideInvoice>>, TError,DecideInvoiceMutationVariables, TContext> => {
+
+const mutationKey = getDecideInvoiceMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof decideInvoice>>, DecideInvoiceMutationVariables> = (props) => {
+          const {invoiceId,data} = props ?? {};
+
+          return  decideInvoice(invoiceId,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DecideInvoiceMutationResult = NonNullable<Awaited<ReturnType<typeof decideInvoice>>>
+    export type DecideInvoiceMutationBody = DecisionIn
+    export type DecideInvoiceMutationError = HTTPValidationError
+    export type DecideInvoiceMutationVariables = {invoiceId: number;data: DecisionIn}
+
+    /**
+ * @summary Decideinvoice
+ */
+export const useDecideInvoice = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof decideInvoice>>, TError,DecideInvoiceMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof decideInvoice>>,
+        TError,
+        DecideInvoiceMutationVariables,
+        TContext
+      > => {
+      return useMutation(getDecideInvoiceMutationOptions(options), queryClient);
+    }
+
+export const getReprocessInvoiceUrl = (invoiceId: number,) => {
+
+
+
+
+  return `/api/invoices/${invoiceId}/reprocess`
+}
+
+/**
+ * Queue a fresh read by the model (ignoring the cache); the checks run again when it is done.
+ * @summary Reprocessinvoice
+ */
+export const reprocessInvoice = async (invoiceId: number,
+    reprocessIn: ReprocessIn, options?: Parameters<typeof customFetch>[1]): Promise<ReviewDetail> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<ReviewDetail>(getReprocessInvoiceUrl(invoiceId),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(reprocessIn)
+  }
+);}
+
+
+
+
+
+export const getReprocessInvoiceMutationKey = () => ['reprocessInvoice'] as const;
+
+export const getReprocessInvoiceMutationOptions = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof reprocessInvoice>>, TError,ReprocessInvoiceMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof reprocessInvoice>>, TError,ReprocessInvoiceMutationVariables, TContext> => {
+
+const mutationKey = getReprocessInvoiceMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof reprocessInvoice>>, ReprocessInvoiceMutationVariables> = (props) => {
+          const {invoiceId,data} = props ?? {};
+
+          return  reprocessInvoice(invoiceId,data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ReprocessInvoiceMutationResult = NonNullable<Awaited<ReturnType<typeof reprocessInvoice>>>
+    export type ReprocessInvoiceMutationBody = ReprocessIn
+    export type ReprocessInvoiceMutationError = HTTPValidationError
+    export type ReprocessInvoiceMutationVariables = {invoiceId: number;data: ReprocessIn}
+
+    /**
+ * @summary Reprocessinvoice
+ */
+export const useReprocessInvoice = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof reprocessInvoice>>, TError,ReprocessInvoiceMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof reprocessInvoice>>,
+        TError,
+        ReprocessInvoiceMutationVariables,
+        TContext
+      > => {
+      return useMutation(getReprocessInvoiceMutationOptions(options), queryClient);
+    }
+
+export const getGetPageWordsUrl = (pageId: number,) => {
+
+
+
+
+  return `/api/pages/${pageId}/words`
+}
+
+/**
+ * The words found on a page (text layer or OCR), with boxes, so the reviewer can click one to fill a field.
+ * @summary Getpagewords
+ */
+export const getPageWords = async (pageId: number, options?: Parameters<typeof customFetch>[1]): Promise<WordOut[]> => {
+
+  return customFetch<WordOut[]>(getGetPageWordsUrl(pageId),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetPageWordsQueryKey = (pageId: number,) => {
+    return [
+    `/api/pages/${pageId}/words`
+    ] as const;
+    }
+
+
+export const getGetPageWordsQueryOptions = <TData = Awaited<ReturnType<typeof getPageWords>>, TError = HTTPValidationError>(pageId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPageWords>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetPageWordsQueryKey(pageId);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getPageWords>>> = ({ signal }) => getPageWords(pageId, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: pageId !== null && pageId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getPageWords>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetPageWordsQueryResult = NonNullable<Awaited<ReturnType<typeof getPageWords>>>
+export type GetPageWordsQueryError = HTTPValidationError
+
+
+export function useGetPageWords<TData = Awaited<ReturnType<typeof getPageWords>>, TError = HTTPValidationError>(
+ pageId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPageWords>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getPageWords>>,
+          TError,
+          Awaited<ReturnType<typeof getPageWords>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetPageWords<TData = Awaited<ReturnType<typeof getPageWords>>, TError = HTTPValidationError>(
+ pageId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPageWords>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getPageWords>>,
+          TError,
+          Awaited<ReturnType<typeof getPageWords>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetPageWords<TData = Awaited<ReturnType<typeof getPageWords>>, TError = HTTPValidationError>(
+ pageId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPageWords>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Getpagewords
+ */
+
+export function useGetPageWords<TData = Awaited<ReturnType<typeof getPageWords>>, TError = HTTPValidationError>(
+ pageId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPageWords>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetPageWordsQueryOptions(pageId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
 
 export const getListRunsUrl = () => {
 

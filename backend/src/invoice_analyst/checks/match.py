@@ -23,6 +23,11 @@ CHARGES_MAX_SHARE = Decimal("0.01")
 DESCRIPTION_MATCH_MIN = 85
 
 
+def qty_text(q: Decimal) -> str:
+    """A quantity for people: 3, 2.5 (the database keeps six decimals)."""
+    return format(q.normalize(), "f")
+
+
 def _allowed(base: Decimal) -> Decimal:
     return max(PRICE_TOLERANCE_PCT * abs(base), PRICE_TOLERANCE_ABS)
 
@@ -107,8 +112,8 @@ def three_way(ctx: Context) -> list[Finding]:
         available = _received_available(ctx, pl)
         if qty > available:
             outcome = "qty_over_received" if outcome == "match" else outcome
-            over_qty.append(f"{ln.description}: {qty:g} invoiced, {max(available, Decimal(0)):g} received and not "
-                            "yet invoiced")
+            over_qty.append(f"{ln.description}: {qty_text(qty)} invoiced, {qty_text(max(available, Decimal(0)))} "
+                            "received and not yet invoiced")
         ctx.s.add(MatchLine(invoice_id=ctx.invoice.id, invoice_line_id=ln.id, po_line_id=pl.id, qty_invoiced=qty,
                             qty_received_avail=available, qty_approved=max(Decimal(0), min(qty, available)),
                             price_inv=price, price_po=pl.unit_price,

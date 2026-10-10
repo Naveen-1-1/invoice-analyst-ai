@@ -36,13 +36,14 @@ def test_sequencer_checks_in_order_and_waits_at_a_gap(ws, monkeypatch) -> None:
         ids = (first.id, second.id, third.id)
     assert sequencer.advance(wid) == 1  # only arrival 1: arrival 3 waits behind unread arrival 2
     with sessions() as s:
-        assert [s.get(Invoice, i).state for i in ids] == ["MATCHED", "EXTRACTED", "EXTRACTED"]
+        # checked, then decided: hand-built invoices carry no confidence tier, so they go to review
+        assert [s.get(Invoice, i).state for i in ids] == ["NEEDS_REVIEW", "EXTRACTED", "EXTRACTED"]
     with sessions.begin() as s:
         s.get(Document, doc2.id).state = "EXTRACTED"
     assert sequencer.advance(wid) == 2
     assert sequencer.advance(wid) == 0  # running it again changes nothing
     with sessions() as s:
-        assert [s.get(Invoice, i).state for i in ids] == ["MATCHED"] * 3
+        assert [s.get(Invoice, i).state for i in ids] == ["NEEDS_REVIEW"] * 3
 
 
 def test_retry_waits_exactly_until_a_cooldown_ends() -> None:

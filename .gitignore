@@ -18,6 +18,7 @@ node_modules/
 frontend/dist/
 frontend/test-results/
 frontend/playwright-report/
+frontend/e2e/.workspace.json
 
 # IDE
 .idea/

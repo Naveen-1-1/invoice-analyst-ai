@@ -296,7 +296,8 @@ def build(set_name: str = "dev") -> dict[str, Any]:
             first_of_invoice.setdefault(key, ref)
             items.append({"index": k, "invoice_number": inv.number, "vendor_code": None if v.get("_remove") else v["code"],
                           "entity_code": None if ent.get("_remove") else ent["code"], "po_number": inv.po_number,
-                          "total": inv.total, "currency": inv.currency, "planted": kind_planted or ("duplicate_resubmission" if original else None),
+                          "total": inv.payable_total if inv.payable else inv.total,  # dual currency: the payable box
+                          "currency": inv.payable.currency if inv.payable else inv.currency, "planted": kind_planted or ("duplicate_resubmission" if original else None),
                           "natural": natural, "expect": sorted(set(expect)),
                           "duplicate_of": original or dup_of})
         doc_expect = (["doctype.multiple_invoices"] if spec.kind == "multi_invoice" else

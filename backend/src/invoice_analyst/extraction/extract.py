@@ -18,7 +18,7 @@ from pathlib import Path
 from typing import Any
 
 from PIL import Image
-from sqlalchemy import func, select, text
+from sqlalchemy import delete, func, select, text
 from sqlalchemy.orm import Session, sessionmaker
 
 from ..audit import chain
@@ -30,10 +30,10 @@ from ..ocr import rapid
 from ..llm.client import CooldownError, LlmClient
 from . import prompts
 from .confidence import calibrated_accuracy
-from .evidence import FieldEvidence, gather, invoice_tier
+from .evidence import FieldEvidence, gather, invoice_tier, tier_from_values
 from .grounding import PageIndex
 from .resolve import resolve
-from .schemas import SCHEMA_VERSION, STRICT, FileExtraction
+from .schemas import SCHEMA_VERSION, STRICT, FileExtraction, InvoiceDoc
 
 TEXT_PREPROCESS = "pdf-text-1"
 OCR_HINT_VERSION = "rapidocr-ppocrv6-lines-1"
@@ -146,9 +146,8 @@ def _field_rows(invoice_id: int, line_ids: dict[int, int], evidence: list[FieldE
     return rows
 
 
-def _save_extraction(s: Session, doc: Document, route: str, model: str, params: dict,
-                     value: FileExtraction | None, error: str | None,
-                     evidence: list[list[FieldEvidence]] | None = None) -> None:
+def _new_extraction(s: Session, doc: Document, route: str, model: str, params: dict, value: FileExtraction | None,
+                    error: str | None) -> Extraction:
     resolved = [dataclasses.asdict(resolve(inv)) for inv in value.invoices] if value else None
     ext = Extraction(document_id=doc.id, route=route, model=model, prompt_hash=prompts.PROMPT_HASH,
                      schema_ver=SCHEMA_VERSION, preprocess_ver=TEXT_PREPROCESS if route == "text_llm"
@@ -157,34 +156,49 @@ def _save_extraction(s: Session, doc: Document, route: str, model: str, params: 
                      error=error)
     s.add(ext)
     s.flush()
+    return ext
+
+
+def _invoice_columns(inv: InvoiceDoc, r: dict, evidence: list[FieldEvidence] | None) -> dict[str, Any]:
+    return dict(doc_type=inv.document_type, vendor_name=r["vendor_name"], currency=r["currency"],
+                invoice_number=r["invoice_number"], invoice_number_norm=r["invoice_number_norm"],
+                invoice_date=dt.date.fromisoformat(r["invoice_date"]) if r["invoice_date"] else None,
+                due_date=dt.date.fromisoformat(r["due_date"]) if r["due_date"] else None,
+                due_date_source="printed" if r["due_date"] else None, subtotal=_dec(r["subtotal"]),
+                tax=_dec(r["tax"]), total=_dec(r["total"]), payable_amount=_dec(r["total"]),
+                payable_currency=r["currency"], conf_tier=invoice_tier(evidence) if evidence else None)
+
+
+def _save_lines_and_fields(s: Session, invoice_id: int, inv: InvoiceDoc, evidence: list[FieldEvidence] | None,
+                           route: str) -> list[FieldValue]:
+    line_ids: dict[int, int] = {}
+    for n, ln in enumerate(inv.lines, 1):
+        line_row = InvoiceLine(invoice_id=invoice_id, line_no=n, kind="item", description=ln.description,
+                               item_code=ln.item_code, qty=_dec(ln.quantity), unit_price=_dec(ln.unit_price),
+                               amount=_dec(ln.amount), vat_rate=_dec(ln.vat_rate_percent))
+        s.add(line_row)
+        s.flush()
+        line_ids[n] = line_row.id
+    for n, ch in enumerate(inv.charges, len(inv.lines) + 1):
+        s.add(InvoiceLine(invoice_id=invoice_id, line_no=n, kind="discount" if ch.kind == "discount" else "charge",
+                          description=ch.description, amount=_dec(ch.amount)))
+    rows = _field_rows(invoice_id, line_ids, evidence, route) if evidence else []
+    s.add_all(rows)
+    return rows
+
+
+def _save_extraction(s: Session, doc: Document, route: str, model: str, params: dict,
+                     value: FileExtraction | None, error: str | None,
+                     evidence: list[list[FieldEvidence]] | None = None) -> None:
+    ext = _new_extraction(s, doc, route, model, params, value, error)
     if value is None:
         return
-    for idx, (inv, r) in enumerate(zip(value.invoices, resolved, strict=True)):
+    for idx, (inv, r) in enumerate(zip(value.invoices, ext.normalized["invoices"], strict=True)):
         row = Invoice(workspace_id=doc.workspace_id, document_id=doc.id, extraction_id=ext.id, child_index=idx,
-                      doc_type=inv.document_type, vendor_name=r["vendor_name"], currency=r["currency"],
-                      invoice_number=r["invoice_number"],
-                      invoice_number_norm=r["invoice_number_norm"],
-                      invoice_date=dt.date.fromisoformat(r["invoice_date"]) if r["invoice_date"] else None,
-                      due_date=dt.date.fromisoformat(r["due_date"]) if r["due_date"] else None,
-                      due_date_source="printed" if r["due_date"] else None, subtotal=_dec(r["subtotal"]),
-                      tax=_dec(r["tax"]), total=_dec(r["total"]), payable_amount=_dec(r["total"]),
-                      payable_currency=r["currency"],
-                      conf_tier=invoice_tier(evidence[idx]) if evidence else None)
+                      **_invoice_columns(inv, r, evidence[idx] if evidence else None))
         s.add(row)
         s.flush()
-        line_ids: dict[int, int] = {}
-        for n, ln in enumerate(inv.lines, 1):
-            line_row = InvoiceLine(invoice_id=row.id, line_no=n, kind="item", description=ln.description,
-                                   item_code=ln.item_code, qty=_dec(ln.quantity), unit_price=_dec(ln.unit_price),
-                                   amount=_dec(ln.amount), vat_rate=_dec(ln.vat_rate_percent))
-            s.add(line_row)
-            s.flush()
-            line_ids[n] = line_row.id
-        for n, ch in enumerate(inv.charges, len(inv.lines) + 1):
-            s.add(InvoiceLine(invoice_id=row.id, line_no=n, kind="discount" if ch.kind == "discount" else "charge",
-                              description=ch.description, amount=_dec(ch.amount)))
-        if evidence:
-            s.add_all(_field_rows(row.id, line_ids, evidence[idx], route))
+        _save_lines_and_fields(s, row.id, inv, evidence[idx] if evidence else None, route)
 
 
 TERMINAL_STATES = ("EXTRACTED", "SPLIT", "NOT_INVOICE", "FAILED")
@@ -288,3 +302,69 @@ def _finish(sessions: sessionmaker[Session], doc_id: int, route: str, model: str
             _transition(s, doc, state, {"model": model, "cache_hit": hit, "partial": partial,  # type: ignore[union-attr]
                                         "invoices": len(value.invoices), "tiers": tiers})
     return evidence
+
+
+async def reread(document_id: int, invoice_ids: set[int], *, settings: Settings, sessions: sessionmaker[Session],
+                 llm: LlmClient) -> str:
+    """Review 'reprocess': the model reads a finished document again, ignoring the cache, and its invoices are
+    refreshed in place (values, lines, field readings); only `invoice_ids` (those under review) change. A reviewer's
+    corrections stay current, and the earlier header readings stay in the history. Returns what happened."""
+    with sessions.begin() as s:
+        doc = s.get(Document, document_id)
+        route, payload = _input(s, doc, settings)
+        sha, source = doc.sha256, Path(doc.storage_path).read_bytes()
+    model = settings.text_model if route == "text_llm" else settings.image_model
+    params = TEXT_PARAMS if route == "text_llm" else IMAGE_PARAMS
+    messages, fingerprint = await asyncio.to_thread(_messages, route, payload, source, False)
+    try:
+        result = await llm.structured(model=model, messages=messages, response_model=FileExtraction, params=params,
+                                      prompt_hash=prompts.PROMPT_HASH, schema_ver=SCHEMA_VERSION,
+                                      inputs={"file_sha256": sha, "route": route, **fingerprint},
+                                      document_id=document_id, use_cache=False, context=STRICT)
+    except CooldownError:
+        raise
+    except Exception as exc:
+        error = f"{type(exc).__name__}: {exc}"[:2000]
+        with sessions.begin() as s:
+            _new_extraction(s, s.get(Document, document_id), route, model, params, None, error)
+        return f"The model couldn't read it again ({error[:200]}); nothing changed."
+    return await asyncio.to_thread(_refresh, sessions, document_id, invoice_ids, route, model, params,
+                                   result.value)
+
+
+def _refresh(sessions: sessionmaker[Session], doc_id: int, invoice_ids: set[int], route: str, model: str,
+             params: dict, value: FileExtraction) -> str:
+    with sessions.begin() as s:
+        doc = s.get(Document, doc_id)
+        invoices = s.scalars(select(Invoice).where(Invoice.document_id == doc_id).order_by(Invoice.child_index)).all()
+        ext = _new_extraction(s, doc, route, model, params, value, None)
+        if len(value.invoices) != len(invoices):
+            return (f"The new reading found {len(value.invoices)} invoice(s) in the file instead of {len(invoices)}; "
+                    "nothing changed (it is kept in the history).")
+        pages = sorted(s.query(Page).filter(Page.document_id == doc_id).all(), key=lambda p: p.page_no)
+        index = [PageIndex(p.page_no, p.words) for p in pages]
+        quality = {p.page_no: p.quality for p in pages}
+        for invoice, inv, r in zip(invoices, value.invoices, ext.normalized["invoices"], strict=True):
+            if invoice.id not in invoice_ids:
+                continue
+            evidence = gather(inv, resolve(inv), index, route, quality)
+            for key, val in _invoice_columns(inv, r, evidence).items():
+                setattr(invoice, key, val)
+            invoice.extraction_id = ext.id
+            s.execute(delete(InvoiceLine).where(InvoiceLine.invoice_id == invoice.id))  # their readings go with them
+            header = s.scalars(select(FieldValue).where(FieldValue.invoice_id == invoice.id, FieldValue.is_current,
+                                                        FieldValue.invoice_line_id.is_(None))).all()
+            human = {fv.field: fv for fv in header if fv.source == "human"}
+            for fv in header:
+                if fv.source != "human":
+                    fv.is_current = False
+            s.flush()
+            for fv in _save_lines_and_fields(s, invoice.id, inv, evidence, route):
+                if fv.invoice_line_id is None and fv.field in human:
+                    fv.is_current, fv.superseded_by = False, human[fv.field].id
+            s.flush()
+            invoice.conf_tier = tier_from_values(
+                s.scalars(select(FieldValue).where(FieldValue.invoice_id == invoice.id)).all()) or invoice.conf_tier
+        chain.record(s, doc.workspace_id, "llm", "document.reread", "document", doc.id,
+                     {"model": model, "extraction_id": ext.id, "invoices": sorted(invoice_ids), "cache": "bypassed"})
+        return "Read again by the model; the checks ran on the new reading."

@@ -160,3 +160,15 @@ def invoice_tier(evidence: list[FieldEvidence]) -> str | None:
              if (e.field in KEY_FIELDS and (e.field != "due_date" or e.signals["printed"]))
              or e.field in ("line_amount", "line_description")]
     return confidence.lowest(tiers)
+
+
+def counts_for_tier(row: Any) -> bool:
+    """Whether a stored field value counts towards the invoice's tier (as in invoice_tier)."""
+    return bool(row.tier and row.is_current and (
+        (row.field in KEY_FIELDS and (row.field != "due_date" or row.raw_text))
+        or row.field in ("line_amount", "line_description")))
+
+
+def tier_from_values(rows: list) -> str | None:
+    """invoice_tier over stored field values (current ones), so corrected fields count as the reviewer left them."""
+    return confidence.lowest([r.tier for r in rows if counts_for_tier(r)])

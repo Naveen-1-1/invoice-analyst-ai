@@ -34,8 +34,15 @@ class Fed:
 
 
 async def feed(set_name: str, *, label: str | None = None, seconds_per_day: float = 2.0, fresh: bool = False,
-               limit: int | None = None) -> Fed:
-    stream = loader.stream(set_name)[:limit] if limit else loader.stream(set_name)
+               limit: int | None = None, only: set[str] | None = None) -> Fed:
+    """only: replay just these arrivals (by ref), renumbered 1..k in their original order, e.g. for the web tests.
+    Their checks then compare only with each other, so the run's results can't be scored against the set's labels."""
+    stream = loader.stream(set_name)
+    if only:
+        stream = [{**item, "seq": k} for k, item in enumerate((i for i in stream if i["ref"] in only), 1)]
+        if missing := only - {i["ref"] for i in stream}:
+            raise ValueError(f"not in the {set_name} stream: {', '.join(sorted(missing))}")
+    stream = stream[:limit] if limit else stream
     first = dt.date.fromisoformat(stream[0]["received_date"])
     last = dt.date.fromisoformat(stream[-1]["received_date"])
     now = dt.datetime.now(dt.timezone.utc)
@@ -49,7 +56,7 @@ async def feed(set_name: str, *, label: str | None = None, seconds_per_day: floa
         s.flush()
         run = Run(workspace_id=ws.id, mode="inbox", git_sha=_git_sha(), status="running",
                   config={"set": set_name, "label": label, "documents": len(stream), "seconds_per_day": seconds_per_day,
-                          "fresh": fresh, "prompt_hash": prompts.PROMPT_HASH})
+                          "fresh": fresh, "prompt_hash": prompts.PROMPT_HASH, "only": sorted(only) if only else None})
         s.add(run)
         s.flush()
         loader.load(s, ws.id, set_name)

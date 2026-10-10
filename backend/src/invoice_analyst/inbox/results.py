@@ -1,4 +1,5 @@
-"""Write an inbox run's outcome (per arrival: vendor, company, PO and every check raised) for bench/'s AP eval."""
+"""Write an inbox run's outcome (per arrival: vendor, company, PO, every check raised, and the decision with its
+review labels) for bench/'s AP eval."""
 
 from __future__ import annotations
 
@@ -30,6 +31,8 @@ def write_results(run_id: int) -> dict:
                     "conf_tier": inv.conf_tier, "vendor_code": vendor.code if vendor else None,
                     "entity": entity.name if entity else None, "po_number": po.po_number if po else None,
                     "invoice_number": inv.invoice_number, "total": float(inv.total) if inv.total is not None else None,
+                    "currency": inv.currency, "vendor_name": inv.vendor_name,
+                    "review_labels": list(inv.review_labels or []),
                     "checks": [{"code": c.code, "outcome": c.outcome, "severity": c.severity} for c in checks]})
             items.append(entry)
     out = {"run": run_id, "set": (run.config or {}).get("set"), "items": items}

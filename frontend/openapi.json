@@ -109,6 +109,290 @@
     }
    }
   },
+  "/api/review": {
+   "get": {
+    "summary": "Listreviewqueue",
+    "description": "Open review tasks: payment-blocking ones first, then by due date (soonest first), then arrival order.",
+    "operationId": "listReviewQueue",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Workspace Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/ReviewItemOut"
+         },
+         "title": "Response Listreviewqueue"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/invoices/{invoice_id}/review": {
+   "get": {
+    "summary": "Getinvoicereview",
+    "operationId": "getInvoiceReview",
+    "parameters": [
+     {
+      "name": "invoice_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Invoice Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ReviewDetail"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/invoices/{invoice_id}/corrections": {
+   "post": {
+    "summary": "Correctfield",
+    "description": "Replace one value (typed, or picked on the page); the checks run again on the corrected invoice.",
+    "operationId": "correctField",
+    "parameters": [
+     {
+      "name": "invoice_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Invoice Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CorrectionIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ReviewDetail"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/invoices/{invoice_id}/decision": {
+   "post": {
+    "summary": "Decideinvoice",
+    "description": "Approve, approve the received part, reject, hold or release; every action needs a note.",
+    "operationId": "decideInvoice",
+    "parameters": [
+     {
+      "name": "invoice_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Invoice Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/DecisionIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ReviewDetail"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/invoices/{invoice_id}/reprocess": {
+   "post": {
+    "summary": "Reprocessinvoice",
+    "description": "Queue a fresh read by the model (ignoring the cache); the checks run again when it is done.",
+    "operationId": "reprocessInvoice",
+    "parameters": [
+     {
+      "name": "invoice_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Invoice Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ReprocessIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ReviewDetail"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/pages/{page_id}/words": {
+   "get": {
+    "summary": "Getpagewords",
+    "description": "The words found on a page (text layer or OCR), with boxes, so the reviewer can click one to fill a field.",
+    "operationId": "getPageWords",
+    "parameters": [
+     {
+      "name": "page_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Page Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/WordOut"
+         },
+         "title": "Response Getpagewords"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/api/runs": {
    "get": {
     "summary": "Listruns",
@@ -280,6 +564,53 @@
  },
  "components": {
   "schemas": {
+   "ApprovalOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "amount": {
+      "type": "string",
+      "title": "Amount"
+     },
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     },
+     "reasons": {
+      "items": {
+       "$ref": "#/components/schemas/ReasonLine"
+      },
+      "type": "array",
+      "title": "Reasons"
+     },
+     "rules_ver": {
+      "type": "string",
+      "title": "Rules Ver"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "kind",
+     "amount",
+     "currency",
+     "reasons",
+     "rules_ver",
+     "created_at"
+    ],
+    "title": "ApprovalOut"
+   },
    "BoardOut": {
     "properties": {
      "workspace": {
@@ -369,6 +700,36 @@
      "files"
     ],
     "title": "Body_uploadDocuments"
+   },
+   "CapOut": {
+    "properties": {
+     "usd_estimate": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Usd Estimate"
+     },
+     "cap_usd": {
+      "type": "string",
+      "title": "Cap Usd"
+     },
+     "rates_as_of": {
+      "type": "string",
+      "title": "Rates As Of"
+     }
+    },
+    "type": "object",
+    "required": [
+     "usd_estimate",
+     "cap_usd",
+     "rates_as_of"
+    ],
+    "title": "CapOut"
    },
    "CardOut": {
     "properties": {
@@ -505,6 +866,24 @@
       },
       "type": "array",
       "title": "Codes"
+     },
+     "invoice_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Id"
+     },
+     "labels": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Labels"
      }
     },
     "type": "object",
@@ -524,7 +903,9 @@
      "tier",
      "invoice_state",
      "findings",
-     "codes"
+     "codes",
+     "invoice_id",
+     "labels"
     ],
     "title": "CardOut"
    },
@@ -609,6 +990,115 @@
     ],
     "title": "ClockOut",
     "description": "The simulated clock: simulated date = start_sim + (now - start_real) / seconds_per_day days."
+   },
+   "CorrectionIn": {
+    "properties": {
+     "field": {
+      "type": "string",
+      "title": "Field"
+     },
+     "text": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Text"
+     },
+     "page_no": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Page No"
+     },
+     "bbox": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "number"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bbox"
+     }
+    },
+    "type": "object",
+    "required": [
+     "field",
+     "text"
+    ],
+    "title": "CorrectionIn"
+   },
+   "DecisionIn": {
+    "properties": {
+     "action": {
+      "type": "string",
+      "enum": [
+       "approve",
+       "approve_partial",
+       "reject",
+       "hold",
+       "release"
+      ],
+      "title": "Action"
+     },
+     "note": {
+      "type": "string",
+      "title": "Note"
+     },
+     "override": {
+      "type": "boolean",
+      "title": "Override",
+      "default": false
+     }
+    },
+    "type": "object",
+    "required": [
+     "action",
+     "note"
+    ],
+    "title": "DecisionIn"
+   },
+   "DecisionOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "action": {
+      "type": "string",
+      "title": "Action"
+     },
+     "note": {
+      "type": "string",
+      "title": "Note"
+     },
+     "decided_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Decided At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "action",
+     "note",
+     "decided_at"
+    ],
+    "title": "DecisionOut"
    },
    "DocumentDetail": {
     "properties": {
@@ -1241,6 +1731,120 @@
     ],
     "title": "LineOut"
    },
+   "MatchOut": {
+    "properties": {
+     "line_no": {
+      "type": "integer",
+      "title": "Line No"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "po_line_no": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Po Line No"
+     },
+     "qty_invoiced": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Qty Invoiced"
+     },
+     "qty_received_avail": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Qty Received Avail"
+     },
+     "qty_approved": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Qty Approved"
+     },
+     "price_inv": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Price Inv"
+     },
+     "price_po": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Price Po"
+     },
+     "variance_pct": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Variance Pct"
+     },
+     "outcome": {
+      "type": "string",
+      "title": "Outcome"
+     }
+    },
+    "type": "object",
+    "required": [
+     "line_no",
+     "description",
+     "po_line_no",
+     "qty_invoiced",
+     "qty_received_avail",
+     "qty_approved",
+     "price_inv",
+     "price_po",
+     "variance_pct",
+     "outcome"
+    ],
+    "title": "MatchOut"
+   },
    "PageOut": {
     "properties": {
      "id": {
@@ -1307,6 +1911,343 @@
      "effect"
     ],
     "title": "Reason"
+   },
+   "ReasonLine": {
+    "properties": {
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "code": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Code"
+     },
+     "text": {
+      "type": "string",
+      "title": "Text"
+     }
+    },
+    "type": "object",
+    "required": [
+     "kind",
+     "text"
+    ],
+    "title": "ReasonLine"
+   },
+   "ReprocessIn": {
+    "properties": {
+     "note": {
+      "type": "string",
+      "title": "Note"
+     }
+    },
+    "type": "object",
+    "required": [
+     "note"
+    ],
+    "title": "ReprocessIn"
+   },
+   "ReviewDetail": {
+    "properties": {
+     "invoice_id": {
+      "type": "integer",
+      "title": "Invoice Id"
+     },
+     "document_id": {
+      "type": "integer",
+      "title": "Document Id"
+     },
+     "workspace_id": {
+      "type": "integer",
+      "title": "Workspace Id"
+     },
+     "state": {
+      "type": "string",
+      "title": "State"
+     },
+     "doc_type": {
+      "type": "string",
+      "title": "Doc Type"
+     },
+     "labels": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Labels"
+     },
+     "task": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/TaskOut"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "decisions": {
+      "items": {
+       "$ref": "#/components/schemas/DecisionOut"
+      },
+      "type": "array",
+      "title": "Decisions"
+     },
+     "approvals": {
+      "items": {
+       "$ref": "#/components/schemas/ApprovalOut"
+      },
+      "type": "array",
+      "title": "Approvals"
+     },
+     "approved_so_far": {
+      "type": "string",
+      "title": "Approved So Far"
+     },
+     "po_number": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Po Number"
+     },
+     "matches": {
+      "items": {
+       "$ref": "#/components/schemas/MatchOut"
+      },
+      "type": "array",
+      "title": "Matches"
+     },
+     "partial": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/SplitOut"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "blocks": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Blocks"
+     },
+     "actions": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Actions"
+     },
+     "correctable": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Correctable"
+     },
+     "reread": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/StepOut"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "cap": {
+      "$ref": "#/components/schemas/CapOut"
+     }
+    },
+    "type": "object",
+    "required": [
+     "invoice_id",
+     "document_id",
+     "workspace_id",
+     "state",
+     "doc_type",
+     "labels",
+     "task",
+     "decisions",
+     "approvals",
+     "approved_so_far",
+     "po_number",
+     "matches",
+     "partial",
+     "blocks",
+     "actions",
+     "correctable",
+     "reread",
+     "cap"
+    ],
+    "title": "ReviewDetail"
+   },
+   "ReviewItemOut": {
+    "properties": {
+     "task_id": {
+      "type": "integer",
+      "title": "Task Id"
+     },
+     "invoice_id": {
+      "type": "integer",
+      "title": "Invoice Id"
+     },
+     "document_id": {
+      "type": "integer",
+      "title": "Document Id"
+     },
+     "workspace_id": {
+      "type": "integer",
+      "title": "Workspace Id"
+     },
+     "workspace": {
+      "type": "string",
+      "title": "Workspace"
+     },
+     "seq": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Seq"
+     },
+     "filename": {
+      "type": "string",
+      "title": "Filename"
+     },
+     "doc_type": {
+      "type": "string",
+      "title": "Doc Type"
+     },
+     "state": {
+      "type": "string",
+      "title": "State"
+     },
+     "vendor_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vendor Name"
+     },
+     "invoice_number": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Number"
+     },
+     "due_date": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Due Date"
+     },
+     "total": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Total"
+     },
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     },
+     "conf_tier": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Conf Tier"
+     },
+     "labels": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Labels"
+     },
+     "blocks": {
+      "type": "integer",
+      "title": "Blocks"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "task_id",
+     "invoice_id",
+     "document_id",
+     "workspace_id",
+     "workspace",
+     "seq",
+     "filename",
+     "doc_type",
+     "state",
+     "vendor_name",
+     "invoice_number",
+     "due_date",
+     "total",
+     "currency",
+     "conf_tier",
+     "labels",
+     "blocks",
+     "created_at"
+    ],
+    "title": "ReviewItemOut"
    },
    "RunOut": {
     "properties": {
@@ -1391,6 +2332,196 @@
      "tiers"
     ],
     "title": "RunOut"
+   },
+   "SplitLineOut": {
+    "properties": {
+     "line_no": {
+      "type": "integer",
+      "title": "Line No"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "amount": {
+      "type": "string",
+      "title": "Amount"
+     },
+     "approved": {
+      "type": "string",
+      "title": "Approved"
+     },
+     "why": {
+      "type": "string",
+      "title": "Why"
+     }
+    },
+    "type": "object",
+    "required": [
+     "line_no",
+     "description",
+     "amount",
+     "approved",
+     "why"
+    ],
+    "title": "SplitLineOut"
+   },
+   "SplitOut": {
+    "properties": {
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     },
+     "total": {
+      "type": "string",
+      "title": "Total"
+     },
+     "approved_net": {
+      "type": "string",
+      "title": "Approved Net"
+     },
+     "approved_tax": {
+      "type": "string",
+      "title": "Approved Tax"
+     },
+     "approved": {
+      "type": "string",
+      "title": "Approved"
+     },
+     "held": {
+      "type": "string",
+      "title": "Held"
+     },
+     "lines": {
+      "items": {
+       "$ref": "#/components/schemas/SplitLineOut"
+      },
+      "type": "array",
+      "title": "Lines"
+     }
+    },
+    "type": "object",
+    "required": [
+     "currency",
+     "total",
+     "approved_net",
+     "approved_tax",
+     "approved",
+     "held",
+     "lines"
+    ],
+    "title": "SplitOut"
+   },
+   "StepOut": {
+    "properties": {
+     "status": {
+      "type": "string",
+      "title": "Status"
+     },
+     "explanation": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Explanation"
+     },
+     "started_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Started At"
+     },
+     "finished_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Finished At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "status",
+     "explanation",
+     "started_at",
+     "finished_at"
+    ],
+    "title": "StepOut"
+   },
+   "TaskOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "status": {
+      "type": "string",
+      "title": "Status"
+     },
+     "labels": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Labels"
+     },
+     "reasons": {
+      "items": {
+       "$ref": "#/components/schemas/ReasonLine"
+      },
+      "type": "array",
+      "title": "Reasons"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "resolved_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Resolved At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "status",
+     "labels",
+     "reasons",
+     "created_at",
+     "resolved_at"
+    ],
+    "title": "TaskOut"
    },
    "UploadOut": {
     "properties": {
@@ -1477,6 +2608,27 @@
      "type"
     ],
     "title": "ValidationError"
+   },
+   "WordOut": {
+    "properties": {
+     "t": {
+      "type": "string",
+      "title": "T"
+     },
+     "bbox": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array",
+      "title": "Bbox"
+     }
+    },
+    "type": "object",
+    "required": [
+     "t",
+     "bbox"
+    ],
+    "title": "WordOut"
    },
    "WorkspaceOut": {
     "properties": {

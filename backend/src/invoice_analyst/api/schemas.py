@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import datetime as dt
 from decimal import Decimal
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel
 
@@ -166,6 +166,8 @@ class CardOut(BaseModel):
     invoice_state: str | None
     findings: dict[str, int]
     codes: list[str]
+    invoice_id: int | None
+    labels: list[str]
 
 
 class BoardOut(BaseModel):
@@ -183,3 +185,143 @@ class UploadOut(BaseModel):
     document_id: int | None = None
     workspace_id: int | None = None
     error: str | None = None
+
+
+class ReviewItemOut(BaseModel):
+    task_id: int
+    invoice_id: int
+    document_id: int
+    workspace_id: int
+    workspace: str
+    seq: int | None
+    filename: str
+    doc_type: str
+    state: str
+    vendor_name: str | None
+    invoice_number: str | None
+    due_date: dt.date | None
+    total: Decimal | None
+    currency: str | None
+    conf_tier: str | None
+    labels: list[str]
+    blocks: int
+    created_at: dt.datetime
+
+
+class ReasonLine(BaseModel):
+    kind: str  # ok / review / block / note / override / partial
+    code: str | None = None
+    text: str
+
+
+class TaskOut(BaseModel):
+    id: int
+    status: str
+    labels: list[str]
+    reasons: list[ReasonLine]
+    created_at: dt.datetime
+    resolved_at: dt.datetime | None
+
+
+class DecisionOut(BaseModel):
+    id: int
+    action: str
+    note: str
+    decided_at: dt.datetime
+
+
+class ApprovalOut(BaseModel):
+    id: int
+    kind: str  # auto / manual
+    amount: Decimal
+    currency: str
+    reasons: list[ReasonLine]
+    rules_ver: str
+    created_at: dt.datetime
+
+
+class MatchOut(BaseModel):
+    line_no: int
+    description: str | None
+    po_line_no: int | None
+    qty_invoiced: Decimal | None
+    qty_received_avail: Decimal | None
+    qty_approved: Decimal | None
+    price_inv: Decimal | None
+    price_po: Decimal | None
+    variance_pct: Decimal | None
+    outcome: str
+
+
+class SplitLineOut(BaseModel):
+    line_no: int
+    description: str | None
+    amount: Decimal
+    approved: Decimal
+    why: str
+
+
+class SplitOut(BaseModel):
+    currency: str
+    total: Decimal
+    approved_net: Decimal
+    approved_tax: Decimal
+    approved: Decimal
+    held: Decimal
+    lines: list[SplitLineOut]
+
+
+class StepOut(BaseModel):
+    status: str
+    explanation: str | None
+    started_at: dt.datetime | None
+    finished_at: dt.datetime | None
+
+
+class CapOut(BaseModel):
+    usd_estimate: Decimal | None
+    cap_usd: Decimal
+    rates_as_of: str
+
+
+class ReviewDetail(BaseModel):
+    invoice_id: int
+    document_id: int
+    workspace_id: int
+    state: str
+    doc_type: str
+    labels: list[str]
+    task: TaskOut | None
+    decisions: list[DecisionOut]
+    approvals: list[ApprovalOut]
+    approved_so_far: Decimal
+    po_number: str | None
+    matches: list[MatchOut]
+    partial: SplitOut | None
+    blocks: list[str]
+    actions: list[str]
+    correctable: list[str]
+    reread: StepOut | None
+    cap: CapOut
+
+
+class CorrectionIn(BaseModel):
+    field: str
+    text: str | None
+    page_no: int | None = None
+    bbox: list[float] | None = None
+
+
+class DecisionIn(BaseModel):
+    action: Literal["approve", "approve_partial", "reject", "hold", "release"]
+    note: str
+    override: bool = False
+
+
+class ReprocessIn(BaseModel):
+    note: str
+
+
+class WordOut(BaseModel):
+    t: str
+    bbox: list[float]

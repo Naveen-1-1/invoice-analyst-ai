@@ -16,7 +16,7 @@ from ..config import settings
 from ..db.models import (AuditEvent, CheckResult, Document, FieldValue, Invoice, InvoiceLine, LlmCall, Page, Run,
                          Workspace)
 from ..worker.app import app as queue
-from . import board
+from . import board, review
 from . import schemas as out
 from .deps import db
 
@@ -33,6 +33,7 @@ async def lifespan(_app: FastAPI):
 
 app = FastAPI(title="invoice-analyst-ai", version="0.1", generate_unique_id_function=_operation_id, lifespan=lifespan)
 app.include_router(board.router)
+app.include_router(review.router)
 
 
 def _inside_storage(path: str) -> Path:

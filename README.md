@@ -45,5 +45,18 @@ generated with its generator.
 - `make inbox-dev`: the whole dev inbox at once in one process, then score the checks against the labels
 - Each document's Checks tab in the app shows what was found and why
 
+## Decisions and review
+
+- After its checks, each invoice is **approved automatically** only if nothing needs review or blocks payment,
+  every key value was read with high confidence, a PO matched, and the total is at most USD 10,000 at the built-in
+  approximate rates (`backend/src/invoice_analyst/decision/rules.py`). Each automatic approval records its reasons.
+- Everything else goes to the **Review** queue (payment-blocked first, then soonest due) with plain-language labels.
+  The review screen shows the page next to the values: correct a value by typing it or clicking the words on the
+  page (the checks run again), then approve, approve the received part (VAT in proportion; the rest on hold),
+  reject, hold, or have the model read it again. Every action needs a note and goes into the audit trail.
+  Keys: `a` approve, `p` received part, `r` reject, `h` hold/release, `x` read again, `j`/`k` next/previous.
+- `make e2e`: web tests of the review flow on five dev arrivals replayed from cached readings (no model calls)
+- `ia inbox advance RUN`: decide any checked-but-undecided invoices of an inbox run and rewrite its results
+
 The held-out set is generated once with `make heldout-generate` from a private `HELDOUT_SEED` in `.env`,
 and sealed in `data/heldout/LOCK.json`; `make heldout-verify` checks the seal.
