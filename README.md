@@ -16,7 +16,15 @@ generated with its generator.
 4. Copy `.env.example` to `.env` (project root) and add your `NVIDIA_API_KEY`
 5. `make db-up migrate`: starts Postgres 18 in Docker (port 5433) and creates the tables
 6. `make verify-specs`: checks the generator reproduces the published answer keys (181/181)
-7. `make test`: backend tests (database rules, label firewall)
+7. `make test`: backend tests (database rules, LLM client, extraction rules, label firewall)
+
+## Benchmark mode
+
+- `make bench-smoke`: 20 dev documents (2 per category), then the official scorer
+- `make bench-dev`: all 181 dev documents, then the official scorer; results in `data/runs/<n>/`
+- `make score RUN=n`: score run n again; `PYTHONPATH=bench/src bench/.venv/bin/python -m apbench compare A B`
+  compares two runs
+- Answers are cached: rerunning the same documents with the same prompt and settings makes no API calls
 
 The held-out set is generated once with `make heldout-generate` from a private `HELDOUT_SEED` in `.env`,
 and sealed in `data/heldout/LOCK.json`; `make heldout-verify` checks the seal.

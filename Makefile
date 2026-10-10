@@ -2,8 +2,9 @@ PY := python3.12
 BACKEND_PY := backend/.venv/bin/python
 BENCH_PY := bench/.venv/bin/python
 APBENCH := PYTHONPATH=bench/src $(BENCH_PY) -m apbench
+IA := PYTHONPATH=backend/src $(BACKEND_PY) -m invoice_analyst
 
-.PHONY: help venv lock install submodule db-up db-down verify-specs heldout-generate heldout-verify migrate test
+.PHONY: help venv lock install submodule db-up db-down verify-specs heldout-generate heldout-verify migrate test bench-smoke bench-dev score
 
 help:
 	@echo "venv       create backend/.venv and bench/.venv (Python 3.12)"
@@ -13,6 +14,9 @@ help:
 	@echo "db-up      start Postgres in Docker and wait until it is healthy"
 	@echo "migrate    apply database migrations (alembic upgrade head)"
 	@echo "test       run the backend tests (uses a throwaway test database)"
+	@echo "bench-smoke  extract 20 dev documents (2 per category) and score them"
+	@echo "bench-dev    extract all 181 dev documents and score them"
+	@echo "score RUN=n  score run n with the official scorer"
 	@echo "verify-specs  check the generator specs (seed 42) reproduce the published answer keys"
 	@echo "heldout-generate  render and seal the held-out set from HELDOUT_SEED (once)"
 	@echo "heldout-verify    check the sealed held-out set is intact"
@@ -62,3 +66,14 @@ migrate:
 
 test:
 	cd backend && .venv/bin/pytest -q
+
+bench-smoke:
+	$(IA) bench run --smoke --label smoke
+	$(MAKE) score RUN=latest
+
+bench-dev:
+	$(IA) bench run --label dev
+	$(MAKE) score RUN=latest
+
+score:
+	$(APBENCH) score $(if $(filter latest,$(RUN)),$$(ls -d data/runs/[0-9]* | tail -1),$(RUN))
