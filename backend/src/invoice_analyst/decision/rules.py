@@ -13,8 +13,9 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from ..audit import chain
-from ..db.models import Approval, CheckResult, FieldValue, Invoice, InvoiceLine, PurchaseOrder, ReviewTask
+from ..db.models import Approval, CheckResult, Document, FieldValue, Invoice, InvoiceLine, PurchaseOrder, ReviewTask
 from ..extraction.evidence import KEY_FIELDS, counts_for_tier
+from ..payments import runs
 
 RULES_VERSION = "rules-1"
 AUTO_APPROVE_CAP_USD = Decimal(10_000)
@@ -136,11 +137,14 @@ def decide(s: Session, invoice: Invoice, *, allow_auto: bool = True) -> str:
     if auto and allow_auto and task is None:
         invoice.state = "AUTO_APPROVED"
         invoice.review_labels = []
-        s.add(Approval(invoice_id=invoice.id, kind="auto", amount=invoice.total, currency=invoice.currency,
-                       reasons=reasons, rules_ver=RULES_VERSION))
+        approval = Approval(invoice_id=invoice.id, kind="auto", amount=invoice.total, currency=invoice.currency,
+                            reasons=reasons, rules_ver=RULES_VERSION)
+        s.add(approval)
+        s.flush()
         chain.record(s, invoice.workspace_id, "system", "invoice.state_changed", "invoice", invoice.id,
                      {"from": old, "to": "AUTO_APPROVED", "rules": RULES_VERSION,
                       "reasons": [r["text"] for r in reasons]})
+        runs.approved(s, approval, s.get(Document, invoice.document_id).received_at.date())  # decision 42
         return invoice.state
     if task is None:
         s.add(ReviewTask(invoice_id=invoice.id, labels=labels, reasons=reasons, status="open"))

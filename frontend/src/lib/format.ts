@@ -90,6 +90,25 @@ export function eventText(e: { action: string; data: Record<string, unknown> }):
       return { title: 'Asked for a fresh read', detail: String(d.note ?? '') }
     case 'document.reread':
       return { title: 'Read again by the model', detail: d.model ? String(d.model) : undefined }
+    case 'payment.planned':
+      return { title: d.status === 'planned' ? `Payment planned for ${d.run_date}` : 'Payment waiting',
+               detail: `${formatMoney(d.amount, String(d.currency))}${Number(d.discount) ? `, ${formatMoney(d.discount)} discount` : ''}: ${d.reason}` }
+    case 'payment_run.executed': {
+      const totals = Object.entries((e.data.totals ?? {}) as Record<string, string>).map(([c, v]) => formatMoney(v, c)).join(', ')
+      return { title: `Payment run of ${d.run_date} paid`, detail: `${(e.data.transfers as unknown[] | undefined)?.length ?? 0} transfer(s): ${totals || 'nothing'}` }
+    }
+    case 'invoice.paid':
+      return { title: `Paid in the run of ${d.run_date}`, detail: `to account ${d.to}` }
+    case 'vendor.added':
+      return { title: `Added vendor ${d.name}`, detail: `${d.account ? `account ${d.account}` : 'no bank details'}: ${d.note}` }
+    case 'vendor.bank_account_changed':
+      return { title: `Bank account changed to ${d.to}`, detail: `was ${Array.isArray(d.from) ? d.from.join(', ') : d.from}: ${d.note}` }
+    case 'workspace.today_set':
+      return { title: `Today set to ${d.to}`, detail: `was ${d.from}` }
+    case 'companion.loaded':
+      return { title: 'Vendors, POs and deliveries loaded' }
+    case 'run.finished':
+      return { title: 'Inbox run finished' }
     default:
       return { title: e.action }
   }

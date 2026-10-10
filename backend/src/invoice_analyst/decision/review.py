@@ -7,7 +7,8 @@
   hold / release   park it, and bring it back
   reprocess        have the model read it again, ignoring the cache (queued; corrections are kept)
 
-Every action needs a note and goes into the audit trail with the reviewer as the actor.
+Every action needs a note and goes into the audit trail with the reviewer as the actor. An approval is booked on
+the workspace's today and planned into a payment run; approving also confirms the payee (decision 41).
 """
 
 from __future__ import annotations
@@ -24,9 +25,11 @@ from ..audit import chain
 from ..checks.engine import human_corrections, recheck
 from ..checks.match import qty_text
 from ..db.models import (Approval, CheckResult, Document, Extraction, FieldValue, Invoice, InvoiceLine, MatchLine,
-                         ReviewDecision, ReviewTask)
+                         ReviewDecision, ReviewTask, Workspace)
 from ..extraction import corrections
 from ..extraction.evidence import tier_from_values
+from ..payments import clock, runs
+from . import payees
 from .rules import FIELD_WORDS, RULES_VERSION, decide
 
 IN_REVIEW = ("NEEDS_REVIEW", "ON_HOLD")
@@ -96,7 +99,18 @@ def _approval(s: Session, invoice: Invoice, amount: Decimal, note: str, extra: l
     row = Approval(invoice_id=invoice.id, kind="manual", amount=amount, currency=invoice.currency,
                    reasons=[{"kind": "note", "text": note}, *extra], rules_ver=RULES_VERSION)
     s.add(row)
+    s.flush()
     return row
+
+
+def _to_payment(s: Session, invoice: Invoice, approval: Approval, note: str, *, confirm: bool = True) -> None:
+    """Confirm the payee, then book the approval on today and plan its payment."""
+    ws = s.get(Workspace, invoice.workspace_id)
+    today = clock.today(s, ws).date
+    changes = payees.confirm(s, invoice, today, note) if confirm else []
+    if changes:
+        approval.reasons = [*approval.reasons, *({"kind": "payee", "text": c} for c in changes)]
+    runs.approved(s, approval, today)
 
 
 def approved_so_far(s: Session, invoice: Invoice) -> Decimal:
@@ -161,7 +175,8 @@ def approve(s: Session, invoice: Invoice, note: str, *, override: bool = False) 
     overridden = _overrides(s, invoice, override)
     approval = _approval(s, invoice, invoice.total, note, overridden)
     _close(s, invoice, task, "approve", note, "APPROVED",
-           {"amount": str(invoice.total), "overrode": [o["code"] for o in overridden]})
+           {"amount": runs.money(invoice.total), "overrode": [o["code"] for o in overridden]})
+    _to_payment(s, invoice, approval, note)
     return approval
 
 
@@ -242,13 +257,14 @@ def approve_partial(s: Session, invoice: Invoice, note: str, *, override: bool =
     approval = _approval(s, invoice, split.approved, note, [*overridden, {"kind": "partial", "text": text,
                                                                          "split": split.as_json()}])
     _close(s, invoice, task, "approve_partial", note, "APPROVED_PARTIAL",
-           {"amount": str(split.approved), "held": str(split.held), "overrode": [o["code"] for o in overridden]})
+           {"amount": runs.money(split.approved), "held": runs.money(split.held), "overrode": [o["code"] for o in overridden]})
     rest = ReviewTask(invoice_id=invoice.id, labels=["rest on hold"], status="open", reasons=[
         {"kind": "review", "code": "partial.rest",
          "text": f"{split.held:,.2f} {split.currency} is on hold until the rest is delivered. Approve it when it "
                  "arrives, or reject the rest."}])
     s.add(rest)
     invoice.review_labels = ["rest on hold"]
+    _to_payment(s, invoice, approval, note)
     return approval
 
 
@@ -260,7 +276,8 @@ def _approve_rest(s: Session, invoice: Invoice, note: str) -> Approval:
     for m in s.scalars(select(MatchLine).where(MatchLine.invoice_id == invoice.id, MatchLine.qty_invoiced.is_not(None))):
         m.qty_approved = m.qty_invoiced  # the rest of the goods now count as invoiced
     approval = _approval(s, invoice, rest, note, [{"kind": "partial", "text": f"Rest approved: {rest:,.2f}."}])
-    _close(s, invoice, task, "approve", note, "APPROVED", {"amount": str(rest), "rest_of_partial": True})
+    _close(s, invoice, task, "approve", note, "APPROVED", {"amount": runs.money(rest), "rest_of_partial": True})
+    _to_payment(s, invoice, approval, note, confirm=False)
     return approval
 
 
@@ -269,7 +286,7 @@ def reject(s: Session, invoice: Invoice, note: str) -> ReviewDecision:
     if invoice.state == "APPROVED_PARTIAL":
         task = _task(s, invoice, ("APPROVED_PARTIAL",))
         rest = (invoice.total or Decimal(0)) - approved_so_far(s, invoice)
-        return _close(s, invoice, task, "reject", note, "APPROVED_PARTIAL", {"rest_cancelled": str(rest)})
+        return _close(s, invoice, task, "reject", note, "APPROVED_PARTIAL", {"rest_cancelled": runs.money(rest)})
     task = _task(s, invoice)
     return _close(s, invoice, task, "reject", note, "REJECTED")
 

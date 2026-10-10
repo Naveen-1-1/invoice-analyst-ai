@@ -13,8 +13,9 @@ from sqlalchemy.orm import Mapped, mapped_column
 from .base import PK, Base, Ccy, Created, Money, Qty, one_of
 
 EXTRACTION_STATUSES = ("ok", "failed")
+# the decision; payment progress is in payment_items (planned, waiting, paid)
 INVOICE_STATES = ("EXTRACTED", "CHECKED", "MATCHED", "AUTO_APPROVED", "NEEDS_REVIEW", "APPROVED",
-                  "APPROVED_PARTIAL", "REJECTED", "ON_HOLD", "POSTED", "SCHEDULED", "PAID")
+                  "APPROVED_PARTIAL", "REJECTED", "ON_HOLD")
 DOC_TYPES = ("invoice", "credit_note", "statement", "other")
 TIERS = ("high", "medium", "low")
 LINE_KINDS = ("item", "charge", "discount")

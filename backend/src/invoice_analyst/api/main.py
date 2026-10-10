@@ -13,10 +13,10 @@ from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session
 
 from ..config import settings
-from ..db.models import (AuditEvent, CheckResult, Document, FieldValue, Invoice, InvoiceLine, LlmCall, Page, Run,
-                         Workspace)
+from ..db.models import (AuditEvent, CheckResult, Document, FieldValue, Invoice, InvoiceLine, JournalEntry, LlmCall,
+                         Page, PaymentItem, Run, Workspace)
 from ..worker.app import app as queue
-from . import board, review
+from . import board, money, review
 from . import schemas as out
 from .deps import db
 
@@ -34,6 +34,7 @@ async def lifespan(_app: FastAPI):
 app = FastAPI(title="invoice-analyst-ai", version="0.1", generate_unique_id_function=_operation_id, lifespan=lifespan)
 app.include_router(board.router)
 app.include_router(review.router)
+app.include_router(money.router)
 
 
 def _inside_storage(path: str) -> Path:
@@ -84,6 +85,7 @@ def get_document(document_id: int, s: Session = Depends(db)) -> out.DocumentDeta
     pages = s.scalars(select(Page).where(Page.document_id == doc.id).order_by(Page.page_no)).all()
     invoices = s.scalars(select(Invoice).where(Invoice.document_id == doc.id).order_by(Invoice.child_index)).all()
     inv_out = []
+    names = money.account_names(s)
     for inv in invoices:
         lines = s.scalars(select(InvoiceLine).where(InvoiceLine.invoice_id == inv.id).order_by(InvoiceLine.line_no)).all()
         line_no = {ln.id: ln.line_no for ln in lines}
@@ -103,7 +105,11 @@ def get_document(document_id: int, s: Session = Depends(db)) -> out.DocumentDeta
                                unit_price=ln.unit_price, amount=ln.amount) for ln in lines],
             checks=[out.CheckOut(id=c.id, code=c.code, category=c.category, outcome=c.outcome, severity=c.severity,
                                  message=c.message, evidence=c.evidence, related_invoice_id=c.related_invoice_id)
-                    for c in checks]))
+                    for c in checks],
+            payments=[money.item_out(s, i) for i in s.scalars(select(PaymentItem).where(PaymentItem.invoice_id == inv.id)
+                                                                .order_by(PaymentItem.id))],
+            entries=[money.entry_out(s, e, names) for e in s.scalars(select(JournalEntry).where(
+                JournalEntry.invoice_id == inv.id).order_by(JournalEntry.id))]))
     subjects = [("document", doc.id)] + [("invoice", i.id) for i in invoices]
     events = s.scalars(select(AuditEvent).where(AuditEvent.workspace_id == doc.workspace_id).where(
         or_(*[(AuditEvent.subject_type == t) & (AuditEvent.subject_id == i) for t, i in subjects]))

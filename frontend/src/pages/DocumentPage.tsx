@@ -8,7 +8,7 @@ import { TierBadge } from '@/components/TierBadge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ROUTE_LABELS, errorText, eventText, formatDateTime } from '@/lib/format'
+import { ROUTE_LABELS, errorText, eventText, formatDateTime, formatMoney } from '@/lib/format'
 import { STATE_LABELS } from '@/lib/review'
 
 export function DocumentPage() {
@@ -91,6 +91,7 @@ export function DocumentPage() {
                 <TabsTrigger value="checks">
                   Checks{invoice ? ` (${invoice.checks.filter((c) => c.outcome === 'fail' || c.outcome === 'warn').length})` : ''}
                 </TabsTrigger>
+                <TabsTrigger value="money">Payment{invoice?.payments.length ? ` (${invoice.payments.length})` : ''}</TabsTrigger>
                 <TabsTrigger value="trail">Audit trail ({d.events.length})</TabsTrigger>
               </TabsList>
               <TabsContent value="fields" className="pt-2">
@@ -103,6 +104,39 @@ export function DocumentPage() {
               </TabsContent>
               <TabsContent value="checks" className="pt-2">
                 <CheckList checks={invoice?.checks ?? []} />
+              </TabsContent>
+              <TabsContent value="money" className="space-y-4 pt-2 text-sm">
+                {!invoice?.payments.length && <p className="text-muted-foreground">Not approved, so nothing is booked or paid.</p>}
+                {invoice?.payments.map((p) => (
+                  <div key={p.id} className="rounded-md border p-2.5">
+                    <div className="font-medium">
+                      {p.status === 'paid' ? `Paid in the run of ${p.run_date}` : p.status === 'planned' ? `Planned for the run of ${p.run_date}` : 'Waiting'}
+                      {': '}{formatMoney(p.paid, p.currency)}{Number(p.discount) ? ` (${formatMoney(p.discount)} discount)` : ''}
+                      {p.to_account && <span className="font-normal text-muted-foreground"> to account {p.to_account}</span>}
+                    </div>
+                    <div className="text-muted-foreground">{p.reason}</div>
+                  </div>
+                ))}
+                {invoice && invoice.entries.length > 0 && (
+                  <section>
+                    <h3 className="mb-1 font-semibold">Ledger entries</h3>
+                    <ul className="space-y-2">
+                      {invoice.entries.map((e) => (
+                        <li key={e.id} className="border-l-2 pl-3">
+                          <div className="font-medium">{e.entry_date} · {e.kind.replace('_', ' ')}</div>
+                          <ul className="text-xs">
+                            {e.lines.map((ln, k) => (
+                              <li key={k} className="flex justify-between gap-3">
+                                <span className={Number(ln.credit) > 0 ? 'pl-6' : ''}>{ln.account} {ln.account_name}</span>
+                                <span className="tabular-nums">{Number(ln.debit) > 0 ? `Dr ${formatMoney(ln.debit, ln.currency)}` : `Cr ${formatMoney(ln.credit, ln.currency)}`}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                )}
               </TabsContent>
               <TabsContent value="trail" className="pt-2">
                 <ol className="space-y-2 text-sm">

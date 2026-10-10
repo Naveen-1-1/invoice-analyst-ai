@@ -1,5 +1,5 @@
 """Write an inbox run's outcome (per arrival: vendor, company, PO, every check raised, and the decision with its
-review labels) for bench/'s AP eval."""
+review labels, and its payments) for bench/'s AP eval."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from sqlalchemy import select
 
 from ..config import ROOT
 from ..db.engine import session_factory
-from ..db.models import CheckResult, Document, Entity, Invoice, PurchaseOrder, Run, Vendor
+from ..db.models import CheckResult, Document, Entity, Invoice, PaymentItem, PaymentRun, PurchaseOrder, Run, Vendor
 
 RUNS_DIR = ROOT / "data" / "runs"
 
@@ -33,6 +33,13 @@ def write_results(run_id: int) -> dict:
                     "invoice_number": inv.invoice_number, "total": float(inv.total) if inv.total is not None else None,
                     "currency": inv.currency, "vendor_name": inv.vendor_name,
                     "review_labels": list(inv.review_labels or []),
+                    "payments": [{"status": i.status, "run_date": run.run_date.isoformat() if run else None,
+                                  "amount": float(i.amount), "discount": float(i.discount), "currency": i.currency,
+                                  "due_date": i.due_date.isoformat() if i.due_date else None, "due_source": i.due_source}
+                                 for i, run in s.execute(select(PaymentItem, PaymentRun)
+                                                         .outerjoin(PaymentRun, PaymentRun.id == PaymentItem.run_id)
+                                                         .where(PaymentItem.invoice_id == inv.id)
+                                                         .order_by(PaymentItem.id)).all()],
                     "checks": [{"code": c.code, "outcome": c.outcome, "severity": c.severity} for c in checks]})
             items.append(entry)
     out = {"run": run_id, "set": (run.config or {}).get("set"), "items": items}

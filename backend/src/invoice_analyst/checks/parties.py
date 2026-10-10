@@ -59,7 +59,8 @@ def bank(ctx: Context) -> list[Finding]:
         return [Finding("bank.changed", "skip", "Vendor unknown, so there is no bank account on file to compare.")]
     printed = ctx.inv.vendor.bank
     acct = norm_account(printed.iban, printed.account_number, printed.sort_code) if printed else None
-    on_file = ctx.s.scalars(select(VendorBankAccount).where(VendorBankAccount.vendor_id == ctx.vendor.id)).all()
+    on_file = ctx.s.scalars(select(VendorBankAccount).where(VendorBankAccount.vendor_id == ctx.vendor.id,
+                                                            VendorBankAccount.valid_to.is_(None))).all()
     if acct is None:
         return [Finding("bank.on_file", "pass", "No bank details printed; payment goes to the account on file "
                                                 f"({last4(on_file[0].account_norm) if on_file else 'none on file'}).")]

@@ -58,5 +58,19 @@ generated with its generator.
 - `make e2e`: web tests of the review flow on five dev arrivals replayed from cached readings (no model calls)
 - `ia inbox advance RUN`: decide any checked-but-undecided invoices of an inbox run and rewrite its results
 
+## Payments, books and audit
+
+- Approving an invoice (automatically or by you) books it in a built-in double-entry ledger: the cost to the PO
+  line's expense account (else the vendor's), VAT to VAT input, withholding to its own account, and what we owe to
+  accounts payable, in the invoice's currency, for the company it's addressed to.
+- It's then planned into a weekly **payment run** (Thursdays): the last run before it's due, the last run before
+  the discount deadline when the vendor gives one, or the next run when overdue. Credit notes are subtracted from
+  the same vendor's payment. Paying a run books the payments and marks the invoices paid.
+- **Today**: a live inbox uses its simulated clock and pays runs as it passes them; elsewhere you set today, or
+  press "Pay the next run" on the **Payments** page (`make pay-due WS=n` pays everything due).
+- **Ledger** page: trial balance per currency (with the checks that debits equal credits and that payables equal
+  the unpaid invoices), what we owe by age, the journal, and CSV downloads; filter by company.
+- **Audit** page: every event in order, and a "chain verified" badge; `make audit-verify` checks every chain.
+
 The held-out set is generated once with `make heldout-generate` from a private `HELDOUT_SEED` in `.env`,
 and sealed in `data/heldout/LOCK.json`; `make heldout-verify` checks the seal.

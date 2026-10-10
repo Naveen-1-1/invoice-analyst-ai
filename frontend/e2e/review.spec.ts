@@ -18,7 +18,7 @@ const status = (page: Page) => page.getByRole('status').first()
 
 test('the board shows the decision for each arrival', async ({ page }) => {
   await page.goto(`/board/${workspace()}`)
-  await expect(page.getByRole('region', { name: 'Approved automatically' })).toContainText(REFS.auto)
+  await expect(page.getByRole('region', { name: 'To pay' })).toContainText(REFS.auto) // approved automatically
   const review = page.getByRole('region', { name: 'Needs review' })
   for (const ref of [REFS.partial, REFS.noPo, REFS.bank, REFS.medium]) await expect(review).toContainText(ref)
 })
@@ -87,4 +87,23 @@ test('approve the received part, then the rest', async ({ page }) => {
   await page.getByRole('button', { name: 'Approve', exact: true }).click()
   await expect(status(page)).toContainText('Approved.')
   await expect(page.getByText('approved', { exact: true })).toBeVisible()
+})
+
+test('pay the planned runs, and the books balance', async ({ page }) => {
+  // after the approvals above: the automatic one, the bank-change override, and the partial one and its rest
+  await page.goto(`/payments/${workspace()}`)
+  const next = page.getByRole('button', { name: /^Pay the next run/ })
+  for (let k = 0; k < 10 && (await next.isEnabled()); k++) {
+    await next.click()
+    await expect(status(page)).toContainText('Paid the run of')
+  }
+  await expect(next).toBeDisabled() // nothing left planned
+  await page.goto(`/board/${workspace()}`)
+  const paid = page.getByRole('region', { name: 'Paid' })
+  for (const ref of [REFS.auto, REFS.bank, REFS.partial]) await expect(paid).toContainText(ref)
+  await page.goto(`/ledger/${workspace()}`)
+  await expect(page.getByText(/debits = credits/).first()).toBeVisible()
+  await expect(page.getByText(/payables ≠/)).toHaveCount(0)
+  await page.goto(`/audit/${workspace()}`)
+  await expect(page.getByRole('status')).toContainText('chain verified')
 })

@@ -17,6 +17,10 @@ app.add_typer(bench_app, name="bench")
 inbox_app = typer.Typer(add_completion=False, no_args_is_help=True,
                         help="Inbox mode: documents arrive in order into one workspace with its vendors and POs.")
 app.add_typer(inbox_app, name="inbox")
+audit_app = typer.Typer(add_completion=False, no_args_is_help=True, help="The audit trail (one hash chain per workspace).")
+app.add_typer(audit_app, name="audit")
+payments_app = typer.Typer(add_completion=False, no_args_is_help=True, help="Booking approvals and weekly payment runs.")
+app.add_typer(payments_app, name="payments")
 
 
 def _ids(only: str | None) -> set[str] | None:
@@ -126,6 +130,49 @@ def run_worker(concurrency: int = typer.Option(8, help="Jobs at once (model call
     from .worker.run import main as worker_main
 
     asyncio.run(worker_main(concurrency))
+
+
+@audit_app.command("verify")
+def audit_verify(workspace: int | None = typer.Option(None, help="One workspace (default: every chain)")) -> None:
+    """Recompute every audit chain: exits with an error if any event was changed, removed or reordered."""
+    from .audit.verify import verify, workspaces
+    from .db.engine import session_factory
+
+    with session_factory()() as s:
+        chains = [workspace] if workspace is not None else sorted(workspaces(s), key=lambda w: (w is None, w or 0))
+        verdicts = [verify(s, w) for w in chains]
+    for v in verdicts:
+        typer.echo(f"workspace {v.workspace_id if v.workspace_id is not None else '(global)'}: {v.words()}")
+    if not all(v.ok for v in verdicts):
+        raise typer.Exit(1)
+
+
+@payments_app.command("catch-up")
+def payments_catch_up(workspace: int = typer.Argument(..., help="Workspace id")) -> None:
+    """Book and plan any approvals that aren't booked yet (e.g. made before payments existed)."""
+    from .db.engine import session_factory
+    from .db.models import Workspace
+    from .payments.runs import catch_up
+
+    with session_factory().begin() as s:
+        n = catch_up(s, s.get(Workspace, workspace))
+    typer.echo(f"booked and planned {n} approval(s)")
+
+
+@payments_app.command("run-due")
+def payments_run_due(workspace: int = typer.Argument(..., help="Workspace id")) -> None:
+    """Execute every planned payment run dated on or before the workspace's today."""
+    from .db.engine import session_factory
+    from .db.models import Workspace
+    from .payments import clock
+    from .payments.runs import run_due
+
+    with session_factory().begin() as s:
+        ws = s.get(Workspace, workspace)
+        done = run_due(s, ws, clock.today(s, ws).date, actor="user")
+    for r in done:
+        typer.echo(f"{r['run_date']}: {len(r['transfers'])} transfer(s) {r['totals']}")
+    typer.echo(f"executed {len(done)} run(s)")
 
 
 if __name__ == "__main__":

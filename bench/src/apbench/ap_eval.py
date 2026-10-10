@@ -3,6 +3,8 @@
   planted catch rate   per planted type: did the expected check fire on that invoice?
   per-check accuracy   for every check the labels cover: true/false alarms and misses, precision, recall
   matching accuracy    vendor, our company (addressee), purchase order
+  payment timing       each automatic approval (booked on arrival) planned into the run an independent
+                       calculation expects from the true issue date, due date or terms, and the vendor's terms
   decisions            straight-through rate; false auto-approvals (approved with no person although the labels
                        expect a problem, or with the total, number or vendor read wrong: the key safety number,
                        target 0); why the rest went to review, and how many of those had nothing actually wrong
@@ -12,7 +14,9 @@ not on the PO, ...) are counted separately, not as false alarms.
 
 from __future__ import annotations
 
+import datetime as dt
 import json
+import re
 from collections import Counter, defaultdict
 from typing import Any
 
@@ -32,7 +36,45 @@ def _family(code: str) -> str | None:
     return None
 
 
-INFO_ONLY = {"doctype.credit_note"}  # shown to the reviewer, never a reason to stop an automatic approval
+INFO_ONLY = {"doctype.credit_note"}
+
+# decision 12, worked out here independently of the backend: weekly runs on Thursday, the last one on or before the
+# due date (or the discount deadline when it can still be made), else the next run
+THURSDAY = 3
+_RECEIPT = re.compile(r"\b(due\s+(up)?on\s+receipt|on\s+receipt|immediate(ly)?|cod|cash\s+on\s+delivery)\b", re.I)
+_DAYS = re.compile(r"(?:net\s*(\d{1,3}))|(?:(\d{1,3})\s*(?:days?|d\b))", re.I)
+
+
+def _thursday_on_or_after(d: dt.date) -> dt.date:
+    return d + dt.timedelta(days=(THURSDAY - d.weekday()) % 7)
+
+
+def _thursday_on_or_before(d: dt.date) -> dt.date:
+    return d - dt.timedelta(days=(d.weekday() - THURSDAY) % 7)
+
+
+def _terms(text: str | None) -> int | None:
+    if not text:
+        return None
+    if _RECEIPT.search(text):
+        return 0
+    m = _DAYS.search(text)
+    return int(m.group(1) or m.group(2)) if m else None
+
+
+def expected_run(lab: dict, vendor: dict | None, booked: dt.date) -> dt.date:
+    issue = dt.date.fromisoformat(lab["invoice_date"])
+    days = _terms(lab.get("terms"))
+    due = (dt.date.fromisoformat(lab["due_date"]) if lab.get("due_date") else
+           issue + dt.timedelta(days=days) if days is not None else
+           issue + dt.timedelta(days=vendor["terms_days"]) if vendor and vendor.get("terms_days") is not None else
+           issue + dt.timedelta(days=30))
+    first = _thursday_on_or_after(booked)
+    if vendor and vendor.get("discount_pct") and vendor.get("discount_days"):
+        by = _thursday_on_or_before(issue + dt.timedelta(days=vendor["discount_days"]))
+        if by >= first:
+            return by
+    return max(first, _thursday_on_or_before(due))  # shown to the reviewer, never a reason to stop an automatic approval
 
 
 def _norm(text: str | None) -> str:
@@ -65,6 +107,10 @@ def evaluate(run: str, set_name: str = "dev") -> tuple[str, dict[str, Any]]:
     unlabeled: Counter = Counter()
     matching: dict[str, Counter] = defaultdict(Counter)
     misses, false_alarms = [], []
+    vendors = {v["code"]: v for v in json.loads((specs.ROOT / "data" / set_name / "companion" / "vendors.json").read_text())}
+    stream = {s["seq"]: s for s in json.loads((specs.ROOT / "data" / set_name / "inbox" / "stream.json").read_text())}
+    timing: Counter = Counter()
+    late_or_early: list[str] = []
     decisions: Counter = Counter()
     review_labels: Counter = Counter()
     needless_labels: Counter = Counter()
@@ -117,6 +163,16 @@ def evaluate(run: str, set_name: str = "dev") -> tuple[str, dict[str, Any]]:
                 wrong = _read_wrong(got_inv, lab)
                 decisions["bills"] += 1
                 state = got_inv["state"]
+                if state == "AUTO_APPROVED" and lab.get("invoice_date"):
+                    planned = [p["run_date"] for p in got_inv.get("payments") or [] if p["run_date"]]
+                    want = expected_run(lab, vendors.get(lab["vendor_code"]),
+                                        dt.date.fromisoformat(stream[item["seq"]]["received_date"]))
+                    if planned and planned[0] == want.isoformat():
+                        timing["right run"] += 1
+                    else:
+                        timing["other run"] += 1
+                        late_or_early.append(f"{item['ref']}: planned {planned[0] if planned else 'nowhere'}, "
+                                             f"expected {want}")
                 if state == "AUTO_APPROVED":
                     decisions["auto_approved"] += 1
                     if problems or wrong:
@@ -164,6 +220,9 @@ def evaluate(run: str, set_name: str = "dev") -> tuple[str, dict[str, Any]]:
               *[f"  - {f}" for f in false_auto],
               "", "| review label | invoices | of which nothing wrong |", "|---|---|---|",
               *[f"| {k} | {v} | {needless_labels[k]} |" for k, v in review_labels.most_common()]]
+    lines += ["", "## Payment timing (automatic approvals)", "",
+              f"- planned into the expected run: {timing['right run']} of {timing['right run'] + timing['other run']}",
+              *[f"  - {x}" for x in late_or_early]]
     lines += ["", "## Matching", ""] + [f"- {k}: {c['right']}/{c['right'] + c['wrong']} right" for k, c in matching.items()]
     lines += ["", "## Raised but not judged by the labels", "", ", ".join(f"{k} {v}" for k, v in sorted(unlabeled.items())) or "none",
               "", f"## Misses ({len(misses)})", "", *[f"- {m}" for m in misses],
@@ -171,7 +230,7 @@ def evaluate(run: str, set_name: str = "dev") -> tuple[str, dict[str, Any]]:
     report = {"planted": {k: dict(v) for k, v in planted.items()}, "checks": {k: dict(v) for k, v in tally.items()},
               "matching": {k: dict(v) for k, v in matching.items()}, "unlabeled": dict(unlabeled),
               "misses": misses, "false_alarms": false_alarms, "decisions": dict(decisions),
-              "false_auto_approvals": false_auto, "review_labels": dict(review_labels),
+              "false_auto_approvals": false_auto, "payment_timing": dict(timing), "payment_timing_off": late_or_early, "review_labels": dict(review_labels),
               "review_labels_nothing_wrong": dict(needless_labels)}
     (run_dir(run) / "ap_eval.json").write_text(json.dumps(report, indent=1) + "\n")
     return "\n".join(lines), report

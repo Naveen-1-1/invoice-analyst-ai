@@ -4,7 +4,7 @@ BENCH_PY := bench/.venv/bin/python
 APBENCH := PYTHONPATH=bench/src $(BENCH_PY) -m apbench
 IA := PYTHONPATH=backend/src $(BACKEND_PY) -m invoice_analyst
 
-.PHONY: help venv lock install submodule db-up db-down verify-specs heldout-generate heldout-verify migrate test bench-smoke bench-dev score api web gen-api companion inbox-dev ap-eval worker inbox-live e2e
+.PHONY: help venv lock install submodule db-up db-down verify-specs heldout-generate heldout-verify migrate test bench-smoke bench-dev score api web gen-api companion inbox-dev ap-eval worker inbox-live e2e audit-verify pay-due
 
 help:
 	@echo "venv       create backend/.venv and bench/.venv (Python 3.12)"
@@ -25,6 +25,8 @@ help:
 	@echo "inbox-live start a dev inbox replayed in simulated time (needs make worker); watch it on the board"
 	@echo "inbox-dev  run the whole dev inbox at once in this process, then score the checks"
 	@echo "ap-eval RUN=n  score inbox run n's checks and decisions against the labels"
+	@echo "audit-verify  recompute every workspace's audit chain (fails if any event was altered)"
+	@echo "pay-due WS=n  pay every planned payment run up to workspace n's today"
 	@echo "e2e        web tests of the review flow (Playwright, installed Chrome; starts api/web if needed)"
 	@echo "verify-specs  check the generator specs (seed 42) reproduce the published answer keys"
 	@echo "heldout-generate  render and seal the held-out set from HELDOUT_SEED (once)"
@@ -109,6 +111,12 @@ inbox-live:
 inbox-dev:
 	$(IA) inbox run --set dev --label dev --speed 0 --worker
 	$(MAKE) ap-eval RUN=latest
+
+audit-verify:
+	$(IA) audit verify
+
+pay-due:
+	$(IA) payments run-due $(WS)
 
 e2e:
 	cd frontend && npx playwright test

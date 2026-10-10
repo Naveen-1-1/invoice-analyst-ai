@@ -54,7 +54,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-02-27",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -75,7 +78,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-03-05",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -96,7 +102,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-03-12",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -121,7 +130,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-03-14",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -142,7 +154,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-03-18",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -167,7 +182,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-03-22",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -192,7 +210,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-03-28",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -217,7 +238,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-03-31",
+     "due_date": "2024-04-30",
+     "terms": "Net 30"
     }
    ]
   },
@@ -242,7 +266,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-04-02",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -263,7 +290,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-04-01",
+     "due_date": "2024-05-01",
+     "terms": "Net 30"
     }
    ]
   },
@@ -288,7 +318,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-04-08",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -313,7 +346,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-04-10",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -338,7 +374,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-04-15",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -363,7 +402,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-04-18",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -386,7 +428,10 @@
      "expect": [
       "match.qty_over_received"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-04-22",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -411,7 +456,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-04-18",
+     "due_date": "2024-05-03",
+     "terms": "Net 15"
     }
    ]
   },
@@ -436,7 +484,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-04-25",
+     "due_date": null,
+     "terms": "Due on Receipt"
     }
    ]
   },
@@ -461,7 +512,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-04-30",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -486,7 +540,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-05-03",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -512,7 +569,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2024-05-09",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -537,7 +597,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-01-15",
+     "due_date": "2025-02-14",
+     "terms": "30 days"
     }
    ]
   },
@@ -563,7 +626,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-01-16",
+     "due_date": "2025-01-30",
+     "terms": "14 days"
     }
    ]
   },
@@ -588,7 +654,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-01-25",
+     "due_date": "2025-02-08",
+     "terms": "14 days"
     }
    ]
   },
@@ -613,7 +682,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-01-22",
+     "due_date": "2025-01-29",
+     "terms": "7 days"
     }
    ]
   },
@@ -638,7 +710,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-02-06",
+     "due_date": null,
+     "terms": "COD"
     }
    ]
   },
@@ -664,7 +739,10 @@
       "match.no_po",
       "pattern.above_history"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-02-18",
+     "due_date": "2025-03-20",
+     "terms": "30 days"
     }
    ]
   },
@@ -689,7 +767,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-02-21",
+     "due_date": "2025-03-23",
+     "terms": null
     }
    ]
   },
@@ -710,7 +791,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-03-10",
+     "due_date": "2025-04-09",
+     "terms": "30 days"
     }
    ]
   },
@@ -731,7 +815,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-03-18",
+     "due_date": "2025-04-17",
+     "terms": "30 days"
     }
    ]
   },
@@ -754,7 +841,10 @@
       "doctype.credit_note"
      ],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-03-19",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -777,7 +867,10 @@
      "expect": [
       "match.price_over_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-03-16",
+     "due_date": "2025-04-15",
+     "terms": "30 days"
     }
    ]
   },
@@ -803,7 +896,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "clean-us-tax-only"
+     "duplicate_of": "clean-us-tax-only",
+     "invoice_date": "2024-03-31",
+     "due_date": "2024-04-30",
+     "terms": "Net 30"
     }
    ]
   },
@@ -829,7 +925,10 @@
       "match.no_po",
       "vendor.unknown"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-03-27",
+     "due_date": "2025-04-10",
+     "terms": "14 days"
     }
    ]
   },
@@ -852,7 +951,10 @@
       "doctype.credit_note"
      ],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-03-24",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -878,7 +980,10 @@
       "match.no_po",
       "pattern.above_history"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-04-02",
+     "due_date": "2025-05-02",
+     "terms": "30 days"
     }
    ]
   },
@@ -901,7 +1006,10 @@
      "expect": [
       "vendor.tax_id_mismatch"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-04-07",
+     "due_date": "2025-05-07",
+     "terms": "30 days"
     }
    ]
   },
@@ -926,7 +1034,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-04-11",
+     "due_date": "2025-05-11",
+     "terms": "30 days"
     }
    ]
   },
@@ -953,7 +1064,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-annotations-moderate"
+     "duplicate_of": "photo-annotations-moderate",
+     "invoice_date": "2025-04-11",
+     "due_date": "2025-05-11",
+     "terms": "30 days"
     }
    ]
   },
@@ -980,7 +1094,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-annotations-moderate"
+     "duplicate_of": "photo-annotations-moderate",
+     "invoice_date": "2025-04-11",
+     "due_date": "2025-05-11",
+     "terms": "30 days"
     }
    ]
   },
@@ -1007,7 +1124,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-annotations-moderate"
+     "duplicate_of": "photo-annotations-moderate",
+     "invoice_date": "2025-04-11",
+     "due_date": "2025-05-11",
+     "terms": "30 days"
     }
    ]
   },
@@ -1034,7 +1154,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-annotations-moderate"
+     "duplicate_of": "photo-annotations-moderate",
+     "invoice_date": "2025-04-11",
+     "due_date": "2025-05-11",
+     "terms": "30 days"
     }
    ]
   },
@@ -1061,7 +1184,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-annotations-moderate"
+     "duplicate_of": "photo-annotations-moderate",
+     "invoice_date": "2025-04-11",
+     "due_date": "2025-05-11",
+     "terms": "30 days"
     }
    ]
   },
@@ -1088,7 +1214,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-annotations-moderate"
+     "duplicate_of": "photo-annotations-moderate",
+     "invoice_date": "2025-04-11",
+     "due_date": "2025-05-11",
+     "terms": "30 days"
     }
    ]
   },
@@ -1115,7 +1244,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-annotations-moderate"
+     "duplicate_of": "photo-annotations-moderate",
+     "invoice_date": "2025-04-11",
+     "due_date": "2025-05-11",
+     "terms": "30 days"
     }
    ]
   },
@@ -1142,7 +1274,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-annotations-moderate"
+     "duplicate_of": "photo-annotations-moderate",
+     "invoice_date": "2025-04-11",
+     "due_date": "2025-05-11",
+     "terms": "30 days"
     }
    ]
   },
@@ -1167,7 +1302,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-04-17",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -1192,7 +1330,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-04-23",
+     "due_date": "2025-05-23",
+     "terms": "30 days"
     }
    ]
   },
@@ -1224,7 +1365,10 @@
       "doctype.credit_note"
      ],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-04-24",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -1247,7 +1391,10 @@
      "expect": [
       "match.qty_over_received"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-04-28",
+     "due_date": "2025-05-28",
+     "terms": "30 days"
     }
    ]
   },
@@ -1268,7 +1415,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-04-25",
+     "due_date": "2025-05-25",
+     "terms": "30 days"
     }
    ]
   },
@@ -1289,7 +1439,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-05-10",
+     "due_date": "2025-07-09",
+     "terms": "60 days"
     }
    ]
   },
@@ -1314,7 +1467,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-05-31",
+     "due_date": "2025-06-30",
+     "terms": "30 days"
     }
    ]
   },
@@ -1335,7 +1491,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-06-06",
+     "due_date": "2025-08-05",
+     "terms": "60 days"
     }
    ]
   },
@@ -1358,7 +1517,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-06-12",
+     "due_date": null,
+     "terms": null
     },
     {
      "index": 1,
@@ -1371,7 +1533,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-01-22",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -1397,7 +1562,10 @@
       "match.no_po",
       "vendor.unknown"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-06-13",
+     "due_date": "2025-07-13",
+     "terms": "30 days"
     }
    ]
   },
@@ -1422,7 +1590,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-07-04",
+     "due_date": "2025-09-02",
+     "terms": null
     }
    ]
   },
@@ -1443,7 +1614,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-07-04",
+     "due_date": "2025-09-02",
+     "terms": "60 days"
     }
    ]
   },
@@ -1468,7 +1642,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-07-03",
+     "due_date": "2025-09-01",
+     "terms": "60 days"
     }
    ]
   },
@@ -1493,7 +1670,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-07-24",
+     "due_date": "2025-09-22",
+     "terms": null
     }
    ]
   },
@@ -1519,7 +1699,10 @@
       "match.no_po",
       "vendor.unknown"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-07-28",
+     "due_date": null,
+     "terms": "Due on receipt"
     }
    ]
   },
@@ -1540,7 +1723,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-08-16",
+     "terms": "14 days"
     }
    ]
   },
@@ -1565,7 +1751,10 @@
      "expect": [
       "dup.*"
      ],
-     "duplicate_of": "photo-shadow-mild"
+     "duplicate_of": "photo-shadow-mild",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-08-16",
+     "terms": "14 days"
     }
    ]
   },
@@ -1590,7 +1779,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-09-01",
+     "terms": "30 days"
     }
    ]
   },
@@ -1617,7 +1809,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-motion-blur-severe"
+     "duplicate_of": "photo-motion-blur-severe",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-09-01",
+     "terms": "30 days"
     }
    ]
   },
@@ -1642,7 +1837,10 @@
      "expect": [
       "dup.*"
      ],
-     "duplicate_of": "photo-shadow-mild"
+     "duplicate_of": "photo-shadow-mild",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-08-16",
+     "terms": "14 days"
     }
    ]
   },
@@ -1667,7 +1865,10 @@
      "expect": [
       "dup.*"
      ],
-     "duplicate_of": "photo-shadow-mild"
+     "duplicate_of": "photo-shadow-mild",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-08-16",
+     "terms": "14 days"
     }
    ]
   },
@@ -1692,7 +1893,10 @@
      "expect": [
       "dup.*"
      ],
-     "duplicate_of": "photo-shadow-mild"
+     "duplicate_of": "photo-shadow-mild",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-08-16",
+     "terms": "14 days"
     }
    ]
   },
@@ -1717,7 +1921,10 @@
      "expect": [
       "dup.*"
      ],
-     "duplicate_of": "photo-shadow-mild"
+     "duplicate_of": "photo-shadow-mild",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-08-16",
+     "terms": "14 days"
     }
    ]
   },
@@ -1742,7 +1949,10 @@
      "expect": [
       "dup.*"
      ],
-     "duplicate_of": "photo-shadow-mild"
+     "duplicate_of": "photo-shadow-mild",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-08-16",
+     "terms": "14 days"
     }
    ]
   },
@@ -1769,7 +1979,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-motion-blur-severe"
+     "duplicate_of": "photo-motion-blur-severe",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-09-01",
+     "terms": "30 days"
     }
    ]
   },
@@ -1796,7 +2009,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-motion-blur-severe"
+     "duplicate_of": "photo-motion-blur-severe",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-09-01",
+     "terms": "30 days"
     }
    ]
   },
@@ -1821,7 +2037,10 @@
      "expect": [
       "dup.*"
      ],
-     "duplicate_of": "photo-shadow-mild"
+     "duplicate_of": "photo-shadow-mild",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-08-16",
+     "terms": "14 days"
     }
    ]
   },
@@ -1848,7 +2067,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-motion-blur-severe"
+     "duplicate_of": "photo-motion-blur-severe",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-09-01",
+     "terms": "30 days"
     }
    ]
   },
@@ -1873,7 +2095,10 @@
      "expect": [
       "dup.*"
      ],
-     "duplicate_of": "photo-shadow-mild"
+     "duplicate_of": "photo-shadow-mild",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-08-16",
+     "terms": "14 days"
     }
    ]
   },
@@ -1898,7 +2123,10 @@
      "expect": [
       "dup.*"
      ],
-     "duplicate_of": "photo-shadow-mild"
+     "duplicate_of": "photo-shadow-mild",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-08-16",
+     "terms": "14 days"
     }
    ]
   },
@@ -1925,7 +2153,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-motion-blur-severe"
+     "duplicate_of": "photo-motion-blur-severe",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-09-01",
+     "terms": "30 days"
     }
    ]
   },
@@ -1952,7 +2183,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-motion-blur-severe"
+     "duplicate_of": "photo-motion-blur-severe",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-09-01",
+     "terms": "30 days"
     }
    ]
   },
@@ -1977,7 +2211,10 @@
      "expect": [
       "dup.*"
      ],
-     "duplicate_of": "photo-shadow-mild"
+     "duplicate_of": "photo-shadow-mild",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-08-16",
+     "terms": "14 days"
     }
    ]
   },
@@ -2004,7 +2241,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-motion-blur-severe"
+     "duplicate_of": "photo-motion-blur-severe",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-09-01",
+     "terms": "30 days"
     }
    ]
   },
@@ -2031,7 +2271,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-motion-blur-severe"
+     "duplicate_of": "photo-motion-blur-severe",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-09-01",
+     "terms": "30 days"
     }
    ]
   },
@@ -2056,7 +2299,10 @@
      "expect": [
       "dup.*"
      ],
-     "duplicate_of": "photo-shadow-mild"
+     "duplicate_of": "photo-shadow-mild",
+     "invoice_date": "2025-08-02",
+     "due_date": "2025-08-16",
+     "terms": "14 days"
     }
    ]
   },
@@ -2081,7 +2327,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-08-08",
+     "due_date": "2025-09-07",
+     "terms": "30 days"
     }
    ]
   },
@@ -2106,7 +2355,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-08-19",
+     "due_date": null,
+     "terms": "Due on receipt"
     }
    ]
   },
@@ -2129,7 +2381,10 @@
      "expect": [
       "vendor.tax_id_mismatch"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-08-24",
+     "due_date": "2025-09-23",
+     "terms": "30 days"
     }
    ]
   },
@@ -2154,7 +2409,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-08-27",
+     "due_date": "2025-09-10",
+     "terms": null
     }
    ]
   },
@@ -2175,7 +2433,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-08-27",
+     "due_date": "2025-09-10",
+     "terms": "14 days"
     }
    ]
   },
@@ -2196,7 +2457,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-08-27",
+     "due_date": "2025-09-26",
+     "terms": "30 days"
     }
    ]
   },
@@ -2221,7 +2485,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-09-09",
+     "due_date": "2025-10-09",
+     "terms": "30 days"
     }
    ]
   },
@@ -2246,7 +2513,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-09-04",
+     "due_date": "2025-09-11",
+     "terms": "7 days"
     }
    ]
   },
@@ -2269,7 +2539,10 @@
       "arith"
      ],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-09-08",
+     "due_date": "2025-10-08",
+     "terms": "30 days"
     }
    ]
   },
@@ -2294,7 +2567,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-09-23",
+     "due_date": "2025-11-22",
+     "terms": "60 days"
     }
    ]
   },
@@ -2321,7 +2597,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "scan-stamp-moderate"
+     "duplicate_of": "scan-stamp-moderate",
+     "invoice_date": "2025-09-23",
+     "due_date": "2025-11-22",
+     "terms": "60 days"
     }
    ]
   },
@@ -2348,7 +2627,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "scan-stamp-moderate"
+     "duplicate_of": "scan-stamp-moderate",
+     "invoice_date": "2025-09-23",
+     "due_date": "2025-11-22",
+     "terms": "60 days"
     }
    ]
   },
@@ -2375,7 +2657,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "scan-stamp-moderate"
+     "duplicate_of": "scan-stamp-moderate",
+     "invoice_date": "2025-09-23",
+     "due_date": "2025-11-22",
+     "terms": "60 days"
     }
    ]
   },
@@ -2402,7 +2687,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "scan-stamp-moderate"
+     "duplicate_of": "scan-stamp-moderate",
+     "invoice_date": "2025-09-23",
+     "due_date": "2025-11-22",
+     "terms": "60 days"
     }
    ]
   },
@@ -2429,7 +2717,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "scan-stamp-moderate"
+     "duplicate_of": "scan-stamp-moderate",
+     "invoice_date": "2025-09-23",
+     "due_date": "2025-11-22",
+     "terms": "60 days"
     }
    ]
   },
@@ -2456,7 +2747,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "scan-stamp-moderate"
+     "duplicate_of": "scan-stamp-moderate",
+     "invoice_date": "2025-09-23",
+     "due_date": "2025-11-22",
+     "terms": "60 days"
     }
    ]
   },
@@ -2483,7 +2777,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "scan-stamp-moderate"
+     "duplicate_of": "scan-stamp-moderate",
+     "invoice_date": "2025-09-23",
+     "due_date": "2025-11-22",
+     "terms": "60 days"
     }
    ]
   },
@@ -2510,7 +2807,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "scan-stamp-moderate"
+     "duplicate_of": "scan-stamp-moderate",
+     "invoice_date": "2025-09-23",
+     "due_date": "2025-11-22",
+     "terms": "60 days"
     }
    ]
   },
@@ -2537,7 +2837,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "scan-stamp-moderate"
+     "duplicate_of": "scan-stamp-moderate",
+     "invoice_date": "2025-09-23",
+     "due_date": "2025-11-22",
+     "terms": "60 days"
     }
    ]
   },
@@ -2564,7 +2867,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "scan-stamp-moderate"
+     "duplicate_of": "scan-stamp-moderate",
+     "invoice_date": "2025-09-23",
+     "due_date": "2025-11-22",
+     "terms": "60 days"
     }
    ]
   },
@@ -2591,7 +2897,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "scan-stamp-moderate"
+     "duplicate_of": "scan-stamp-moderate",
+     "invoice_date": "2025-09-23",
+     "due_date": "2025-11-22",
+     "terms": "60 days"
     }
    ]
   },
@@ -2617,7 +2926,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "freight-clearing-za-6"
+     "duplicate_of": "freight-clearing-za-6",
+     "invoice_date": "2025-09-04",
+     "due_date": "2025-09-11",
+     "terms": "7 days"
     }
    ]
   },
@@ -2642,7 +2954,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-09-29",
+     "due_date": "2025-10-29",
+     "terms": "30 days"
     }
    ]
   },
@@ -2669,7 +2984,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-coffee-stain-mild"
+     "duplicate_of": "photo-coffee-stain-mild",
+     "invoice_date": "2025-09-29",
+     "due_date": "2025-10-29",
+     "terms": "30 days"
     }
    ]
   },
@@ -2690,7 +3008,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-09-26",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -2713,7 +3034,10 @@
       "doctype.credit_note"
      ],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-09-28",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -2740,7 +3064,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-coffee-stain-mild"
+     "duplicate_of": "photo-coffee-stain-mild",
+     "invoice_date": "2025-09-29",
+     "due_date": "2025-10-29",
+     "terms": "30 days"
     }
    ]
   },
@@ -2767,7 +3094,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-coffee-stain-mild"
+     "duplicate_of": "photo-coffee-stain-mild",
+     "invoice_date": "2025-09-29",
+     "due_date": "2025-10-29",
+     "terms": "30 days"
     }
    ]
   },
@@ -2794,7 +3124,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-coffee-stain-mild"
+     "duplicate_of": "photo-coffee-stain-mild",
+     "invoice_date": "2025-09-29",
+     "due_date": "2025-10-29",
+     "terms": "30 days"
     }
    ]
   },
@@ -2821,7 +3154,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-coffee-stain-mild"
+     "duplicate_of": "photo-coffee-stain-mild",
+     "invoice_date": "2025-09-29",
+     "due_date": "2025-10-29",
+     "terms": "30 days"
     }
    ]
   },
@@ -2848,7 +3184,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-coffee-stain-mild"
+     "duplicate_of": "photo-coffee-stain-mild",
+     "invoice_date": "2025-09-29",
+     "due_date": "2025-10-29",
+     "terms": "30 days"
     }
    ]
   },
@@ -2875,7 +3214,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-coffee-stain-mild"
+     "duplicate_of": "photo-coffee-stain-mild",
+     "invoice_date": "2025-09-29",
+     "due_date": "2025-10-29",
+     "terms": "30 days"
     }
    ]
   },
@@ -2902,7 +3244,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-coffee-stain-mild"
+     "duplicate_of": "photo-coffee-stain-mild",
+     "invoice_date": "2025-09-29",
+     "due_date": "2025-10-29",
+     "terms": "30 days"
     }
    ]
   },
@@ -2925,7 +3270,10 @@
      "expect": [
       "match.qty_over_received"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-10-17",
+     "due_date": "2025-10-31",
+     "terms": "14 days"
     }
    ]
   },
@@ -2950,7 +3298,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-10-31",
+     "due_date": "2025-11-07",
+     "terms": "7 days"
     }
    ]
   },
@@ -2975,7 +3326,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-10-29",
+     "due_date": "2025-11-28",
+     "terms": null
     }
    ]
   },
@@ -3000,7 +3354,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-11-09",
+     "due_date": "2025-12-09",
+     "terms": "30 days"
     }
    ]
   },
@@ -3025,7 +3382,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-11-11",
+     "due_date": null,
+     "terms": "Due on receipt"
     }
    ]
   },
@@ -3050,7 +3410,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-11-18",
+     "due_date": "2025-12-18",
+     "terms": "30 days"
     }
    ]
   },
@@ -3071,7 +3434,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-11-20",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -3096,7 +3462,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-12-02",
+     "due_date": "2026-01-01",
+     "terms": "30 days"
     }
    ]
   },
@@ -3121,7 +3490,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-11-28",
+     "due_date": "2025-12-28",
+     "terms": "30 days"
     }
    ]
   },
@@ -3146,7 +3518,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-12-06",
+     "due_date": "2025-12-20",
+     "terms": "14 days"
     }
    ]
   },
@@ -3173,7 +3548,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-low-res-mild"
+     "duplicate_of": "photo-low-res-mild",
+     "invoice_date": "2025-12-06",
+     "due_date": "2025-12-20",
+     "terms": "14 days"
     }
    ]
   },
@@ -3200,7 +3578,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-low-res-mild"
+     "duplicate_of": "photo-low-res-mild",
+     "invoice_date": "2025-12-06",
+     "due_date": "2025-12-20",
+     "terms": "14 days"
     }
    ]
   },
@@ -3227,7 +3608,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-low-res-mild"
+     "duplicate_of": "photo-low-res-mild",
+     "invoice_date": "2025-12-06",
+     "due_date": "2025-12-20",
+     "terms": "14 days"
     }
    ]
   },
@@ -3254,7 +3638,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-low-res-mild"
+     "duplicate_of": "photo-low-res-mild",
+     "invoice_date": "2025-12-06",
+     "due_date": "2025-12-20",
+     "terms": "14 days"
     }
    ]
   },
@@ -3281,7 +3668,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-low-res-mild"
+     "duplicate_of": "photo-low-res-mild",
+     "invoice_date": "2025-12-06",
+     "due_date": "2025-12-20",
+     "terms": "14 days"
     }
    ]
   },
@@ -3308,7 +3698,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-low-res-mild"
+     "duplicate_of": "photo-low-res-mild",
+     "invoice_date": "2025-12-06",
+     "due_date": "2025-12-20",
+     "terms": "14 days"
     }
    ]
   },
@@ -3335,7 +3728,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-low-res-mild"
+     "duplicate_of": "photo-low-res-mild",
+     "invoice_date": "2025-12-06",
+     "due_date": "2025-12-20",
+     "terms": "14 days"
     }
    ]
   },
@@ -3362,7 +3758,10 @@
       "dup.*",
       "match.no_po"
      ],
-     "duplicate_of": "photo-low-res-mild"
+     "duplicate_of": "photo-low-res-mild",
+     "invoice_date": "2025-12-06",
+     "due_date": "2025-12-20",
+     "terms": "14 days"
     }
    ]
   },
@@ -3385,7 +3784,10 @@
      "expect": [
       "match.price_over_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-12-17",
+     "due_date": "2026-02-15",
+     "terms": "60 days"
     }
    ]
   },
@@ -3406,7 +3808,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-01-05",
+     "due_date": "2026-02-04",
+     "terms": "30 days"
     }
    ]
   },
@@ -3431,7 +3836,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-01-18",
+     "due_date": "2026-02-17",
+     "terms": "30 days"
     }
    ]
   },
@@ -3454,7 +3862,10 @@
      "expect": [
       "bank.changed"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-01-18",
+     "due_date": "2026-02-17",
+     "terms": "30 days"
     }
    ]
   },
@@ -3475,7 +3886,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-01-21",
+     "due_date": "2026-02-04",
+     "terms": "14 days"
     }
    ]
   },
@@ -3498,7 +3912,10 @@
       "arith"
      ],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-01-24",
+     "due_date": "2026-02-23",
+     "terms": "30 days"
     }
    ]
   },
@@ -3521,7 +3938,10 @@
      "expect": [
       "pattern.wrong_addressee"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-02-06",
+     "due_date": "2026-03-08",
+     "terms": "30 days"
     }
    ]
   },
@@ -3546,7 +3966,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-02-15",
+     "due_date": "2026-03-17",
+     "terms": "30 days"
     }
    ]
   },
@@ -3569,7 +3992,10 @@
      "expect": [
       "match.price_over_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-02-22",
+     "due_date": "2026-03-24",
+     "terms": "30 days"
     }
    ]
   },
@@ -3592,7 +4018,10 @@
       "doctype.credit_note"
      ],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-02-28",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -3613,7 +4042,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-02-28",
+     "due_date": "2026-03-30",
+     "terms": "30 days"
     }
    ]
   },
@@ -3639,7 +4071,10 @@
       "match.no_po",
       "pattern.wrong_addressee"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-03-09",
+     "due_date": "2026-04-08",
+     "terms": "30 days"
     }
    ]
   },
@@ -3665,7 +4100,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-03-14",
+     "due_date": "2026-04-13",
+     "terms": "30 days"
     }
    ]
   },
@@ -3686,7 +4124,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-03-16",
+     "due_date": "2026-04-15",
+     "terms": "30 days"
     }
    ]
   },
@@ -3712,7 +4153,10 @@
       "bank.changed",
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-03-13",
+     "due_date": "2026-04-12",
+     "terms": "30 days"
     }
    ]
   },
@@ -3735,7 +4179,10 @@
       "doctype.credit_note"
      ],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-03-17",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -3756,7 +4203,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-04-06",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -3781,7 +4231,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-04-05",
+     "due_date": "2026-05-05",
+     "terms": "30 days"
     }
    ]
   },
@@ -3806,7 +4259,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-04-07",
+     "due_date": "2026-05-07",
+     "terms": "30 days"
     }
    ]
   },
@@ -3832,7 +4288,10 @@
       "match.no_po",
       "vendor.tax_id_mismatch"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-04-30",
+     "due_date": "2026-06-29",
+     "terms": "60 days"
     }
    ]
   },
@@ -3855,7 +4314,10 @@
       "doctype.credit_note"
      ],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-04-27",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -3880,7 +4342,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-05-02",
+     "due_date": "2026-06-01",
+     "terms": "30 days"
     }
    ]
   },
@@ -3901,7 +4366,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-05-01",
+     "due_date": "2026-05-31",
+     "terms": "30 days"
     }
    ]
   },
@@ -3922,7 +4390,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-05-04",
+     "due_date": "2026-07-03",
+     "terms": "60 days"
     }
    ]
   },
@@ -3943,7 +4414,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-05-11",
+     "due_date": "2026-07-10",
+     "terms": "60 days"
     }
    ]
   },
@@ -3964,7 +4438,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-05-14",
+     "due_date": "2026-06-13",
+     "terms": "30 days"
     }
    ]
   },
@@ -3990,7 +4467,10 @@
       "bank.changed",
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-05-16",
+     "due_date": "2026-06-15",
+     "terms": "30 days"
     }
    ]
   },
@@ -4011,7 +4491,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-05-16",
+     "due_date": "2026-06-15",
+     "terms": "30 days"
     }
    ]
   },
@@ -4036,7 +4519,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-05-16",
+     "due_date": "2026-05-30",
+     "terms": null
     }
    ]
   },
@@ -4062,7 +4548,10 @@
       "match.no_po",
       "pattern.above_history"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-05-15",
+     "due_date": "2026-05-29",
+     "terms": "14 days"
     }
    ]
   },
@@ -4087,7 +4576,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-05-20",
+     "due_date": null,
+     "terms": "Due on receipt"
     }
    ]
   },
@@ -4108,7 +4600,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-05-20",
+     "due_date": "2026-05-27",
+     "terms": "7 days"
     }
    ]
   },
@@ -4129,7 +4624,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-05-30",
+     "due_date": "2026-06-13",
+     "terms": "14 days"
     }
    ]
   },
@@ -4150,7 +4648,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-06-06",
+     "due_date": "2026-06-20",
+     "terms": "14 days"
     }
    ]
   },
@@ -4173,7 +4674,10 @@
      "expect": [
       "dup.*"
      ],
-     "duplicate_of": "hard-po-beside-invoice-number-3"
+     "duplicate_of": "hard-po-beside-invoice-number-3",
+     "invoice_date": "2026-05-14",
+     "due_date": "2026-06-13",
+     "terms": "30 days"
     }
    ]
   },
@@ -4207,7 +4711,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-06-19",
+     "due_date": "2026-07-03",
+     "terms": "14 days"
     }
    ]
   },
@@ -4230,7 +4737,10 @@
       "doctype.credit_note"
      ],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-06-21",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -4253,7 +4763,10 @@
       "doctype.credit_note"
      ],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-06-23",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -4278,7 +4791,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-07-06",
+     "due_date": "2026-07-20",
+     "terms": "14 days"
     }
    ]
   },
@@ -4301,7 +4817,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-07-11",
+     "due_date": "2026-08-10",
+     "terms": "30 days"
     },
     {
      "index": 1,
@@ -4314,7 +4833,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-04-30",
+     "due_date": "2026-05-30",
+     "terms": "30 days"
     },
     {
      "index": 2,
@@ -4331,7 +4853,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2025-04-20",
+     "due_date": "2025-06-19",
+     "terms": "60 days"
     }
    ]
   },
@@ -4356,7 +4881,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-07-11",
+     "due_date": "2026-07-25",
+     "terms": "14 days"
     }
    ]
   },
@@ -4381,7 +4909,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-07-13",
+     "due_date": null,
+     "terms": "COD"
     }
    ]
   },
@@ -4406,7 +4937,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-07-30",
+     "due_date": "2026-08-29",
+     "terms": "30 days"
     }
    ]
   },
@@ -4431,7 +4965,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-07-30",
+     "due_date": "2026-09-28",
+     "terms": "60 days"
     }
    ]
   },
@@ -4452,7 +4989,10 @@
      "planted": null,
      "natural": [],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-08-02",
+     "due_date": "2026-08-09",
+     "terms": "7 days"
     }
    ]
   },
@@ -4477,7 +5017,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-08-15",
+     "due_date": "2026-09-14",
+     "terms": "30 days"
     }
    ]
   },
@@ -4502,7 +5045,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-08-26",
+     "due_date": "2026-09-25",
+     "terms": "30 days"
     }
    ]
   },
@@ -4527,7 +5073,10 @@
      "expect": [
       "match.no_po"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-08-21",
+     "due_date": null,
+     "terms": null
     }
    ]
   },
@@ -4553,7 +5102,10 @@
       "match.no_po",
       "pattern.wrong_addressee"
      ],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-08-22",
+     "due_date": "2026-08-29",
+     "terms": "7 days"
     }
    ]
   },
@@ -4576,7 +5128,10 @@
       "doctype.credit_note"
      ],
      "expect": [],
-     "duplicate_of": null
+     "duplicate_of": null,
+     "invoice_date": "2026-09-02",
+     "due_date": null,
+     "terms": null
     }
    ]
   }

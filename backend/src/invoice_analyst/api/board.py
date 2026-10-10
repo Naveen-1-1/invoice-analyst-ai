@@ -17,7 +17,7 @@ from sqlalchemy.orm import Session
 from ..companion import loader
 from ..config import settings
 from ..db.engine import session_factory
-from ..db.models import CheckResult, Document, Invoice, LlmState, Run, Workspace
+from ..db.models import CheckResult, Document, Invoice, LlmState, PaymentItem, Run, Workspace
 from ..extraction.extract import receive
 from ..ingest.files import sniff
 from ..worker.tasks import read_document
@@ -66,6 +66,18 @@ def get_board(workspace_id: int, s: Session = Depends(db)) -> out.BoardOut:
         findings[inv_id][severity] += 1
         if severity != "info":
             codes[inv_id].append(code)
+    pay: dict[int, set[str]] = defaultdict(set)
+    for inv_id, status in s.execute(select(PaymentItem.invoice_id, PaymentItem.status)
+                                    .join(Invoice, Invoice.id == PaymentItem.invoice_id)
+                                    .where(Invoice.workspace_id == ws.id)).all():
+        pay[inv_id].add(status)
+
+    def payment(inv: Invoice | None) -> str | None:
+        statuses = pay.get(inv.id) if inv else None
+        if not statuses:
+            return None
+        return "paid" if statuses == {"paid"} else "waiting" if "waiting" in statuses else "planned"
+
     cards = []
     for d in docs:
         first = invoices[d.id][0] if invoices[d.id] else None
@@ -76,7 +88,8 @@ def get_board(workspace_id: int, s: Session = Depends(db)) -> out.BoardOut:
             total=first.total if first else None, currency=first.currency if first else None,
             tier=first.conf_tier if first else None, invoice_state=first.state if first else None,
             findings=dict(findings[first.id]) if first else {}, codes=codes[first.id][:4] if first else [],
-            invoice_id=first.id if first else None, labels=list(first.review_labels or []) if first else []))
+            invoice_id=first.id if first else None, labels=list(first.review_labels or []) if first else [],
+            payment=payment(first)))
     run = s.scalars(select(Run).where(Run.workspace_id == ws.id).order_by(Run.id.desc())).first()
     llm = s.get(LlmState, 1)
     worker_seen = s.scalar(text("SELECT max(last_heartbeat) FROM procrastinate_workers"))

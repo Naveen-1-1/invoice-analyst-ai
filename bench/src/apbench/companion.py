@@ -299,7 +299,10 @@ def build(set_name: str = "dev") -> dict[str, Any]:
                           "total": inv.payable_total if inv.payable else inv.total,  # dual currency: the payable box
                           "currency": inv.payable.currency if inv.payable else inv.currency, "planted": kind_planted or ("duplicate_resubmission" if original else None),
                           "natural": natural, "expect": sorted(set(expect)),
-                          "duplicate_of": original or dup_of})
+                          "duplicate_of": original or dup_of,
+                          # true dates and terms, for judging payment timing
+                          "invoice_date": inv.issue_date.isoformat(),
+                          "due_date": inv.due_date.isoformat() if inv.due_date else None, "terms": inv.terms})
         doc_expect = (["doctype.multiple_invoices"] if spec.kind == "multi_invoice" else
                       ["doctype.not_invoice"] if spec.kind == "statement" else [])
         labels.append({"seq": s["seq"], "ref": ref, "kind": spec.kind, "expect": doc_expect, "invoices": items})

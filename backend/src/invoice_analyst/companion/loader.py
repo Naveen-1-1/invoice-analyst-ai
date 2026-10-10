@@ -61,7 +61,7 @@ def load(s: Session, workspace_id: int, set_name: str) -> dict[str, int]:
         s.flush()
         b = v["bank"]
         s.add(VendorBankAccount(vendor_id=row.id, kind=b["kind"], account_norm=b["account_norm"],
-                                bank_name=b["bank_name"], bic=b["bic"], branch=b["branch"]))
+                                bank_name=b["bank_name"], bic=b["bic"], branch=b["branch"], source=f"companion:{set_name}"))
         vendors[v["code"]] = row
     s.flush()
     for code, items in _read(set_name, "vendor_history.json").items():

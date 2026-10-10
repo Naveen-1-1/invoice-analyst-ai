@@ -40,6 +40,8 @@ function CardBody({ card }: { card: CardOut }) {
         </div>
       )}
       {decided && <div className="mt-1 font-medium">{STATE_LABELS[card.invoice_state ?? '']}</div>}
+      {card.invoice_state === 'AUTO_APPROVED' && <div className="mt-1 text-muted-foreground">approved automatically</div>}
+      {card.payment === 'waiting' && <div className="mt-1 text-amber-800 dark:text-amber-300">payment waiting</div>}
       {(blocks > 0 || reviews > 0 || card.labels.length > 0) && card.invoice_state !== 'AUTO_APPROVED' && !decided && (
         <div className="mt-1.5 flex flex-wrap gap-1">
           {blocks > 0 && (

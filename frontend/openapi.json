@@ -393,6 +393,648 @@
     }
    }
   },
+  "/api/workspaces/{workspace_id}/payments": {
+   "get": {
+    "summary": "Listpayments",
+    "description": "Every payment run (planned and paid) and the items that wait outside a run, with why.",
+    "operationId": "listPayments",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/payment-runs/{run_id}": {
+   "get": {
+    "summary": "Getpaymentrun",
+    "description": "One run: a transfer per vendor and currency, with the invoices (and credit notes) in it.",
+    "operationId": "getPaymentRun",
+    "parameters": [
+     {
+      "name": "run_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Run Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentRunDetail"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/payment-runs/{run_id}/execute": {
+   "post": {
+    "summary": "Executepaymentrun",
+    "operationId": "executePaymentRun",
+    "parameters": [
+     {
+      "name": "run_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Run Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RunResultOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/payments/next": {
+   "post": {
+    "summary": "Runnextpayment",
+    "description": "Move today to the next planned run (if it's later) and pay it.",
+    "operationId": "runNextPayment",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RunResultOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/payments/run-due": {
+   "post": {
+    "summary": "Runduepayments",
+    "description": "Pay every planned run dated today or earlier, oldest first.",
+    "operationId": "runDuePayments",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RunResultOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/today": {
+   "put": {
+    "summary": "Settoday",
+    "description": "Set the workspace's current date (not while a live inbox is replaying); runs aren't paid until you say so.",
+    "operationId": "setToday",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TodayIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TodayOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/entities": {
+   "get": {
+    "summary": "Listentities",
+    "description": "Our companies that have entries in the books (for filtering).",
+    "operationId": "listEntities",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/EntityOut"
+         },
+         "title": "Response Listentities"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/journal": {
+   "get": {
+    "summary": "Listjournal",
+    "operationId": "listJournal",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     },
+     {
+      "name": "entity_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Entity Id"
+      }
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "default": 100,
+       "title": "Limit"
+      }
+     },
+     {
+      "name": "offset",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "default": 0,
+       "title": "Offset"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/JournalOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/trial-balance": {
+   "get": {
+    "summary": "Gettrialbalance",
+    "operationId": "getTrialBalance",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     },
+     {
+      "name": "entity_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Entity Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TrialBalanceOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/payables": {
+   "get": {
+    "summary": "Getpayables",
+    "description": "What we owe and haven't paid, aged by due date as of today.",
+    "operationId": "getPayables",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     },
+     {
+      "name": "entity_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Entity Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PayablesOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/audit": {
+   "get": {
+    "summary": "Listaudit",
+    "operationId": "listAudit",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     },
+     {
+      "name": "actor",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Actor"
+      }
+     },
+     {
+      "name": "action",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Action"
+      }
+     },
+     {
+      "name": "subject_type",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Subject Type"
+      }
+     },
+     {
+      "name": "subject_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Subject Id"
+      }
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "default": 200,
+       "title": "Limit"
+      }
+     },
+     {
+      "name": "offset",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "default": 0,
+       "title": "Offset"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AuditOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/audit/verify": {
+   "get": {
+    "summary": "Verifyaudit",
+    "description": "Recompute the workspace's hash chain: any changed, missing or reordered event is found.",
+    "operationId": "verifyAudit",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/VerdictOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/api/runs": {
    "get": {
     "summary": "Listruns",
@@ -610,6 +1252,92 @@
      "created_at"
     ],
     "title": "ApprovalOut"
+   },
+   "AuditEventOut": {
+    "properties": {
+     "seq": {
+      "type": "integer",
+      "title": "Seq"
+     },
+     "occurred_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Occurred At"
+     },
+     "actor": {
+      "type": "string",
+      "title": "Actor"
+     },
+     "action": {
+      "type": "string",
+      "title": "Action"
+     },
+     "subject_type": {
+      "type": "string",
+      "title": "Subject Type"
+     },
+     "subject_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Subject Id"
+     },
+     "data": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Data"
+     },
+     "hash": {
+      "type": "string",
+      "title": "Hash"
+     }
+    },
+    "type": "object",
+    "required": [
+     "seq",
+     "occurred_at",
+     "actor",
+     "action",
+     "subject_type",
+     "subject_id",
+     "data",
+     "hash"
+    ],
+    "title": "AuditEventOut"
+   },
+   "AuditOut": {
+    "properties": {
+     "total": {
+      "type": "integer",
+      "title": "Total"
+     },
+     "actions": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Actions"
+     },
+     "events": {
+      "items": {
+       "$ref": "#/components/schemas/AuditEventOut"
+      },
+      "type": "array",
+      "title": "Events"
+     }
+    },
+    "type": "object",
+    "required": [
+     "total",
+     "actions",
+     "events"
+    ],
+    "title": "AuditOut"
    },
    "BoardOut": {
     "properties": {
@@ -884,6 +1612,17 @@
       },
       "type": "array",
       "title": "Labels"
+     },
+     "payment": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Payment"
      }
     },
     "type": "object",
@@ -905,7 +1644,8 @@
      "findings",
      "codes",
      "invoice_id",
-     "labels"
+     "labels",
+     "payment"
     ],
     "title": "CardOut"
    },
@@ -1323,6 +2063,24 @@
     ],
     "title": "DocumentRow"
    },
+   "EntityOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "name"
+    ],
+    "title": "EntityOut"
+   },
    "EventOut": {
     "properties": {
      "seq": {
@@ -1637,6 +2395,20 @@
       },
       "type": "array",
       "title": "Checks"
+     },
+     "payments": {
+      "items": {
+       "$ref": "#/components/schemas/PaymentItemOut"
+      },
+      "type": "array",
+      "title": "Payments"
+     },
+     "entries": {
+      "items": {
+       "$ref": "#/components/schemas/JournalEntryOut"
+      },
+      "type": "array",
+      "title": "Entries"
      }
     },
     "type": "object",
@@ -1656,9 +2428,156 @@
      "total",
      "fields",
      "lines",
-     "checks"
+     "checks",
+     "payments",
+     "entries"
     ],
     "title": "InvoiceOut"
+   },
+   "JournalEntryOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "entry_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Entry Date"
+     },
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "memo": {
+      "type": "string",
+      "title": "Memo"
+     },
+     "entity": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Entity"
+     },
+     "invoice_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Id"
+     },
+     "document_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Document Id"
+     },
+     "posted_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Posted At"
+     },
+     "lines": {
+      "items": {
+       "$ref": "#/components/schemas/JournalLineOut"
+      },
+      "type": "array",
+      "title": "Lines"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "entry_date",
+     "kind",
+     "memo",
+     "entity",
+     "invoice_id",
+     "document_id",
+     "posted_at",
+     "lines"
+    ],
+    "title": "JournalEntryOut"
+   },
+   "JournalLineOut": {
+    "properties": {
+     "account": {
+      "type": "string",
+      "title": "Account"
+     },
+     "account_name": {
+      "type": "string",
+      "title": "Account Name"
+     },
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     },
+     "debit": {
+      "type": "string",
+      "title": "Debit"
+     },
+     "credit": {
+      "type": "string",
+      "title": "Credit"
+     },
+     "vendor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vendor"
+     }
+    },
+    "type": "object",
+    "required": [
+     "account",
+     "account_name",
+     "currency",
+     "debit",
+     "credit",
+     "vendor"
+    ],
+    "title": "JournalLineOut"
+   },
+   "JournalOut": {
+    "properties": {
+     "total": {
+      "type": "integer",
+      "title": "Total"
+     },
+     "entries": {
+      "items": {
+       "$ref": "#/components/schemas/JournalEntryOut"
+      },
+      "type": "array",
+      "title": "Entries"
+     }
+    },
+    "type": "object",
+    "required": [
+     "total",
+     "entries"
+    ],
+    "title": "JournalOut"
    },
    "LineOut": {
     "properties": {
@@ -1845,6 +2764,116 @@
     ],
     "title": "MatchOut"
    },
+   "OpenItemOut": {
+    "properties": {
+     "item_id": {
+      "type": "integer",
+      "title": "Item Id"
+     },
+     "invoice_id": {
+      "type": "integer",
+      "title": "Invoice Id"
+     },
+     "document_id": {
+      "type": "integer",
+      "title": "Document Id"
+     },
+     "vendor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vendor"
+     },
+     "entity": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Entity"
+     },
+     "invoice_number": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Number"
+     },
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     },
+     "amount": {
+      "type": "string",
+      "title": "Amount"
+     },
+     "due_date": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Due Date"
+     },
+     "status": {
+      "type": "string",
+      "title": "Status"
+     },
+     "run_date": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Run Date"
+     },
+     "bucket": {
+      "type": "string",
+      "title": "Bucket"
+     },
+     "days_overdue": {
+      "type": "integer",
+      "title": "Days Overdue"
+     }
+    },
+    "type": "object",
+    "required": [
+     "item_id",
+     "invoice_id",
+     "document_id",
+     "vendor",
+     "entity",
+     "invoice_number",
+     "currency",
+     "amount",
+     "due_date",
+     "status",
+     "run_date",
+     "bucket",
+     "days_overdue"
+    ],
+    "title": "OpenItemOut"
+   },
    "PageOut": {
     "properties": {
      "id": {
@@ -1888,6 +2917,309 @@
      "quality"
     ],
     "title": "PageOut"
+   },
+   "PayablesOut": {
+    "properties": {
+     "today": {
+      "$ref": "#/components/schemas/TodayOut"
+     },
+     "buckets": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Buckets"
+     },
+     "totals": {
+      "additionalProperties": {
+       "additionalProperties": {
+        "type": "string"
+       },
+       "type": "object"
+      },
+      "type": "object",
+      "title": "Totals"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/OpenItemOut"
+      },
+      "type": "array",
+      "title": "Items"
+     }
+    },
+    "type": "object",
+    "required": [
+     "today",
+     "buckets",
+     "totals",
+     "items"
+    ],
+    "title": "PayablesOut"
+   },
+   "PaymentItemOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "invoice_id": {
+      "type": "integer",
+      "title": "Invoice Id"
+     },
+     "document_id": {
+      "type": "integer",
+      "title": "Document Id"
+     },
+     "vendor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vendor"
+     },
+     "entity": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Entity"
+     },
+     "invoice_number": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Number"
+     },
+     "doc_type": {
+      "type": "string",
+      "title": "Doc Type"
+     },
+     "amount": {
+      "type": "string",
+      "title": "Amount"
+     },
+     "discount": {
+      "type": "string",
+      "title": "Discount"
+     },
+     "paid": {
+      "type": "string",
+      "title": "Paid"
+     },
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     },
+     "status": {
+      "type": "string",
+      "title": "Status"
+     },
+     "due_date": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Due Date"
+     },
+     "due_source": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Due Source"
+     },
+     "run_date": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Run Date"
+     },
+     "to_account": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "To Account"
+     },
+     "reason": {
+      "type": "string",
+      "title": "Reason"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "invoice_id",
+     "document_id",
+     "vendor",
+     "entity",
+     "invoice_number",
+     "doc_type",
+     "amount",
+     "discount",
+     "paid",
+     "currency",
+     "status",
+     "due_date",
+     "due_source",
+     "run_date",
+     "to_account",
+     "reason"
+    ],
+    "title": "PaymentItemOut"
+   },
+   "PaymentRunDetail": {
+    "properties": {
+     "run": {
+      "$ref": "#/components/schemas/PaymentRunOut"
+     },
+     "today": {
+      "$ref": "#/components/schemas/TodayOut"
+     },
+     "transfers": {
+      "items": {
+       "$ref": "#/components/schemas/TransferOut"
+      },
+      "type": "array",
+      "title": "Transfers"
+     }
+    },
+    "type": "object",
+    "required": [
+     "run",
+     "today",
+     "transfers"
+    ],
+    "title": "PaymentRunDetail"
+   },
+   "PaymentRunOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "run_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Run Date"
+     },
+     "status": {
+      "type": "string",
+      "title": "Status"
+     },
+     "executed_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Executed At"
+     },
+     "items": {
+      "type": "integer",
+      "title": "Items"
+     },
+     "totals": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "type": "object",
+      "title": "Totals"
+     },
+     "discounts": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "type": "object",
+      "title": "Discounts"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "run_date",
+     "status",
+     "executed_at",
+     "items",
+     "totals",
+     "discounts"
+    ],
+    "title": "PaymentRunOut"
+   },
+   "PaymentsOut": {
+    "properties": {
+     "workspace_id": {
+      "type": "integer",
+      "title": "Workspace Id"
+     },
+     "today": {
+      "$ref": "#/components/schemas/TodayOut"
+     },
+     "runs": {
+      "items": {
+       "$ref": "#/components/schemas/PaymentRunOut"
+      },
+      "type": "array",
+      "title": "Runs"
+     },
+     "waiting": {
+      "items": {
+       "$ref": "#/components/schemas/PaymentItemOut"
+      },
+      "type": "array",
+      "title": "Waiting"
+     },
+     "due_now": {
+      "type": "integer",
+      "title": "Due Now"
+     }
+    },
+    "type": "object",
+    "required": [
+     "workspace_id",
+     "today",
+     "runs",
+     "waiting",
+     "due_now"
+    ],
+    "title": "PaymentsOut"
    },
    "Reason": {
     "properties": {
@@ -1940,6 +3272,34 @@
      "text"
     ],
     "title": "ReasonLine"
+   },
+   "ReconciliationOut": {
+    "properties": {
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     },
+     "ledger": {
+      "type": "string",
+      "title": "Ledger"
+     },
+     "open_items": {
+      "type": "string",
+      "title": "Open Items"
+     },
+     "ok": {
+      "type": "boolean",
+      "title": "Ok"
+     }
+    },
+    "type": "object",
+    "required": [
+     "currency",
+     "ledger",
+     "open_items",
+     "ok"
+    ],
+    "title": "ReconciliationOut"
    },
    "ReprocessIn": {
     "properties": {
@@ -2333,6 +3693,31 @@
     ],
     "title": "RunOut"
    },
+   "RunResultOut": {
+    "properties": {
+     "executed": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Executed"
+     },
+     "today": {
+      "$ref": "#/components/schemas/TodayOut"
+     },
+     "message": {
+      "type": "string",
+      "title": "Message"
+     }
+    },
+    "type": "object",
+    "required": [
+     "executed",
+     "today",
+     "message"
+    ],
+    "title": "RunResultOut"
+   },
    "SplitLineOut": {
     "properties": {
      "line_no": {
@@ -2523,6 +3908,164 @@
     ],
     "title": "TaskOut"
    },
+   "TodayIn": {
+    "properties": {
+     "date": {
+      "type": "string",
+      "format": "date",
+      "title": "Date"
+     }
+    },
+    "type": "object",
+    "required": [
+     "date"
+    ],
+    "title": "TodayIn"
+   },
+   "TodayOut": {
+    "properties": {
+     "date": {
+      "type": "string",
+      "format": "date",
+      "title": "Date"
+     },
+     "live": {
+      "type": "boolean",
+      "title": "Live"
+     }
+    },
+    "type": "object",
+    "required": [
+     "date",
+     "live"
+    ],
+    "title": "TodayOut"
+   },
+   "TransferOut": {
+    "properties": {
+     "vendor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vendor"
+     },
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     },
+     "amount": {
+      "type": "string",
+      "title": "Amount"
+     },
+     "to_account": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "To Account"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/PaymentItemOut"
+      },
+      "type": "array",
+      "title": "Items"
+     }
+    },
+    "type": "object",
+    "required": [
+     "vendor",
+     "currency",
+     "amount",
+     "to_account",
+     "items"
+    ],
+    "title": "TransferOut"
+   },
+   "TrialBalanceOut": {
+    "properties": {
+     "rows": {
+      "items": {
+       "$ref": "#/components/schemas/TrialRowOut"
+      },
+      "type": "array",
+      "title": "Rows"
+     },
+     "balanced": {
+      "additionalProperties": {
+       "type": "boolean"
+      },
+      "type": "object",
+      "title": "Balanced"
+     },
+     "reconciled": {
+      "items": {
+       "$ref": "#/components/schemas/ReconciliationOut"
+      },
+      "type": "array",
+      "title": "Reconciled"
+     }
+    },
+    "type": "object",
+    "required": [
+     "rows",
+     "balanced",
+     "reconciled"
+    ],
+    "title": "TrialBalanceOut"
+   },
+   "TrialRowOut": {
+    "properties": {
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     },
+     "account": {
+      "type": "string",
+      "title": "Account"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name"
+     },
+     "type": {
+      "type": "string",
+      "title": "Type"
+     },
+     "debit": {
+      "type": "string",
+      "title": "Debit"
+     },
+     "credit": {
+      "type": "string",
+      "title": "Credit"
+     },
+     "balance": {
+      "type": "string",
+      "title": "Balance"
+     }
+    },
+    "type": "object",
+    "required": [
+     "currency",
+     "account",
+     "name",
+     "type",
+     "debit",
+     "credit",
+     "balance"
+    ],
+    "title": "TrialRowOut"
+   },
    "UploadOut": {
     "properties": {
      "filename": {
@@ -2608,6 +4151,53 @@
      "type"
     ],
     "title": "ValidationError"
+   },
+   "VerdictOut": {
+    "properties": {
+     "ok": {
+      "type": "boolean",
+      "title": "Ok"
+     },
+     "events": {
+      "type": "integer",
+      "title": "Events"
+     },
+     "broken_at": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Broken At"
+     },
+     "problem": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Problem"
+     },
+     "words": {
+      "type": "string",
+      "title": "Words"
+     }
+    },
+    "type": "object",
+    "required": [
+     "ok",
+     "events",
+     "broken_at",
+     "problem",
+     "words"
+    ],
+    "title": "VerdictOut"
    },
    "WordOut": {
     "properties": {

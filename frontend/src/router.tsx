@@ -1,7 +1,10 @@
 import { Link, Outlet, createRootRoute, createRoute, createRouter } from '@tanstack/react-router'
 import { useListReviewQueue } from '@/api/generated'
+import { AuditPage } from '@/pages/AuditPage'
 import { BoardPage } from '@/pages/BoardPage'
 import { DocumentPage } from '@/pages/DocumentPage'
+import { LedgerPage } from '@/pages/LedgerPage'
+import { PaymentsPage } from '@/pages/PaymentsPage'
 import { ReviewPage } from '@/pages/ReviewPage'
 import { ReviewQueuePage } from '@/pages/ReviewQueuePage'
 import { RunPage } from '@/pages/RunPage'
@@ -26,6 +29,9 @@ function Shell() {
           <nav className="flex gap-4 text-sm text-muted-foreground">
             <Link to="/board" className="hover:text-foreground [&.active]:text-foreground">Board</Link>
             <ReviewLink />
+            <Link to="/payments" className="hover:text-foreground [&.active]:text-foreground">Payments</Link>
+            <Link to="/ledger" className="hover:text-foreground [&.active]:text-foreground">Ledger</Link>
+            <Link to="/audit" className="hover:text-foreground [&.active]:text-foreground">Audit</Link>
             <Link to="/" className="hover:text-foreground [&.active]:text-foreground" activeOptions={{ exact: true }}>Runs</Link>
           </nav>
         </div>
@@ -44,13 +50,20 @@ const boardRoute = createRoute({ getParentRoute: () => rootRoute, path: '/board'
 const workspaceBoardRoute = createRoute({ getParentRoute: () => rootRoute, path: '/board/$workspaceId', component: BoardPage })
 const reviewQueueRoute = createRoute({ getParentRoute: () => rootRoute, path: '/review', component: ReviewQueuePage })
 const reviewRoute = createRoute({ getParentRoute: () => rootRoute, path: '/review/$invoiceId', component: ReviewPage })
+const paymentsRoute = createRoute({ getParentRoute: () => rootRoute, path: '/payments', component: PaymentsPage })
+const workspacePaymentsRoute = createRoute({ getParentRoute: () => rootRoute, path: '/payments/$workspaceId', component: PaymentsPage })
+const ledgerRoute = createRoute({ getParentRoute: () => rootRoute, path: '/ledger', component: LedgerPage })
+const workspaceLedgerRoute = createRoute({ getParentRoute: () => rootRoute, path: '/ledger/$workspaceId', component: LedgerPage })
+const auditRoute = createRoute({ getParentRoute: () => rootRoute, path: '/audit', component: AuditPage })
+const workspaceAuditRoute = createRoute({ getParentRoute: () => rootRoute, path: '/audit/$workspaceId', component: AuditPage })
 const documentRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/documents/$documentId',
   component: DocumentPage,
 })
 
-export const router = createRouter({ routeTree: rootRoute.addChildren([runsRoute, runRoute, boardRoute, workspaceBoardRoute, reviewQueueRoute, reviewRoute, documentRoute]) })
+export const router = createRouter({ routeTree: rootRoute.addChildren([runsRoute, runRoute, boardRoute, workspaceBoardRoute, reviewQueueRoute, reviewRoute,
+  paymentsRoute, workspacePaymentsRoute, ledgerRoute, workspaceLedgerRoute, auditRoute, workspaceAuditRoute, documentRoute]) })
 
 declare module '@tanstack/react-router' {
   interface Register {

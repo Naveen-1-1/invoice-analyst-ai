@@ -19,6 +19,7 @@ from ..db.engine import session_factory
 from ..decision.rules import decide
 from ..db.models import Document, Invoice, Run, Workspace
 from ..inbox.results import write_results
+from ..payments import clock, runs
 
 WAITING = ("RECEIVED", "PREPARED")
 UNDECIDED = ("EXTRACTED", "MATCHED")  # not checked yet / checked, no decision yet
@@ -50,6 +51,11 @@ def advance(workspace_id: int) -> int:
                     decide(s, inv)
                     checked += 1
         seq += 1
+    with sessions.begin() as s:  # a live inbox pays its runs as the simulated clock passes them (decision 43)
+        ws = s.get(Workspace, workspace_id)
+        now = clock.today(s, ws)
+        if now.live:
+            runs.run_due(s, ws, now.date)
     _finish_runs(workspace_id, through=seq - 1)
     return checked
 
@@ -64,6 +70,7 @@ def _finish_runs(workspace_id: int, through: int) -> None:
         expected = (run.config or {}).get("documents") if run else None
         if run is None or not expected or through < expected:
             return
+        clock.freeze(s, ws)  # from now on today is settable, starting where the clock stopped
         run.status = "finished"
         run.finished_at = dt.datetime.now(dt.timezone.utc)
         chain.record(s, ws.id, "system", "run.finished", "run", run.id, {"documents": expected})

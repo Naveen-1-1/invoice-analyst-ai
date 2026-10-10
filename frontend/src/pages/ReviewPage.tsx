@@ -248,6 +248,14 @@ function ReviewScreen({ id }: { id: number }) {
             </CardHeader>
             <CardContent className="space-y-2 text-sm">
               {decidedNow && <p>This invoice is {STATE_LABELS[r.state] ?? r.state}; there's nothing left to decide.</p>}
+              {invoice?.payments.map((p) => (
+                <p key={p.id} className="text-muted-foreground">
+                  <span className="font-medium text-foreground">
+                    {p.status === 'paid' ? `Paid in the run of ${p.run_date}` : p.status === 'planned' ? `To be paid on ${p.run_date}` : 'Payment waiting'}
+                    {': '}{formatMoney(p.paid, p.currency)}{p.to_account ? ` to account ${p.to_account}` : ''}.
+                  </span>{' '}{p.reason}
+                </p>
+              ))}
               {reasons.length === 0 && !decidedNow && <p className="text-muted-foreground">No reasons recorded.</p>}
               {reasons.map((x, i) => (
                 <div key={i} className={cn('rounded-md border px-2.5 py-1.5', REASON_STYLE[x.kind] ?? 'border-border')}>
@@ -289,7 +297,8 @@ function ReviewScreen({ id }: { id: number }) {
                 )}
                 {r.blocks.length > 0 && (
                   <label className="flex items-start gap-2 rounded-md border border-red-300 bg-red-50 p-2.5 dark:bg-red-950/40">
-                    <input type="checkbox" className="mt-0.5" checked={override} onChange={(e) => setOverride(e.target.checked)} />
+                    <input type="checkbox" className="mt-0.5" aria-label="Override the payment block" checked={override}
+                           onChange={(e) => setOverride(e.target.checked)} />
                     <span>Override: pay it even though {r.blocks.length === 1 ? 'this finding blocks' : 'these findings block'} payment. Say why in the note.</span>
                   </label>
                 )}

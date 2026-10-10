@@ -11,7 +11,7 @@ import { useLiveEvents } from '@/lib/useLiveEvents'
 
 type Column = { key: string; title: string; hint: string; match: (c: CardOut) => boolean }
 
-const decided = (c: CardOut) => ['APPROVED', 'APPROVED_PARTIAL', 'REJECTED'].includes(c.invoice_state ?? '')
+const approved = (c: CardOut) => ['AUTO_APPROVED', 'APPROVED', 'APPROVED_PARTIAL'].includes(c.invoice_state ?? '')
 const inReview = (c: CardOut) => ['NEEDS_REVIEW', 'ON_HOLD'].includes(c.invoice_state ?? '')
 
 const COLUMNS: Column[] = [
@@ -19,12 +19,12 @@ const COLUMNS: Column[] = [
   { key: 'reading', title: 'Reading', hint: 'Prepared; the model is reading it', match: (c) => c.state === 'PREPARED' },
   { key: 'checking', title: 'Checking', hint: 'Read; checked in arrival order, then decided',
     match: (c) => ['EXTRACTED', 'SPLIT'].includes(c.state) && ['EXTRACTED', 'CHECKED', 'MATCHED'].includes(c.invoice_state ?? '') },
-  { key: 'auto', title: 'Approved automatically', hint: 'Clean, high confidence, PO matched, under USD 10,000',
-    match: (c) => c.invoice_state === 'AUTO_APPROVED' },
   { key: 'review', title: 'Needs review', hint: 'Waiting for you (including held)', match: inReview },
-  { key: 'decided', title: 'Decided by you', hint: 'Approved, partly approved or rejected', match: decided },
-  { key: 'other', title: 'Not invoices / failed', hint: 'Statements, other documents, unreadable files',
-    match: (c) => c.state === 'NOT_INVOICE' || c.state === 'FAILED' },
+  { key: 'topay', title: 'To pay', hint: 'Approved (by the rules or you), booked, in a payment run',
+    match: (c) => approved(c) && c.payment !== 'paid' },
+  { key: 'paid', title: 'Paid', hint: 'Paid in a weekly run', match: (c) => approved(c) && c.payment === 'paid' },
+  { key: 'other', title: 'Not paid', hint: 'Rejected, statements and other documents, unreadable files',
+    match: (c) => c.invoice_state === 'REJECTED' || c.state === 'NOT_INVOICE' || c.state === 'FAILED' },
 ]
 
 function simulatedDate(board: BoardOut, now: number): string | null {
@@ -128,7 +128,6 @@ export function BoardPage() {
               </section>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground">The next milestone adds payment columns (scheduled, paid).</p>
         </>
       )}
     </div>

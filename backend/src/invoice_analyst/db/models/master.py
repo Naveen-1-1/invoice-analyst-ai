@@ -64,7 +64,8 @@ class VendorBankAccount(Base):
     bic: Mapped[str | None] = mapped_column(Text)
     branch: Mapped[str | None] = mapped_column(Text)
     valid_from: Mapped[dt.date | None] = mapped_column(Date)
-    valid_to: Mapped[dt.date | None] = mapped_column(Date)
+    valid_to: Mapped[dt.date | None] = mapped_column(Date)  # set when replaced: payments go to the open one
+    source: Mapped[str | None] = mapped_column(Text)  # companion, or the review that confirmed it
 
 
 class VendorHistory(Base):

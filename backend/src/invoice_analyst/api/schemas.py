@@ -106,6 +106,8 @@ class InvoiceOut(BaseModel):
     fields: list[FieldOut]
     lines: list[LineOut]
     checks: list[CheckOut]
+    payments: list["PaymentItemOut"]
+    entries: list["JournalEntryOut"]
 
 
 class EventOut(BaseModel):
@@ -168,6 +170,7 @@ class CardOut(BaseModel):
     codes: list[str]
     invoice_id: int | None
     labels: list[str]
+    payment: str | None  # planned / waiting / paid, for the invoice's approved amounts
 
 
 class BoardOut(BaseModel):
@@ -325,3 +328,172 @@ class ReprocessIn(BaseModel):
 class WordOut(BaseModel):
     t: str
     bbox: list[float]
+
+
+class TodayOut(BaseModel):
+    date: dt.date
+    live: bool  # the simulated clock is running; today can't be set
+
+
+class PaymentItemOut(BaseModel):
+    id: int
+    invoice_id: int
+    document_id: int
+    vendor: str | None
+    entity: str | None
+    invoice_number: str | None
+    doc_type: str
+    amount: Decimal  # adds to what we owe; negative for a credit note
+    discount: Decimal
+    paid: Decimal  # amount less discount
+    currency: str
+    status: str  # planned / waiting / paid
+    due_date: dt.date | None
+    due_source: str | None
+    run_date: dt.date | None
+    to_account: str | None  # last digits of the account paid (or to be paid)
+    reason: str
+
+
+class PaymentRunOut(BaseModel):
+    id: int
+    run_date: dt.date
+    status: str  # planned / executed
+    executed_at: dt.datetime | None
+    items: int
+    totals: dict[str, Decimal]  # per currency, what leaves the bank
+    discounts: dict[str, Decimal]
+
+
+class PaymentsOut(BaseModel):
+    workspace_id: int
+    today: TodayOut
+    runs: list[PaymentRunOut]
+    waiting: list[PaymentItemOut]
+    due_now: int  # planned runs dated today or earlier
+
+
+class TransferOut(BaseModel):
+    vendor: str | None
+    currency: str
+    amount: Decimal
+    to_account: str | None
+    items: list[PaymentItemOut]
+
+
+class PaymentRunDetail(BaseModel):
+    run: PaymentRunOut
+    today: TodayOut
+    transfers: list[TransferOut]
+
+
+class RunResultOut(BaseModel):
+    executed: list[str]  # run dates
+    today: TodayOut
+    message: str
+
+
+class TodayIn(BaseModel):
+    date: dt.date
+
+
+class JournalLineOut(BaseModel):
+    account: str
+    account_name: str
+    currency: str
+    debit: Decimal
+    credit: Decimal
+    vendor: str | None
+
+
+class JournalEntryOut(BaseModel):
+    id: int
+    entry_date: dt.date
+    kind: str
+    memo: str
+    entity: str | None
+    invoice_id: int | None
+    document_id: int | None
+    posted_at: dt.datetime
+    lines: list[JournalLineOut]
+
+
+class JournalOut(BaseModel):
+    total: int
+    entries: list[JournalEntryOut]
+
+
+class TrialRowOut(BaseModel):
+    currency: str
+    account: str
+    name: str
+    type: str
+    debit: Decimal
+    credit: Decimal
+    balance: Decimal  # debit-positive
+
+
+class ReconciliationOut(BaseModel):
+    currency: str
+    ledger: Decimal
+    open_items: Decimal
+    ok: bool
+
+
+class TrialBalanceOut(BaseModel):
+    rows: list[TrialRowOut]
+    balanced: dict[str, bool]
+    reconciled: list[ReconciliationOut]
+
+
+class OpenItemOut(BaseModel):
+    item_id: int
+    invoice_id: int
+    document_id: int
+    vendor: str | None
+    entity: str | None
+    invoice_number: str | None
+    currency: str
+    amount: Decimal
+    due_date: dt.date | None
+    status: str
+    run_date: dt.date | None
+    bucket: str
+    days_overdue: int
+
+
+class PayablesOut(BaseModel):
+    today: TodayOut
+    buckets: list[str]
+    totals: dict[str, dict[str, Decimal]]  # currency -> bucket -> amount
+    items: list[OpenItemOut]
+
+
+class EntityOut(BaseModel):
+    id: int
+    name: str
+
+
+class VerdictOut(BaseModel):
+    ok: bool
+    events: int
+    broken_at: int | None
+    problem: str | None
+    words: str
+
+
+class AuditEventOut(BaseModel):
+    seq: int
+    occurred_at: dt.datetime
+    actor: str
+    action: str
+    subject_type: str
+    subject_id: int | None
+    data: dict[str, Any]
+    hash: str
+
+
+class AuditOut(BaseModel):
+    total: int
+    actions: list[str]
+    events: list[AuditEventOut]

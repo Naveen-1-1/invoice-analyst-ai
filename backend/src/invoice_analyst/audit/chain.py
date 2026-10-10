@@ -24,7 +24,9 @@ def event_hash(prev_hash: str, event: dict[str, Any]) -> str:
 
 
 def canonical(ev: AuditEvent) -> dict[str, Any]:
-    return {"workspace_id": ev.workspace_id, "seq": ev.seq, "occurred_at": ev.occurred_at.isoformat(),
+    # always in UTC, so the hash doesn't depend on the database connection's time zone
+    return {"workspace_id": ev.workspace_id, "seq": ev.seq,
+            "occurred_at": ev.occurred_at.astimezone(dt.timezone.utc).isoformat(),
             "actor": ev.actor, "action": ev.action, "subject_type": ev.subject_type, "subject_id": ev.subject_id,
             "data": ev.data}
 
