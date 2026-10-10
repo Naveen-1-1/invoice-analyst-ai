@@ -4,7 +4,7 @@ BENCH_PY := bench/.venv/bin/python
 APBENCH := PYTHONPATH=bench/src $(BENCH_PY) -m apbench
 IA := PYTHONPATH=backend/src $(BACKEND_PY) -m invoice_analyst
 
-.PHONY: help venv lock install submodule db-up db-down verify-specs heldout-generate heldout-verify migrate test bench-smoke bench-dev score api web gen-api
+.PHONY: help venv lock install submodule db-up db-down verify-specs heldout-generate heldout-verify migrate test bench-smoke bench-dev score api web gen-api companion inbox-dev ap-eval
 
 help:
 	@echo "venv       create backend/.venv and bench/.venv (Python 3.12)"
@@ -20,6 +20,9 @@ help:
 	@echo "api        run the backend API on http://127.0.0.1:8000 (reloads on change)"
 	@echo "web        run the web app on http://127.0.0.1:5173 (needs make api)"
 	@echo "gen-api    regenerate the frontend's typed API client from the backend"
+	@echo "companion  generate dev vendors, POs, deliveries, history, inbox stream and planted problems"
+	@echo "inbox-dev  run the dev inbox (read every arrival, check in arrival order), then score the checks"
+	@echo "ap-eval RUN=n  score inbox run n's checks against the labels"
 	@echo "verify-specs  check the generator specs (seed 42) reproduce the published answer keys"
 	@echo "heldout-generate  render and seal the held-out set from HELDOUT_SEED (once)"
 	@echo "heldout-verify    check the sealed held-out set is intact"
@@ -90,3 +93,13 @@ web:
 gen-api:
 	PYTHONPATH=backend/src $(BACKEND_PY) -c "import json; from invoice_analyst.api.main import app; print(json.dumps(app.openapi(), indent=1))" > frontend/openapi.json
 	cd frontend && npx orval --config orval.config.ts
+
+companion:
+	$(APBENCH) companion --set dev
+
+inbox-dev:
+	$(IA) inbox run --set dev --label dev
+	$(MAKE) ap-eval RUN=latest
+
+ap-eval:
+	$(APBENCH) ap-eval $(if $(filter latest,$(RUN)),$$(ls -d data/runs/[0-9]* | tail -1),$(RUN))

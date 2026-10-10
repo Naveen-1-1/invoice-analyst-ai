@@ -1,0 +1,1106 @@
+[
+ {
+  "seq": 1,
+  "ref": "clean-us-with-discount",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-with-discount.pdf",
+  "received_date": "2024-02-28"
+ },
+ {
+  "seq": 2,
+  "ref": "clean-us-shipping-and-discount",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-shipping-and-discount.pdf",
+  "received_date": "2024-03-08"
+ },
+ {
+  "seq": 3,
+  "ref": "clean-us-clean-simple",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-clean-simple.pdf",
+  "received_date": "2024-03-16"
+ },
+ {
+  "seq": 4,
+  "ref": "clean-us-delivery-alias",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-delivery-alias.pdf",
+  "received_date": "2024-03-21"
+ },
+ {
+  "seq": 5,
+  "ref": "clean-us-with-shipping",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-with-shipping.pdf",
+  "received_date": "2024-03-25"
+ },
+ {
+  "seq": 6,
+  "ref": "clean-us-freight-alias",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-freight-alias.pdf",
+  "received_date": "2024-03-26"
+ },
+ {
+  "seq": 7,
+  "ref": "clean-us-handling-alias",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-handling-alias.pdf",
+  "received_date": "2024-03-30"
+ },
+ {
+  "seq": 8,
+  "ref": "clean-us-tax-only",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-tax-only.pdf",
+  "received_date": "2024-04-03"
+ },
+ {
+  "seq": 9,
+  "ref": "clean-us-sh-abbrev",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-sh-abbrev.pdf",
+  "received_date": "2024-04-03"
+ },
+ {
+  "seq": 10,
+  "ref": "clean-us-net30-terms",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-net30-terms.pdf",
+  "received_date": "2024-04-08"
+ },
+ {
+  "seq": 11,
+  "ref": "clean-us-trade-discount",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-trade-discount.pdf",
+  "received_date": "2024-04-10"
+ },
+ {
+  "seq": 12,
+  "ref": "clean-us-fuel-surcharge",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-fuel-surcharge.pdf",
+  "received_date": "2024-04-17"
+ },
+ {
+  "seq": 13,
+  "ref": "clean-us-promo-code",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-promo-code.pdf",
+  "received_date": "2024-04-19"
+ },
+ {
+  "seq": 14,
+  "ref": "clean-us-credit-applied",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-credit-applied.pdf",
+  "received_date": "2024-04-20"
+ },
+ {
+  "seq": 15,
+  "ref": "clean-us-many-line-items",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-many-line-items.pdf",
+  "received_date": "2024-04-24"
+ },
+ {
+  "seq": 16,
+  "ref": "clean-us-service-fee",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-service-fee.pdf",
+  "received_date": "2024-04-24"
+ },
+ {
+  "seq": 17,
+  "ref": "clean-us-single-service",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-single-service.pdf",
+  "received_date": "2024-04-26"
+ },
+ {
+  "seq": 18,
+  "ref": "clean-us-zero-shipping-explicit",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-zero-shipping-explicit.pdf",
+  "received_date": "2024-05-06"
+ },
+ {
+  "seq": 19,
+  "ref": "clean-us-two-tax-lines",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-two-tax-lines.pdf",
+  "received_date": "2024-05-08"
+ },
+ {
+  "seq": 20,
+  "ref": "clean-us-overpaid-invoice",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-overpaid-invoice.pdf",
+  "received_date": "2024-05-11"
+ },
+ {
+  "seq": 21,
+  "ref": "tax-inclusive-subtotal-na",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-inclusive-subtotal-na.pdf",
+  "received_date": "2025-01-17"
+ },
+ {
+  "seq": 22,
+  "ref": "hard-total-inflated",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-total-inflated.pdf",
+  "received_date": "2025-01-20"
+ },
+ {
+  "seq": 23,
+  "ref": "currency-zmw-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-zmw-1.pdf",
+  "received_date": "2025-01-27"
+ },
+ {
+  "seq": 24,
+  "ref": "freight-clearing-za-4",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-clearing-za-4.pdf",
+  "received_date": "2025-01-27"
+ },
+ {
+  "seq": 25,
+  "ref": "currency-gbp-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-gbp-2.pdf",
+  "received_date": "2025-02-08"
+ },
+ {
+  "seq": 26,
+  "ref": "tax-percentage-line-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-percentage-line-2.pdf",
+  "received_date": "2025-02-21"
+ },
+ {
+  "seq": 27,
+  "ref": "handwritten-invoice-book-poor-7",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/handwritten-invoice-book-poor-7.jpg",
+  "received_date": "2025-02-27"
+ },
+ {
+  "seq": 28,
+  "ref": "multipage-8p-na-10",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/multipage-8p-na-10.pdf",
+  "received_date": "2025-03-13"
+ },
+ {
+  "seq": 29,
+  "ref": "clean-zm-banner",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-zm-banner.pdf",
+  "received_date": "2025-03-19"
+ },
+ {
+  "seq": 30,
+  "ref": "credit-brackets-us",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/credit-brackets-us.pdf",
+  "received_date": "2025-03-20"
+ },
+ {
+  "seq": 31,
+  "ref": "freight-carrier-na-5",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-carrier-na-5.pdf",
+  "received_date": "2025-03-21"
+ },
+ {
+  "seq": 32,
+  "ref": "resubmit-clean-us-tax-only",
+  "path": "data/dev/inbox/documents/resubmit-clean-us-tax-only.jpg",
+  "received_date": "2025-03-21"
+ },
+ {
+  "seq": 33,
+  "ref": "tax-zero-rated-na",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-zero-rated-na.pdf",
+  "received_date": "2025-03-30"
+ },
+ {
+  "seq": 34,
+  "ref": "credit-r-minus-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/credit-r-minus-1.pdf",
+  "received_date": "2025-03-31"
+ },
+ {
+  "seq": 35,
+  "ref": "currency-nad-bare-dollar",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-nad-bare-dollar.pdf",
+  "received_date": "2025-04-05"
+ },
+ {
+  "seq": 36,
+  "ref": "multipage-8p-us-9",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/multipage-8p-us-9.pdf",
+  "received_date": "2025-04-11"
+ },
+ {
+  "seq": 37,
+  "ref": "photo-annotations-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-annotations-moderate.jpg",
+  "received_date": "2025-04-14"
+ },
+ {
+  "seq": 38,
+  "ref": "photo-low-light-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-low-light-severe.jpg",
+  "received_date": "2025-04-14"
+ },
+ {
+  "seq": 39,
+  "ref": "scan-fax-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-fax-mild.png",
+  "received_date": "2025-04-14"
+ },
+ {
+  "seq": 40,
+  "ref": "photo-annotations-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-annotations-severe.jpg",
+  "received_date": "2025-04-15"
+ },
+ {
+  "seq": 41,
+  "ref": "photo-low-light-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-low-light-moderate.jpg",
+  "received_date": "2025-04-15"
+ },
+ {
+  "seq": 42,
+  "ref": "scan-fax-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-fax-severe.png",
+  "received_date": "2025-04-16"
+ },
+ {
+  "seq": 43,
+  "ref": "photo-annotations-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-annotations-mild.jpg",
+  "received_date": "2025-04-16"
+ },
+ {
+  "seq": 44,
+  "ref": "photo-low-light-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-low-light-mild.jpg",
+  "received_date": "2025-04-17"
+ },
+ {
+  "seq": 45,
+  "ref": "scan-fax-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-fax-moderate.png",
+  "received_date": "2025-04-18"
+ },
+ {
+  "seq": 46,
+  "ref": "handwritten-invoice-book-poor-6",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/handwritten-invoice-book-poor-6.jpg",
+  "received_date": "2025-04-19"
+ },
+ {
+  "seq": 47,
+  "ref": "currency-zar-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-zar-1.pdf",
+  "received_date": "2025-04-26"
+ },
+ {
+  "seq": 48,
+  "ref": "hard-statement-za",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-statement-za.pdf",
+  "received_date": "2025-04-27"
+ },
+ {
+  "seq": 49,
+  "ref": "credit-cr-suffix-za",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/credit-cr-suffix-za.pdf",
+  "received_date": "2025-04-29"
+ },
+ {
+  "seq": 50,
+  "ref": "freight-trip-reference-4",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-trip-reference-4.pdf",
+  "received_date": "2025-05-01"
+ },
+ {
+  "seq": 51,
+  "ref": "freight-trip-reference-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-trip-reference-1.pdf",
+  "received_date": "2025-05-01"
+ },
+ {
+  "seq": 52,
+  "ref": "tax-inclusive-total-na",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-inclusive-total-na.pdf",
+  "received_date": "2025-05-17"
+ },
+ {
+  "seq": 53,
+  "ref": "freight-carrier-us-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-carrier-us-2.pdf",
+  "received_date": "2025-06-04"
+ },
+ {
+  "seq": 54,
+  "ref": "currency-eur-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-eur-2.pdf",
+  "received_date": "2025-06-07"
+ },
+ {
+  "seq": 55,
+  "ref": "hard-multiple-invoices-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-multiple-invoices-2.pdf",
+  "received_date": "2025-06-13"
+ },
+ {
+  "seq": 56,
+  "ref": "clean-nl-two-column",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-nl-two-column.pdf",
+  "received_date": "2025-06-16"
+ },
+ {
+  "seq": 57,
+  "ref": "handwritten-invoice-book-neat-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/handwritten-invoice-book-neat-2.jpg",
+  "received_date": "2025-07-07"
+ },
+ {
+  "seq": 58,
+  "ref": "multipage-5p-na-7",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/multipage-5p-na-7.pdf",
+  "received_date": "2025-07-08"
+ },
+ {
+  "seq": 59,
+  "ref": "freight-trip-reference-3",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-trip-reference-3.pdf",
+  "received_date": "2025-07-08"
+ },
+ {
+  "seq": 60,
+  "ref": "handwritten-invoice-book-neat-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/handwritten-invoice-book-neat-1.jpg",
+  "received_date": "2025-07-30"
+ },
+ {
+  "seq": 61,
+  "ref": "clean-za-code-zebra",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-za-code-zebra.pdf",
+  "received_date": "2025-08-01"
+ },
+ {
+  "seq": 62,
+  "ref": "photo-shadow-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-shadow-mild.jpg",
+  "received_date": "2025-08-03"
+ },
+ {
+  "seq": 63,
+  "ref": "photo-perspective-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-perspective-moderate.jpg",
+  "received_date": "2025-08-03"
+ },
+ {
+  "seq": 64,
+  "ref": "photo-motion-blur-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-motion-blur-severe.jpg",
+  "received_date": "2025-08-04"
+ },
+ {
+  "seq": 65,
+  "ref": "photo-crumple-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-crumple-severe.jpg",
+  "received_date": "2025-08-04"
+ },
+ {
+  "seq": 66,
+  "ref": "photo-shadow-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-shadow-severe.jpg",
+  "received_date": "2025-08-05"
+ },
+ {
+  "seq": 67,
+  "ref": "scan-punch-holes-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-punch-holes-severe.png",
+  "received_date": "2025-08-05"
+ },
+ {
+  "seq": 68,
+  "ref": "photo-perspective-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-perspective-severe.jpg",
+  "received_date": "2025-08-05"
+ },
+ {
+  "seq": 69,
+  "ref": "photo-crop-edges-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-crop-edges-severe.jpg",
+  "received_date": "2025-08-05"
+ },
+ {
+  "seq": 70,
+  "ref": "photo-shadow-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-shadow-moderate.jpg",
+  "received_date": "2025-08-05"
+ },
+ {
+  "seq": 71,
+  "ref": "photo-motion-blur-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-motion-blur-mild.jpg",
+  "received_date": "2025-08-05"
+ },
+ {
+  "seq": 72,
+  "ref": "scan-grayscale-scan-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-grayscale-scan-mild.png",
+  "received_date": "2025-08-06"
+ },
+ {
+  "seq": 73,
+  "ref": "photo-crop-edges-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-crop-edges-mild.jpg",
+  "received_date": "2025-08-06"
+ },
+ {
+  "seq": 74,
+  "ref": "photo-crumple-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-crumple-mild.jpg",
+  "received_date": "2025-08-06"
+ },
+ {
+  "seq": 75,
+  "ref": "scan-punch-holes-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-punch-holes-mild.png",
+  "received_date": "2025-08-07"
+ },
+ {
+  "seq": 76,
+  "ref": "scan-punch-holes-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-punch-holes-moderate.png",
+  "received_date": "2025-08-07"
+ },
+ {
+  "seq": 77,
+  "ref": "scan-grayscale-scan-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-grayscale-scan-moderate.png",
+  "received_date": "2025-08-07"
+ },
+ {
+  "seq": 78,
+  "ref": "scan-grayscale-scan-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-grayscale-scan-severe.png",
+  "received_date": "2025-08-07"
+ },
+ {
+  "seq": 79,
+  "ref": "photo-crop-edges-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-crop-edges-moderate.jpg",
+  "received_date": "2025-08-08"
+ },
+ {
+  "seq": 80,
+  "ref": "photo-motion-blur-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-motion-blur-moderate.jpg",
+  "received_date": "2025-08-08"
+ },
+ {
+  "seq": 81,
+  "ref": "photo-crumple-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-crumple-moderate.jpg",
+  "received_date": "2025-08-09"
+ },
+ {
+  "seq": 82,
+  "ref": "photo-perspective-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-perspective-mild.jpg",
+  "received_date": "2025-08-09"
+ },
+ {
+  "seq": 83,
+  "ref": "clean-gb-mono-plain",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-gb-mono-plain.pdf",
+  "received_date": "2025-08-10"
+ },
+ {
+  "seq": 84,
+  "ref": "freight-trip-reference-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-trip-reference-2.pdf",
+  "received_date": "2025-08-21"
+ },
+ {
+  "seq": 85,
+  "ref": "multipage-5p-de-6",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/multipage-5p-de-6.pdf",
+  "received_date": "2025-08-25"
+ },
+ {
+  "seq": 86,
+  "ref": "handwritten-invoice-book-average-5",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/handwritten-invoice-book-average-5.jpg",
+  "received_date": "2025-08-31"
+ },
+ {
+  "seq": 87,
+  "ref": "currency-gbp-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-gbp-1.pdf",
+  "received_date": "2025-08-31"
+ },
+ {
+  "seq": 88,
+  "ref": "clean-gb-serif",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-gb-serif.pdf",
+  "received_date": "2025-09-01"
+ },
+ {
+  "seq": 89,
+  "ref": "tax-exclusive-vat-column-gb",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-exclusive-vat-column-gb.pdf",
+  "received_date": "2025-09-11"
+ },
+ {
+  "seq": 90,
+  "ref": "freight-clearing-za-6",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-clearing-za-6.pdf",
+  "received_date": "2025-09-11"
+ },
+ {
+  "seq": 91,
+  "ref": "hard-total-small-residual",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-total-small-residual.pdf",
+  "received_date": "2025-09-12"
+ },
+ {
+  "seq": 92,
+  "ref": "scan-stamp-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-stamp-moderate.png",
+  "received_date": "2025-09-24"
+ },
+ {
+  "seq": 93,
+  "ref": "scan-stamp-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-stamp-severe.png",
+  "received_date": "2025-09-24"
+ },
+ {
+  "seq": 94,
+  "ref": "scan-stamp-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-stamp-mild.png",
+  "received_date": "2025-09-25"
+ },
+ {
+  "seq": 95,
+  "ref": "photo-screen-photo-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-screen-photo-moderate.jpg",
+  "received_date": "2025-09-25"
+ },
+ {
+  "seq": 96,
+  "ref": "photo-rotate-small-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-rotate-small-severe.jpg",
+  "received_date": "2025-09-25"
+ },
+ {
+  "seq": 97,
+  "ref": "photo-rotate-small-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-rotate-small-mild.jpg",
+  "received_date": "2025-09-26"
+ },
+ {
+  "seq": 98,
+  "ref": "photo-rotate-small-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-rotate-small-moderate.jpg",
+  "received_date": "2025-09-27"
+ },
+ {
+  "seq": 99,
+  "ref": "photo-jpeg-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-jpeg-moderate.jpg",
+  "received_date": "2025-09-27"
+ },
+ {
+  "seq": 100,
+  "ref": "photo-jpeg-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-jpeg-mild.jpg",
+  "received_date": "2025-09-28"
+ },
+ {
+  "seq": 101,
+  "ref": "photo-screen-photo-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-screen-photo-severe.jpg",
+  "received_date": "2025-09-29"
+ },
+ {
+  "seq": 102,
+  "ref": "photo-screen-photo-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-screen-photo-mild.jpg",
+  "received_date": "2025-09-29"
+ },
+ {
+  "seq": 103,
+  "ref": "photo-jpeg-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-jpeg-severe.jpg",
+  "received_date": "2025-09-29"
+ },
+ {
+  "seq": 104,
+  "ref": "resubmit-freight-clearing-za-6",
+  "path": "data/dev/inbox/documents/resubmit-freight-clearing-za-6.jpg",
+  "received_date": "2025-09-29"
+ },
+ {
+  "seq": 105,
+  "ref": "photo-coffee-stain-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-coffee-stain-mild.jpg",
+  "received_date": "2025-09-30"
+ },
+ {
+  "seq": 106,
+  "ref": "photo-defocus-blur-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-defocus-blur-severe.jpg",
+  "received_date": "2025-09-30"
+ },
+ {
+  "seq": 107,
+  "ref": "hard-po-beside-invoice-number-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-po-beside-invoice-number-2.pdf",
+  "received_date": "2025-09-30"
+ },
+ {
+  "seq": 108,
+  "ref": "credit-brackets-gb",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/credit-brackets-gb.pdf",
+  "received_date": "2025-10-01"
+ },
+ {
+  "seq": 109,
+  "ref": "photo-defocus-blur-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-defocus-blur-moderate.jpg",
+  "received_date": "2025-10-02"
+ },
+ {
+  "seq": 110,
+  "ref": "scan-noise-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-noise-severe.png",
+  "received_date": "2025-10-02"
+ },
+ {
+  "seq": 111,
+  "ref": "photo-coffee-stain-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-coffee-stain-moderate.jpg",
+  "received_date": "2025-10-02"
+ },
+ {
+  "seq": 112,
+  "ref": "photo-defocus-blur-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-defocus-blur-mild.jpg",
+  "received_date": "2025-10-03"
+ },
+ {
+  "seq": 113,
+  "ref": "photo-coffee-stain-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-coffee-stain-severe.jpg",
+  "received_date": "2025-10-04"
+ },
+ {
+  "seq": 114,
+  "ref": "scan-noise-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-noise-mild.png",
+  "received_date": "2025-10-04"
+ },
+ {
+  "seq": 115,
+  "ref": "scan-noise-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/scan-noise-moderate.png",
+  "received_date": "2025-10-05"
+ },
+ {
+  "seq": 116,
+  "ref": "hard-missing-invoice-number-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-missing-invoice-number-2.pdf",
+  "received_date": "2025-10-19"
+ },
+ {
+  "seq": 117,
+  "ref": "freight-clearing-na-3",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-clearing-na-3.pdf",
+  "received_date": "2025-11-01"
+ },
+ {
+  "seq": 118,
+  "ref": "handwritten-invoice-book-average-3",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/handwritten-invoice-book-average-3.jpg",
+  "received_date": "2025-11-01"
+ },
+ {
+  "seq": 119,
+  "ref": "multipage-3p-gb-4",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/multipage-3p-gb-4.pdf",
+  "received_date": "2025-11-12"
+ },
+ {
+  "seq": 120,
+  "ref": "currency-usd-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-usd-1.pdf",
+  "received_date": "2025-11-12"
+ },
+ {
+  "seq": 121,
+  "ref": "currency-dual-usd-zar-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-dual-usd-zar-1.pdf",
+  "received_date": "2025-11-23"
+ },
+ {
+  "seq": 122,
+  "ref": "tax-sage-subtotal-after-vat-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-sage-subtotal-after-vat-1.pdf",
+  "received_date": "2025-11-25"
+ },
+ {
+  "seq": 123,
+  "ref": "currency-zmw-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-zmw-2.pdf",
+  "received_date": "2025-12-04"
+ },
+ {
+  "seq": 124,
+  "ref": "currency-dual-eur-nad-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-dual-eur-nad-2.pdf",
+  "received_date": "2025-12-05"
+ },
+ {
+  "seq": 125,
+  "ref": "photo-low-res-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-low-res-mild.jpg",
+  "received_date": "2025-12-07"
+ },
+ {
+  "seq": 126,
+  "ref": "photo-combo-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-combo-severe.jpg",
+  "received_date": "2025-12-07"
+ },
+ {
+  "seq": 127,
+  "ref": "photo-orientation-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-orientation-severe.jpg",
+  "received_date": "2025-12-08"
+ },
+ {
+  "seq": 128,
+  "ref": "photo-combo-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-combo-mild.jpg",
+  "received_date": "2025-12-09"
+ },
+ {
+  "seq": 129,
+  "ref": "photo-combo-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-combo-moderate.jpg",
+  "received_date": "2025-12-09"
+ },
+ {
+  "seq": 130,
+  "ref": "photo-orientation-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-orientation-moderate.jpg",
+  "received_date": "2025-12-10"
+ },
+ {
+  "seq": 131,
+  "ref": "photo-low-res-severe",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-low-res-severe.jpg",
+  "received_date": "2025-12-12"
+ },
+ {
+  "seq": 132,
+  "ref": "photo-low-res-moderate",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-low-res-moderate.jpg",
+  "received_date": "2025-12-13"
+ },
+ {
+  "seq": 133,
+  "ref": "photo-orientation-mild",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/photo-orientation-mild.jpg",
+  "received_date": "2025-12-13"
+ },
+ {
+  "seq": 134,
+  "ref": "tax-exclusive-vat-column-za",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-exclusive-vat-column-za.pdf",
+  "received_date": "2025-12-21"
+ },
+ {
+  "seq": 135,
+  "ref": "tax-withholding-zm",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-withholding-zm.pdf",
+  "received_date": "2026-01-08"
+ },
+ {
+  "seq": 136,
+  "ref": "currency-eur-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-eur-1.pdf",
+  "received_date": "2026-01-20"
+ },
+ {
+  "seq": 137,
+  "ref": "freight-carrier-za-4",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-carrier-za-4.pdf",
+  "received_date": "2026-01-20"
+ },
+ {
+  "seq": 138,
+  "ref": "currency-multi-line-zar",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-multi-line-zar.pdf",
+  "received_date": "2026-01-26"
+ },
+ {
+  "seq": 139,
+  "ref": "hard-wrong-vat-amount",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-wrong-vat-amount.pdf",
+  "received_date": "2026-01-27"
+ },
+ {
+  "seq": 140,
+  "ref": "currency-dual-usd-zar-3",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-dual-usd-zar-3.pdf",
+  "received_date": "2026-02-13"
+ },
+ {
+  "seq": 141,
+  "ref": "currency-nad-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-nad-2.pdf",
+  "received_date": "2026-02-19"
+ },
+ {
+  "seq": 142,
+  "ref": "multipage-3p-na-3",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/multipage-3p-na-3.pdf",
+  "received_date": "2026-02-26"
+ },
+ {
+  "seq": 143,
+  "ref": "credit-note-minus-za",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/credit-note-minus-za.pdf",
+  "received_date": "2026-03-02"
+ },
+ {
+  "seq": 144,
+  "ref": "tax-sage-subtotal-after-vat-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-sage-subtotal-after-vat-2.pdf",
+  "received_date": "2026-03-07"
+ },
+ {
+  "seq": 145,
+  "ref": "clean-fr-right-header",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-fr-right-header.pdf",
+  "received_date": "2026-03-10"
+ },
+ {
+  "seq": 146,
+  "ref": "hard-lines-vs-subtotal",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-lines-vs-subtotal.pdf",
+  "received_date": "2026-03-15"
+ },
+ {
+  "seq": 147,
+  "ref": "currency-dual-usd-nad-4",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-dual-usd-nad-4.pdf",
+  "received_date": "2026-03-18"
+ },
+ {
+  "seq": 148,
+  "ref": "multipage-4p-za-5",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/multipage-4p-za-5.pdf",
+  "received_date": "2026-03-19"
+ },
+ {
+  "seq": 149,
+  "ref": "credit-ndc-za-ref",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/credit-ndc-za-ref.pdf",
+  "received_date": "2026-03-20"
+ },
+ {
+  "seq": 150,
+  "ref": "hard-missing-invoice-number-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-missing-invoice-number-1.pdf",
+  "received_date": "2026-04-09"
+ },
+ {
+  "seq": 151,
+  "ref": "freight-carrier-na-6",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-carrier-na-6.pdf",
+  "received_date": "2026-04-10"
+ },
+ {
+  "seq": 152,
+  "ref": "freight-carrier-za-3",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-carrier-za-3.pdf",
+  "received_date": "2026-04-13"
+ },
+ {
+  "seq": 153,
+  "ref": "clean-de-grid-eu-decimals",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-de-grid-eu-decimals.pdf",
+  "received_date": "2026-05-01"
+ },
+ {
+  "seq": 154,
+  "ref": "credit-unsigned-na",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/credit-unsigned-na.pdf",
+  "received_date": "2026-05-02"
+ },
+ {
+  "seq": 155,
+  "ref": "currency-usd-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-usd-2.pdf",
+  "received_date": "2026-05-06"
+ },
+ {
+  "seq": 156,
+  "ref": "freight-carrier-us-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-carrier-us-1.pdf",
+  "received_date": "2026-05-06"
+ },
+ {
+  "seq": 157,
+  "ref": "multipage-2p-za-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/multipage-2p-za-1.pdf",
+  "received_date": "2026-05-11"
+ },
+ {
+  "seq": 158,
+  "ref": "multipage-2p-us-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/multipage-2p-us-2.pdf",
+  "received_date": "2026-05-15"
+ },
+ {
+  "seq": 159,
+  "ref": "hard-po-beside-invoice-number-3",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-po-beside-invoice-number-3.pdf",
+  "received_date": "2026-05-15"
+ },
+ {
+  "seq": 160,
+  "ref": "tax-withholding-na",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-withholding-na.pdf",
+  "received_date": "2026-05-17"
+ },
+ {
+  "seq": 161,
+  "ref": "multipage-6p-za-8",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/multipage-6p-za-8.pdf",
+  "received_date": "2026-05-17"
+ },
+ {
+  "seq": 162,
+  "ref": "handwritten-invoice-book-average-4",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/handwritten-invoice-book-average-4.jpg",
+  "received_date": "2026-05-18"
+ },
+ {
+  "seq": 163,
+  "ref": "currency-zar-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-zar-2.pdf",
+  "received_date": "2026-05-18"
+ },
+ {
+  "seq": 164,
+  "ref": "tax-percentage-line-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-percentage-line-1.pdf",
+  "received_date": "2026-05-22"
+ },
+ {
+  "seq": 165,
+  "ref": "freight-clearing-na-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-clearing-na-2.pdf",
+  "received_date": "2026-05-25"
+ },
+ {
+  "seq": 166,
+  "ref": "tax-zero-rated-za",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-zero-rated-za.pdf",
+  "received_date": "2026-06-02"
+ },
+ {
+  "seq": 167,
+  "ref": "hard-po-beside-invoice-number-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-po-beside-invoice-number-1.pdf",
+  "received_date": "2026-06-12"
+ },
+ {
+  "seq": 168,
+  "ref": "resubmit-hard-po-beside-invoice-number-3",
+  "path": "data/dev/inbox/documents/resubmit-hard-po-beside-invoice-number-3.jpg",
+  "received_date": "2026-06-12"
+ },
+ {
+  "seq": 169,
+  "ref": "hard-statement-na",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-statement-na.pdf",
+  "received_date": "2026-06-24"
+ },
+ {
+  "seq": 170,
+  "ref": "clean-za-band-space-groups",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-za-band-space-groups.pdf",
+  "received_date": "2026-06-26"
+ },
+ {
+  "seq": 171,
+  "ref": "credit-r-minus-2",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/credit-r-minus-2.pdf",
+  "received_date": "2026-06-28"
+ },
+ {
+  "seq": 172,
+  "ref": "credit-note-minus-gb",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/credit-note-minus-gb.pdf",
+  "received_date": "2026-06-30"
+ },
+ {
+  "seq": 173,
+  "ref": "currency-nad-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-nad-1.pdf",
+  "received_date": "2026-07-10"
+ },
+ {
+  "seq": 174,
+  "ref": "hard-multiple-invoices-3",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/hard-multiple-invoices-3.pdf",
+  "received_date": "2026-07-13"
+ },
+ {
+  "seq": 175,
+  "ref": "clean-na-bulk-consumables",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-na-bulk-consumables.pdf",
+  "received_date": "2026-07-14"
+ },
+ {
+  "seq": 176,
+  "ref": "clean-na-center-letterhead",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-na-center-letterhead.pdf",
+  "received_date": "2026-07-16"
+ },
+ {
+  "seq": 177,
+  "ref": "clean-us-landscape",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/clean-us-landscape.pdf",
+  "received_date": "2026-07-31"
+ },
+ {
+  "seq": 178,
+  "ref": "tax-sage-subtotal-after-vat-3",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-sage-subtotal-after-vat-3.pdf",
+  "received_date": "2026-08-06"
+ },
+ {
+  "seq": 179,
+  "ref": "freight-clearing-na-1",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-clearing-na-1.pdf",
+  "received_date": "2026-08-08"
+ },
+ {
+  "seq": 180,
+  "ref": "currency-multi-line-nad",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/currency-multi-line-nad.pdf",
+  "received_date": "2026-08-17"
+ },
+ {
+  "seq": 181,
+  "ref": "tax-inclusive-total-za",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/tax-inclusive-total-za.pdf",
+  "received_date": "2026-08-27"
+ },
+ {
+  "seq": 182,
+  "ref": "handwritten-invoice-book-poor-8",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/handwritten-invoice-book-poor-8.jpg",
+  "received_date": "2026-08-28"
+ },
+ {
+  "seq": 183,
+  "ref": "freight-clearing-za-5",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/freight-clearing-za-5.pdf",
+  "received_date": "2026-08-29"
+ },
+ {
+  "seq": 184,
+  "ref": "credit-ndc-na",
+  "path": "third_party/invoice-extraction-benchmark/corpus/v1/documents/credit-ndc-na.pdf",
+  "received_date": "2026-09-04"
+ }
+]

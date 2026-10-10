@@ -1,0 +1,5410 @@
+{
+ "V0001": [
+  {
+   "invoice_number": "H0001-000",
+   "invoice_date": "2023-06-20",
+   "amount": 1346.39,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0001-001",
+   "invoice_date": "2023-03-21",
+   "amount": 997.62,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0001-002",
+   "invoice_date": "2023-07-24",
+   "amount": 1226.46,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0001-003",
+   "invoice_date": "2023-07-19",
+   "amount": 746.95,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0001-004",
+   "invoice_date": "2023-03-27",
+   "amount": 1151.59,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0001-005",
+   "invoice_date": "2023-11-28",
+   "amount": 1442.07,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0001-006",
+   "invoice_date": "2023-03-14",
+   "amount": 1362.19,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0001-007",
+   "invoice_date": "2023-08-11",
+   "amount": 1553.3,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0001-008",
+   "invoice_date": "2023-12-01",
+   "amount": 1157.89,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0001-009",
+   "invoice_date": "2023-09-18",
+   "amount": 736.69,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0001-010",
+   "invoice_date": "2023-10-18",
+   "amount": 892.37,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0001-011",
+   "invoice_date": "2023-04-09",
+   "amount": 926.82,
+   "currency": "USD"
+  }
+ ],
+ "V0002": [
+  {
+   "invoice_number": "H0002-000",
+   "invoice_date": "2025-06-25",
+   "amount": 17245.14,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0002-001",
+   "invoice_date": "2026-02-01",
+   "amount": 13527.03,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0002-002",
+   "invoice_date": "2025-11-30",
+   "amount": 10932.65,
+   "currency": "ZAR"
+  }
+ ],
+ "V0003": [
+  {
+   "invoice_number": "H0003-000",
+   "invoice_date": "2024-03-04",
+   "amount": 26547.32,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0003-001",
+   "invoice_date": "2024-11-03",
+   "amount": 27711.5,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0003-002",
+   "invoice_date": "2024-07-05",
+   "amount": 20611.45,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0003-003",
+   "invoice_date": "2024-09-08",
+   "amount": 27720.79,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0003-004",
+   "invoice_date": "2024-10-09",
+   "amount": 26325.13,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0003-005",
+   "invoice_date": "2024-09-19",
+   "amount": 23870.49,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0003-006",
+   "invoice_date": "2024-11-16",
+   "amount": 16195.41,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0003-007",
+   "invoice_date": "2024-11-10",
+   "amount": 27671.04,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0003-008",
+   "invoice_date": "2024-03-24",
+   "amount": 26186.96,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0003-009",
+   "invoice_date": "2024-10-21",
+   "amount": 25430.34,
+   "currency": "ZAR"
+  }
+ ],
+ "V0004": [
+  {
+   "invoice_number": "H0004-000",
+   "invoice_date": "2025-04-22",
+   "amount": 7763.36,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0004-001",
+   "invoice_date": "2026-01-01",
+   "amount": 10700.93,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0004-002",
+   "invoice_date": "2025-08-04",
+   "amount": 10356.04,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0004-003",
+   "invoice_date": "2025-09-30",
+   "amount": 12850.89,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0004-004",
+   "invoice_date": "2025-04-02",
+   "amount": 13916.29,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0004-005",
+   "invoice_date": "2026-01-31",
+   "amount": 15409.39,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0004-006",
+   "invoice_date": "2025-08-23",
+   "amount": 15910.08,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0004-007",
+   "invoice_date": "2025-04-21",
+   "amount": 12853.7,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0004-008",
+   "invoice_date": "2025-12-25",
+   "amount": 14054.28,
+   "currency": "ZAR"
+  }
+ ],
+ "V0005": [
+  {
+   "invoice_number": "H0005-000",
+   "invoice_date": "2024-08-26",
+   "amount": 8905.31,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0005-001",
+   "invoice_date": "2024-06-30",
+   "amount": 9125.01,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0005-002",
+   "invoice_date": "2024-11-11",
+   "amount": 5999.19,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0005-003",
+   "invoice_date": "2024-06-16",
+   "amount": 7995.9,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0005-004",
+   "invoice_date": "2025-03-10",
+   "amount": 9428.01,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0005-005",
+   "invoice_date": "2024-06-18",
+   "amount": 6025.87,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0005-006",
+   "invoice_date": "2025-02-01",
+   "amount": 5872.78,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0005-007",
+   "invoice_date": "2025-03-09",
+   "amount": 10175.07,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0005-008",
+   "invoice_date": "2025-04-10",
+   "amount": 8752.7,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0005-009",
+   "invoice_date": "2024-05-28",
+   "amount": 4476.21,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0005-010",
+   "invoice_date": "2024-10-25",
+   "amount": 6950.28,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0005-011",
+   "invoice_date": "2025-02-11",
+   "amount": 4835.94,
+   "currency": "NAD"
+  }
+ ],
+ "V0006": [
+  {
+   "invoice_number": "H0006-000",
+   "invoice_date": "2025-07-13",
+   "amount": 18431.02,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0006-001",
+   "invoice_date": "2025-09-02",
+   "amount": 23057.77,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0006-002",
+   "invoice_date": "2025-11-21",
+   "amount": 13742.53,
+   "currency": "NAD"
+  }
+ ],
+ "V0007": [
+  {
+   "invoice_number": "H0007-000",
+   "invoice_date": "2025-11-16",
+   "amount": 1378.35,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0007-001",
+   "invoice_date": "2026-05-06",
+   "amount": 1382.81,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0007-002",
+   "invoice_date": "2025-06-20",
+   "amount": 1150.16,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0007-003",
+   "invoice_date": "2026-02-04",
+   "amount": 1274.25,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0007-004",
+   "invoice_date": "2025-12-11",
+   "amount": 944.62,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0007-005",
+   "invoice_date": "2026-05-17",
+   "amount": 1215.6,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0007-006",
+   "invoice_date": "2025-11-02",
+   "amount": 1123.65,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0007-007",
+   "invoice_date": "2025-07-12",
+   "amount": 1096.11,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0007-008",
+   "invoice_date": "2025-08-30",
+   "amount": 1109.15,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0007-009",
+   "invoice_date": "2025-09-10",
+   "amount": 1338.47,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0007-010",
+   "invoice_date": "2025-10-29",
+   "amount": 1109.38,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0007-011",
+   "invoice_date": "2025-10-28",
+   "amount": 761.61,
+   "currency": "USD"
+  }
+ ],
+ "V0008": [
+  {
+   "invoice_number": "H0008-000",
+   "invoice_date": "2025-11-26",
+   "amount": 14088.82,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0008-001",
+   "invoice_date": "2026-02-28",
+   "amount": 28675.79,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0008-002",
+   "invoice_date": "2026-02-20",
+   "amount": 14795.42,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0008-003",
+   "invoice_date": "2026-02-23",
+   "amount": 14755.33,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0008-004",
+   "invoice_date": "2025-05-03",
+   "amount": 23647.73,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0008-005",
+   "invoice_date": "2025-07-19",
+   "amount": 24788.41,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0008-006",
+   "invoice_date": "2025-11-30",
+   "amount": 26897.44,
+   "currency": "NAD"
+  }
+ ],
+ "V0009": [
+  {
+   "invoice_number": "H0009-000",
+   "invoice_date": "2023-04-14",
+   "amount": 11235.59,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0009-001",
+   "invoice_date": "2023-10-18",
+   "amount": 10318.18,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0009-002",
+   "invoice_date": "2023-12-30",
+   "amount": 10395.52,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0009-003",
+   "invoice_date": "2023-12-15",
+   "amount": 10841.76,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0009-004",
+   "invoice_date": "2024-01-01",
+   "amount": 11262.32,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0009-005",
+   "invoice_date": "2023-10-14",
+   "amount": 7358.86,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0009-006",
+   "invoice_date": "2023-10-19",
+   "amount": 12530.07,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0009-007",
+   "invoice_date": "2023-10-17",
+   "amount": 8193.6,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0009-008",
+   "invoice_date": "2024-02-24",
+   "amount": 12069.48,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0009-009",
+   "invoice_date": "2023-12-22",
+   "amount": 9266.33,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0009-010",
+   "invoice_date": "2024-03-01",
+   "amount": 12172.14,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0009-011",
+   "invoice_date": "2023-12-16",
+   "amount": 9709.35,
+   "currency": "USD"
+  }
+ ],
+ "V0010": [
+  {
+   "invoice_number": "H0010-000",
+   "invoice_date": "2026-02-02",
+   "amount": 10822.38,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0010-001",
+   "invoice_date": "2025-05-27",
+   "amount": 12217.67,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0010-002",
+   "invoice_date": "2025-05-17",
+   "amount": 12531.5,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0010-003",
+   "invoice_date": "2025-09-16",
+   "amount": 11070.58,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0010-004",
+   "invoice_date": "2025-04-13",
+   "amount": 13163.4,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0010-005",
+   "invoice_date": "2025-12-26",
+   "amount": 14362.79,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0010-006",
+   "invoice_date": "2026-01-30",
+   "amount": 13700.07,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0010-007",
+   "invoice_date": "2025-08-23",
+   "amount": 12307.2,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0010-008",
+   "invoice_date": "2025-08-24",
+   "amount": 13197.24,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0010-009",
+   "invoice_date": "2025-05-30",
+   "amount": 6807.54,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0010-010",
+   "invoice_date": "2025-05-28",
+   "amount": 11475.6,
+   "currency": "EUR"
+  }
+ ],
+ "V0011": [
+  {
+   "invoice_number": "H0011-000",
+   "invoice_date": "2025-08-28",
+   "amount": 96959.12,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0011-001",
+   "invoice_date": "2025-04-02",
+   "amount": 77357.0,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0011-002",
+   "invoice_date": "2025-07-07",
+   "amount": 96753.94,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0011-003",
+   "invoice_date": "2025-03-22",
+   "amount": 90840.47,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0011-004",
+   "invoice_date": "2025-02-12",
+   "amount": 56427.12,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0011-005",
+   "invoice_date": "2024-12-16",
+   "amount": 72112.91,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0011-006",
+   "invoice_date": "2025-11-09",
+   "amount": 59487.38,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0011-007",
+   "invoice_date": "2025-06-11",
+   "amount": 63960.72,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0011-008",
+   "invoice_date": "2025-03-17",
+   "amount": 79467.79,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0011-009",
+   "invoice_date": "2025-03-14",
+   "amount": 67058.13,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0011-010",
+   "invoice_date": "2025-01-13",
+   "amount": 97191.05,
+   "currency": "ZMW"
+  }
+ ],
+ "V0012": [
+  {
+   "invoice_number": "H0012-000",
+   "invoice_date": "2024-07-02",
+   "amount": 76451.3,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0012-001",
+   "invoice_date": "2024-05-15",
+   "amount": 73014.79,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0012-002",
+   "invoice_date": "2024-09-01",
+   "amount": 47127.37,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0012-003",
+   "invoice_date": "2024-11-13",
+   "amount": 48436.65,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0012-004",
+   "invoice_date": "2024-11-06",
+   "amount": 62811.88,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0012-005",
+   "invoice_date": "2024-05-18",
+   "amount": 50872.33,
+   "currency": "ZMW"
+  }
+ ],
+ "V0013": [
+  {
+   "invoice_number": "H0013-000",
+   "invoice_date": "2025-03-03",
+   "amount": 10983.87,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0013-001",
+   "invoice_date": "2025-07-28",
+   "amount": 8558.9,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0013-002",
+   "invoice_date": "2025-08-10",
+   "amount": 15924.57,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0013-003",
+   "invoice_date": "2025-05-26",
+   "amount": 9552.37,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0013-004",
+   "invoice_date": "2025-03-29",
+   "amount": 8459.41,
+   "currency": "ZAR"
+  }
+ ],
+ "V0014": [
+  {
+   "invoice_number": "H0014-000",
+   "invoice_date": "2025-02-02",
+   "amount": 23426.01,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0014-001",
+   "invoice_date": "2025-08-19",
+   "amount": 22405.64,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0014-002",
+   "invoice_date": "2025-04-10",
+   "amount": 15878.0,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0014-003",
+   "invoice_date": "2025-12-01",
+   "amount": 22390.21,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0014-004",
+   "invoice_date": "2025-01-31",
+   "amount": 18925.17,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0014-005",
+   "invoice_date": "2025-03-10",
+   "amount": 15122.36,
+   "currency": "ZAR"
+  }
+ ],
+ "V0015": [
+  {
+   "invoice_number": "H0015-000",
+   "invoice_date": "2024-10-16",
+   "amount": 11190.21,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0015-001",
+   "invoice_date": "2025-01-28",
+   "amount": 10735.88,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0015-002",
+   "invoice_date": "2024-05-08",
+   "amount": 13294.57,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0015-003",
+   "invoice_date": "2024-10-19",
+   "amount": 23114.37,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0015-004",
+   "invoice_date": "2024-05-29",
+   "amount": 14159.0,
+   "currency": "ZAR"
+  }
+ ],
+ "V0016": [
+  {
+   "invoice_number": "H0016-000",
+   "invoice_date": "2025-05-04",
+   "amount": 60171.27,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0016-001",
+   "invoice_date": "2025-03-03",
+   "amount": 34249.38,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0016-002",
+   "invoice_date": "2025-06-17",
+   "amount": 39727.9,
+   "currency": "ZAR"
+  }
+ ],
+ "V0017": [
+  {
+   "invoice_number": "H0017-000",
+   "invoice_date": "2025-09-23",
+   "amount": 51367.43,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0017-001",
+   "invoice_date": "2025-12-16",
+   "amount": 40536.37,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0017-002",
+   "invoice_date": "2025-09-19",
+   "amount": 37755.96,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0017-003",
+   "invoice_date": "2025-09-24",
+   "amount": 46654.76,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0017-004",
+   "invoice_date": "2025-12-27",
+   "amount": 30449.94,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0017-005",
+   "invoice_date": "2025-12-17",
+   "amount": 38630.36,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0017-006",
+   "invoice_date": "2025-11-21",
+   "amount": 44727.46,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0017-007",
+   "invoice_date": "2025-08-04",
+   "amount": 47017.14,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0017-008",
+   "invoice_date": "2026-05-20",
+   "amount": 34947.38,
+   "currency": "ZAR"
+  }
+ ],
+ "V0018": [
+  {
+   "invoice_number": "H0018-000",
+   "invoice_date": "2025-10-28",
+   "amount": 14460.61,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0018-001",
+   "invoice_date": "2026-06-06",
+   "amount": 23305.58,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0018-002",
+   "invoice_date": "2026-01-02",
+   "amount": 15273.64,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0018-003",
+   "invoice_date": "2026-07-03",
+   "amount": 18187.48,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0018-004",
+   "invoice_date": "2025-12-31",
+   "amount": 10711.38,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0018-005",
+   "invoice_date": "2026-03-07",
+   "amount": 22054.64,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0018-006",
+   "invoice_date": "2026-02-13",
+   "amount": 17362.85,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0018-007",
+   "invoice_date": "2026-01-17",
+   "amount": 12889.69,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0018-008",
+   "invoice_date": "2025-09-15",
+   "amount": 22079.78,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0018-009",
+   "invoice_date": "2026-05-07",
+   "amount": 11367.37,
+   "currency": "NAD"
+  }
+ ],
+ "V0019": [
+  {
+   "invoice_number": "H0019-000",
+   "invoice_date": "2025-02-20",
+   "amount": 65435.35,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0019-001",
+   "invoice_date": "2024-12-18",
+   "amount": 38918.5,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0019-002",
+   "invoice_date": "2025-06-02",
+   "amount": 67376.39,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0019-003",
+   "invoice_date": "2025-01-23",
+   "amount": 49771.05,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0019-004",
+   "invoice_date": "2025-10-11",
+   "amount": 50985.14,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0019-005",
+   "invoice_date": "2025-03-31",
+   "amount": 74894.97,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0019-006",
+   "invoice_date": "2025-02-06",
+   "amount": 69313.65,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0019-007",
+   "invoice_date": "2025-06-18",
+   "amount": 47945.86,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0019-008",
+   "invoice_date": "2024-12-06",
+   "amount": 32847.52,
+   "currency": "NAD"
+  }
+ ],
+ "V0020": [
+  {
+   "invoice_number": "H0020-000",
+   "invoice_date": "2024-09-17",
+   "amount": 12540.65,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0020-001",
+   "invoice_date": "2025-02-12",
+   "amount": 11729.74,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0020-002",
+   "invoice_date": "2024-09-19",
+   "amount": 9092.98,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0020-003",
+   "invoice_date": "2025-06-27",
+   "amount": 14169.56,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0020-004",
+   "invoice_date": "2025-01-08",
+   "amount": 9042.95,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0020-005",
+   "invoice_date": "2025-03-20",
+   "amount": 9905.63,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0020-006",
+   "invoice_date": "2025-05-10",
+   "amount": 9556.3,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0020-007",
+   "invoice_date": "2024-09-21",
+   "amount": 6761.67,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0020-008",
+   "invoice_date": "2024-09-14",
+   "amount": 12706.09,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0020-009",
+   "invoice_date": "2025-04-12",
+   "amount": 13993.99,
+   "currency": "NAD"
+  }
+ ],
+ "V0021": [
+  {
+   "invoice_number": "H0021-000",
+   "invoice_date": "2025-02-19",
+   "amount": 192.84,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0021-001",
+   "invoice_date": "2024-11-28",
+   "amount": 110.23,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0021-002",
+   "invoice_date": "2025-09-30",
+   "amount": 155.01,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0021-003",
+   "invoice_date": "2025-01-05",
+   "amount": 192.43,
+   "currency": "EUR"
+  }
+ ],
+ "V0022": [
+  {
+   "invoice_number": "H0022-000",
+   "invoice_date": "2025-08-14",
+   "amount": 13468.18,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0022-001",
+   "invoice_date": "2025-07-19",
+   "amount": 13611.4,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0022-002",
+   "invoice_date": "2025-10-21",
+   "amount": 11588.44,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0022-003",
+   "invoice_date": "2026-01-25",
+   "amount": 10295.2,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0022-004",
+   "invoice_date": "2025-09-08",
+   "amount": 11786.73,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0022-005",
+   "invoice_date": "2025-10-26",
+   "amount": 6713.26,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0022-006",
+   "invoice_date": "2025-10-15",
+   "amount": 8535.25,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0022-007",
+   "invoice_date": "2025-12-05",
+   "amount": 8574.17,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0022-008",
+   "invoice_date": "2026-04-18",
+   "amount": 10594.29,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0022-009",
+   "invoice_date": "2025-11-19",
+   "amount": 12180.08,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0022-010",
+   "invoice_date": "2026-02-23",
+   "amount": 12003.7,
+   "currency": "NAD"
+  }
+ ],
+ "V0023": [
+  {
+   "invoice_number": "H0023-000",
+   "invoice_date": "2024-10-10",
+   "amount": 145398.16,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0023-001",
+   "invoice_date": "2024-08-17",
+   "amount": 202610.87,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0023-002",
+   "invoice_date": "2024-07-07",
+   "amount": 256060.76,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0023-003",
+   "invoice_date": "2025-01-12",
+   "amount": 158103.05,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0023-004",
+   "invoice_date": "2025-01-09",
+   "amount": 162760.69,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0023-005",
+   "invoice_date": "2025-01-15",
+   "amount": 249877.39,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0023-006",
+   "invoice_date": "2024-06-06",
+   "amount": 136170.81,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0023-007",
+   "invoice_date": "2024-07-17",
+   "amount": 163400.44,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0023-008",
+   "invoice_date": "2024-05-02",
+   "amount": 243040.72,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0023-009",
+   "invoice_date": "2024-11-03",
+   "amount": 156478.46,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0023-010",
+   "invoice_date": "2025-01-19",
+   "amount": 155136.15,
+   "currency": "NAD"
+  }
+ ],
+ "V0024": [
+  {
+   "invoice_number": "H0024-000",
+   "invoice_date": "2026-05-16",
+   "amount": 17099.73,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0024-001",
+   "invoice_date": "2026-05-27",
+   "amount": 12641.84,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0024-002",
+   "invoice_date": "2025-10-05",
+   "amount": 11784.26,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0024-003",
+   "invoice_date": "2026-04-17",
+   "amount": 9774.83,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0024-004",
+   "invoice_date": "2026-05-06",
+   "amount": 8960.66,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0024-005",
+   "invoice_date": "2025-09-08",
+   "amount": 9152.04,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0024-006",
+   "invoice_date": "2025-11-22",
+   "amount": 16595.14,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0024-007",
+   "invoice_date": "2025-08-14",
+   "amount": 11024.78,
+   "currency": "NAD"
+  }
+ ],
+ "V0025": [
+  {
+   "invoice_number": "H0025-000",
+   "invoice_date": "2025-03-28",
+   "amount": 7406.76,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0025-001",
+   "invoice_date": "2024-08-29",
+   "amount": 9422.67,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0025-002",
+   "invoice_date": "2025-01-20",
+   "amount": 8890.57,
+   "currency": "NAD"
+  }
+ ],
+ "V0026": [
+  {
+   "invoice_number": "H0026-000",
+   "invoice_date": "2026-02-08",
+   "amount": 13196.29,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0026-001",
+   "invoice_date": "2025-11-07",
+   "amount": 21925.32,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0026-002",
+   "invoice_date": "2025-09-27",
+   "amount": 15939.7,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0026-003",
+   "invoice_date": "2025-08-10",
+   "amount": 12928.48,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0026-004",
+   "invoice_date": "2025-12-10",
+   "amount": 13229.84,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0026-005",
+   "invoice_date": "2025-07-09",
+   "amount": 25866.19,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0026-006",
+   "invoice_date": "2026-03-03",
+   "amount": 22208.69,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0026-007",
+   "invoice_date": "2025-08-02",
+   "amount": 26673.16,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0026-008",
+   "invoice_date": "2025-10-04",
+   "amount": 12604.3,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0026-009",
+   "invoice_date": "2025-07-30",
+   "amount": 20706.72,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0026-010",
+   "invoice_date": "2026-04-20",
+   "amount": 23048.75,
+   "currency": "NAD"
+  }
+ ],
+ "V0027": [
+  {
+   "invoice_number": "H0027-000",
+   "invoice_date": "2024-06-20",
+   "amount": 15661.14,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0027-001",
+   "invoice_date": "2025-04-07",
+   "amount": 16926.76,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0027-002",
+   "invoice_date": "2025-03-31",
+   "amount": 17805.14,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0027-003",
+   "invoice_date": "2024-05-29",
+   "amount": 15873.92,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0027-004",
+   "invoice_date": "2024-10-28",
+   "amount": 24635.05,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0027-005",
+   "invoice_date": "2025-02-11",
+   "amount": 17637.43,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0027-006",
+   "invoice_date": "2024-09-22",
+   "amount": 25633.88,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0027-007",
+   "invoice_date": "2024-12-07",
+   "amount": 16827.96,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0027-008",
+   "invoice_date": "2024-08-19",
+   "amount": 35954.68,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0027-009",
+   "invoice_date": "2024-11-28",
+   "amount": 30101.35,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0027-010",
+   "invoice_date": "2024-12-14",
+   "amount": 18174.34,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0027-011",
+   "invoice_date": "2025-01-05",
+   "amount": 25008.7,
+   "currency": "NAD"
+  }
+ ],
+ "V0028": [
+  {
+   "invoice_number": "H0028-000",
+   "invoice_date": "2026-06-29",
+   "amount": 46017.28,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0028-001",
+   "invoice_date": "2026-07-11",
+   "amount": 42124.92,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0028-002",
+   "invoice_date": "2025-10-10",
+   "amount": 43608.15,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0028-003",
+   "invoice_date": "2026-05-12",
+   "amount": 53985.81,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0028-004",
+   "invoice_date": "2025-09-23",
+   "amount": 39021.18,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0028-005",
+   "invoice_date": "2026-06-10",
+   "amount": 35571.94,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0028-006",
+   "invoice_date": "2025-10-27",
+   "amount": 36474.03,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0028-007",
+   "invoice_date": "2026-05-12",
+   "amount": 81366.45,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0028-008",
+   "invoice_date": "2025-11-14",
+   "amount": 49474.7,
+   "currency": "NAD"
+  }
+ ],
+ "V0029": [
+  {
+   "invoice_number": "H0029-000",
+   "invoice_date": "2024-10-30",
+   "amount": 35735.43,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0029-001",
+   "invoice_date": "2024-11-14",
+   "amount": 24504.95,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0029-002",
+   "invoice_date": "2025-06-28",
+   "amount": 30053.67,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0029-003",
+   "invoice_date": "2024-09-09",
+   "amount": 34110.82,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0029-004",
+   "invoice_date": "2024-09-05",
+   "amount": 39351.77,
+   "currency": "NAD"
+  }
+ ],
+ "V0030": [
+  {
+   "invoice_number": "H0030-000",
+   "invoice_date": "2025-10-29",
+   "amount": 3176.44,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0030-001",
+   "invoice_date": "2025-05-27",
+   "amount": 3361.25,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0030-002",
+   "invoice_date": "2025-11-28",
+   "amount": 4694.98,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0030-003",
+   "invoice_date": "2025-12-14",
+   "amount": 4698.11,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0030-004",
+   "invoice_date": "2025-10-30",
+   "amount": 4662.46,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0030-005",
+   "invoice_date": "2025-08-23",
+   "amount": 4872.69,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0030-006",
+   "invoice_date": "2025-08-31",
+   "amount": 4092.36,
+   "currency": "NAD"
+  }
+ ],
+ "V0031": [
+  {
+   "invoice_number": "H0031-000",
+   "invoice_date": "2024-12-16",
+   "amount": 16830.34,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0031-001",
+   "invoice_date": "2024-11-06",
+   "amount": 34391.09,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0031-002",
+   "invoice_date": "2024-05-31",
+   "amount": 33677.28,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0031-003",
+   "invoice_date": "2024-08-05",
+   "amount": 31676.24,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0031-004",
+   "invoice_date": "2024-06-10",
+   "amount": 26078.75,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0031-005",
+   "invoice_date": "2024-11-13",
+   "amount": 23329.0,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0031-006",
+   "invoice_date": "2024-02-07",
+   "amount": 20334.78,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0031-007",
+   "invoice_date": "2024-05-25",
+   "amount": 20584.82,
+   "currency": "NAD"
+  }
+ ],
+ "V0032": [
+  {
+   "invoice_number": "H0032-000",
+   "invoice_date": "2024-01-03",
+   "amount": 2731.2,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0032-001",
+   "invoice_date": "2023-08-17",
+   "amount": 2703.7,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0032-002",
+   "invoice_date": "2023-09-19",
+   "amount": 2065.54,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0032-003",
+   "invoice_date": "2023-07-01",
+   "amount": 1839.66,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0032-004",
+   "invoice_date": "2023-07-03",
+   "amount": 1870.96,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0032-005",
+   "invoice_date": "2023-12-30",
+   "amount": 3638.5,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0032-006",
+   "invoice_date": "2024-01-19",
+   "amount": 2751.35,
+   "currency": "USD"
+  }
+ ],
+ "V0033": [
+  {
+   "invoice_number": "H0033-000",
+   "invoice_date": "2024-04-19",
+   "amount": 2732.48,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0033-001",
+   "invoice_date": "2024-09-07",
+   "amount": 1648.06,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0033-002",
+   "invoice_date": "2024-06-25",
+   "amount": 1511.9,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0033-003",
+   "invoice_date": "2025-01-14",
+   "amount": 2822.29,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0033-004",
+   "invoice_date": "2024-08-30",
+   "amount": 1703.01,
+   "currency": "USD"
+  }
+ ],
+ "V0034": [
+  {
+   "invoice_number": "H0034-000",
+   "invoice_date": "2023-12-06",
+   "amount": 2229.09,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0034-001",
+   "invoice_date": "2023-11-06",
+   "amount": 1932.73,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0034-002",
+   "invoice_date": "2023-04-30",
+   "amount": 1855.96,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0034-003",
+   "invoice_date": "2024-01-01",
+   "amount": 1360.7,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0034-004",
+   "invoice_date": "2023-03-17",
+   "amount": 1207.76,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0034-005",
+   "invoice_date": "2023-10-18",
+   "amount": 1974.11,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0034-006",
+   "invoice_date": "2023-10-28",
+   "amount": 1778.6,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0034-007",
+   "invoice_date": "2024-01-08",
+   "amount": 1981.48,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0034-008",
+   "invoice_date": "2023-08-12",
+   "amount": 1309.56,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0034-009",
+   "invoice_date": "2023-07-26",
+   "amount": 1176.36,
+   "currency": "USD"
+  }
+ ],
+ "V0035": [
+  {
+   "invoice_number": "H0035-000",
+   "invoice_date": "2025-12-24",
+   "amount": 22180.67,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0035-001",
+   "invoice_date": "2025-06-23",
+   "amount": 21297.53,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0035-002",
+   "invoice_date": "2026-02-14",
+   "amount": 23411.31,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0035-003",
+   "invoice_date": "2026-01-15",
+   "amount": 21987.28,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0035-004",
+   "invoice_date": "2025-10-28",
+   "amount": 34988.47,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0035-005",
+   "invoice_date": "2025-12-31",
+   "amount": 21681.18,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0035-006",
+   "invoice_date": "2025-11-27",
+   "amount": 36874.22,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0035-007",
+   "invoice_date": "2025-12-12",
+   "amount": 23982.58,
+   "currency": "ZAR"
+  }
+ ],
+ "V0036": [
+  {
+   "invoice_number": "H0036-000",
+   "invoice_date": "2025-09-02",
+   "amount": 20129.93,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0036-001",
+   "invoice_date": "2026-05-03",
+   "amount": 18913.67,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0036-002",
+   "invoice_date": "2025-10-14",
+   "amount": 10908.91,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0036-003",
+   "invoice_date": "2026-01-14",
+   "amount": 17190.54,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0036-004",
+   "invoice_date": "2025-12-31",
+   "amount": 23444.98,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0036-005",
+   "invoice_date": "2025-10-04",
+   "amount": 12243.37,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0036-006",
+   "invoice_date": "2026-06-30",
+   "amount": 21707.34,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0036-007",
+   "invoice_date": "2025-09-30",
+   "amount": 24428.74,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0036-008",
+   "invoice_date": "2026-06-24",
+   "amount": 18401.44,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0036-009",
+   "invoice_date": "2026-05-15",
+   "amount": 23605.98,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0036-010",
+   "invoice_date": "2025-09-19",
+   "amount": 11909.69,
+   "currency": "ZAR"
+  }
+ ],
+ "V0037": [
+  {
+   "invoice_number": "H0037-000",
+   "invoice_date": "2025-11-07",
+   "amount": 14760.79,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0037-001",
+   "invoice_date": "2026-01-08",
+   "amount": 17188.56,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0037-002",
+   "invoice_date": "2025-12-28",
+   "amount": 11596.91,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0037-003",
+   "invoice_date": "2026-01-04",
+   "amount": 8218.56,
+   "currency": "ZAR"
+  }
+ ],
+ "V0038": [
+  {
+   "invoice_number": "H0038-000",
+   "invoice_date": "2024-08-21",
+   "amount": 5751.8,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0038-001",
+   "invoice_date": "2024-12-17",
+   "amount": 3938.34,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0038-002",
+   "invoice_date": "2025-02-13",
+   "amount": 5169.65,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0038-003",
+   "invoice_date": "2024-09-22",
+   "amount": 3626.97,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0038-004",
+   "invoice_date": "2025-03-25",
+   "amount": 7308.93,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0038-005",
+   "invoice_date": "2025-03-24",
+   "amount": 5372.02,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0038-006",
+   "invoice_date": "2024-09-04",
+   "amount": 6694.76,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0038-007",
+   "invoice_date": "2025-03-31",
+   "amount": 6132.17,
+   "currency": "ZAR"
+  }
+ ],
+ "V0039": [
+  {
+   "invoice_number": "H0039-000",
+   "invoice_date": "2025-08-04",
+   "amount": 14672.5,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0039-001",
+   "invoice_date": "2025-11-19",
+   "amount": 16862.58,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0039-002",
+   "invoice_date": "2025-09-02",
+   "amount": 9501.62,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0039-003",
+   "invoice_date": "2026-01-24",
+   "amount": 11023.05,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0039-004",
+   "invoice_date": "2025-05-28",
+   "amount": 12256.44,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0039-005",
+   "invoice_date": "2025-09-06",
+   "amount": 14775.61,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0039-006",
+   "invoice_date": "2025-03-28",
+   "amount": 9331.47,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0039-007",
+   "invoice_date": "2025-12-26",
+   "amount": 11963.64,
+   "currency": "ZAR"
+  }
+ ],
+ "V0041": [
+  {
+   "invoice_number": "H0041-000",
+   "invoice_date": "2025-11-11",
+   "amount": 7565.29,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0041-001",
+   "invoice_date": "2025-05-27",
+   "amount": 7674.17,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0041-002",
+   "invoice_date": "2025-11-25",
+   "amount": 8425.81,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0041-003",
+   "invoice_date": "2025-12-03",
+   "amount": 7624.28,
+   "currency": "ZAR"
+  }
+ ],
+ "V0042": [
+  {
+   "invoice_number": "H0042-000",
+   "invoice_date": "2026-03-10",
+   "amount": 3167.34,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0042-001",
+   "invoice_date": "2025-07-01",
+   "amount": 3319.12,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0042-002",
+   "invoice_date": "2026-04-08",
+   "amount": 4526.88,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0042-003",
+   "invoice_date": "2025-06-23",
+   "amount": 3962.8,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0042-004",
+   "invoice_date": "2025-12-20",
+   "amount": 2829.78,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0042-005",
+   "invoice_date": "2025-08-04",
+   "amount": 3152.61,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0042-006",
+   "invoice_date": "2025-07-18",
+   "amount": 3078.83,
+   "currency": "USD"
+  }
+ ],
+ "V0043": [
+  {
+   "invoice_number": "H0043-000",
+   "invoice_date": "2024-12-04",
+   "amount": 40111.33,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0043-001",
+   "invoice_date": "2025-07-25",
+   "amount": 32140.49,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0043-002",
+   "invoice_date": "2024-11-18",
+   "amount": 31025.22,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0043-003",
+   "invoice_date": "2025-08-13",
+   "amount": 23632.73,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0043-004",
+   "invoice_date": "2025-05-11",
+   "amount": 27002.64,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0043-005",
+   "invoice_date": "2025-10-19",
+   "amount": 39199.33,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0043-006",
+   "invoice_date": "2025-04-18",
+   "amount": 27329.33,
+   "currency": "USD"
+  }
+ ],
+ "V0044": [
+  {
+   "invoice_number": "H0044-000",
+   "invoice_date": "2025-07-30",
+   "amount": 4759.0,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0044-001",
+   "invoice_date": "2024-12-18",
+   "amount": 4917.2,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0044-002",
+   "invoice_date": "2025-09-25",
+   "amount": 4084.35,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0044-003",
+   "invoice_date": "2025-04-16",
+   "amount": 5795.75,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0044-004",
+   "invoice_date": "2025-07-18",
+   "amount": 3491.65,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0044-005",
+   "invoice_date": "2025-05-04",
+   "amount": 4313.64,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0044-006",
+   "invoice_date": "2025-07-24",
+   "amount": 4969.75,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0044-007",
+   "invoice_date": "2025-03-03",
+   "amount": 3534.05,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0044-008",
+   "invoice_date": "2025-10-08",
+   "amount": 5785.91,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0044-009",
+   "invoice_date": "2025-04-06",
+   "amount": 3693.07,
+   "currency": "ZMW"
+  }
+ ],
+ "V0045": [
+  {
+   "invoice_number": "H0045-000",
+   "invoice_date": "2026-01-05",
+   "amount": 475.1,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0045-001",
+   "invoice_date": "2025-11-14",
+   "amount": 570.18,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0045-002",
+   "invoice_date": "2026-01-10",
+   "amount": 357.49,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0045-003",
+   "invoice_date": "2025-09-12",
+   "amount": 574.38,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0045-004",
+   "invoice_date": "2026-03-04",
+   "amount": 350.05,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0045-005",
+   "invoice_date": "2026-04-28",
+   "amount": 484.91,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0045-006",
+   "invoice_date": "2025-12-19",
+   "amount": 504.88,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0045-007",
+   "invoice_date": "2025-11-12",
+   "amount": 441.11,
+   "currency": "NAD"
+  }
+ ],
+ "V0046": [
+  {
+   "invoice_number": "H0046-000",
+   "invoice_date": "2025-10-13",
+   "amount": 40105.8,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0046-001",
+   "invoice_date": "2025-06-06",
+   "amount": 49617.33,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0046-002",
+   "invoice_date": "2025-07-20",
+   "amount": 42281.48,
+   "currency": "ZAR"
+  }
+ ],
+ "V0047": [
+  {
+   "invoice_number": "H0047-000",
+   "invoice_date": "2025-09-24",
+   "amount": 49668.39,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0047-001",
+   "invoice_date": "2025-06-28",
+   "amount": 50249.83,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0047-002",
+   "invoice_date": "2025-04-20",
+   "amount": 60650.74,
+   "currency": "ZAR"
+  }
+ ],
+ "V0048": [
+  {
+   "invoice_number": "H0048-000",
+   "invoice_date": "2024-09-26",
+   "amount": 25487.09,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0048-001",
+   "invoice_date": "2024-10-03",
+   "amount": 12821.11,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0048-002",
+   "invoice_date": "2025-01-10",
+   "amount": 19875.48,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0048-003",
+   "invoice_date": "2025-03-11",
+   "amount": 21474.65,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0048-004",
+   "invoice_date": "2024-12-10",
+   "amount": 11241.42,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0048-005",
+   "invoice_date": "2024-09-14",
+   "amount": 12493.26,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0048-006",
+   "invoice_date": "2024-07-19",
+   "amount": 23162.28,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0048-007",
+   "invoice_date": "2024-07-22",
+   "amount": 23934.75,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0048-008",
+   "invoice_date": "2024-05-24",
+   "amount": 24616.11,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0048-009",
+   "invoice_date": "2024-10-11",
+   "amount": 15510.33,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0048-010",
+   "invoice_date": "2025-01-08",
+   "amount": 20125.35,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0048-011",
+   "invoice_date": "2025-02-27",
+   "amount": 16808.67,
+   "currency": "ZAR"
+  }
+ ],
+ "V0049": [
+  {
+   "invoice_number": "H0049-000",
+   "invoice_date": "2025-12-29",
+   "amount": 11342.02,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0049-001",
+   "invoice_date": "2026-06-12",
+   "amount": 16707.8,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0049-002",
+   "invoice_date": "2025-09-24",
+   "amount": 10696.13,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0049-003",
+   "invoice_date": "2025-10-05",
+   "amount": 15697.78,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0049-004",
+   "invoice_date": "2025-09-26",
+   "amount": 21041.35,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0049-005",
+   "invoice_date": "2026-05-26",
+   "amount": 20436.49,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0049-006",
+   "invoice_date": "2026-07-25",
+   "amount": 12006.29,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0049-007",
+   "invoice_date": "2025-12-22",
+   "amount": 15783.0,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0049-008",
+   "invoice_date": "2026-03-30",
+   "amount": 12509.5,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0049-009",
+   "invoice_date": "2026-03-28",
+   "amount": 20644.52,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0049-010",
+   "invoice_date": "2025-12-11",
+   "amount": 16220.42,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0049-011",
+   "invoice_date": "2026-07-11",
+   "amount": 10147.05,
+   "currency": "ZAR"
+  }
+ ],
+ "V0050": [
+  {
+   "invoice_number": "H0050-000",
+   "invoice_date": "2024-07-26",
+   "amount": 18551.65,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0050-001",
+   "invoice_date": "2025-04-03",
+   "amount": 23278.75,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0050-002",
+   "invoice_date": "2024-06-01",
+   "amount": 18891.83,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0050-003",
+   "invoice_date": "2024-09-13",
+   "amount": 17469.41,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0050-004",
+   "invoice_date": "2025-02-14",
+   "amount": 23257.36,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0050-005",
+   "invoice_date": "2024-06-22",
+   "amount": 33992.71,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0050-006",
+   "invoice_date": "2025-03-21",
+   "amount": 26307.56,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0050-007",
+   "invoice_date": "2024-06-12",
+   "amount": 17814.09,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0050-008",
+   "invoice_date": "2025-02-15",
+   "amount": 34646.05,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0050-009",
+   "invoice_date": "2024-11-20",
+   "amount": 18846.76,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0050-010",
+   "invoice_date": "2025-01-27",
+   "amount": 35030.88,
+   "currency": "ZAR"
+  }
+ ],
+ "V0051": [
+  {
+   "invoice_number": "H0051-000",
+   "invoice_date": "2024-08-28",
+   "amount": 12483.52,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0051-001",
+   "invoice_date": "2024-08-01",
+   "amount": 15006.71,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0051-002",
+   "invoice_date": "2024-09-16",
+   "amount": 11340.11,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0051-003",
+   "invoice_date": "2025-01-05",
+   "amount": 19978.72,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0051-004",
+   "invoice_date": "2025-01-06",
+   "amount": 14247.95,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0051-005",
+   "invoice_date": "2025-01-17",
+   "amount": 17177.96,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0051-006",
+   "invoice_date": "2024-08-13",
+   "amount": 22083.9,
+   "currency": "ZAR"
+  }
+ ],
+ "V0052": [
+  {
+   "invoice_number": "H0052-000",
+   "invoice_date": "2025-12-10",
+   "amount": 40522.61,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0052-001",
+   "invoice_date": "2025-05-14",
+   "amount": 43636.52,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0052-002",
+   "invoice_date": "2025-10-08",
+   "amount": 45252.18,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0052-003",
+   "invoice_date": "2025-05-18",
+   "amount": 43362.76,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0052-004",
+   "invoice_date": "2025-03-27",
+   "amount": 56160.37,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0052-005",
+   "invoice_date": "2025-09-21",
+   "amount": 67842.37,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0052-006",
+   "invoice_date": "2025-11-21",
+   "amount": 57849.11,
+   "currency": "ZAR"
+  }
+ ],
+ "V0053": [
+  {
+   "invoice_number": "H0053-000",
+   "invoice_date": "2025-10-10",
+   "amount": 10749.35,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0053-001",
+   "invoice_date": "2026-07-13",
+   "amount": 9808.19,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0053-002",
+   "invoice_date": "2025-10-08",
+   "amount": 12225.79,
+   "currency": "ZAR"
+  }
+ ],
+ "V0054": [
+  {
+   "invoice_number": "H0054-000",
+   "invoice_date": "2025-04-13",
+   "amount": 78123.59,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0054-001",
+   "invoice_date": "2025-10-04",
+   "amount": 145139.19,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0054-002",
+   "invoice_date": "2025-09-01",
+   "amount": 140842.21,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0054-003",
+   "invoice_date": "2026-01-16",
+   "amount": 128124.5,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0054-004",
+   "invoice_date": "2025-12-05",
+   "amount": 104520.33,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0054-005",
+   "invoice_date": "2025-06-23",
+   "amount": 82948.19,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0054-006",
+   "invoice_date": "2025-09-19",
+   "amount": 65190.03,
+   "currency": "ZAR"
+  }
+ ],
+ "V0055": [
+  {
+   "invoice_number": "H0055-000",
+   "invoice_date": "2025-02-18",
+   "amount": 8867.03,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0055-001",
+   "invoice_date": "2025-06-28",
+   "amount": 5172.16,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0055-002",
+   "invoice_date": "2025-11-10",
+   "amount": 4580.99,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0055-003",
+   "invoice_date": "2025-01-30",
+   "amount": 4915.48,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0055-004",
+   "invoice_date": "2025-06-25",
+   "amount": 6022.26,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0055-005",
+   "invoice_date": "2025-09-04",
+   "amount": 6873.44,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0055-006",
+   "invoice_date": "2025-09-02",
+   "amount": 4796.05,
+   "currency": "ZAR"
+  }
+ ],
+ "V0056": [
+  {
+   "invoice_number": "H0056-000",
+   "invoice_date": "2024-07-13",
+   "amount": 36608.26,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0056-001",
+   "invoice_date": "2024-09-28",
+   "amount": 19321.74,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0056-002",
+   "invoice_date": "2024-07-23",
+   "amount": 35863.41,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0056-003",
+   "invoice_date": "2024-10-24",
+   "amount": 35940.44,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0056-004",
+   "invoice_date": "2024-06-02",
+   "amount": 34815.32,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0056-005",
+   "invoice_date": "2024-03-20",
+   "amount": 38720.02,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0056-006",
+   "invoice_date": "2024-12-26",
+   "amount": 30503.19,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0056-007",
+   "invoice_date": "2024-12-02",
+   "amount": 34241.61,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0056-008",
+   "invoice_date": "2024-01-27",
+   "amount": 32911.14,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0056-009",
+   "invoice_date": "2024-12-07",
+   "amount": 19451.54,
+   "currency": "ZAR"
+  }
+ ],
+ "V0057": [
+  {
+   "invoice_number": "H0057-000",
+   "invoice_date": "2024-08-01",
+   "amount": 19253.9,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0057-001",
+   "invoice_date": "2024-08-09",
+   "amount": 10957.05,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0057-002",
+   "invoice_date": "2024-02-24",
+   "amount": 19550.98,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0057-003",
+   "invoice_date": "2024-01-25",
+   "amount": 13972.51,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0057-004",
+   "invoice_date": "2024-05-04",
+   "amount": 18944.23,
+   "currency": "ZAR"
+  }
+ ],
+ "V0058": [
+  {
+   "invoice_number": "H0058-000",
+   "invoice_date": "2025-07-13",
+   "amount": 58.52,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0058-001",
+   "invoice_date": "2025-10-10",
+   "amount": 126.56,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0058-002",
+   "invoice_date": "2025-05-28",
+   "amount": 65.31,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0058-003",
+   "invoice_date": "2026-01-08",
+   "amount": 67.55,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0058-004",
+   "invoice_date": "2026-01-13",
+   "amount": 74.33,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0058-005",
+   "invoice_date": "2025-07-23",
+   "amount": 124.76,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0058-006",
+   "invoice_date": "2025-09-30",
+   "amount": 62.99,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0058-007",
+   "invoice_date": "2025-11-30",
+   "amount": 119.89,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0058-008",
+   "invoice_date": "2025-06-18",
+   "amount": 113.18,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0058-009",
+   "invoice_date": "2025-11-07",
+   "amount": 99.35,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0058-010",
+   "invoice_date": "2025-02-08",
+   "amount": 57.71,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0058-011",
+   "invoice_date": "2025-03-23",
+   "amount": 78.97,
+   "currency": "USD"
+  }
+ ],
+ "V0059": [
+  {
+   "invoice_number": "H0059-000",
+   "invoice_date": "2025-06-05",
+   "amount": 65571.86,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0059-001",
+   "invoice_date": "2025-02-22",
+   "amount": 75889.46,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0059-002",
+   "invoice_date": "2025-08-17",
+   "amount": 43348.48,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0059-003",
+   "invoice_date": "2024-11-27",
+   "amount": 62641.72,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0059-004",
+   "invoice_date": "2025-01-06",
+   "amount": 63677.05,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0059-005",
+   "invoice_date": "2025-07-06",
+   "amount": 58457.8,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0059-006",
+   "invoice_date": "2025-07-23",
+   "amount": 54093.15,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0059-007",
+   "invoice_date": "2025-05-30",
+   "amount": 39036.36,
+   "currency": "ZAR"
+  }
+ ],
+ "V0060": [
+  {
+   "invoice_number": "H0060-000",
+   "invoice_date": "2024-11-05",
+   "amount": 20329.38,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0060-001",
+   "invoice_date": "2024-10-30",
+   "amount": 20041.28,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0060-002",
+   "invoice_date": "2024-07-17",
+   "amount": 15997.06,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0060-003",
+   "invoice_date": "2024-10-03",
+   "amount": 22111.11,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0060-004",
+   "invoice_date": "2024-11-29",
+   "amount": 12625.47,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0060-005",
+   "invoice_date": "2024-04-29",
+   "amount": 13890.1,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0060-006",
+   "invoice_date": "2024-05-14",
+   "amount": 10937.9,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0060-007",
+   "invoice_date": "2025-03-27",
+   "amount": 22173.86,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0060-008",
+   "invoice_date": "2024-06-25",
+   "amount": 22254.22,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0060-009",
+   "invoice_date": "2025-03-22",
+   "amount": 21489.58,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0060-010",
+   "invoice_date": "2025-03-11",
+   "amount": 14851.47,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0060-011",
+   "invoice_date": "2024-11-19",
+   "amount": 11457.47,
+   "currency": "ZAR"
+  }
+ ],
+ "V0061": [
+  {
+   "invoice_number": "H0061-000",
+   "invoice_date": "2025-03-31",
+   "amount": 3199.87,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0061-001",
+   "invoice_date": "2025-08-22",
+   "amount": 4059.08,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0061-002",
+   "invoice_date": "2025-12-20",
+   "amount": 2857.16,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0061-003",
+   "invoice_date": "2025-10-27",
+   "amount": 2834.75,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0061-004",
+   "invoice_date": "2025-12-25",
+   "amount": 4965.81,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0061-005",
+   "invoice_date": "2025-10-24",
+   "amount": 3706.83,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0061-006",
+   "invoice_date": "2025-11-07",
+   "amount": 5151.36,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0061-007",
+   "invoice_date": "2025-04-21",
+   "amount": 2481.89,
+   "currency": "ZAR"
+  }
+ ],
+ "V0062": [
+  {
+   "invoice_number": "H0062-000",
+   "invoice_date": "2025-12-12",
+   "amount": 262.08,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0062-001",
+   "invoice_date": "2025-08-08",
+   "amount": 151.74,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0062-002",
+   "invoice_date": "2025-12-18",
+   "amount": 127.8,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0062-003",
+   "invoice_date": "2025-08-05",
+   "amount": 224.75,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0062-004",
+   "invoice_date": "2025-07-31",
+   "amount": 218.46,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0062-005",
+   "invoice_date": "2025-09-23",
+   "amount": 215.67,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0062-006",
+   "invoice_date": "2025-05-04",
+   "amount": 189.97,
+   "currency": "USD"
+  }
+ ],
+ "V0063": [
+  {
+   "invoice_number": "H0063-000",
+   "invoice_date": "2026-07-07",
+   "amount": 47115.66,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0063-001",
+   "invoice_date": "2025-09-30",
+   "amount": 26073.3,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0063-002",
+   "invoice_date": "2025-08-31",
+   "amount": 29646.45,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0063-003",
+   "invoice_date": "2025-08-13",
+   "amount": 28074.84,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0063-004",
+   "invoice_date": "2026-04-23",
+   "amount": 48472.64,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0063-005",
+   "invoice_date": "2026-04-07",
+   "amount": 46236.76,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0063-006",
+   "invoice_date": "2026-05-13",
+   "amount": 35873.83,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0063-007",
+   "invoice_date": "2025-10-11",
+   "amount": 34825.22,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0063-008",
+   "invoice_date": "2026-02-09",
+   "amount": 35799.9,
+   "currency": "NAD"
+  }
+ ],
+ "V0064": [
+  {
+   "invoice_number": "H0064-000",
+   "invoice_date": "2024-08-16",
+   "amount": 159641.13,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0064-001",
+   "invoice_date": "2025-05-05",
+   "amount": 120999.66,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0064-002",
+   "invoice_date": "2025-01-13",
+   "amount": 162102.22,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0064-003",
+   "invoice_date": "2024-12-02",
+   "amount": 87512.04,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0064-004",
+   "invoice_date": "2024-07-20",
+   "amount": 154658.14,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0064-005",
+   "invoice_date": "2024-07-15",
+   "amount": 133715.7,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0064-006",
+   "invoice_date": "2024-09-08",
+   "amount": 156566.69,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0064-007",
+   "invoice_date": "2025-04-13",
+   "amount": 107046.44,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0064-008",
+   "invoice_date": "2024-11-05",
+   "amount": 113408.87,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0064-009",
+   "invoice_date": "2025-02-28",
+   "amount": 113320.95,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0064-010",
+   "invoice_date": "2024-12-25",
+   "amount": 138524.33,
+   "currency": "NAD"
+  }
+ ],
+ "V0065": [
+  {
+   "invoice_number": "H0065-000",
+   "invoice_date": "2025-01-24",
+   "amount": 57213.84,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0065-001",
+   "invoice_date": "2025-02-21",
+   "amount": 50529.03,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0065-002",
+   "invoice_date": "2024-07-17",
+   "amount": 30542.2,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0065-003",
+   "invoice_date": "2024-09-14",
+   "amount": 50233.57,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0065-004",
+   "invoice_date": "2025-02-18",
+   "amount": 55400.78,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0065-005",
+   "invoice_date": "2024-06-03",
+   "amount": 38006.47,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0065-006",
+   "invoice_date": "2024-12-09",
+   "amount": 47337.28,
+   "currency": "ZMW"
+  }
+ ],
+ "V0066": [
+  {
+   "invoice_number": "H0066-000",
+   "invoice_date": "2025-03-03",
+   "amount": 31273.4,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0066-001",
+   "invoice_date": "2025-07-15",
+   "amount": 19275.51,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0066-002",
+   "invoice_date": "2025-06-12",
+   "amount": 31042.84,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0066-003",
+   "invoice_date": "2025-03-27",
+   "amount": 28798.65,
+   "currency": "GBP"
+  }
+ ],
+ "V0067": [
+  {
+   "invoice_number": "H0067-000",
+   "invoice_date": "2025-04-23",
+   "amount": 14604.96,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0067-001",
+   "invoice_date": "2024-10-21",
+   "amount": 14886.35,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0067-002",
+   "invoice_date": "2024-08-29",
+   "amount": 15618.87,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0067-003",
+   "invoice_date": "2025-03-20",
+   "amount": 14594.56,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0067-004",
+   "invoice_date": "2025-03-17",
+   "amount": 13992.89,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0067-005",
+   "invoice_date": "2025-03-26",
+   "amount": 17779.43,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0067-006",
+   "invoice_date": "2025-03-23",
+   "amount": 20358.09,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0067-007",
+   "invoice_date": "2025-06-16",
+   "amount": 17540.65,
+   "currency": "GBP"
+  }
+ ],
+ "V0068": [
+  {
+   "invoice_number": "H0068-000",
+   "invoice_date": "2024-06-01",
+   "amount": 8697.16,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0068-001",
+   "invoice_date": "2024-11-20",
+   "amount": 6297.08,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0068-002",
+   "invoice_date": "2024-07-06",
+   "amount": 5067.16,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0068-003",
+   "invoice_date": "2024-08-25",
+   "amount": 6928.62,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0068-004",
+   "invoice_date": "2024-10-09",
+   "amount": 6188.0,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0068-005",
+   "invoice_date": "2024-11-21",
+   "amount": 4056.31,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0068-006",
+   "invoice_date": "2025-01-08",
+   "amount": 8720.15,
+   "currency": "ZMW"
+  }
+ ],
+ "V0069": [
+  {
+   "invoice_number": "H0069-000",
+   "invoice_date": "2024-12-11",
+   "amount": 8168.81,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0069-001",
+   "invoice_date": "2024-11-21",
+   "amount": 9411.69,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0069-002",
+   "invoice_date": "2025-02-25",
+   "amount": 8569.23,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0069-003",
+   "invoice_date": "2025-09-19",
+   "amount": 11962.77,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0069-004",
+   "invoice_date": "2025-02-23",
+   "amount": 8124.45,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0069-005",
+   "invoice_date": "2025-08-20",
+   "amount": 10493.04,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0069-006",
+   "invoice_date": "2025-03-26",
+   "amount": 12256.47,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0069-007",
+   "invoice_date": "2025-06-23",
+   "amount": 5604.25,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0069-008",
+   "invoice_date": "2025-02-04",
+   "amount": 9889.13,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0069-009",
+   "invoice_date": "2025-07-15",
+   "amount": 11822.01,
+   "currency": "NAD"
+  }
+ ],
+ "V0071": [
+  {
+   "invoice_number": "H0071-000",
+   "invoice_date": "2026-03-17",
+   "amount": 2912.79,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0071-001",
+   "invoice_date": "2025-10-21",
+   "amount": 1900.82,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0071-002",
+   "invoice_date": "2025-05-13",
+   "amount": 2754.95,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0071-003",
+   "invoice_date": "2026-02-28",
+   "amount": 1530.54,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0071-004",
+   "invoice_date": "2026-04-04",
+   "amount": 2161.28,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0071-005",
+   "invoice_date": "2025-11-25",
+   "amount": 2140.46,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0071-006",
+   "invoice_date": "2025-09-17",
+   "amount": 1678.55,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0071-007",
+   "invoice_date": "2025-11-25",
+   "amount": 1987.96,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0071-008",
+   "invoice_date": "2026-03-29",
+   "amount": 2154.58,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0071-009",
+   "invoice_date": "2026-01-15",
+   "amount": 1822.41,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0071-010",
+   "invoice_date": "2025-11-29",
+   "amount": 2440.48,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0071-011",
+   "invoice_date": "2025-10-15",
+   "amount": 2034.38,
+   "currency": "NAD"
+  }
+ ],
+ "V0072": [
+  {
+   "invoice_number": "H0072-000",
+   "invoice_date": "2024-04-02",
+   "amount": 28229.04,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0072-001",
+   "invoice_date": "2024-11-12",
+   "amount": 43127.7,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0072-002",
+   "invoice_date": "2024-10-12",
+   "amount": 42791.55,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0072-003",
+   "invoice_date": "2024-07-11",
+   "amount": 28119.64,
+   "currency": "NAD"
+  }
+ ],
+ "V0073": [
+  {
+   "invoice_number": "H0073-000",
+   "invoice_date": "2025-11-18",
+   "amount": 9849.49,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0073-001",
+   "invoice_date": "2026-07-25",
+   "amount": 7631.59,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0073-002",
+   "invoice_date": "2026-07-06",
+   "amount": 6940.19,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0073-003",
+   "invoice_date": "2026-07-15",
+   "amount": 7996.3,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0073-004",
+   "invoice_date": "2025-09-13",
+   "amount": 6677.6,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0073-005",
+   "invoice_date": "2026-05-19",
+   "amount": 9765.83,
+   "currency": "NAD"
+  }
+ ],
+ "V0074": [
+  {
+   "invoice_number": "H0074-000",
+   "invoice_date": "2025-04-20",
+   "amount": 10970.44,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0074-001",
+   "invoice_date": "2025-06-01",
+   "amount": 15756.35,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0074-002",
+   "invoice_date": "2025-07-29",
+   "amount": 8686.5,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0074-003",
+   "invoice_date": "2025-03-17",
+   "amount": 10636.02,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0074-004",
+   "invoice_date": "2026-01-02",
+   "amount": 12096.94,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0074-005",
+   "invoice_date": "2025-10-11",
+   "amount": 12395.05,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0074-006",
+   "invoice_date": "2025-05-19",
+   "amount": 13690.3,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0074-007",
+   "invoice_date": "2025-08-27",
+   "amount": 14474.65,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0074-008",
+   "invoice_date": "2025-09-15",
+   "amount": 12083.31,
+   "currency": "NAD"
+  }
+ ],
+ "V0075": [
+  {
+   "invoice_number": "H0075-000",
+   "invoice_date": "2025-07-22",
+   "amount": 11379.45,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0075-001",
+   "invoice_date": "2025-07-08",
+   "amount": 13905.02,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0075-002",
+   "invoice_date": "2025-08-08",
+   "amount": 12230.06,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0075-003",
+   "invoice_date": "2025-05-19",
+   "amount": 18925.86,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0075-004",
+   "invoice_date": "2025-06-05",
+   "amount": 12300.79,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0075-005",
+   "invoice_date": "2025-04-13",
+   "amount": 20148.56,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0075-006",
+   "invoice_date": "2025-12-18",
+   "amount": 15494.92,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0075-007",
+   "invoice_date": "2025-12-14",
+   "amount": 23149.53,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0075-008",
+   "invoice_date": "2025-12-15",
+   "amount": 15712.11,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0075-009",
+   "invoice_date": "2025-12-06",
+   "amount": 14565.34,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0075-010",
+   "invoice_date": "2025-04-23",
+   "amount": 17737.89,
+   "currency": "EUR"
+  }
+ ],
+ "V0076": [
+  {
+   "invoice_number": "H0076-000",
+   "invoice_date": "2025-07-04",
+   "amount": 6965.06,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0076-001",
+   "invoice_date": "2026-01-30",
+   "amount": 6629.56,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0076-002",
+   "invoice_date": "2025-08-21",
+   "amount": 8363.73,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0076-003",
+   "invoice_date": "2025-07-29",
+   "amount": 4464.98,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0076-004",
+   "invoice_date": "2026-03-03",
+   "amount": 4466.68,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0076-005",
+   "invoice_date": "2025-06-14",
+   "amount": 5671.59,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0076-006",
+   "invoice_date": "2026-04-06",
+   "amount": 8839.35,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0076-007",
+   "invoice_date": "2025-12-04",
+   "amount": 6441.61,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0076-008",
+   "invoice_date": "2025-08-30",
+   "amount": 4236.08,
+   "currency": "EUR"
+  }
+ ],
+ "V0077": [
+  {
+   "invoice_number": "H0077-000",
+   "invoice_date": "2023-04-24",
+   "amount": 1630.35,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0077-001",
+   "invoice_date": "2023-10-16",
+   "amount": 1560.33,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0077-002",
+   "invoice_date": "2024-02-04",
+   "amount": 2171.42,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0077-003",
+   "invoice_date": "2023-12-26",
+   "amount": 1842.96,
+   "currency": "USD"
+  }
+ ],
+ "V0078": [
+  {
+   "invoice_number": "H0078-000",
+   "invoice_date": "2025-05-06",
+   "amount": 17555.13,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0078-001",
+   "invoice_date": "2025-10-12",
+   "amount": 13141.23,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0078-002",
+   "invoice_date": "2026-01-31",
+   "amount": 11098.26,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0078-003",
+   "invoice_date": "2026-02-05",
+   "amount": 13391.17,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0078-004",
+   "invoice_date": "2025-08-23",
+   "amount": 16488.47,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0078-005",
+   "invoice_date": "2026-03-11",
+   "amount": 17920.36,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0078-006",
+   "invoice_date": "2025-08-30",
+   "amount": 13887.37,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0078-007",
+   "invoice_date": "2025-07-26",
+   "amount": 15018.22,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0078-008",
+   "invoice_date": "2025-05-21",
+   "amount": 17788.84,
+   "currency": "NAD"
+  }
+ ],
+ "V0079": [
+  {
+   "invoice_number": "H0079-000",
+   "invoice_date": "2024-11-10",
+   "amount": 41448.3,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0079-001",
+   "invoice_date": "2024-10-24",
+   "amount": 34720.0,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0079-002",
+   "invoice_date": "2024-12-07",
+   "amount": 41781.42,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0079-003",
+   "invoice_date": "2024-09-26",
+   "amount": 50348.37,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0079-004",
+   "invoice_date": "2024-10-03",
+   "amount": 44435.96,
+   "currency": "NAD"
+  }
+ ],
+ "V0080": [
+  {
+   "invoice_number": "H0080-000",
+   "invoice_date": "2025-09-16",
+   "amount": 57799.17,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0080-001",
+   "invoice_date": "2026-02-22",
+   "amount": 78121.46,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0080-002",
+   "invoice_date": "2025-08-23",
+   "amount": 77306.92,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0080-003",
+   "invoice_date": "2025-10-16",
+   "amount": 43313.83,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0080-004",
+   "invoice_date": "2025-10-28",
+   "amount": 78634.3,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0080-005",
+   "invoice_date": "2025-08-17",
+   "amount": 41412.61,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0080-006",
+   "invoice_date": "2026-03-20",
+   "amount": 60550.96,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0080-007",
+   "invoice_date": "2025-09-30",
+   "amount": 77409.65,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0080-008",
+   "invoice_date": "2026-03-22",
+   "amount": 76347.1,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0080-009",
+   "invoice_date": "2026-05-20",
+   "amount": 48870.97,
+   "currency": "NAD"
+  }
+ ],
+ "V0081": [
+  {
+   "invoice_number": "H0081-000",
+   "invoice_date": "2025-07-30",
+   "amount": 192814.76,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0081-001",
+   "invoice_date": "2024-12-22",
+   "amount": 188136.78,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0081-002",
+   "invoice_date": "2025-07-25",
+   "amount": 200885.75,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0081-003",
+   "invoice_date": "2024-09-21",
+   "amount": 125261.73,
+   "currency": "EUR"
+  }
+ ],
+ "V0082": [
+  {
+   "invoice_number": "H0082-000",
+   "invoice_date": "2025-01-01",
+   "amount": 19842.45,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0082-001",
+   "invoice_date": "2025-04-14",
+   "amount": 19727.67,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0082-002",
+   "invoice_date": "2025-07-17",
+   "amount": 15941.8,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0082-003",
+   "invoice_date": "2025-04-30",
+   "amount": 15470.14,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0082-004",
+   "invoice_date": "2025-08-04",
+   "amount": 19780.55,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0082-005",
+   "invoice_date": "2025-06-22",
+   "amount": 15588.57,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0082-006",
+   "invoice_date": "2025-05-04",
+   "amount": 28192.11,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0082-007",
+   "invoice_date": "2024-09-23",
+   "amount": 26136.72,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0082-008",
+   "invoice_date": "2025-02-04",
+   "amount": 14240.19,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0082-009",
+   "invoice_date": "2025-08-03",
+   "amount": 16305.09,
+   "currency": "GBP"
+  }
+ ],
+ "V0083": [
+  {
+   "invoice_number": "H0083-000",
+   "invoice_date": "2024-04-27",
+   "amount": 26634.56,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0083-001",
+   "invoice_date": "2024-05-29",
+   "amount": 28433.74,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0083-002",
+   "invoice_date": "2024-11-23",
+   "amount": 19608.46,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0083-003",
+   "invoice_date": "2024-02-10",
+   "amount": 26474.0,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0083-004",
+   "invoice_date": "2024-11-07",
+   "amount": 27613.66,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0083-005",
+   "invoice_date": "2024-10-13",
+   "amount": 29277.16,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0083-006",
+   "invoice_date": "2024-07-17",
+   "amount": 26247.44,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0083-007",
+   "invoice_date": "2024-11-30",
+   "amount": 20525.37,
+   "currency": "GBP"
+  }
+ ],
+ "V0084": [
+  {
+   "invoice_number": "H0084-000",
+   "invoice_date": "2026-01-28",
+   "amount": 46628.17,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0084-001",
+   "invoice_date": "2026-02-10",
+   "amount": 24544.53,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0084-002",
+   "invoice_date": "2025-10-23",
+   "amount": 44430.65,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0084-003",
+   "invoice_date": "2025-11-28",
+   "amount": 36095.81,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0084-004",
+   "invoice_date": "2025-10-19",
+   "amount": 34026.49,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0084-005",
+   "invoice_date": "2026-03-04",
+   "amount": 24525.38,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0084-006",
+   "invoice_date": "2025-08-31",
+   "amount": 43699.01,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0084-007",
+   "invoice_date": "2026-05-24",
+   "amount": 26289.67,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0084-008",
+   "invoice_date": "2025-11-11",
+   "amount": 36107.64,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0084-009",
+   "invoice_date": "2026-06-01",
+   "amount": 22228.92,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0084-010",
+   "invoice_date": "2025-10-15",
+   "amount": 38433.58,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0084-011",
+   "invoice_date": "2025-11-01",
+   "amount": 45253.79,
+   "currency": "USD"
+  }
+ ],
+ "V0085": [
+  {
+   "invoice_number": "H0085-000",
+   "invoice_date": "2025-05-17",
+   "amount": 18451.08,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0085-001",
+   "invoice_date": "2025-01-20",
+   "amount": 10101.17,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0085-002",
+   "invoice_date": "2025-05-16",
+   "amount": 13573.21,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0085-003",
+   "invoice_date": "2025-04-03",
+   "amount": 18095.35,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0085-004",
+   "invoice_date": "2025-07-29",
+   "amount": 15033.53,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0085-005",
+   "invoice_date": "2024-12-22",
+   "amount": 14930.34,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0085-006",
+   "invoice_date": "2025-10-15",
+   "amount": 14772.3,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0085-007",
+   "invoice_date": "2024-12-25",
+   "amount": 13277.87,
+   "currency": "USD"
+  }
+ ],
+ "V0086": [
+  {
+   "invoice_number": "H0086-000",
+   "invoice_date": "2025-05-26",
+   "amount": 1493.58,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0086-001",
+   "invoice_date": "2025-12-13",
+   "amount": 1418.28,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0086-002",
+   "invoice_date": "2025-07-07",
+   "amount": 1767.1,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0086-003",
+   "invoice_date": "2025-06-06",
+   "amount": 1029.69,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0086-004",
+   "invoice_date": "2026-04-01",
+   "amount": 2067.59,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0086-005",
+   "invoice_date": "2026-03-08",
+   "amount": 1879.22,
+   "currency": "USD"
+  }
+ ],
+ "V0087": [
+  {
+   "invoice_number": "H0087-000",
+   "invoice_date": "2024-10-31",
+   "amount": 303232.27,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0087-001",
+   "invoice_date": "2024-04-19",
+   "amount": 282758.99,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0087-002",
+   "invoice_date": "2024-12-20",
+   "amount": 155792.77,
+   "currency": "USD"
+  }
+ ],
+ "V0088": [
+  {
+   "invoice_number": "H0088-000",
+   "invoice_date": "2026-01-25",
+   "amount": 97348.03,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0088-001",
+   "invoice_date": "2026-04-21",
+   "amount": 45591.95,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0088-002",
+   "invoice_date": "2025-12-17",
+   "amount": 58009.77,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0088-003",
+   "invoice_date": "2025-12-15",
+   "amount": 74619.08,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0088-004",
+   "invoice_date": "2026-02-19",
+   "amount": 43662.37,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0088-005",
+   "invoice_date": "2025-08-25",
+   "amount": 71364.69,
+   "currency": "USD"
+  }
+ ],
+ "V0089": [
+  {
+   "invoice_number": "H0089-000",
+   "invoice_date": "2024-12-12",
+   "amount": 17808.97,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0089-001",
+   "invoice_date": "2024-10-01",
+   "amount": 26538.26,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0089-002",
+   "invoice_date": "2025-03-22",
+   "amount": 21592.55,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0089-003",
+   "invoice_date": "2025-06-14",
+   "amount": 15207.54,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0089-004",
+   "invoice_date": "2025-01-24",
+   "amount": 26226.51,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0089-005",
+   "invoice_date": "2025-07-14",
+   "amount": 13611.52,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0089-006",
+   "invoice_date": "2025-01-11",
+   "amount": 17503.85,
+   "currency": "GBP"
+  }
+ ],
+ "V0090": [
+  {
+   "invoice_number": "H0090-000",
+   "invoice_date": "2025-10-17",
+   "amount": 3286.19,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0090-001",
+   "invoice_date": "2026-03-26",
+   "amount": 4281.31,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0090-002",
+   "invoice_date": "2025-07-09",
+   "amount": 3714.56,
+   "currency": "GBP"
+  }
+ ],
+ "V0091": [
+  {
+   "invoice_number": "H0091-000",
+   "invoice_date": "2024-12-24",
+   "amount": 1893.12,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0091-001",
+   "invoice_date": "2025-01-07",
+   "amount": 1743.27,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0091-002",
+   "invoice_date": "2025-02-17",
+   "amount": 1692.52,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0091-003",
+   "invoice_date": "2024-12-31",
+   "amount": 1801.78,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0091-004",
+   "invoice_date": "2024-10-29",
+   "amount": 1510.9,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0091-005",
+   "invoice_date": "2024-05-25",
+   "amount": 1808.46,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0091-006",
+   "invoice_date": "2024-11-13",
+   "amount": 1510.72,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0091-007",
+   "invoice_date": "2025-01-30",
+   "amount": 1434.17,
+   "currency": "NAD"
+  }
+ ],
+ "V0092": [
+  {
+   "invoice_number": "H0092-000",
+   "invoice_date": "2024-06-22",
+   "amount": 79018.23,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0092-001",
+   "invoice_date": "2025-02-23",
+   "amount": 75083.71,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0092-002",
+   "invoice_date": "2025-02-04",
+   "amount": 72569.37,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0092-003",
+   "invoice_date": "2024-12-13",
+   "amount": 82580.19,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0092-004",
+   "invoice_date": "2025-02-12",
+   "amount": 78063.16,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0092-005",
+   "invoice_date": "2024-10-16",
+   "amount": 81050.09,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0092-006",
+   "invoice_date": "2024-11-22",
+   "amount": 60100.08,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0092-007",
+   "invoice_date": "2025-03-26",
+   "amount": 36615.38,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0092-008",
+   "invoice_date": "2025-03-01",
+   "amount": 72488.8,
+   "currency": "NAD"
+  }
+ ],
+ "V0093": [
+  {
+   "invoice_number": "H0093-000",
+   "invoice_date": "2025-06-17",
+   "amount": 84614.27,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0093-001",
+   "invoice_date": "2025-06-14",
+   "amount": 69226.45,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0093-002",
+   "invoice_date": "2026-01-27",
+   "amount": 71015.05,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0093-003",
+   "invoice_date": "2025-04-04",
+   "amount": 84819.63,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0093-004",
+   "invoice_date": "2025-08-20",
+   "amount": 61181.72,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0093-005",
+   "invoice_date": "2025-05-19",
+   "amount": 81626.69,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0093-006",
+   "invoice_date": "2025-06-28",
+   "amount": 78502.2,
+   "currency": "NAD"
+  }
+ ],
+ "V0094": [
+  {
+   "invoice_number": "H0094-000",
+   "invoice_date": "2025-01-10",
+   "amount": 34064.96,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0094-001",
+   "invoice_date": "2025-07-29",
+   "amount": 36729.55,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0094-002",
+   "invoice_date": "2024-12-21",
+   "amount": 49998.42,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0094-003",
+   "invoice_date": "2024-10-18",
+   "amount": 33449.47,
+   "currency": "NAD"
+  },
+  {
+   "invoice_number": "H0094-004",
+   "invoice_date": "2025-09-07",
+   "amount": 41260.18,
+   "currency": "NAD"
+  }
+ ],
+ "V0095": [
+  {
+   "invoice_number": "H0095-000",
+   "invoice_date": "2024-07-13",
+   "amount": 706.41,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0095-001",
+   "invoice_date": "2024-09-23",
+   "amount": 785.8,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0095-002",
+   "invoice_date": "2024-03-23",
+   "amount": 872.85,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0095-003",
+   "invoice_date": "2024-05-26",
+   "amount": 851.15,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0095-004",
+   "invoice_date": "2024-06-22",
+   "amount": 934.45,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0095-005",
+   "invoice_date": "2024-12-15",
+   "amount": 917.54,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0095-006",
+   "invoice_date": "2024-04-26",
+   "amount": 699.81,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0095-007",
+   "invoice_date": "2024-07-03",
+   "amount": 732.79,
+   "currency": "ZAR"
+  }
+ ],
+ "V0096": [
+  {
+   "invoice_number": "H0096-000",
+   "invoice_date": "2025-11-03",
+   "amount": 29813.95,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0096-001",
+   "invoice_date": "2025-06-08",
+   "amount": 45918.5,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0096-002",
+   "invoice_date": "2025-08-13",
+   "amount": 31768.53,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0096-003",
+   "invoice_date": "2025-08-29",
+   "amount": 42698.2,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0096-004",
+   "invoice_date": "2025-11-20",
+   "amount": 44580.51,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0096-005",
+   "invoice_date": "2025-12-05",
+   "amount": 42815.23,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0096-006",
+   "invoice_date": "2026-04-05",
+   "amount": 51248.17,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0096-007",
+   "invoice_date": "2026-04-23",
+   "amount": 45513.48,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0096-008",
+   "invoice_date": "2026-03-13",
+   "amount": 53509.07,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0096-009",
+   "invoice_date": "2026-02-05",
+   "amount": 32634.45,
+   "currency": "ZAR"
+  }
+ ],
+ "V0097": [
+  {
+   "invoice_number": "H0097-000",
+   "invoice_date": "2025-10-25",
+   "amount": 11081.26,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0097-001",
+   "invoice_date": "2025-05-09",
+   "amount": 8075.32,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0097-002",
+   "invoice_date": "2025-06-27",
+   "amount": 11156.18,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0097-003",
+   "invoice_date": "2025-03-01",
+   "amount": 6127.93,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0097-004",
+   "invoice_date": "2025-10-12",
+   "amount": 7800.72,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0097-005",
+   "invoice_date": "2025-08-29",
+   "amount": 6433.24,
+   "currency": "ZAR"
+  }
+ ],
+ "V0098": [
+  {
+   "invoice_number": "H0098-000",
+   "invoice_date": "2024-12-28",
+   "amount": 39236.59,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0098-001",
+   "invoice_date": "2024-09-26",
+   "amount": 40012.75,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0098-002",
+   "invoice_date": "2024-05-26",
+   "amount": 37892.92,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0098-003",
+   "invoice_date": "2024-02-20",
+   "amount": 32578.46,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0098-004",
+   "invoice_date": "2024-12-03",
+   "amount": 42133.91,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0098-005",
+   "invoice_date": "2024-08-07",
+   "amount": 58025.5,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0098-006",
+   "invoice_date": "2024-06-08",
+   "amount": 43848.73,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0098-007",
+   "invoice_date": "2024-03-31",
+   "amount": 32501.43,
+   "currency": "ZAR"
+  }
+ ],
+ "V0099": [
+  {
+   "invoice_number": "H0099-000",
+   "invoice_date": "2025-09-03",
+   "amount": 270217.76,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0099-001",
+   "invoice_date": "2026-04-23",
+   "amount": 158115.82,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0099-002",
+   "invoice_date": "2025-06-19",
+   "amount": 170205.67,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0099-003",
+   "invoice_date": "2025-06-11",
+   "amount": 280063.58,
+   "currency": "ZAR"
+  }
+ ],
+ "V0100": [
+  {
+   "invoice_number": "H0100-000",
+   "invoice_date": "2025-03-05",
+   "amount": 13180.39,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0100-001",
+   "invoice_date": "2025-05-24",
+   "amount": 13980.88,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0100-002",
+   "invoice_date": "2025-01-24",
+   "amount": 10643.96,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0100-003",
+   "invoice_date": "2024-08-13",
+   "amount": 10281.05,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0100-004",
+   "invoice_date": "2024-12-03",
+   "amount": 17415.9,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0100-005",
+   "invoice_date": "2024-08-04",
+   "amount": 17860.13,
+   "currency": "ZAR"
+  }
+ ],
+ "V0101": [
+  {
+   "invoice_number": "H0101-000",
+   "invoice_date": "2024-11-26",
+   "amount": 5554.27,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0101-001",
+   "invoice_date": "2025-05-05",
+   "amount": 10052.42,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0101-002",
+   "invoice_date": "2024-09-07",
+   "amount": 5623.63,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0101-003",
+   "invoice_date": "2025-04-05",
+   "amount": 7311.44,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0101-004",
+   "invoice_date": "2024-07-08",
+   "amount": 8181.29,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0101-005",
+   "invoice_date": "2025-02-11",
+   "amount": 4793.46,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0101-006",
+   "invoice_date": "2025-06-06",
+   "amount": 7881.01,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0101-007",
+   "invoice_date": "2024-07-20",
+   "amount": 6295.7,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0101-008",
+   "invoice_date": "2024-07-07",
+   "amount": 6685.9,
+   "currency": "ZAR"
+  }
+ ],
+ "V0102": [
+  {
+   "invoice_number": "H0102-000",
+   "invoice_date": "2024-12-20",
+   "amount": 4795.26,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0102-001",
+   "invoice_date": "2024-12-01",
+   "amount": 3528.75,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0102-002",
+   "invoice_date": "2025-04-18",
+   "amount": 4243.77,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0102-003",
+   "invoice_date": "2024-09-10",
+   "amount": 4174.7,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0102-004",
+   "invoice_date": "2024-10-25",
+   "amount": 3864.99,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0102-005",
+   "invoice_date": "2024-12-27",
+   "amount": 2228.08,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0102-006",
+   "invoice_date": "2024-10-21",
+   "amount": 4390.78,
+   "currency": "USD"
+  }
+ ],
+ "V0103": [
+  {
+   "invoice_number": "H0103-000",
+   "invoice_date": "2025-06-06",
+   "amount": 158.61,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0103-001",
+   "invoice_date": "2025-08-31",
+   "amount": 202.26,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0103-002",
+   "invoice_date": "2024-11-27",
+   "amount": 184.99,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0103-003",
+   "invoice_date": "2025-06-22",
+   "amount": 224.26,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0103-004",
+   "invoice_date": "2024-11-27",
+   "amount": 156.53,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0103-005",
+   "invoice_date": "2025-02-09",
+   "amount": 225.24,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0103-006",
+   "invoice_date": "2025-07-17",
+   "amount": 204.7,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0103-007",
+   "invoice_date": "2025-08-25",
+   "amount": 228.3,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0103-008",
+   "invoice_date": "2025-04-02",
+   "amount": 170.8,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0103-009",
+   "invoice_date": "2025-10-24",
+   "amount": 143.83,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0103-010",
+   "invoice_date": "2025-04-06",
+   "amount": 210.22,
+   "currency": "USD"
+  }
+ ],
+ "V0104": [
+  {
+   "invoice_number": "H0104-000",
+   "invoice_date": "2025-04-02",
+   "amount": 8487.83,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0104-001",
+   "invoice_date": "2025-02-26",
+   "amount": 9646.75,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0104-002",
+   "invoice_date": "2025-01-31",
+   "amount": 6881.84,
+   "currency": "ZAR"
+  }
+ ],
+ "V0105": [
+  {
+   "invoice_number": "H0105-000",
+   "invoice_date": "2025-10-29",
+   "amount": 10052.31,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0105-001",
+   "invoice_date": "2025-01-30",
+   "amount": 12670.03,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0105-002",
+   "invoice_date": "2025-04-28",
+   "amount": 11299.64,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0105-003",
+   "invoice_date": "2025-11-23",
+   "amount": 19085.27,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0105-004",
+   "invoice_date": "2025-09-17",
+   "amount": 17993.14,
+   "currency": "ZAR"
+  }
+ ],
+ "V0106": [
+  {
+   "invoice_number": "H0106-000",
+   "invoice_date": "2025-01-28",
+   "amount": 15003.34,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0106-001",
+   "invoice_date": "2025-01-28",
+   "amount": 14059.51,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0106-002",
+   "invoice_date": "2025-08-05",
+   "amount": 8379.46,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0106-003",
+   "invoice_date": "2024-11-11",
+   "amount": 16245.5,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0106-004",
+   "invoice_date": "2025-03-03",
+   "amount": 15537.11,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0106-005",
+   "invoice_date": "2025-04-04",
+   "amount": 8178.15,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0106-006",
+   "invoice_date": "2025-07-11",
+   "amount": 13232.62,
+   "currency": "ZAR"
+  },
+  {
+   "invoice_number": "H0106-007",
+   "invoice_date": "2025-02-24",
+   "amount": 9842.69,
+   "currency": "ZAR"
+  }
+ ],
+ "V0107": [
+  {
+   "invoice_number": "H0107-000",
+   "invoice_date": "2024-07-26",
+   "amount": 1024.4,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0107-001",
+   "invoice_date": "2024-11-02",
+   "amount": 1168.84,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0107-002",
+   "invoice_date": "2024-05-14",
+   "amount": 1068.47,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0107-003",
+   "invoice_date": "2024-11-13",
+   "amount": 720.76,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0107-004",
+   "invoice_date": "2024-11-01",
+   "amount": 604.0,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0107-005",
+   "invoice_date": "2025-02-13",
+   "amount": 728.94,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0107-006",
+   "invoice_date": "2024-07-01",
+   "amount": 712.52,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0107-007",
+   "invoice_date": "2024-10-25",
+   "amount": 842.34,
+   "currency": "USD"
+  },
+  {
+   "invoice_number": "H0107-008",
+   "invoice_date": "2024-11-18",
+   "amount": 1092.06,
+   "currency": "USD"
+  }
+ ],
+ "V0108": [
+  {
+   "invoice_number": "H0108-000",
+   "invoice_date": "2024-12-25",
+   "amount": 12034.12,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0108-001",
+   "invoice_date": "2024-06-27",
+   "amount": 11982.79,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0108-002",
+   "invoice_date": "2024-07-09",
+   "amount": 7512.78,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0108-003",
+   "invoice_date": "2025-03-19",
+   "amount": 14149.65,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0108-004",
+   "invoice_date": "2024-09-13",
+   "amount": 11829.63,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0108-005",
+   "invoice_date": "2025-04-30",
+   "amount": 6841.19,
+   "currency": "EUR"
+  },
+  {
+   "invoice_number": "H0108-006",
+   "invoice_date": "2024-08-19",
+   "amount": 10624.22,
+   "currency": "EUR"
+  }
+ ],
+ "V0110": [
+  {
+   "invoice_number": "H0110-000",
+   "invoice_date": "2025-10-13",
+   "amount": 97258.7,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0110-001",
+   "invoice_date": "2025-08-18",
+   "amount": 52756.36,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0110-002",
+   "invoice_date": "2025-05-29",
+   "amount": 61851.5,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0110-003",
+   "invoice_date": "2025-03-09",
+   "amount": 74689.93,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0110-004",
+   "invoice_date": "2025-09-06",
+   "amount": 51372.79,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0110-005",
+   "invoice_date": "2025-01-17",
+   "amount": 63480.25,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0110-006",
+   "invoice_date": "2025-06-23",
+   "amount": 102595.75,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0110-007",
+   "invoice_date": "2025-08-06",
+   "amount": 107566.55,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0110-008",
+   "invoice_date": "2025-05-30",
+   "amount": 64433.43,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0110-009",
+   "invoice_date": "2024-11-18",
+   "amount": 78810.0,
+   "currency": "GBP"
+  }
+ ],
+ "V0111": [
+  {
+   "invoice_number": "H0111-000",
+   "invoice_date": "2025-02-26",
+   "amount": 1863.55,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0111-001",
+   "invoice_date": "2025-09-07",
+   "amount": 1813.5,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0111-002",
+   "invoice_date": "2025-05-14",
+   "amount": 2006.65,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0111-003",
+   "invoice_date": "2025-02-11",
+   "amount": 2004.08,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0111-004",
+   "invoice_date": "2024-12-25",
+   "amount": 2144.5,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0111-005",
+   "invoice_date": "2025-02-17",
+   "amount": 3529.16,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0111-006",
+   "invoice_date": "2025-08-15",
+   "amount": 3262.09,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0111-007",
+   "invoice_date": "2024-11-15",
+   "amount": 2054.43,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0111-008",
+   "invoice_date": "2024-12-26",
+   "amount": 3459.15,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0111-009",
+   "invoice_date": "2024-10-18",
+   "amount": 3162.87,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0111-010",
+   "invoice_date": "2024-12-25",
+   "amount": 2368.5,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0111-011",
+   "invoice_date": "2025-02-06",
+   "amount": 3237.66,
+   "currency": "GBP"
+  }
+ ],
+ "V0112": [
+  {
+   "invoice_number": "H0112-000",
+   "invoice_date": "2025-04-15",
+   "amount": 25103.95,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0112-001",
+   "invoice_date": "2025-01-14",
+   "amount": 19770.81,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0112-002",
+   "invoice_date": "2025-01-31",
+   "amount": 24869.39,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0112-003",
+   "invoice_date": "2025-03-21",
+   "amount": 18719.23,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0112-004",
+   "invoice_date": "2024-09-21",
+   "amount": 10986.5,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0112-005",
+   "invoice_date": "2024-09-04",
+   "amount": 24076.86,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0112-006",
+   "invoice_date": "2025-04-26",
+   "amount": 20045.14,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0112-007",
+   "invoice_date": "2024-11-01",
+   "amount": 25075.09,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0112-008",
+   "invoice_date": "2025-02-27",
+   "amount": 22910.08,
+   "currency": "GBP"
+  },
+  {
+   "invoice_number": "H0112-009",
+   "invoice_date": "2025-06-21",
+   "amount": 15467.89,
+   "currency": "GBP"
+  }
+ ],
+ "V0113": [
+  {
+   "invoice_number": "H0113-000",
+   "invoice_date": "2024-06-01",
+   "amount": 36858.71,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0113-001",
+   "invoice_date": "2024-08-27",
+   "amount": 56688.52,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0113-002",
+   "invoice_date": "2024-02-24",
+   "amount": 30586.2,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0113-003",
+   "invoice_date": "2024-05-05",
+   "amount": 70262.69,
+   "currency": "ZMW"
+  }
+ ],
+ "V0114": [
+  {
+   "invoice_number": "H0114-000",
+   "invoice_date": "2025-09-28",
+   "amount": 11544.35,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0114-001",
+   "invoice_date": "2025-01-12",
+   "amount": 20726.82,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0114-002",
+   "invoice_date": "2025-12-13",
+   "amount": 14781.16,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0114-003",
+   "invoice_date": "2025-10-28",
+   "amount": 11059.99,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0114-004",
+   "invoice_date": "2025-11-08",
+   "amount": 14126.6,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0114-005",
+   "invoice_date": "2025-05-20",
+   "amount": 11120.77,
+   "currency": "ZMW"
+  }
+ ],
+ "V0115": [
+  {
+   "invoice_number": "H0115-000",
+   "invoice_date": "2024-07-21",
+   "amount": 20586.21,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0115-001",
+   "invoice_date": "2024-07-19",
+   "amount": 17716.43,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0115-002",
+   "invoice_date": "2025-02-15",
+   "amount": 15855.93,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0115-003",
+   "invoice_date": "2025-05-02",
+   "amount": 18437.49,
+   "currency": "ZMW"
+  },
+  {
+   "invoice_number": "H0115-004",
+   "invoice_date": "2024-07-17",
+   "amount": 24627.16,
+   "currency": "ZMW"
+  }
+ ]
+}

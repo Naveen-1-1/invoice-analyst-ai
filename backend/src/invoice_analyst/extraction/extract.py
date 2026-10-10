@@ -160,7 +160,8 @@ def _save_extraction(s: Session, doc: Document, route: str, model: str, params: 
         return
     for idx, (inv, r) in enumerate(zip(value.invoices, resolved, strict=True)):
         row = Invoice(workspace_id=doc.workspace_id, document_id=doc.id, extraction_id=ext.id, child_index=idx,
-                      doc_type=inv.document_type, currency=r["currency"], invoice_number=r["invoice_number"],
+                      doc_type=inv.document_type, vendor_name=r["vendor_name"], currency=r["currency"],
+                      invoice_number=r["invoice_number"],
                       invoice_number_norm=r["invoice_number_norm"],
                       invoice_date=dt.date.fromisoformat(r["invoice_date"]) if r["invoice_date"] else None,
                       due_date=dt.date.fromisoformat(r["due_date"]) if r["due_date"] else None,
@@ -187,14 +188,16 @@ def _save_extraction(s: Session, doc: Document, route: str, model: str, params: 
 
 async def extract_document(*, path: Path, workspace_id: int, run_id: int | None, settings: Settings,
                            sessions: sessionmaker[Session], llm: LlmClient, bench_doc_id: str | None = None,
-                           use_cache: bool = True, overrides: dict | None = None, ocr_hint: bool = False) -> Outcome:
+                           use_cache: bool = True, overrides: dict | None = None, ocr_hint: bool = False,
+                           feed_seq: int | None = None, received_at: dt.datetime | None = None) -> Outcome:
     started = time.monotonic()
     data = path.read_bytes()
     stored = files.store(data, settings.storage_dir)
     with sessions.begin() as s:
         doc = Document(workspace_id=workspace_id, run_id=run_id, sha256=stored.sha256, filename=path.name,
-                       mime=stored.mime, bytes=stored.bytes, bench_doc_id=bench_doc_id,
-                       received_at=dt.datetime.now(dt.timezone.utc), state="RECEIVED", storage_path=str(stored.path))
+                       mime=stored.mime, bytes=stored.bytes, bench_doc_id=bench_doc_id, feed_seq=feed_seq,
+                       received_at=received_at or dt.datetime.now(dt.timezone.utc), state="RECEIVED",
+                       storage_path=str(stored.path))
         s.add(doc)
         s.flush()
         chain.record(s, workspace_id, "system", "document.received", "document", doc.id,

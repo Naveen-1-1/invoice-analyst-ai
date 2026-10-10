@@ -33,5 +33,12 @@ generated with its generator.
   tier with the evidence behind it (hover a value to find it on the page)
 - `make gen-api` regenerates the frontend's typed client after an API change
 
+## AP checks (inbox mode)
+
+- `make companion`: generate the dev vendor list, POs, deliveries, vendor history, inbox stream and 24 planted
+  problems (the labels stay in `data/dev/labels/`, which only `bench/` reads)
+- `make inbox-dev`: read every arrival, run every check in arrival order, then score the checks against the labels
+- Each document's Checks tab in the app shows what was found and why
+
 The held-out set is generated once with `make heldout-generate` from a private `HELDOUT_SEED` in `.env`,
 and sealed in `data/heldout/LOCK.json`; `make heldout-verify` checks the seal.

@@ -64,15 +64,19 @@ def _git_sha() -> str:
     return out.stdout.strip() + ("-dirty" if dirty else "")
 
 
-async def _one(path: Path, *, ws_id: int, run_id: int, settings: Settings, llm: LlmClient, use_cache: bool,
-               overrides: dict | None, ocr_hint: bool, gate: asyncio.Semaphore) -> tuple[Path, Outcome]:
+async def extract_waiting(path: Path, *, ws_id: int, run_id: int, settings: Settings, llm: LlmClient,
+                          use_cache: bool, gate: asyncio.Semaphore, overrides: dict | None = None,
+                          ocr_hint: bool = False, ref: str | None = None, feed_seq: int | None = None,
+                          received_at: dt.datetime | None = None) -> tuple[Path, Outcome]:
+    """Extract one document, waiting out any rate-limit cooldown (a few times) instead of failing it."""
     async with gate:
         for _ in range(MAX_COOLDOWN_WAITS + 1):
             try:
                 return path, await extract_document(path=path, workspace_id=ws_id, run_id=run_id,
                                                     settings=settings, sessions=session_factory(), llm=llm,
-                                                    bench_doc_id=path.stem, use_cache=use_cache, overrides=overrides,
-                                                    ocr_hint=ocr_hint)
+                                                    bench_doc_id=ref or path.stem, use_cache=use_cache,
+                                                    overrides=overrides, ocr_hint=ocr_hint, feed_seq=feed_seq,
+                                                    received_at=received_at)
             except CooldownError as exc:
                 wait = max(1.0, (exc.until - dt.datetime.now(dt.timezone.utc)).total_seconds())
                 print(f"  {path.stem}: LLM paused until {exc.until:%H:%M:%S} UTC, waiting {wait:.0f}s", flush=True)
@@ -104,9 +108,9 @@ async def run(settings: Settings, dataset: str, docs: list[Path], *, use_cache: 
 
     llm = LlmClient(settings, sessions)
     gate = asyncio.Semaphore(DOC_CONCURRENCY)
-    tasks = [asyncio.create_task(_one(p, ws_id=ws_id, run_id=run_id, settings=settings, llm=llm,
-                                      use_cache=use_cache, overrides=overrides, ocr_hint=ocr_hint, gate=gate))
-             for p in docs]
+    tasks = [asyncio.create_task(extract_waiting(p, ws_id=ws_id, run_id=run_id, settings=settings, llm=llm,
+                                                 use_cache=use_cache, overrides=overrides, ocr_hint=ocr_hint,
+                                                 gate=gate)) for p in docs]
     outcomes: dict[str, Outcome] = {}
     done = 0
     try:

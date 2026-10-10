@@ -9,12 +9,13 @@ from pathlib import Path
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.routing import APIRoute
-from sqlalchemy import func, select
+from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session
 
 from ..config import settings
 from ..db.engine import session_factory
-from ..db.models import (AuditEvent, Document, FieldValue, Invoice, InvoiceLine, LlmCall, Page, Run, Workspace)
+from ..db.models import (AuditEvent, CheckResult, Document, FieldValue, Invoice, InvoiceLine, LlmCall, Page, Run,
+                         Workspace)
 from . import schemas as out
 
 
@@ -63,11 +64,9 @@ def list_run_documents(run_id: int, s: Session = Depends(db)) -> list[out.Docume
     rows = s.execute(select(Document, Invoice).outerjoin(
         Invoice, (Invoice.document_id == Document.id) & (Invoice.child_index == 0))
         .where(Document.run_id == run_id).order_by(Document.bench_doc_id, Document.id)).all()
-    vendors = dict(s.execute(select(FieldValue.invoice_id, FieldValue.value).where(
-        FieldValue.field == "vendor_name", FieldValue.invoice_id.in_([i.id for _, i in rows if i]))).all())
     return [out.DocumentRow(id=d.id, bench_doc_id=d.bench_doc_id, filename=d.filename, route=d.route, state=d.state,
                             page_count=d.page_count, tier=i.conf_tier if i else None,
-                            vendor=vendors.get(i.id) if i else None, invoice_number=i.invoice_number if i else None,
+                            vendor=i.vendor_name if i else None, invoice_number=i.invoice_number if i else None,
                             total=i.total if i else None, currency=i.currency if i else None)
             for d, i in rows]
 
@@ -85,7 +84,8 @@ def get_document(document_id: int, s: Session = Depends(db)) -> out.DocumentDeta
         line_no = {ln.id: ln.line_no for ln in lines}
         fvs = s.scalars(select(FieldValue).where(FieldValue.invoice_id == inv.id, FieldValue.is_current)
                         .order_by(FieldValue.id)).all()
-        vendor = next((f.value for f in fvs if f.field == "vendor_name"), None)
+        vendor = inv.vendor_name
+        checks = s.scalars(select(CheckResult).where(CheckResult.invoice_id == inv.id).order_by(CheckResult.id)).all()
         inv_out.append(out.InvoiceOut(
             id=inv.id, child_index=inv.child_index, doc_type=inv.doc_type, state=inv.state, conf_tier=inv.conf_tier,
             vendor_name=vendor, invoice_number=inv.invoice_number, invoice_date=inv.invoice_date,
@@ -95,10 +95,14 @@ def get_document(document_id: int, s: Session = Depends(db)) -> out.DocumentDeta
                                  grounding=f.grounding, source=f.source, tier=f.tier, confidence=f.confidence,
                                  reasons=f.reasons) for f in fvs],
             lines=[out.LineOut(id=ln.id, line_no=ln.line_no, kind=ln.kind, description=ln.description, qty=ln.qty,
-                               unit_price=ln.unit_price, amount=ln.amount) for ln in lines]))
-    events = s.scalars(select(AuditEvent).where(AuditEvent.workspace_id == doc.workspace_id,
-                                                AuditEvent.subject_type == "document",
-                                                AuditEvent.subject_id == doc.id).order_by(AuditEvent.seq)).all()
+                               unit_price=ln.unit_price, amount=ln.amount) for ln in lines],
+            checks=[out.CheckOut(id=c.id, code=c.code, category=c.category, outcome=c.outcome, severity=c.severity,
+                                 message=c.message, evidence=c.evidence, related_invoice_id=c.related_invoice_id)
+                    for c in checks]))
+    subjects = [("document", doc.id)] + [("invoice", i.id) for i in invoices]
+    events = s.scalars(select(AuditEvent).where(AuditEvent.workspace_id == doc.workspace_id).where(
+        or_(*[(AuditEvent.subject_type == t) & (AuditEvent.subject_id == i) for t, i in subjects]))
+        .order_by(AuditEvent.seq)).all()
     calls = s.scalar(select(func.count()).select_from(LlmCall).where(LlmCall.document_id == doc.id)) or 0
     return out.DocumentDetail(
         id=doc.id, bench_doc_id=doc.bench_doc_id, filename=doc.filename, mime=doc.mime, route=doc.route,

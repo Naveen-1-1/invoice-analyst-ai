@@ -20,6 +20,19 @@ import type {
 } from '@tanstack/react-query';
 
 import { customFetch } from './fetcher';
+export type CheckOutEvidence = { [key: string]: unknown };
+
+export interface CheckOut {
+  id: number;
+  code: string;
+  category: string;
+  outcome: string;
+  severity: string;
+  message: string;
+  evidence: CheckOutEvidence;
+  related_invoice_id: number | null;
+}
+
 export type PageOutQuality = { [key: string]: unknown };
 
 export interface PageOut {
@@ -80,6 +93,7 @@ export interface InvoiceOut {
   total: string | null;
   fields: FieldOut[];
   lines: LineOut[];
+  checks: CheckOut[];
 }
 
 export type EventOutData = { [key: string]: unknown };

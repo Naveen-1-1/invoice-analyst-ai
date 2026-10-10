@@ -13,6 +13,9 @@ app = typer.Typer(add_completion=False, no_args_is_help=True)
 bench_app = typer.Typer(add_completion=False, no_args_is_help=True,
                         help="Benchmark mode: each document on its own, scored by the official scorer.")
 app.add_typer(bench_app, name="bench")
+inbox_app = typer.Typer(add_completion=False, no_args_is_help=True,
+                        help="Inbox mode: documents arrive in order into one workspace with its vendors and POs.")
+app.add_typer(inbox_app, name="inbox")
 
 
 def _ids(only: str | None) -> set[str] | None:
@@ -47,6 +50,23 @@ def bench_run(
     if summary.failed:
         typer.echo("Failed: " + ", ".join(summary.failed))
     typer.echo(f"Predictions: {summary.out_dir / 'predictions.json'} (sha256 {summary.predictions_sha256[:12]})")
+
+
+@inbox_app.command("run")
+def inbox_run(
+    set_name: str = typer.Option("dev", "--set", help="Which companion set (vendors, POs, inbox stream)"),
+    label: str | None = typer.Option(None, help="Short name for this run"),
+    limit: int | None = typer.Option(None, help="Only the first N arrivals"),
+    no_cache: bool = typer.Option(False, "--no-cache", help="Call the models even if an answer is cached"),
+) -> None:
+    """Read every arrival, then run all checks in arrival order; writes data/runs/<run>/ap_results.json."""
+    from .inbox.runner import run as run_inbox
+
+    summary = asyncio.run(run_inbox(settings(), set_name, label=label, use_cache=not no_cache, limit=limit))
+    typer.echo(f"\nInbox run {summary.run_id}: {summary.documents} documents, {summary.new_calls} new model calls, "
+               f"{len(summary.failed)} failed extractions")
+    typer.echo("Raised: " + ", ".join(f"{k} {v}" for k, v in summary.raised.items()))
+    typer.echo(f"Results: {summary.out_dir / 'ap_results.json'}")
 
 
 if __name__ == "__main__":

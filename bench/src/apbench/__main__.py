@@ -7,7 +7,7 @@ from pathlib import Path
 
 import typer
 
-from . import calibrate, compare, heldout, score, specs
+from . import ap_eval, calibrate, companion, compare, heldout, score, specs
 
 app = typer.Typer(add_completion=False, no_args_is_help=True)
 heldout_app = typer.Typer(add_completion=False, no_args_is_help=True,
@@ -68,6 +68,20 @@ def calibrate_run(run: str = typer.Argument(..., help="A scored dev run (number 
                   use_defaults: bool = typer.Option(False, help="Keep the default knobs; only measure accuracy")) -> None:
     """Tune the confidence knobs on a scored dev run and report how often each tier is right."""
     typer.echo(calibrate.calibrate(run, write, use_defaults))
+
+
+@app.command("companion")
+def companion_data(set_name: str = typer.Option("dev", "--set", help="Which corpus")) -> None:
+    """Generate the vendor list, POs, deliveries, vendor history, inbox stream and planted problems (with labels)."""
+    summary = companion.build(set_name)
+    typer.echo(json.dumps(summary, indent=1))
+
+
+@app.command("ap-eval")
+def ap_evaluate(run: str = typer.Argument(..., help="An inbox run (number or directory)"),
+                set_name: str = typer.Option("dev", "--set", help="Which labels")) -> None:
+    """Score an inbox run's checks against the planted and natural problems in the labels."""
+    typer.echo(ap_eval.evaluate(run, set_name)[0])
 
 
 @app.command("hardest")

@@ -78,6 +78,17 @@ class LineOut(BaseModel):
     amount: Decimal | None
 
 
+class CheckOut(BaseModel):
+    id: int
+    code: str
+    category: str
+    outcome: str
+    severity: str
+    message: str
+    evidence: dict[str, Any]
+    related_invoice_id: int | None
+
+
 class InvoiceOut(BaseModel):
     id: int
     child_index: int
@@ -94,6 +105,7 @@ class InvoiceOut(BaseModel):
     total: Decimal | None
     fields: list[FieldOut]
     lines: list[LineOut]
+    checks: list[CheckOut]
 
 
 class EventOut(BaseModel):

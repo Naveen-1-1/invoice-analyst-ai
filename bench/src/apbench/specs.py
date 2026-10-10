@@ -40,6 +40,14 @@ def generator_module():
     return _import_generator()[1]
 
 
+def generator_modules():
+    """(corpus_v1, generate, layout): spec builders, rendering, and page layout."""
+    corpus_v1, generate = _import_generator()
+    import generator.layout as layout  # noqa: PLC0415 — needs the sys.path entry set up above
+
+    return corpus_v1, generate, layout
+
+
 def _plain(obj: Any) -> Any:
     """Normalise tuples to lists etc. the way the manifest's JSON round-trip does."""
     return json.loads(json.dumps(obj))

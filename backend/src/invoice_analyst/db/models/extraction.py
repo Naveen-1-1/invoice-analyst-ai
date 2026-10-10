@@ -57,6 +57,7 @@ class Invoice(Base):
     vendor_id: Mapped[int | None] = mapped_column(BigInteger, ForeignKey("vendors.id", ondelete="SET NULL"), index=True)
     entity_id: Mapped[int | None] = mapped_column(BigInteger, ForeignKey("entities.id", ondelete="SET NULL"))
     po_id: Mapped[int | None] = mapped_column(BigInteger, ForeignKey("purchase_orders.id", ondelete="SET NULL"))
+    vendor_name: Mapped[str | None] = mapped_column(Text)  # as printed (matched to the vendor list as vendor_id)
     currency: Mapped[Ccy | None]
     invoice_number: Mapped[str | None] = mapped_column(Text)
     invoice_number_norm: Mapped[str | None] = mapped_column(Text, index=True)

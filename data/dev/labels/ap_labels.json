@@ -1,0 +1,4584 @@
+{
+ "set": "dev",
+ "companion_seed": 4201,
+ "planted": {
+  "clean-de-grid-eu-decimals": "tax_id_mismatch",
+  "clean-fr-right-header": "wrong_addressee",
+  "clean-nl-two-column": "unknown_vendor",
+  "clean-us-many-line-items": "short_delivery",
+  "clean-us-tax-only": "duplicate_resubmission",
+  "clean-za-code-zebra": "unknown_vendor",
+  "currency-dual-usd-zar-3": "wrong_addressee",
+  "currency-nad-bare-dollar": "amount_above_history",
+  "currency-zar-2": "amount_above_history",
+  "freight-carrier-na-5": "price_over_po",
+  "freight-carrier-za-4": "changed_bank",
+  "freight-clearing-za-5": "wrong_addressee",
+  "freight-clearing-za-6": "duplicate_resubmission",
+  "freight-trip-reference-4": "short_delivery",
+  "hard-missing-invoice-number-2": "short_delivery",
+  "hard-po-beside-invoice-number-3": "duplicate_resubmission",
+  "multipage-3p-na-3": "price_over_po",
+  "multipage-4p-za-5": "changed_bank",
+  "multipage-5p-de-6": "tax_id_mismatch",
+  "multipage-8p-us-9": "tax_id_mismatch",
+  "tax-exclusive-vat-column-za": "price_over_po",
+  "tax-percentage-line-2": "amount_above_history",
+  "tax-withholding-na": "changed_bank",
+  "tax-zero-rated-na": "unknown_vendor"
+ },
+ "resubmissions": {
+  "resubmit-clean-us-tax-only": "clean-us-tax-only",
+  "resubmit-freight-clearing-za-6": "freight-clearing-za-6",
+  "resubmit-hard-po-beside-invoice-number-3": "hard-po-beside-invoice-number-3"
+ },
+ "items": [
+  {
+   "seq": 1,
+   "ref": "clean-us-with-discount",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "GLO-8842",
+     "vendor_code": "V0034",
+     "entity_code": "E0087",
+     "po_number": null,
+     "total": 5050.08,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 2,
+   "ref": "clean-us-shipping-and-discount",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "FND-2024-03-0091",
+     "vendor_code": "V0032",
+     "entity_code": "E0095",
+     "po_number": "PO-RB-00392",
+     "total": 3492.5,
+     "currency": "USD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 3,
+   "ref": "clean-us-clean-simple",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "ACM-100145",
+     "vendor_code": "V0001",
+     "entity_code": "E0037",
+     "po_number": "PO-55210",
+     "total": 372.49,
+     "currency": "USD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 4,
+   "ref": "clean-us-delivery-alias",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "GLO-9015",
+     "vendor_code": "V0034",
+     "entity_code": "E0087",
+     "po_number": null,
+     "total": 841.76,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 5,
+   "ref": "clean-us-with-shipping",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "NWL-20240318-002",
+     "vendor_code": "V0077",
+     "entity_code": "E0095",
+     "po_number": "PO-RB-00441",
+     "total": 1599.43,
+     "currency": "USD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 6,
+   "ref": "clean-us-freight-alias",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "NWL-20240322-008",
+     "vendor_code": "V0077",
+     "entity_code": "E0095",
+     "po_number": null,
+     "total": 945.05,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 7,
+   "ref": "clean-us-handling-alias",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "FND-2024-03-0134",
+     "vendor_code": "V0032",
+     "entity_code": "E0011",
+     "po_number": null,
+     "total": 1398.8,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 8,
+   "ref": "clean-us-tax-only",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "BW-2024-1142",
+     "vendor_code": "V0009",
+     "entity_code": "E0037",
+     "po_number": null,
+     "total": 13035.0,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 9,
+   "ref": "clean-us-sh-abbrev",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "ACM-100312",
+     "vendor_code": "V0001",
+     "entity_code": "E0037",
+     "po_number": null,
+     "total": 438.83,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 10,
+   "ref": "clean-us-net30-terms",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "ACM-100401",
+     "vendor_code": "V0001",
+     "entity_code": "E0095",
+     "po_number": "PO-RB-00515",
+     "total": 1629.7,
+     "currency": "USD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 11,
+   "ref": "clean-us-trade-discount",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "ACM-100355",
+     "vendor_code": "V0001",
+     "entity_code": "E0095",
+     "po_number": null,
+     "total": 1294.95,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 12,
+   "ref": "clean-us-fuel-surcharge",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "NWL-20240410-012",
+     "vendor_code": "V0077",
+     "entity_code": "E0095",
+     "po_number": null,
+     "total": 3552.25,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 13,
+   "ref": "clean-us-promo-code",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "GLO-9178",
+     "vendor_code": "V0034",
+     "entity_code": "E0011",
+     "po_number": null,
+     "total": 554.04,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 14,
+   "ref": "clean-us-credit-applied",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "FND-2024-04-0088",
+     "vendor_code": "V0032",
+     "entity_code": "E0095",
+     "po_number": null,
+     "total": 2594.88,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 15,
+   "ref": "clean-us-many-line-items",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "GLO-9301",
+     "vendor_code": "V0034",
+     "entity_code": "E0037",
+     "po_number": "PO-HM-8824",
+     "total": 1759.59,
+     "currency": "USD",
+     "planted": "short_delivery",
+     "natural": [],
+     "expect": [
+      "match.qty_over_received"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 16,
+   "ref": "clean-us-service-fee",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "BW-2024-1205",
+     "vendor_code": "V0009",
+     "entity_code": "E0037",
+     "po_number": null,
+     "total": 9249.5,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 17,
+   "ref": "clean-us-single-service",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "BW-2024-1287",
+     "vendor_code": "V0009",
+     "entity_code": "E0087",
+     "po_number": null,
+     "total": 4888.13,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 18,
+   "ref": "clean-us-zero-shipping-explicit",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "GLO-9412",
+     "vendor_code": "V0034",
+     "entity_code": "E0011",
+     "po_number": null,
+     "total": 2403.0,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 19,
+   "ref": "clean-us-two-tax-lines",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "ACM-100458",
+     "vendor_code": "V0001",
+     "entity_code": "E0037",
+     "po_number": null,
+     "total": 1191.1,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 20,
+   "ref": "clean-us-overpaid-invoice",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "FND-2024-05-0044",
+     "vendor_code": "V0032",
+     "entity_code": "E0011",
+     "po_number": null,
+     "total": 3100.0,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "arith",
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 21,
+   "ref": "tax-inclusive-subtotal-na",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0044014",
+     "vendor_code": "V0031",
+     "entity_code": "E0045",
+     "po_number": null,
+     "total": 26755.13,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 22,
+   "ref": "hard-total-inflated",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "RA-81392",
+     "vendor_code": "V0003",
+     "entity_code": "E0068",
+     "po_number": null,
+     "total": 21430.46,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "arith",
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 23,
+   "ref": "currency-zmw-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/5565",
+     "vendor_code": "V0113",
+     "entity_code": "E0012",
+     "po_number": null,
+     "total": 50619.94,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 24,
+   "ref": "freight-clearing-za-4",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-86335",
+     "vendor_code": "V0098",
+     "entity_code": "E0064",
+     "po_number": null,
+     "total": 45620.96,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 25,
+   "ref": "currency-gbp-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "TI055128",
+     "vendor_code": "V0083",
+     "entity_code": "E0097",
+     "po_number": null,
+     "total": 21460.85,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 26,
+   "ref": "tax-percentage-line-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0035632",
+     "vendor_code": "V0095",
+     "entity_code": "E0018",
+     "po_number": null,
+     "total": 4119.6,
+     "currency": "ZAR",
+     "planted": "amount_above_history",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po",
+      "pattern.above_history"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 27,
+   "ref": "handwritten-invoice-book-poor-7",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "6755",
+     "vendor_code": "V0068",
+     "entity_code": "E0114",
+     "po_number": null,
+     "total": 6259.51,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 28,
+   "ref": "multipage-8p-na-10",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/9667",
+     "vendor_code": "V0023",
+     "entity_code": "E0100",
+     "po_number": "P646012",
+     "total": 216968.11,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 29,
+   "ref": "clean-zm-banner",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "KN-94439",
+     "vendor_code": "V0065",
+     "entity_code": "E0013",
+     "po_number": "P831076",
+     "total": 45915.58,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 30,
+   "ref": "credit-brackets-us",
+   "kind": "credit_note",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "CN-2026-0263",
+     "vendor_code": "V0033",
+     "entity_code": "E0091",
+     "po_number": null,
+     "total": 2048.05,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "doctype.credit_note"
+     ],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 31,
+   "ref": "freight-carrier-na-5",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "AS-903",
+     "vendor_code": "V0072",
+     "entity_code": "E0098",
+     "po_number": "P745915",
+     "total": 33284.78,
+     "currency": "NAD",
+     "planted": "price_over_po",
+     "natural": [],
+     "expect": [
+      "match.price_over_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 32,
+   "ref": "resubmit-clean-us-tax-only",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "BW-2024-1142",
+     "vendor_code": "V0009",
+     "entity_code": "E0037",
+     "po_number": null,
+     "total": 13035.0,
+     "currency": "USD",
+     "planted": "duplicate_resubmission",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "clean-us-tax-only"
+    }
+   ]
+  },
+  {
+   "seq": 33,
+   "ref": "tax-zero-rated-na",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0006855",
+     "vendor_code": null,
+     "entity_code": "E0050",
+     "po_number": null,
+     "total": 25649.63,
+     "currency": "NAD",
+     "planted": "unknown_vendor",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po",
+      "vendor.unknown"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 34,
+   "ref": "credit-r-minus-1",
+   "kind": "credit_note",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "CRN-42418",
+     "vendor_code": "V0015",
+     "entity_code": "E0021",
+     "po_number": null,
+     "total": 17511.94,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "doctype.credit_note"
+     ],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 35,
+   "ref": "currency-nad-bare-dollar",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "016850",
+     "vendor_code": "V0091",
+     "entity_code": "E0072",
+     "po_number": null,
+     "total": 12731.44,
+     "currency": "NAD",
+     "planted": "amount_above_history",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po",
+      "pattern.above_history"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 36,
+   "ref": "multipage-8p-us-9",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "TN-12080",
+     "vendor_code": "V0087",
+     "entity_code": "E0090",
+     "po_number": "PO-56598",
+     "total": 224191.38,
+     "currency": "USD",
+     "planted": "tax_id_mismatch",
+     "natural": [],
+     "expect": [
+      "vendor.tax_id_mismatch"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 37,
+   "ref": "photo-annotations-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-8395",
+     "vendor_code": "V0012",
+     "entity_code": "E0112",
+     "po_number": null,
+     "total": 55705.08,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 38,
+   "ref": "photo-low-light-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-8395",
+     "vendor_code": "V0012",
+     "entity_code": "E0112",
+     "po_number": null,
+     "total": 55705.08,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-annotations-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 39,
+   "ref": "scan-fax-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-8395",
+     "vendor_code": "V0012",
+     "entity_code": "E0112",
+     "po_number": null,
+     "total": 55705.08,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-annotations-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 40,
+   "ref": "photo-annotations-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-8395",
+     "vendor_code": "V0012",
+     "entity_code": "E0112",
+     "po_number": null,
+     "total": 55705.08,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-annotations-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 41,
+   "ref": "photo-low-light-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-8395",
+     "vendor_code": "V0012",
+     "entity_code": "E0112",
+     "po_number": null,
+     "total": 55705.08,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-annotations-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 42,
+   "ref": "scan-fax-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-8395",
+     "vendor_code": "V0012",
+     "entity_code": "E0112",
+     "po_number": null,
+     "total": 55705.08,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-annotations-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 43,
+   "ref": "photo-annotations-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-8395",
+     "vendor_code": "V0012",
+     "entity_code": "E0112",
+     "po_number": null,
+     "total": 55705.08,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-annotations-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 44,
+   "ref": "photo-low-light-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-8395",
+     "vendor_code": "V0012",
+     "entity_code": "E0112",
+     "po_number": null,
+     "total": 55705.08,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-annotations-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 45,
+   "ref": "scan-fax-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-8395",
+     "vendor_code": "V0012",
+     "entity_code": "E0112",
+     "po_number": null,
+     "total": 55705.08,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-annotations-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 46,
+   "ref": "handwritten-invoice-book-poor-6",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "9518",
+     "vendor_code": "V0025",
+     "entity_code": "E0084",
+     "po_number": null,
+     "total": 7227.3,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 47,
+   "ref": "currency-zar-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0091021",
+     "vendor_code": "V0050",
+     "entity_code": "E0067",
+     "po_number": null,
+     "total": 26407.31,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 48,
+   "ref": "hard-statement-za",
+   "kind": "statement",
+   "expect": [
+    "doctype.not_invoice"
+   ],
+   "invoices": []
+  },
+  {
+   "seq": 49,
+   "ref": "credit-cr-suffix-za",
+   "kind": "credit_note",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "CN-2026-0974",
+     "vendor_code": "V0038",
+     "entity_code": "E0060",
+     "po_number": null,
+     "total": 5843.5,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "doctype.credit_note"
+     ],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 50,
+   "ref": "freight-trip-reference-4",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/6798",
+     "vendor_code": "V0027",
+     "entity_code": "E0027",
+     "po_number": "P607938",
+     "total": 25762.38,
+     "currency": "NAD",
+     "planted": "short_delivery",
+     "natural": [],
+     "expect": [
+      "match.qty_over_received"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 51,
+   "ref": "freight-trip-reference-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-96480",
+     "vendor_code": "V0092",
+     "entity_code": "E0082",
+     "po_number": "PO-87718",
+     "total": 60665.18,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 52,
+   "ref": "tax-inclusive-total-na",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "051812",
+     "vendor_code": "V0005",
+     "entity_code": "E0083",
+     "po_number": "4500463188",
+     "total": 7319.67,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 53,
+   "ref": "freight-carrier-us-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-11954",
+     "vendor_code": "V0102",
+     "entity_code": "E0042",
+     "po_number": null,
+     "total": 3463.98,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 54,
+   "ref": "currency-eur-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "BN-19064",
+     "vendor_code": "V0108",
+     "entity_code": "E0093",
+     "po_number": "P238205",
+     "total": 10124.25,
+     "currency": "EUR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 55,
+   "ref": "hard-multiple-invoices-2",
+   "kind": "multi_invoice",
+   "expect": [
+    "doctype.multiple_invoices"
+   ],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0096554",
+     "vendor_code": "V0056",
+     "entity_code": "E0103",
+     "po_number": "P972470",
+     "total": 31798.39,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    },
+    {
+     "index": 1,
+     "invoice_number": "023634",
+     "vendor_code": "V0057",
+     "entity_code": "E0058",
+     "po_number": "4500894143",
+     "total": 16004.78,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 56,
+   "ref": "clean-nl-two-column",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "BS-3348",
+     "vendor_code": null,
+     "entity_code": "E0094",
+     "po_number": null,
+     "total": 49632.26,
+     "currency": "EUR",
+     "planted": "unknown_vendor",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po",
+      "vendor.unknown"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 57,
+   "ref": "handwritten-invoice-book-neat-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "4678",
+     "vendor_code": "V0101",
+     "entity_code": "E0061",
+     "po_number": null,
+     "total": 7230.74,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 58,
+   "ref": "multipage-5p-na-7",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0070697",
+     "vendor_code": "V0064",
+     "entity_code": "E0007",
+     "po_number": "PO-19882",
+     "total": 121157.85,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 59,
+   "ref": "freight-trip-reference-3",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-94104",
+     "vendor_code": "V0115",
+     "entity_code": "E0044",
+     "po_number": null,
+     "total": 18292.27,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 60,
+   "ref": "handwritten-invoice-book-neat-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2431",
+     "vendor_code": "V0029",
+     "entity_code": "E0025",
+     "po_number": null,
+     "total": 28147.49,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 61,
+   "ref": "clean-za-code-zebra",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "013456",
+     "vendor_code": null,
+     "entity_code": "E0105",
+     "po_number": null,
+     "total": 11739.28,
+     "currency": "ZAR",
+     "planted": "unknown_vendor",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po",
+      "vendor.unknown"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 62,
+   "ref": "photo-shadow-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0084778",
+     "vendor_code": "V0100",
+     "entity_code": "E0019",
+     "po_number": "PO-41258",
+     "total": 13032.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 63,
+   "ref": "photo-perspective-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0084778",
+     "vendor_code": "V0100",
+     "entity_code": "E0019",
+     "po_number": "PO-41258",
+     "total": 13032.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*"
+     ],
+     "duplicate_of": "photo-shadow-mild"
+    }
+   ]
+  },
+  {
+   "seq": 64,
+   "ref": "photo-motion-blur-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "050179",
+     "vendor_code": "V0112",
+     "entity_code": "E0035",
+     "po_number": null,
+     "total": 17943.95,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 65,
+   "ref": "photo-crumple-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "050179",
+     "vendor_code": "V0112",
+     "entity_code": "E0035",
+     "po_number": null,
+     "total": 17943.95,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-motion-blur-severe"
+    }
+   ]
+  },
+  {
+   "seq": 66,
+   "ref": "photo-shadow-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0084778",
+     "vendor_code": "V0100",
+     "entity_code": "E0019",
+     "po_number": "PO-41258",
+     "total": 13032.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*"
+     ],
+     "duplicate_of": "photo-shadow-mild"
+    }
+   ]
+  },
+  {
+   "seq": 67,
+   "ref": "scan-punch-holes-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0084778",
+     "vendor_code": "V0100",
+     "entity_code": "E0019",
+     "po_number": "PO-41258",
+     "total": 13032.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*"
+     ],
+     "duplicate_of": "photo-shadow-mild"
+    }
+   ]
+  },
+  {
+   "seq": 68,
+   "ref": "photo-perspective-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0084778",
+     "vendor_code": "V0100",
+     "entity_code": "E0019",
+     "po_number": "PO-41258",
+     "total": 13032.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*"
+     ],
+     "duplicate_of": "photo-shadow-mild"
+    }
+   ]
+  },
+  {
+   "seq": 69,
+   "ref": "photo-crop-edges-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0084778",
+     "vendor_code": "V0100",
+     "entity_code": "E0019",
+     "po_number": "PO-41258",
+     "total": 13032.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*"
+     ],
+     "duplicate_of": "photo-shadow-mild"
+    }
+   ]
+  },
+  {
+   "seq": 70,
+   "ref": "photo-shadow-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0084778",
+     "vendor_code": "V0100",
+     "entity_code": "E0019",
+     "po_number": "PO-41258",
+     "total": 13032.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*"
+     ],
+     "duplicate_of": "photo-shadow-mild"
+    }
+   ]
+  },
+  {
+   "seq": 71,
+   "ref": "photo-motion-blur-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "050179",
+     "vendor_code": "V0112",
+     "entity_code": "E0035",
+     "po_number": null,
+     "total": 17943.95,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-motion-blur-severe"
+    }
+   ]
+  },
+  {
+   "seq": 72,
+   "ref": "scan-grayscale-scan-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "050179",
+     "vendor_code": "V0112",
+     "entity_code": "E0035",
+     "po_number": null,
+     "total": 17943.95,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-motion-blur-severe"
+    }
+   ]
+  },
+  {
+   "seq": 73,
+   "ref": "photo-crop-edges-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0084778",
+     "vendor_code": "V0100",
+     "entity_code": "E0019",
+     "po_number": "PO-41258",
+     "total": 13032.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*"
+     ],
+     "duplicate_of": "photo-shadow-mild"
+    }
+   ]
+  },
+  {
+   "seq": 74,
+   "ref": "photo-crumple-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "050179",
+     "vendor_code": "V0112",
+     "entity_code": "E0035",
+     "po_number": null,
+     "total": 17943.95,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-motion-blur-severe"
+    }
+   ]
+  },
+  {
+   "seq": 75,
+   "ref": "scan-punch-holes-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0084778",
+     "vendor_code": "V0100",
+     "entity_code": "E0019",
+     "po_number": "PO-41258",
+     "total": 13032.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*"
+     ],
+     "duplicate_of": "photo-shadow-mild"
+    }
+   ]
+  },
+  {
+   "seq": 76,
+   "ref": "scan-punch-holes-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0084778",
+     "vendor_code": "V0100",
+     "entity_code": "E0019",
+     "po_number": "PO-41258",
+     "total": 13032.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*"
+     ],
+     "duplicate_of": "photo-shadow-mild"
+    }
+   ]
+  },
+  {
+   "seq": 77,
+   "ref": "scan-grayscale-scan-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "050179",
+     "vendor_code": "V0112",
+     "entity_code": "E0035",
+     "po_number": null,
+     "total": 17943.95,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-motion-blur-severe"
+    }
+   ]
+  },
+  {
+   "seq": 78,
+   "ref": "scan-grayscale-scan-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "050179",
+     "vendor_code": "V0112",
+     "entity_code": "E0035",
+     "po_number": null,
+     "total": 17943.95,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-motion-blur-severe"
+    }
+   ]
+  },
+  {
+   "seq": 79,
+   "ref": "photo-crop-edges-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0084778",
+     "vendor_code": "V0100",
+     "entity_code": "E0019",
+     "po_number": "PO-41258",
+     "total": 13032.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*"
+     ],
+     "duplicate_of": "photo-shadow-mild"
+    }
+   ]
+  },
+  {
+   "seq": 80,
+   "ref": "photo-motion-blur-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "050179",
+     "vendor_code": "V0112",
+     "entity_code": "E0035",
+     "po_number": null,
+     "total": 17943.95,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-motion-blur-severe"
+    }
+   ]
+  },
+  {
+   "seq": 81,
+   "ref": "photo-crumple-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "050179",
+     "vendor_code": "V0112",
+     "entity_code": "E0035",
+     "po_number": null,
+     "total": 17943.95,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-motion-blur-severe"
+    }
+   ]
+  },
+  {
+   "seq": 82,
+   "ref": "photo-perspective-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0084778",
+     "vendor_code": "V0100",
+     "entity_code": "E0019",
+     "po_number": "PO-41258",
+     "total": 13032.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*"
+     ],
+     "duplicate_of": "photo-shadow-mild"
+    }
+   ]
+  },
+  {
+   "seq": 83,
+   "ref": "clean-gb-mono-plain",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0003904",
+     "vendor_code": "V0067",
+     "entity_code": "E0036",
+     "po_number": null,
+     "total": 14990.34,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 84,
+   "ref": "freight-trip-reference-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "TL-96821",
+     "vendor_code": "V0016",
+     "entity_code": "E0040",
+     "po_number": null,
+     "total": 56558.79,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 85,
+   "ref": "multipage-5p-de-6",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0038658",
+     "vendor_code": "V0081",
+     "entity_code": "E0109",
+     "po_number": "4500225151",
+     "total": 171602.27,
+     "currency": "EUR",
+     "planted": "tax_id_mismatch",
+     "natural": [],
+     "expect": [
+      "vendor.tax_id_mismatch"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 86,
+   "ref": "handwritten-invoice-book-average-5",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2347",
+     "vendor_code": "V0104",
+     "entity_code": "E0016",
+     "po_number": null,
+     "total": 7697.57,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 87,
+   "ref": "currency-gbp-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-52362",
+     "vendor_code": "V0066",
+     "entity_code": "E0031",
+     "po_number": "4500260053",
+     "total": 24319.5,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 88,
+   "ref": "clean-gb-serif",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0049923",
+     "vendor_code": "V0082",
+     "entity_code": "E0110",
+     "po_number": "PO-56566",
+     "total": 21613.9,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 89,
+   "ref": "tax-exclusive-vat-column-gb",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-6724",
+     "vendor_code": "V0089",
+     "entity_code": "E0034",
+     "po_number": null,
+     "total": 20017.57,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 90,
+   "ref": "freight-clearing-za-6",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-5037",
+     "vendor_code": "V0013",
+     "entity_code": "E0057",
+     "po_number": null,
+     "total": 12303.86,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 91,
+   "ref": "hard-total-small-residual",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/9165",
+     "vendor_code": "V0020",
+     "entity_code": "E0024",
+     "po_number": "4500300992",
+     "total": 10443.82,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "arith"
+     ],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 92,
+   "ref": "scan-stamp-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-70022",
+     "vendor_code": "V0079",
+     "entity_code": "E0010",
+     "po_number": null,
+     "total": 44500.53,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 93,
+   "ref": "scan-stamp-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-70022",
+     "vendor_code": "V0079",
+     "entity_code": "E0010",
+     "po_number": null,
+     "total": 44500.53,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "scan-stamp-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 94,
+   "ref": "scan-stamp-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-70022",
+     "vendor_code": "V0079",
+     "entity_code": "E0010",
+     "po_number": null,
+     "total": 44500.53,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "scan-stamp-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 95,
+   "ref": "photo-screen-photo-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-70022",
+     "vendor_code": "V0079",
+     "entity_code": "E0010",
+     "po_number": null,
+     "total": 44500.53,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "scan-stamp-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 96,
+   "ref": "photo-rotate-small-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-70022",
+     "vendor_code": "V0079",
+     "entity_code": "E0010",
+     "po_number": null,
+     "total": 44500.53,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "scan-stamp-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 97,
+   "ref": "photo-rotate-small-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-70022",
+     "vendor_code": "V0079",
+     "entity_code": "E0010",
+     "po_number": null,
+     "total": 44500.53,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "scan-stamp-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 98,
+   "ref": "photo-rotate-small-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-70022",
+     "vendor_code": "V0079",
+     "entity_code": "E0010",
+     "po_number": null,
+     "total": 44500.53,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "scan-stamp-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 99,
+   "ref": "photo-jpeg-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-70022",
+     "vendor_code": "V0079",
+     "entity_code": "E0010",
+     "po_number": null,
+     "total": 44500.53,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "scan-stamp-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 100,
+   "ref": "photo-jpeg-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-70022",
+     "vendor_code": "V0079",
+     "entity_code": "E0010",
+     "po_number": null,
+     "total": 44500.53,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "scan-stamp-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 101,
+   "ref": "photo-screen-photo-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-70022",
+     "vendor_code": "V0079",
+     "entity_code": "E0010",
+     "po_number": null,
+     "total": 44500.53,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "scan-stamp-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 102,
+   "ref": "photo-screen-photo-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-70022",
+     "vendor_code": "V0079",
+     "entity_code": "E0010",
+     "po_number": null,
+     "total": 44500.53,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "scan-stamp-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 103,
+   "ref": "photo-jpeg-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-70022",
+     "vendor_code": "V0079",
+     "entity_code": "E0010",
+     "po_number": null,
+     "total": 44500.53,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "scan-stamp-moderate"
+    }
+   ]
+  },
+  {
+   "seq": 104,
+   "ref": "resubmit-freight-clearing-za-6",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-5037",
+     "vendor_code": "V0013",
+     "entity_code": "E0057",
+     "po_number": null,
+     "total": 12303.86,
+     "currency": "ZAR",
+     "planted": "duplicate_resubmission",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "freight-clearing-za-6"
+    }
+   ]
+  },
+  {
+   "seq": 105,
+   "ref": "photo-coffee-stain-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-44556",
+     "vendor_code": "V0094",
+     "entity_code": "E0046",
+     "po_number": null,
+     "total": 38322.78,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 106,
+   "ref": "photo-defocus-blur-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-44556",
+     "vendor_code": "V0094",
+     "entity_code": "E0046",
+     "po_number": null,
+     "total": 38322.78,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-coffee-stain-mild"
+    }
+   ]
+  },
+  {
+   "seq": 107,
+   "ref": "hard-po-beside-invoice-number-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "TWSINV439966",
+     "vendor_code": "V0106",
+     "entity_code": "E0038",
+     "po_number": "TWSSO370463",
+     "total": 13405.4,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 108,
+   "ref": "credit-brackets-gb",
+   "kind": "credit_note",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "CN082351",
+     "vendor_code": "V0111",
+     "entity_code": "E0111",
+     "po_number": null,
+     "total": 2718.54,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "doctype.credit_note"
+     ],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 109,
+   "ref": "photo-defocus-blur-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-44556",
+     "vendor_code": "V0094",
+     "entity_code": "E0046",
+     "po_number": null,
+     "total": 38322.78,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-coffee-stain-mild"
+    }
+   ]
+  },
+  {
+   "seq": 110,
+   "ref": "scan-noise-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-44556",
+     "vendor_code": "V0094",
+     "entity_code": "E0046",
+     "po_number": null,
+     "total": 38322.78,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-coffee-stain-mild"
+    }
+   ]
+  },
+  {
+   "seq": 111,
+   "ref": "photo-coffee-stain-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-44556",
+     "vendor_code": "V0094",
+     "entity_code": "E0046",
+     "po_number": null,
+     "total": 38322.78,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-coffee-stain-mild"
+    }
+   ]
+  },
+  {
+   "seq": 112,
+   "ref": "photo-defocus-blur-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-44556",
+     "vendor_code": "V0094",
+     "entity_code": "E0046",
+     "po_number": null,
+     "total": 38322.78,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-coffee-stain-mild"
+    }
+   ]
+  },
+  {
+   "seq": 113,
+   "ref": "photo-coffee-stain-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-44556",
+     "vendor_code": "V0094",
+     "entity_code": "E0046",
+     "po_number": null,
+     "total": 38322.78,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-coffee-stain-mild"
+    }
+   ]
+  },
+  {
+   "seq": 114,
+   "ref": "scan-noise-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-44556",
+     "vendor_code": "V0094",
+     "entity_code": "E0046",
+     "po_number": null,
+     "total": 38322.78,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-coffee-stain-mild"
+    }
+   ]
+  },
+  {
+   "seq": 115,
+   "ref": "scan-noise-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-44556",
+     "vendor_code": "V0094",
+     "entity_code": "E0046",
+     "po_number": null,
+     "total": 38322.78,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-coffee-stain-mild"
+    }
+   ]
+  },
+  {
+   "seq": 116,
+   "ref": "hard-missing-invoice-number-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": null,
+     "vendor_code": "V0059",
+     "entity_code": "E0020",
+     "po_number": "4500129226",
+     "total": 58767.59,
+     "currency": "ZAR",
+     "planted": "short_delivery",
+     "natural": [],
+     "expect": [
+      "match.qty_over_received"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 117,
+   "ref": "freight-clearing-na-3",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "BS-25746",
+     "vendor_code": "V0019",
+     "entity_code": "E0047",
+     "po_number": null,
+     "total": 54083.4,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 118,
+   "ref": "handwritten-invoice-book-average-3",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "3738",
+     "vendor_code": "V0044",
+     "entity_code": "E0078",
+     "po_number": null,
+     "total": 4244.01,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 119,
+   "ref": "multipage-3p-gb-4",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0012893",
+     "vendor_code": "V0110",
+     "entity_code": "E0029",
+     "po_number": null,
+     "total": 80039.92,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 120,
+   "ref": "currency-usd-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-6054",
+     "vendor_code": "V0043",
+     "entity_code": "E0005",
+     "po_number": null,
+     "total": 32779.17,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 121,
+   "ref": "currency-dual-usd-zar-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/8313",
+     "vendor_code": "V0103",
+     "entity_code": "E0065",
+     "po_number": null,
+     "total": 179.62,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 122,
+   "ref": "tax-sage-subtotal-after-vat-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "TI080660",
+     "vendor_code": "V0069",
+     "entity_code": "E0101",
+     "po_number": "4500836038",
+     "total": 9088.78,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 123,
+   "ref": "currency-zmw-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0009050",
+     "vendor_code": "V0011",
+     "entity_code": "E0043",
+     "po_number": null,
+     "total": 72379.73,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 124,
+   "ref": "currency-dual-eur-nad-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "BA-19242",
+     "vendor_code": "V0021",
+     "entity_code": "E0009",
+     "po_number": null,
+     "total": 162.48,
+     "currency": "EUR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 125,
+   "ref": "photo-low-res-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0099973",
+     "vendor_code": "V0085",
+     "entity_code": "E0092",
+     "po_number": null,
+     "total": 15104.64,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 126,
+   "ref": "photo-combo-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0099973",
+     "vendor_code": "V0085",
+     "entity_code": "E0092",
+     "po_number": null,
+     "total": 15104.64,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-low-res-mild"
+    }
+   ]
+  },
+  {
+   "seq": 127,
+   "ref": "photo-orientation-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0099973",
+     "vendor_code": "V0085",
+     "entity_code": "E0092",
+     "po_number": null,
+     "total": 15104.64,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-low-res-mild"
+    }
+   ]
+  },
+  {
+   "seq": 128,
+   "ref": "photo-combo-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0099973",
+     "vendor_code": "V0085",
+     "entity_code": "E0092",
+     "po_number": null,
+     "total": 15104.64,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-low-res-mild"
+    }
+   ]
+  },
+  {
+   "seq": 129,
+   "ref": "photo-combo-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0099973",
+     "vendor_code": "V0085",
+     "entity_code": "E0092",
+     "po_number": null,
+     "total": 15104.64,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-low-res-mild"
+    }
+   ]
+  },
+  {
+   "seq": 130,
+   "ref": "photo-orientation-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0099973",
+     "vendor_code": "V0085",
+     "entity_code": "E0092",
+     "po_number": null,
+     "total": 15104.64,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-low-res-mild"
+    }
+   ]
+  },
+  {
+   "seq": 131,
+   "ref": "photo-low-res-severe",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0099973",
+     "vendor_code": "V0085",
+     "entity_code": "E0092",
+     "po_number": null,
+     "total": 15104.64,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-low-res-mild"
+    }
+   ]
+  },
+  {
+   "seq": 132,
+   "ref": "photo-low-res-moderate",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0099973",
+     "vendor_code": "V0085",
+     "entity_code": "E0092",
+     "po_number": null,
+     "total": 15104.64,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-low-res-mild"
+    }
+   ]
+  },
+  {
+   "seq": 133,
+   "ref": "photo-orientation-mild",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0099973",
+     "vendor_code": "V0085",
+     "entity_code": "E0092",
+     "po_number": null,
+     "total": 15104.64,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po",
+      "duplicate_copy"
+     ],
+     "expect": [
+      "dup.*",
+      "match.no_po"
+     ],
+     "duplicate_of": "photo-low-res-mild"
+    }
+   ]
+  },
+  {
+   "seq": 134,
+   "ref": "tax-exclusive-vat-column-za",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "TN-6058",
+     "vendor_code": "V0105",
+     "entity_code": "E0052",
+     "po_number": "ORD-1496",
+     "total": 15914.0,
+     "currency": "ZAR",
+     "planted": "price_over_po",
+     "natural": [],
+     "expect": [
+      "match.price_over_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 135,
+   "ref": "tax-withholding-zm",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0024445",
+     "vendor_code": "V0114",
+     "entity_code": "E0113",
+     "po_number": "PO-91083",
+     "total": 17665.81,
+     "currency": "ZMW",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 136,
+   "ref": "currency-eur-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/4301",
+     "vendor_code": "V0075",
+     "entity_code": "E0022",
+     "po_number": null,
+     "total": 16597.31,
+     "currency": "EUR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 137,
+   "ref": "freight-carrier-za-4",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/2251",
+     "vendor_code": "V0014",
+     "entity_code": "E0014",
+     "po_number": "P445200",
+     "total": 24471.14,
+     "currency": "ZAR",
+     "planted": "changed_bank",
+     "natural": [],
+     "expect": [
+      "bank.changed"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 138,
+   "ref": "currency-multi-line-zar",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "KL-69497",
+     "vendor_code": "V0052",
+     "entity_code": "E0002",
+     "po_number": "4500623285",
+     "total": 49513.02,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 139,
+   "ref": "hard-wrong-vat-amount",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/8616",
+     "vendor_code": "V0055",
+     "entity_code": "E0055",
+     "po_number": "ORD-8622",
+     "total": 6563.01,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "arith"
+     ],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 140,
+   "ref": "currency-dual-usd-zar-3",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "098052",
+     "vendor_code": "V0058",
+     "entity_code": null,
+     "po_number": "ORD-2698",
+     "total": 92.66,
+     "currency": "USD",
+     "planted": "wrong_addressee",
+     "natural": [],
+     "expect": [
+      "pattern.wrong_addressee"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 141,
+   "ref": "currency-nad-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "079582",
+     "vendor_code": "V0074",
+     "entity_code": "E0079",
+     "po_number": null,
+     "total": 11657.42,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 142,
+   "ref": "multipage-3p-na-3",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0005183",
+     "vendor_code": "V0093",
+     "entity_code": "E0085",
+     "po_number": "ORD-7102",
+     "total": 70390.5,
+     "currency": "NAD",
+     "planted": "price_over_po",
+     "natural": [],
+     "expect": [
+      "match.price_over_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 143,
+   "ref": "credit-note-minus-za",
+   "kind": "credit_note",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "CN-2026-0933",
+     "vendor_code": "V0097",
+     "entity_code": "E0017",
+     "po_number": null,
+     "total": 8061.82,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "doctype.credit_note"
+     ],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 144,
+   "ref": "tax-sage-subtotal-after-vat-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "049181",
+     "vendor_code": "V0039",
+     "entity_code": "E0001",
+     "po_number": "ORD-9835",
+     "total": 14770.24,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 145,
+   "ref": "clean-fr-right-header",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "AC-87051",
+     "vendor_code": "V0010",
+     "entity_code": null,
+     "po_number": null,
+     "total": 10406.52,
+     "currency": "EUR",
+     "planted": "wrong_addressee",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po",
+      "pattern.wrong_addressee"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 146,
+   "ref": "hard-lines-vs-subtotal",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0009065",
+     "vendor_code": "V0004",
+     "entity_code": "E0066",
+     "po_number": null,
+     "total": 12156.08,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "arith",
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 147,
+   "ref": "currency-dual-usd-nad-4",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-9064",
+     "vendor_code": "V0062",
+     "entity_code": "E0026",
+     "po_number": "4500421384",
+     "total": 194.71,
+     "currency": "USD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 148,
+   "ref": "multipage-4p-za-5",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "F-26-0992",
+     "vendor_code": "V0054",
+     "entity_code": "E0051",
+     "po_number": null,
+     "total": 105409.07,
+     "currency": "ZAR",
+     "planted": "changed_bank",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "bank.changed",
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 149,
+   "ref": "credit-ndc-za-ref",
+   "kind": "credit_note",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "NdC90426",
+     "vendor_code": "V0061",
+     "entity_code": "E0054",
+     "po_number": null,
+     "total": 3907.52,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "doctype.credit_note"
+     ],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 150,
+   "ref": "hard-missing-invoice-number-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": null,
+     "vendor_code": "V0078",
+     "entity_code": "E0008",
+     "po_number": "4500961010",
+     "total": 13486.03,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 151,
+   "ref": "freight-carrier-na-6",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "BC-65643",
+     "vendor_code": "V0008",
+     "entity_code": "E0006",
+     "po_number": null,
+     "total": 21667.28,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 152,
+   "ref": "freight-carrier-za-3",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-15508",
+     "vendor_code": "V0047",
+     "entity_code": "E0063",
+     "po_number": null,
+     "total": 49845.53,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 153,
+   "ref": "clean-de-grid-eu-decimals",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0089266",
+     "vendor_code": "V0076",
+     "entity_code": "E0088",
+     "po_number": null,
+     "total": 6702.9,
+     "currency": "EUR",
+     "planted": "tax_id_mismatch",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po",
+      "vendor.tax_id_mismatch"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 154,
+   "ref": "credit-unsigned-na",
+   "kind": "credit_note",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "CN032229",
+     "vendor_code": "V0071",
+     "entity_code": "E0049",
+     "po_number": null,
+     "total": 2081.04,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "doctype.credit_note"
+     ],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 155,
+   "ref": "currency-usd-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "KS-30440",
+     "vendor_code": "V0042",
+     "entity_code": "E0032",
+     "po_number": null,
+     "total": 4423.29,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 156,
+   "ref": "freight-carrier-us-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/4214",
+     "vendor_code": "V0086",
+     "entity_code": "E0004",
+     "po_number": "PO-35330",
+     "total": 1499.2,
+     "currency": "USD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 157,
+   "ref": "multipage-2p-za-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0021022",
+     "vendor_code": "V0035",
+     "entity_code": "E0102",
+     "po_number": "4500703656",
+     "total": 28846.32,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 158,
+   "ref": "multipage-2p-us-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "021419",
+     "vendor_code": "V0088",
+     "entity_code": "E0089",
+     "po_number": "ORD-2715",
+     "total": 70774.39,
+     "currency": "USD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 159,
+   "ref": "hard-po-beside-invoice-number-3",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "ABCINV832356",
+     "vendor_code": "V0002",
+     "entity_code": "E0053",
+     "po_number": "ABCSO228950",
+     "total": 17357.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 160,
+   "ref": "tax-withholding-na",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/2421",
+     "vendor_code": "V0022",
+     "entity_code": "E0048",
+     "po_number": null,
+     "total": 10420.46,
+     "currency": "NAD",
+     "planted": "changed_bank",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "bank.changed",
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 161,
+   "ref": "multipage-6p-za-8",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/7016",
+     "vendor_code": "V0099",
+     "entity_code": "E0108",
+     "po_number": "P764442",
+     "total": 201398.5,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 162,
+   "ref": "handwritten-invoice-book-average-4",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "1168",
+     "vendor_code": "V0006",
+     "entity_code": "E0076",
+     "po_number": null,
+     "total": 18689.86,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 163,
+   "ref": "currency-zar-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "TI072355",
+     "vendor_code": "V0041",
+     "entity_code": "E0069",
+     "po_number": null,
+     "total": 35554.8,
+     "currency": "ZAR",
+     "planted": "amount_above_history",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po",
+      "pattern.above_history"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 164,
+   "ref": "tax-percentage-line-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0001653",
+     "vendor_code": "V0030",
+     "entity_code": "E0073",
+     "po_number": null,
+     "total": 5006.4,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 165,
+   "ref": "freight-clearing-na-2",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/4896",
+     "vendor_code": "V0026",
+     "entity_code": "E0074",
+     "po_number": "PO-55693",
+     "total": 20043.35,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 166,
+   "ref": "tax-zero-rated-za",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "TI099928",
+     "vendor_code": "V0046",
+     "entity_code": "E0104",
+     "po_number": "P689849",
+     "total": 40491.83,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 167,
+   "ref": "hard-po-beside-invoice-number-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "TWSINV564620",
+     "vendor_code": "V0096",
+     "entity_code": "E0107",
+     "po_number": "TWSSO871660",
+     "total": 39905.15,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 168,
+   "ref": "resubmit-hard-po-beside-invoice-number-3",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "ABCINV832356",
+     "vendor_code": "V0002",
+     "entity_code": "E0053",
+     "po_number": "ABCSO228950",
+     "total": 17357.62,
+     "currency": "ZAR",
+     "planted": "duplicate_resubmission",
+     "natural": [],
+     "expect": [
+      "dup.*"
+     ],
+     "duplicate_of": "hard-po-beside-invoice-number-3"
+    }
+   ]
+  },
+  {
+   "seq": 169,
+   "ref": "hard-statement-na",
+   "kind": "statement",
+   "expect": [
+    "doctype.not_invoice"
+   ],
+   "invoices": []
+  },
+  {
+   "seq": 170,
+   "ref": "clean-za-band-space-groups",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-29551",
+     "vendor_code": "V0017",
+     "entity_code": "E0039",
+     "po_number": null,
+     "total": 43126.25,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 171,
+   "ref": "credit-r-minus-2",
+   "kind": "credit_note",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "CRN-48277",
+     "vendor_code": "V0037",
+     "entity_code": "E0003",
+     "po_number": null,
+     "total": 12911.43,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "doctype.credit_note"
+     ],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 172,
+   "ref": "credit-note-minus-gb",
+   "kind": "credit_note",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "CN060662",
+     "vendor_code": "V0090",
+     "entity_code": "E0030",
+     "po_number": null,
+     "total": 3785.33,
+     "currency": "GBP",
+     "planted": null,
+     "natural": [
+      "doctype.credit_note"
+     ],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 173,
+   "ref": "currency-nad-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-71012",
+     "vendor_code": "V0080",
+     "entity_code": "E0028",
+     "po_number": null,
+     "total": 57776.37,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 174,
+   "ref": "hard-multiple-invoices-3",
+   "kind": "multi_invoice",
+   "expect": [
+    "doctype.multiple_invoices"
+   ],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "INV-2026-19520",
+     "vendor_code": "V0048",
+     "entity_code": "E0071",
+     "po_number": "4500608608",
+     "total": 18586.62,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    },
+    {
+     "index": 1,
+     "invoice_number": "IN0054738",
+     "vendor_code": "V0051",
+     "entity_code": "E0041",
+     "po_number": "P938603",
+     "total": 18138.38,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    },
+    {
+     "index": 2,
+     "invoice_number": "021995",
+     "vendor_code": "V0060",
+     "entity_code": "E0015",
+     "po_number": null,
+     "total": 17224.83,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 175,
+   "ref": "clean-na-bulk-consumables",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "RF-95917",
+     "vendor_code": "V0045",
+     "entity_code": "E0023",
+     "po_number": null,
+     "total": 572.7,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 176,
+   "ref": "clean-na-center-letterhead",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/1898",
+     "vendor_code": "V0024",
+     "entity_code": "E0099",
+     "po_number": null,
+     "total": 12740.17,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 177,
+   "ref": "clean-us-landscape",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0017577",
+     "vendor_code": "V0084",
+     "entity_code": "E0033",
+     "po_number": null,
+     "total": 33592.01,
+     "currency": "USD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 178,
+   "ref": "tax-sage-subtotal-after-vat-3",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "MA-72956",
+     "vendor_code": "V0063",
+     "entity_code": "E0077",
+     "po_number": null,
+     "total": 34996.27,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 179,
+   "ref": "freight-clearing-na-1",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "KN-71210",
+     "vendor_code": "V0018",
+     "entity_code": "E0086",
+     "po_number": "PO-47128",
+     "total": 17274.67,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 180,
+   "ref": "currency-multi-line-nad",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "AA-80309",
+     "vendor_code": "V0028",
+     "entity_code": "E0081",
+     "po_number": null,
+     "total": 59259.99,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 181,
+   "ref": "tax-inclusive-total-za",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "IN0078338",
+     "vendor_code": "V0036",
+     "entity_code": "E0070",
+     "po_number": null,
+     "total": 18041.94,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 182,
+   "ref": "handwritten-invoice-book-poor-8",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "9268",
+     "vendor_code": "V0049",
+     "entity_code": "E0106",
+     "po_number": null,
+     "total": 15365.85,
+     "currency": "ZAR",
+     "planted": null,
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 183,
+   "ref": "freight-clearing-za-5",
+   "kind": "invoice",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "2026/5129",
+     "vendor_code": "V0053",
+     "entity_code": null,
+     "po_number": null,
+     "total": 9786.47,
+     "currency": "ZAR",
+     "planted": "wrong_addressee",
+     "natural": [
+      "match.no_po"
+     ],
+     "expect": [
+      "match.no_po",
+      "pattern.wrong_addressee"
+     ],
+     "duplicate_of": null
+    }
+   ]
+  },
+  {
+   "seq": 184,
+   "ref": "credit-ndc-na",
+   "kind": "credit_note",
+   "expect": [],
+   "invoices": [
+    {
+     "index": 0,
+     "invoice_number": "NdC22806",
+     "vendor_code": "V0073",
+     "entity_code": "E0075",
+     "po_number": null,
+     "total": 7328.59,
+     "currency": "NAD",
+     "planted": null,
+     "natural": [
+      "doctype.credit_note"
+     ],
+     "expect": [],
+     "duplicate_of": null
+    }
+   ]
+  }
+ ]
+}

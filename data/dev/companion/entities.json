@@ -1,0 +1,779 @@
+[
+ {
+  "code": "E0001",
+  "name": "Blouberg Cargo (Pty) Ltd",
+  "country": "ZA",
+  "address": "458 Voortrekker Road, Pretoria, 0002",
+  "tax_id": "4546058739"
+ },
+ {
+  "code": "E0002",
+  "name": "Blouberg Trucking CC",
+  "country": "ZA",
+  "address": "974 Voortrekker Road, Gqeberha, 6001",
+  "tax_id": "4498320110"
+ },
+ {
+  "code": "E0003",
+  "name": "Blouberg Workshop Supplies (Pty) Ltd",
+  "country": "ZA",
+  "address": "311 Church Street, Upington, 8801",
+  "tax_id": "4368853440"
+ },
+ {
+  "code": "E0004",
+  "name": "Bluewater Catering Inc",
+  "country": "US",
+  "address": "705 Commerce Parkway, Memphis, TN 38155",
+  "tax_id": "27-9427608"
+ },
+ {
+  "code": "E0005",
+  "name": "Bluewater Security Services Co",
+  "country": "US",
+  "address": "568 Market Street, Omaha, NE 68164",
+  "tax_id": "99-8612582"
+ },
+ {
+  "code": "E0006",
+  "name": "Brandkop Cargo CC",
+  "country": "NA",
+  "address": "539 Hage Geingob Street, Keetmanshoop",
+  "tax_id": "4199432918"
+ },
+ {
+  "code": "E0007",
+  "name": "Brandkop Hardware (Pty) Ltd",
+  "country": "NA",
+  "address": "900 Mandume Ndemufayo Avenue, Tsumeb",
+  "tax_id": "4216858154"
+ },
+ {
+  "code": "E0008",
+  "name": "Brandkop Industrial Supply (Pty) Ltd",
+  "country": "NA",
+  "address": "663 Independence Avenue, Swakopmund",
+  "tax_id": "4543630426"
+ },
+ {
+  "code": "E0009",
+  "name": "Brandkop Industrial Supply CC",
+  "country": "NA",
+  "address": "407 Rand Street, Windhoek",
+  "tax_id": "4130266145"
+ },
+ {
+  "code": "E0010",
+  "name": "Brandkop Workshop Supplies (Pty) Ltd",
+  "country": "NA",
+  "address": "408 Theo-Ben Gurirab Street, Walvis Bay",
+  "tax_id": "4229539022"
+ },
+ {
+  "code": "E0011",
+  "name": "Coastal Restaurants Inc",
+  "country": "US",
+  "address": "12 Waterfront Way, Miami, FL 33101",
+  "tax_id": null
+ },
+ {
+  "code": "E0012",
+  "name": "Copperline Cargo Ltd",
+  "country": "ZM",
+  "address": "227 Independence Avenue, Lusaka, 10101",
+  "tax_id": "1037437207"
+ },
+ {
+  "code": "E0013",
+  "name": "Copperline Packaging Limited",
+  "country": "ZM",
+  "address": "361 Obote Avenue, Kitwe, 10101",
+  "tax_id": "1054446182"
+ },
+ {
+  "code": "E0014",
+  "name": "Drakensig Cleaning Services (Pty) Ltd",
+  "country": "ZA",
+  "address": "370 Voortrekker Road, Pretoria, 0002",
+  "tax_id": "4446627326"
+ },
+ {
+  "code": "E0015",
+  "name": "Drakensig Consulting (Pty) Ltd",
+  "country": "ZA",
+  "address": "828 Main Reef Road, Johannesburg, 2001",
+  "tax_id": "4763103142"
+ },
+ {
+  "code": "E0016",
+  "name": "Drakensig Engineering Supplies (Pty) Ltd",
+  "country": "ZA",
+  "address": "187 Market Road, Johannesburg, 2001",
+  "tax_id": "4652172808"
+ },
+ {
+  "code": "E0017",
+  "name": "Drakensig Engineering Supplies CC",
+  "country": "ZA",
+  "address": "754 Strand Street, Cape Town, 8001",
+  "tax_id": "4449917685"
+ },
+ {
+  "code": "E0018",
+  "name": "Drakensig IT Services CC",
+  "country": "ZA",
+  "address": "662 Market Road, Gqeberha, 6001",
+  "tax_id": "4667106600"
+ },
+ {
+  "code": "E0019",
+  "name": "Drakensig Industrial Supply (Pty) Ltd",
+  "country": "ZA",
+  "address": "530 Church Street, Upington, 8801",
+  "tax_id": "4809535264"
+ },
+ {
+  "code": "E0020",
+  "name": "Drakensig Logistics (Pty) Ltd",
+  "country": "ZA",
+  "address": "904 Kerk Street, Durban, 4001",
+  "tax_id": "4844087852"
+ },
+ {
+  "code": "E0021",
+  "name": "Drakensig Security Services (Pty) Ltd",
+  "country": "ZA",
+  "address": "298 Kerk Street, Cape Town, 8001",
+  "tax_id": "4245587477"
+ },
+ {
+  "code": "E0022",
+  "name": "Elbtal Logistics GmbH & Co. KG",
+  "country": "DE",
+  "address": "181 Industriestrasse, 30159 Hannover",
+  "tax_id": "DE492836532"
+ },
+ {
+  "code": "E0023",
+  "name": "Erongo Engineering Supplies CC",
+  "country": "NA",
+  "address": "726 Sam Nujoma Drive, Rundu",
+  "tax_id": "4761330848"
+ },
+ {
+  "code": "E0024",
+  "name": "Erongo Line Haul CC",
+  "country": "NA",
+  "address": "201 Nickel Street, P.O. Box 9695, Rundu",
+  "tax_id": "4313806556"
+ },
+ {
+  "code": "E0025",
+  "name": "Erongo Logistics (Pty) Ltd",
+  "country": "NA",
+  "address": "634 Theo-Ben Gurirab Street, Oshakati",
+  "tax_id": "4752997384"
+ },
+ {
+  "code": "E0026",
+  "name": "Etosha Gate Engineering Supplies CC",
+  "country": "NA",
+  "address": "510 Nickel Street, Swakopmund",
+  "tax_id": "4880697625"
+ },
+ {
+  "code": "E0027",
+  "name": "Etosha Gate Industrial Supply (Pty) Ltd",
+  "country": "NA",
+  "address": "949 Rand Street, Windhoek",
+  "tax_id": "4224623936"
+ },
+ {
+  "code": "E0028",
+  "name": "Etosha Gate Telecoms CC",
+  "country": "NA",
+  "address": "681 Theo-Ben Gurirab Street, Oshakati",
+  "tax_id": "4733701411"
+ },
+ {
+  "code": "E0029",
+  "name": "Fenland Catering Ltd",
+  "country": "GB",
+  "address": "745 Canal Side, Felixstowe, IP11 3JX",
+  "tax_id": "GB 787 6873 74"
+ },
+ {
+  "code": "E0030",
+  "name": "Fenland Catering plc",
+  "country": "GB",
+  "address": "706 Victoria Road, Southampton, SO14 3JT",
+  "tax_id": "GB 890 9199 29"
+ },
+ {
+  "code": "E0031",
+  "name": "Fenland Industrial Supply Ltd",
+  "country": "GB",
+  "address": "869 Dock Street, Manchester, M1 2SE",
+  "tax_id": "GB 175 2323 51"
+ },
+ {
+  "code": "E0032",
+  "name": "Granite Logistics LLC",
+  "country": "US",
+  "address": "123 Riverside Avenue, Memphis, TN 38187",
+  "tax_id": "38-9767312"
+ },
+ {
+  "code": "E0033",
+  "name": "Granite Telecoms LLC",
+  "country": "US",
+  "address": "529 Market Street, Reno, NV 89521",
+  "tax_id": "38-4340845"
+ },
+ {
+  "code": "E0034",
+  "name": "Harrowgate Consulting Ltd",
+  "country": "GB",
+  "address": "529 Dock Street, Manchester, M1 2UN",
+  "tax_id": "GB 502 9281 68"
+ },
+ {
+  "code": "E0035",
+  "name": "Harrowgate Hardware Limited",
+  "country": "GB",
+  "address": "969 Victoria Road, Manchester, M1 2JA",
+  "tax_id": "GB 762 4747 21"
+ },
+ {
+  "code": "E0036",
+  "name": "Harrowgate Office Supplies plc",
+  "country": "GB",
+  "address": "143 Station Approach, Leeds, LS1 4JR",
+  "tax_id": "GB 165 7797 62"
+ },
+ {
+  "code": "E0037",
+  "name": "Hayes & Mitchell LLP",
+  "country": "US",
+  "address": "100 Federal Plaza, Suite 1800, Chicago, IL 60603",
+  "tax_id": null
+ },
+ {
+  "code": "E0038",
+  "name": "Highveld Catering (Pty) Ltd",
+  "country": "ZA",
+  "address": "770 Strand Street, Durban, 4001",
+  "tax_id": "4229153072"
+ },
+ {
+  "code": "E0039",
+  "name": "Highveld Catering CC",
+  "country": "ZA",
+  "address": "21 Main Reef Road, Gqeberha, 6001",
+  "tax_id": "4357109965"
+ },
+ {
+  "code": "E0040",
+  "name": "Highveld Consulting (Pty) Ltd",
+  "country": "ZA",
+  "address": "135 Voortrekker Road, Upington, 8801",
+  "tax_id": "4430000948"
+ },
+ {
+  "code": "E0041",
+  "name": "Highveld Freight CC",
+  "country": "ZA",
+  "address": "325 Main Reef Road, Pretoria, 0002",
+  "tax_id": "4608242781"
+ },
+ {
+  "code": "E0042",
+  "name": "Ironbridge Cargo Corp",
+  "country": "US",
+  "address": "794 Freight Road, Reno, NV 89569",
+  "tax_id": "88-1915141"
+ },
+ {
+  "code": "E0043",
+  "name": "Kafue Cleaning Services Ltd",
+  "country": "ZM",
+  "address": "228 Kafue Road, Kitwe, 10101",
+  "tax_id": "1094989976"
+ },
+ {
+  "code": "E0044",
+  "name": "Kafue Industrial Supply Limited",
+  "country": "ZM",
+  "address": "950 Cairo Road, Ndola, 10101",
+  "tax_id": "1065864403"
+ },
+ {
+  "code": "E0045",
+  "name": "Kalahari Consulting CC",
+  "country": "NA",
+  "address": "958 Independence Avenue, P.O. Box 6604, Swakopmund",
+  "tax_id": "4140229006"
+ },
+ {
+  "code": "E0046",
+  "name": "Kalahari IT Services CC",
+  "country": "NA",
+  "address": "311 Mandume Ndemufayo Avenue, Oshakati",
+  "tax_id": "4292599457"
+ },
+ {
+  "code": "E0047",
+  "name": "Kalahari Industrial Supply (Pty) Ltd",
+  "country": "NA",
+  "address": "910 Rand Street, P.O. Box 103, Swakopmund",
+  "tax_id": "4670431597"
+ },
+ {
+  "code": "E0048",
+  "name": "Kalahari Office Supplies CC",
+  "country": "NA",
+  "address": "799 Independence Avenue, P.O. Box 9267, Oshakati",
+  "tax_id": "4282088279"
+ },
+ {
+  "code": "E0049",
+  "name": "Kalahari Transport (Pty) Ltd",
+  "country": "NA",
+  "address": "374 Mandume Ndemufayo Avenue, Rundu",
+  "tax_id": "4341071485"
+ },
+ {
+  "code": "E0050",
+  "name": "Kalahari Tyre & Parts CC",
+  "country": "NA",
+  "address": "572 Rand Street, Oshakati",
+  "tax_id": "4794395127"
+ },
+ {
+  "code": "E0051",
+  "name": "Karoo Carriers CC",
+  "country": "ZA",
+  "address": "280 Rivonia Road, Gqeberha, 6001",
+  "tax_id": "4958885115"
+ },
+ {
+  "code": "E0052",
+  "name": "Karoo Catering (Pty) Ltd",
+  "country": "ZA",
+  "address": "608 Church Street, Durban, 4001",
+  "tax_id": "4873773537"
+ },
+ {
+  "code": "E0053",
+  "name": "Karoo Consulting (Pty) Ltd",
+  "country": "ZA",
+  "address": "806 Church Street, Upington, 8801",
+  "tax_id": "4578869802"
+ },
+ {
+  "code": "E0054",
+  "name": "Karoo Freight (Pty) Ltd",
+  "country": "ZA",
+  "address": "35 Kerk Street, Cape Town, 8001",
+  "tax_id": "4280613009"
+ },
+ {
+  "code": "E0055",
+  "name": "Karoo Hardware (Pty) Ltd",
+  "country": "ZA",
+  "address": "771 Market Road, Gqeberha, 6001",
+  "tax_id": "4292198192"
+ },
+ {
+  "code": "E0057",
+  "name": "Karoo Line Haul (Pty) Ltd",
+  "country": "ZA",
+  "address": "156 Strand Street, Upington, 8801",
+  "tax_id": "4380517824"
+ },
+ {
+  "code": "E0058",
+  "name": "Karoo Office Supplies CC",
+  "country": "ZA",
+  "address": "83 Strand Street, Gqeberha, 6001",
+  "tax_id": "4834776489"
+ },
+ {
+  "code": "E0060",
+  "name": "Klipspruit Cleaning Services (Pty) Ltd",
+  "country": "ZA",
+  "address": "596 Main Reef Road, Johannesburg, 2001",
+  "tax_id": "4180348617"
+ },
+ {
+  "code": "E0061",
+  "name": "Klipspruit IT Services (Pty) Ltd",
+  "country": "ZA",
+  "address": "92 Voortrekker Road, Gqeberha, 6001",
+  "tax_id": "4545081036"
+ },
+ {
+  "code": "E0062",
+  "name": "Klipspruit Industrial Supply (Pty) Ltd",
+  "country": "ZA",
+  "address": "965 Main Reef Road, Upington, 8801",
+  "tax_id": "4891196000"
+ },
+ {
+  "code": "E0063",
+  "name": "Klipspruit Line Haul (Pty) Ltd",
+  "country": "ZA",
+  "address": "185 Voortrekker Road, Durban, 4001",
+  "tax_id": "4884005207"
+ },
+ {
+  "code": "E0064",
+  "name": "Klipspruit Packaging CC",
+  "country": "ZA",
+  "address": "297 Church Street, Durban, 4001",
+  "tax_id": "4796202652"
+ },
+ {
+  "code": "E0065",
+  "name": "Klipspruit Workshop Supplies (Pty) Ltd",
+  "country": "ZA",
+  "address": "456 Kerk Street, Durban, 4001",
+  "tax_id": "4356805216"
+ },
+ {
+  "code": "E0066",
+  "name": "Kransberg Consulting (Pty) Ltd",
+  "country": "ZA",
+  "address": "818 Voortrekker Road, Durban, 4001",
+  "tax_id": "4727626038"
+ },
+ {
+  "code": "E0067",
+  "name": "Kransberg Engineering Supplies (Pty) Ltd",
+  "country": "ZA",
+  "address": "42 Rivonia Road, Pretoria, 0002",
+  "tax_id": "4127772220"
+ },
+ {
+  "code": "E0068",
+  "name": "Kransberg Maintenance (Pty) Ltd",
+  "country": "ZA",
+  "address": "459 Main Reef Road, Upington, 8801",
+  "tax_id": "4135802499"
+ },
+ {
+  "code": "E0069",
+  "name": "Kransberg Packaging (Pty) Ltd",
+  "country": "ZA",
+  "address": "275 Church Street, Durban, 4001",
+  "tax_id": "4230380269"
+ },
+ {
+  "code": "E0070",
+  "name": "Kransberg Telecoms (Pty) Ltd",
+  "country": "ZA",
+  "address": "488 Voortrekker Road, Cape Town, 8001",
+  "tax_id": "4547256709"
+ },
+ {
+  "code": "E0071",
+  "name": "Kransberg Workshop Supplies CC",
+  "country": "ZA",
+  "address": "764 Strand Street, Upington, 8801",
+  "tax_id": "4487329582"
+ },
+ {
+  "code": "E0072",
+  "name": "Kunene Cargo CC",
+  "country": "NA",
+  "address": "374 Hage Geingob Street, Swakopmund",
+  "tax_id": "4156227043"
+ },
+ {
+  "code": "E0073",
+  "name": "Kunene Haulage (Pty) Ltd",
+  "country": "NA",
+  "address": "11 Sam Nujoma Drive, Swakopmund",
+  "tax_id": "4618836510"
+ },
+ {
+  "code": "E0074",
+  "name": "Kunene Line Haul (Pty) Ltd",
+  "country": "NA",
+  "address": "936 Hage Geingob Street, Otjiwarongo",
+  "tax_id": "4586708987"
+ },
+ {
+  "code": "E0075",
+  "name": "Kunene Logistics (Pty) Ltd",
+  "country": "NA",
+  "address": "593 Independence Avenue, Walvis Bay",
+  "tax_id": "4222358216"
+ },
+ {
+  "code": "E0076",
+  "name": "Kunene Security Services (Pty) Ltd",
+  "country": "NA",
+  "address": "135 Independence Avenue, P.O. Box 7060, Keetmanshoop",
+  "tax_id": "4931819535"
+ },
+ {
+  "code": "E0077",
+  "name": "Kunene Transport (Pty) Ltd",
+  "country": "NA",
+  "address": "610 Independence Avenue, Walvis Bay",
+  "tax_id": "4531929128"
+ },
+ {
+  "code": "E0078",
+  "name": "Luangwa Security Services Limited",
+  "country": "ZM",
+  "address": "281 Kafue Road, Lusaka, 10101",
+  "tax_id": "1016538403"
+ },
+ {
+  "code": "E0079",
+  "name": "Namib Sands Hardware CC",
+  "country": "NA",
+  "address": "472 Hage Geingob Street, P.O. Box 253, Otjiwarongo",
+  "tax_id": "4827579147"
+ },
+ {
+  "code": "E0080",
+  "name": "Namib Sands Industrial Supply CC",
+  "country": "NA",
+  "address": "734 Theo-Ben Gurirab Street, Tsumeb",
+  "tax_id": "4908749062"
+ },
+ {
+  "code": "E0081",
+  "name": "Namib Sands Maintenance CC",
+  "country": "NA",
+  "address": "126 Sam Nujoma Drive, Keetmanshoop",
+  "tax_id": "4694875990"
+ },
+ {
+  "code": "E0082",
+  "name": "Okavango Cleaning Services (Pty) Ltd",
+  "country": "NA",
+  "address": "376 Rand Street, Walvis Bay",
+  "tax_id": "4795561982"
+ },
+ {
+  "code": "E0083",
+  "name": "Okavango Consulting CC",
+  "country": "NA",
+  "address": "723 Sam Nujoma Drive, Otjiwarongo",
+  "tax_id": "4409011489"
+ },
+ {
+  "code": "E0084",
+  "name": "Okavango Hardware CC",
+  "country": "NA",
+  "address": "127 Hage Geingob Street, Walvis Bay",
+  "tax_id": "4131915385"
+ },
+ {
+  "code": "E0085",
+  "name": "Okavango Trucking CC",
+  "country": "NA",
+  "address": "394 Nickel Street, Otjiwarongo",
+  "tax_id": "4395723682"
+ },
+ {
+  "code": "E0086",
+  "name": "Okavango Tyre & Parts CC",
+  "country": "NA",
+  "address": "689 Independence Avenue, Rundu",
+  "tax_id": "4768882058"
+ },
+ {
+  "code": "E0087",
+  "name": "Orion Medical Group",
+  "country": "US",
+  "address": "3400 Research Park Drive, Austin, TX 78759",
+  "tax_id": null
+ },
+ {
+  "code": "E0088",
+  "name": "Ostwall Trucking GmbH",
+  "country": "DE",
+  "address": "407 Am Kai, 30159 Hannover",
+  "tax_id": "DE364814270"
+ },
+ {
+  "code": "E0089",
+  "name": "Prairie Freight Corp",
+  "country": "US",
+  "address": "752 Riverside Avenue, Omaha, NE 68131",
+  "tax_id": "54-7297287"
+ },
+ {
+  "code": "E0090",
+  "name": "Prairie Hardware Co",
+  "country": "US",
+  "address": "407 Elm Street, Dallas, TX 75211",
+  "tax_id": "98-3600333"
+ },
+ {
+  "code": "E0091",
+  "name": "Redwood Carriers Co",
+  "country": "US",
+  "address": "324 Harbor Boulevard, Spokane, WA 99241",
+  "tax_id": "41-5780177"
+ },
+ {
+  "code": "E0092",
+  "name": "Redwood Catering Inc",
+  "country": "US",
+  "address": "399 Commerce Parkway, Omaha, NE 68160",
+  "tax_id": "40-5989928"
+ },
+ {
+  "code": "E0093",
+  "name": "Rijnpoort Catering B.V.",
+  "country": "NL",
+  "address": "409 Industrieweg, 3011 Rotterdam",
+  "tax_id": "NL984968439"
+ },
+ {
+  "code": "E0094",
+  "name": "Rijnpoort Line Haul B.V.",
+  "country": "NL",
+  "address": "724 Stationsplein, 5038 Tilburg",
+  "tax_id": "NL180792472"
+ },
+ {
+  "code": "E0095",
+  "name": "Riverbend Construction",
+  "country": "US",
+  "address": "750 Industrial Way, Denver, CO 80216",
+  "tax_id": null
+ },
+ {
+  "code": "E0097",
+  "name": "Severn Consulting plc",
+  "country": "GB",
+  "address": "231 Wharf Road, Manchester, M1 2QX",
+  "tax_id": "GB 687 4705 64"
+ },
+ {
+  "code": "E0098",
+  "name": "Skeleton Bay Carriers (Pty) Ltd",
+  "country": "NA",
+  "address": "360 Rand Street, Tsumeb",
+  "tax_id": "4373178728"
+ },
+ {
+  "code": "E0099",
+  "name": "Skeleton Bay Hardware (Pty) Ltd",
+  "country": "NA",
+  "address": "676 Mandume Ndemufayo Avenue, Walvis Bay",
+  "tax_id": "4823019672"
+ },
+ {
+  "code": "E0100",
+  "name": "Skeleton Bay Line Haul (Pty) Ltd",
+  "country": "NA",
+  "address": "702 Hage Geingob Street, P.O. Box 5922, Tsumeb",
+  "tax_id": "4971763327"
+ },
+ {
+  "code": "E0101",
+  "name": "Skeleton Bay Tyre & Parts CC",
+  "country": "NA",
+  "address": "412 Nickel Street, Walvis Bay",
+  "tax_id": "4366338529"
+ },
+ {
+  "code": "E0102",
+  "name": "Suidkus Office Supplies (Pty) Ltd",
+  "country": "ZA",
+  "address": "328 Bree Street, Johannesburg, 2001",
+  "tax_id": "4162911855"
+ },
+ {
+  "code": "E0103",
+  "name": "Vaalrand Catering (Pty) Ltd",
+  "country": "ZA",
+  "address": "339 Voortrekker Road, Johannesburg, 2001",
+  "tax_id": "4448875327"
+ },
+ {
+  "code": "E0104",
+  "name": "Vaalrand Engineering Supplies CC",
+  "country": "ZA",
+  "address": "666 Market Road, Pretoria, 0002",
+  "tax_id": "4650632566"
+ },
+ {
+  "code": "E0105",
+  "name": "Vaalrand Haulage (Pty) Ltd",
+  "country": "ZA",
+  "address": "953 Kerk Street, Johannesburg, 2001",
+  "tax_id": "4525904456"
+ },
+ {
+  "code": "E0106",
+  "name": "Vaalrand Industrial Supply CC",
+  "country": "ZA",
+  "address": "413 Bree Street, Pretoria, 0002",
+  "tax_id": "4870631850"
+ },
+ {
+  "code": "E0107",
+  "name": "Vaalrand Office Supplies CC",
+  "country": "ZA",
+  "address": "499 Voortrekker Road, Cape Town, 8001",
+  "tax_id": "4552858103"
+ },
+ {
+  "code": "E0108",
+  "name": "Vaalrand Security Services (Pty) Ltd",
+  "country": "ZA",
+  "address": "265 Kerk Street, Pretoria, 0002",
+  "tax_id": "4704697685"
+ },
+ {
+  "code": "E0109",
+  "name": "Weserland Catering GmbH",
+  "country": "DE",
+  "address": "763 Lindenweg, 20457 Hamburg",
+  "tax_id": "DE991187981"
+ },
+ {
+  "code": "E0110",
+  "name": "Wolds Cleaning Services Ltd",
+  "country": "GB",
+  "address": "605 Mill Lane, Manchester, M1 2AG",
+  "tax_id": "GB 259 4527 53"
+ },
+ {
+  "code": "E0111",
+  "name": "Wolds Transport Ltd",
+  "country": "GB",
+  "address": "336 Dock Street, Southampton, SO14 3YD",
+  "tax_id": "GB 847 4909 17"
+ },
+ {
+  "code": "E0112",
+  "name": "Zambezi Reach Hardware Ltd",
+  "country": "ZM",
+  "address": "784 Great East Road, Livingstone, 10101",
+  "tax_id": "1017143361"
+ },
+ {
+  "code": "E0113",
+  "name": "Zambezi Reach Packaging Limited",
+  "country": "ZM",
+  "address": "514 Kafue Road, Lusaka, 10101",
+  "tax_id": "1041157840"
+ },
+ {
+  "code": "E0114",
+  "name": "Zambezi Reach Tyre & Parts Ltd",
+  "country": "ZM",
+  "address": "786 Kafue Road, Kitwe, 10101",
+  "tax_id": "1089250658"
+ }
+]

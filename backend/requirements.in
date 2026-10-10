@@ -27,7 +27,6 @@ pypdfium2>=5
 pillow
 pillow-heif
 numpy
-imagehash
 rapidocr>=3.10
 onnxruntime
 

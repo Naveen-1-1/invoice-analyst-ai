@@ -1,6 +1,7 @@
 import { Link, useParams } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useGetDocument } from '@/api/generated'
+import { CheckList } from '@/components/CheckList'
 import { FieldList } from '@/components/FieldList'
 import { PageViewer } from '@/components/PageViewer'
 import { TierBadge } from '@/components/TierBadge'
@@ -73,6 +74,9 @@ export function DocumentPage() {
             <Tabs defaultValue="fields">
               <TabsList>
                 <TabsTrigger value="fields">Fields</TabsTrigger>
+                <TabsTrigger value="checks">
+                  Checks{invoice ? ` (${invoice.checks.filter((c) => c.outcome === 'fail' || c.outcome === 'warn').length})` : ''}
+                </TabsTrigger>
                 <TabsTrigger value="trail">Audit trail ({d.events.length})</TabsTrigger>
               </TabsList>
               <TabsContent value="fields" className="pt-2">
@@ -83,11 +87,14 @@ export function DocumentPage() {
                   <p className="text-sm text-muted-foreground">Nothing was extracted from this document.</p>
                 )}
               </TabsContent>
+              <TabsContent value="checks" className="pt-2">
+                <CheckList checks={invoice?.checks ?? []} />
+              </TabsContent>
               <TabsContent value="trail" className="pt-2">
                 <ol className="space-y-2 text-sm">
                   {d.events.map((e) => (
                     <li key={e.seq} className="border-l-2 pl-3">
-                      <div className="font-medium">{e.action.replace('document.', '').replace('_', ' ')}{' '}
+                      <div className="font-medium">{e.action.replace(/^(document|invoice)\./, '').replace('_', ' ')}{' '}
                         {typeof e.data.to === 'string' && <span className="text-muted-foreground">→ {e.data.to}</span>}
                       </div>
                       <div className="text-xs text-muted-foreground">{formatDateTime(e.occurred_at)} · {e.actor}</div>

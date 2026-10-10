@@ -176,6 +176,62 @@
  },
  "components": {
   "schemas": {
+   "CheckOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "code": {
+      "type": "string",
+      "title": "Code"
+     },
+     "category": {
+      "type": "string",
+      "title": "Category"
+     },
+     "outcome": {
+      "type": "string",
+      "title": "Outcome"
+     },
+     "severity": {
+      "type": "string",
+      "title": "Severity"
+     },
+     "message": {
+      "type": "string",
+      "title": "Message"
+     },
+     "evidence": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Evidence"
+     },
+     "related_invoice_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Related Invoice Id"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "code",
+     "category",
+     "outcome",
+     "severity",
+     "message",
+     "evidence",
+     "related_invoice_id"
+    ],
+    "title": "CheckOut"
+   },
    "DocumentDetail": {
     "properties": {
      "id": {
@@ -706,6 +762,13 @@
       },
       "type": "array",
       "title": "Lines"
+     },
+     "checks": {
+      "items": {
+       "$ref": "#/components/schemas/CheckOut"
+      },
+      "type": "array",
+      "title": "Checks"
      }
     },
     "type": "object",
@@ -724,7 +787,8 @@
      "tax",
      "total",
      "fields",
-     "lines"
+     "lines",
+     "checks"
     ],
     "title": "InvoiceOut"
    },
