@@ -5,21 +5,81 @@
  * OpenAPI spec version: 0.1
  */
 import {
+  useMutation,
   useQuery
 } from '@tanstack/react-query';
 import type {
   DataTag,
   DefinedInitialDataOptions,
   DefinedUseQueryResult,
+  MutationFunction,
   QueryClient,
   QueryFunction,
   QueryKey,
   UndefinedInitialDataOptions,
+  UseMutationOptions,
+  UseMutationResult,
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query';
 
 import { customFetch } from './fetcher';
+export type WorkspaceOutStates = {[key: string]: number};
+
+export interface WorkspaceOut {
+  id: number;
+  name: string;
+  kind: string;
+  dataset: string;
+  created_at: string;
+  documents: number;
+  states: WorkspaceOutStates;
+}
+
+/**
+ * The simulated clock: simulated date = start_sim + (now - start_real) / seconds_per_day days.
+ */
+export interface ClockOut {
+  start_real: string;
+  start_sim: string;
+  seconds_per_day: number;
+}
+
+export type CardOutFindings = {[key: string]: number};
+
+export interface CardOut {
+  document_id: number;
+  seq: number | null;
+  ref: string | null;
+  filename: string;
+  state: string;
+  route: string | null;
+  received_at: string;
+  invoices: number;
+  vendor: string | null;
+  invoice_number: string | null;
+  total: string | null;
+  currency: string | null;
+  tier: string | null;
+  invoice_state: string | null;
+  findings: CardOutFindings;
+  codes: string[];
+}
+
+export interface BoardOut {
+  workspace: WorkspaceOut;
+  clock: ClockOut | null;
+  run_status: string | null;
+  expected: number | null;
+  llm_paused_until: string | null;
+  worker_online: boolean;
+  cards: CardOut[];
+}
+
+export interface BodyUploadDocuments {
+  files: (Blob | File)[];
+}
+
 export type CheckOutEvidence = { [key: string]: unknown };
 
 export interface CheckOut {
@@ -165,6 +225,13 @@ export interface RunOut {
   tiers: RunOutTiers;
 }
 
+export interface UploadOut {
+  filename: string;
+  document_id?: number | null;
+  workspace_id?: number | null;
+  error?: string | null;
+}
+
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
@@ -183,6 +250,285 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
   }
   return result;
 };
+
+export const getListWorkspacesUrl = () => {
+
+
+
+
+  return `/api/workspaces`
+}
+
+/**
+ * @summary Listworkspaces
+ */
+export const listWorkspaces = async ( options?: Parameters<typeof customFetch>[1]): Promise<WorkspaceOut[]> => {
+
+  return customFetch<WorkspaceOut[]>(getListWorkspacesUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListWorkspacesQueryKey = () => {
+    return [
+    `/api/workspaces`
+    ] as const;
+    }
+
+
+export const getListWorkspacesQueryOptions = <TData = Awaited<ReturnType<typeof listWorkspaces>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listWorkspaces>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListWorkspacesQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listWorkspaces>>> = ({ signal }) => listWorkspaces({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listWorkspaces>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ListWorkspacesQueryResult = NonNullable<Awaited<ReturnType<typeof listWorkspaces>>>
+export type ListWorkspacesQueryError = unknown
+
+
+export function useListWorkspaces<TData = Awaited<ReturnType<typeof listWorkspaces>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listWorkspaces>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listWorkspaces>>,
+          TError,
+          Awaited<ReturnType<typeof listWorkspaces>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListWorkspaces<TData = Awaited<ReturnType<typeof listWorkspaces>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listWorkspaces>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listWorkspaces>>,
+          TError,
+          Awaited<ReturnType<typeof listWorkspaces>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListWorkspaces<TData = Awaited<ReturnType<typeof listWorkspaces>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listWorkspaces>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Listworkspaces
+ */
+
+export function useListWorkspaces<TData = Awaited<ReturnType<typeof listWorkspaces>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listWorkspaces>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getListWorkspacesQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getGetBoardUrl = (workspaceId: number,) => {
+
+
+
+
+  return `/api/workspaces/${workspaceId}/board`
+}
+
+/**
+ * @summary Getboard
+ */
+export const getBoard = async (workspaceId: number, options?: Parameters<typeof customFetch>[1]): Promise<BoardOut> => {
+
+  return customFetch<BoardOut>(getGetBoardUrl(workspaceId),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetBoardQueryKey = (workspaceId: number,) => {
+    return [
+    `/api/workspaces/${workspaceId}/board`
+    ] as const;
+    }
+
+
+export const getGetBoardQueryOptions = <TData = Awaited<ReturnType<typeof getBoard>>, TError = HTTPValidationError>(workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBoard>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetBoardQueryKey(workspaceId);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getBoard>>> = ({ signal }) => getBoard(workspaceId, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: workspaceId !== null && workspaceId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getBoard>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetBoardQueryResult = NonNullable<Awaited<ReturnType<typeof getBoard>>>
+export type GetBoardQueryError = HTTPValidationError
+
+
+export function useGetBoard<TData = Awaited<ReturnType<typeof getBoard>>, TError = HTTPValidationError>(
+ workspaceId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBoard>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getBoard>>,
+          TError,
+          Awaited<ReturnType<typeof getBoard>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetBoard<TData = Awaited<ReturnType<typeof getBoard>>, TError = HTTPValidationError>(
+ workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBoard>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getBoard>>,
+          TError,
+          Awaited<ReturnType<typeof getBoard>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetBoard<TData = Awaited<ReturnType<typeof getBoard>>, TError = HTTPValidationError>(
+ workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBoard>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Getboard
+ */
+
+export function useGetBoard<TData = Awaited<ReturnType<typeof getBoard>>, TError = HTTPValidationError>(
+ workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBoard>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetBoardQueryOptions(workspaceId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getUploadDocumentsUrl = () => {
+
+
+
+
+  return `/api/uploads`
+}
+
+/**
+ * Upload invoices (PDF, JPEG, PNG, TIFF, WebP, HEIC) into the manual workspace; the worker reads and checks them.
+ * @summary Uploaddocuments
+ */
+export const uploadDocuments = async (bodyUploadDocuments: BodyUploadDocuments, options?: Parameters<typeof customFetch>[1]): Promise<UploadOut[]> => {
+    const formData = new FormData();
+bodyUploadDocuments.files.forEach(value => formData.append(`files`, value));
+
+  return customFetch<UploadOut[]>(getUploadDocumentsUrl(),
+  {
+    ...options,
+    method: 'POST'
+    ,
+    body: formData
+  }
+);}
+
+
+
+
+
+export const getUploadDocumentsMutationKey = () => ['uploadDocuments'] as const;
+
+export const getUploadDocumentsMutationOptions = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof uploadDocuments>>, TError,UploadDocumentsMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof uploadDocuments>>, TError,UploadDocumentsMutationVariables, TContext> => {
+
+const mutationKey = getUploadDocumentsMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof uploadDocuments>>, UploadDocumentsMutationVariables> = (props) => {
+          const {data} = props ?? {};
+
+          return  uploadDocuments(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UploadDocumentsMutationResult = NonNullable<Awaited<ReturnType<typeof uploadDocuments>>>
+    export type UploadDocumentsMutationBody = BodyUploadDocuments
+    export type UploadDocumentsMutationError = HTTPValidationError
+    export type UploadDocumentsMutationVariables = {data: BodyUploadDocuments}
+
+    /**
+ * @summary Uploaddocuments
+ */
+export const useUploadDocuments = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof uploadDocuments>>, TError,UploadDocumentsMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof uploadDocuments>>,
+        TError,
+        UploadDocumentsMutationVariables,
+        TContext
+      > => {
+      return useMutation(getUploadDocumentsMutationOptions(options), queryClient);
+    }
 
 export const getListRunsUrl = () => {
 

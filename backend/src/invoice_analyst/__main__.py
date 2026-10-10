@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import contextlib
 from pathlib import Path
 
 import typer
@@ -56,17 +57,60 @@ def bench_run(
 def inbox_run(
     set_name: str = typer.Option("dev", "--set", help="Which companion set (vendors, POs, inbox stream)"),
     label: str | None = typer.Option(None, help="Short name for this run"),
+    speed: float = typer.Option(2.0, help="Real seconds per simulated day; 0 = everything arrives at once"),
+    fresh: bool = typer.Option(False, help="Ignore answers cached before this run (a resumed run still reuses its own)"),
     limit: int | None = typer.Option(None, help="Only the first N arrivals"),
-    no_cache: bool = typer.Option(False, "--no-cache", help="Call the models even if an answer is cached"),
+    worker: bool = typer.Option(False, "--worker", help="Also process the run in this process, until it finishes"),
 ) -> None:
-    """Read every arrival, then run all checks in arrival order; writes data/runs/<run>/ap_results.json."""
-    from .inbox.runner import run as run_inbox
+    """Start an inbox run: schedule every arrival; the worker (make worker, or --worker) reads and checks them."""
+    from .inbox.feed import feed, status
 
-    summary = asyncio.run(run_inbox(settings(), set_name, label=label, use_cache=not no_cache, limit=limit))
-    typer.echo(f"\nInbox run {summary.run_id}: {summary.documents} documents, {summary.new_calls} new model calls, "
-               f"{len(summary.failed)} failed extractions")
-    typer.echo("Raised: " + ", ".join(f"{k} {v}" for k, v in summary.raised.items()))
-    typer.echo(f"Results: {summary.out_dir / 'ap_results.json'}")
+    fed = asyncio.run(feed(set_name, label=label, seconds_per_day=speed, fresh=fresh, limit=limit))
+    typer.echo(f"Inbox run {fed.run_id} (workspace {fed.workspace_id}): {fed.documents} arrivals from {fed.first_date} "
+               f"to {fed.last_date}, over about {fed.seconds / 60:.0f} min")
+    if worker:
+        asyncio.run(_work_until_finished(fed.run_id))
+        typer.echo(f"Finished: {status(fed.run_id)}")
+    else:
+        typer.echo("Start the worker (make worker) to process it; watch it on the board.")
+
+
+@inbox_app.command("status")
+def inbox_status(run: int = typer.Argument(..., help="Inbox run number")) -> None:
+    """How far an inbox run has got."""
+    from .inbox.feed import status
+
+    typer.echo(status(run))
+
+
+async def _work_until_finished(run_id: int) -> None:
+    from .db.engine import session_factory
+    from .db.models import Run
+    from .worker.app import QUEUES, app as queue
+    from .worker.run import retry_stalled
+
+    async with queue.open_async():
+        await retry_stalled()
+        worker = asyncio.create_task(queue.run_worker_async(queues=list(QUEUES), concurrency=8,
+                                                            install_signal_handlers=False))
+        while True:
+            await asyncio.sleep(2)
+            with session_factory()() as s:
+                if s.get(Run, run_id).status != "running":
+                    break
+            if worker.done():
+                worker.result()  # surfaces a crashed worker
+        worker.cancel()
+        with contextlib.suppress(asyncio.CancelledError):
+            await worker
+
+
+@app.command("worker")
+def run_worker(concurrency: int = typer.Option(8, help="Jobs at once (model calls are capped separately)")) -> None:
+    """Process the job queue: arrivals, reading and checks. Run exactly one (it holds the shared rate limiter)."""
+    from .worker.run import main as worker_main
+
+    asyncio.run(worker_main(concurrency))
 
 
 if __name__ == "__main__":

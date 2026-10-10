@@ -18,7 +18,7 @@ from ..config import ROOT, Settings
 from ..db.engine import session_factory
 from ..db.models import Run, Workspace
 from ..extraction import prompts
-from ..extraction.extract import IMAGE_PARAMS, TEXT_PARAMS, Outcome, extract_document
+from ..extraction.extract import IMAGE_PARAMS, TEXT_PARAMS, Outcome, read, receive
 from ..llm.client import CooldownError, LlmClient
 from .predictions import flag_reasons, to_prediction
 
@@ -67,23 +67,29 @@ def _git_sha() -> str:
 async def extract_waiting(path: Path, *, ws_id: int, run_id: int, settings: Settings, llm: LlmClient,
                           use_cache: bool, gate: asyncio.Semaphore, overrides: dict | None = None,
                           ocr_hint: bool = False, ref: str | None = None, feed_seq: int | None = None,
-                          received_at: dt.datetime | None = None) -> tuple[Path, Outcome]:
-    """Extract one document, waiting out any rate-limit cooldown (a few times) instead of failing it."""
+                          received_at: dt.datetime | None = None,
+                          cache_since: dt.datetime | None = None) -> tuple[Path, Outcome]:
+    """Receive one document, then read it, waiting out any rate-limit cooldown (a few times) instead of failing it.
+    The document is received once; only the reading is retried."""
     async with gate:
+        try:
+            doc_id = await asyncio.to_thread(receive, data=path.read_bytes(), filename=path.name, workspace_id=ws_id,
+                                             run_id=run_id, settings=settings, sessions=session_factory(),
+                                             ref=ref or path.stem, feed_seq=feed_seq, received_at=received_at)
+        except Exception as exc:  # e.g. an unsupported file: report it and carry on with the rest
+            return path, Outcome(-1, "?", "?", None, error=f"{type(exc).__name__}: {exc}"[:2000])
         for _ in range(MAX_COOLDOWN_WAITS + 1):
             try:
-                return path, await extract_document(path=path, workspace_id=ws_id, run_id=run_id,
-                                                    settings=settings, sessions=session_factory(), llm=llm,
-                                                    bench_doc_id=ref or path.stem, use_cache=use_cache,
-                                                    overrides=overrides, ocr_hint=ocr_hint, feed_seq=feed_seq,
-                                                    received_at=received_at)
+                return path, await read(doc_id, settings=settings, sessions=session_factory(), llm=llm,
+                                        use_cache=use_cache, cache_since=cache_since, overrides=overrides,
+                                        ocr_hint=ocr_hint)
             except CooldownError as exc:
                 wait = max(1.0, (exc.until - dt.datetime.now(dt.timezone.utc)).total_seconds())
                 print(f"  {path.stem}: LLM paused until {exc.until:%H:%M:%S} UTC, waiting {wait:.0f}s", flush=True)
                 await asyncio.sleep(wait)
             except Exception as exc:  # not an extraction failure (those are recorded inside): report, keep going
-                return path, Outcome(-1, "?", "?", None, error=f"{type(exc).__name__}: {exc}"[:2000])
-        return path, Outcome(-1, "?", "?", None, error=f"still rate-limited after {MAX_COOLDOWN_WAITS} cooldowns")
+                return path, Outcome(doc_id, "?", "?", None, error=f"{type(exc).__name__}: {exc}"[:2000])
+        return path, Outcome(doc_id, "?", "?", None, error=f"still rate-limited after {MAX_COOLDOWN_WAITS} cooldowns")
 
 
 async def run(settings: Settings, dataset: str, docs: list[Path], *, use_cache: bool = True,

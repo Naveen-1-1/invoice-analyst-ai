@@ -45,7 +45,7 @@ def client(engine: Engine, tmp_path, monkeypatch):
                          bbox=[0.8, 0.5, 0.9, 0.51], evidence_text="$115.00", grounding="exact", source="pdf_text",
                          tier="high", confidence=1.0,
                          reasons=[{"code": "found_text_layer", "text": "Found", "effect": "+"}]))
-        ids = {"run": run.id, "doc": doc.id}
+        ids = {"run": run.id, "doc": doc.id, "workspace": ws.id}
     app = main.app
     app.dependency_overrides[main.db] = lambda: (yield from _session(sessions))
     yield TestClient(app), ids
@@ -74,3 +74,11 @@ def test_files_outside_storage_are_not_served(client, engine: Engine) -> None:
     with sessionmaker(engine).begin() as s:
         s.get(Document, ids["doc"]).storage_path = "/etc/hosts"
     assert http.get(f"/api/documents/{ids['doc']}/file").status_code == 404
+
+
+def test_board_groups_a_workspace_by_state(client) -> None:
+    http, ids = client
+    board = http.get(f"/api/workspaces/{ids['workspace']}/board").json()
+    card = board["cards"][0]
+    assert card["document_id"] == ids["doc"] and card["state"] == "EXTRACTED" and card["tier"] == "high"
+    assert board["worker_online"] in (True, False) and board["clock"] is None

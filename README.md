@@ -37,7 +37,12 @@ generated with its generator.
 
 - `make companion`: generate the dev vendor list, POs, deliveries, vendor history, inbox stream and 24 planted
   problems (the labels stay in `data/dev/labels/`, which only `bench/` reads)
-- `make inbox-dev`: read every arrival, run every check in arrival order, then score the checks against the labels
+- Live: `make worker` (exactly one; it holds the shared LLM rate limiter), then `make inbox-live` (arrivals replayed
+  at 2 s per simulated day; `SPEED=0.5 make inbox-live` for faster) and watch the **Board** in the app. Stop and
+  restart the worker at any time: interrupted jobs are put back on the queue and nothing already read is read again.
+- Upload your own invoices by dropping them on the board: they go to the `manual` workspace, checked against a copy
+  of the dev vendors and POs
+- `make inbox-dev`: the whole dev inbox at once in one process, then score the checks against the labels
 - Each document's Checks tab in the app shows what was found and why
 
 The held-out set is generated once with `make heldout-generate` from a private `HELDOUT_SEED` in `.env`,

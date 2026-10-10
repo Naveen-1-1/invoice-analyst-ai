@@ -282,10 +282,12 @@ class LlmClient:
     async def aclose(self) -> None:
         await self._http.aclose()
 
-    def _cached(self, key: str, response_model: type[T]) -> tuple[T, int] | None:
+    def _cached(self, key: str, response_model: type[T], since: dt.datetime | None) -> tuple[T, int] | None:
         with self._sessions() as s:
-            row = s.scalars(select(LlmCall).where(LlmCall.cache_key == key, LlmCall.ok)
-                            .order_by(LlmCall.id.desc()).limit(1)).first()
+            query = select(LlmCall).where(LlmCall.cache_key == key, LlmCall.ok)
+            if since is not None:  # a 'fresh' run reuses only answers it got itself (e.g. before a restart)
+                query = query.where(LlmCall.created_at >= since)
+            row = s.scalars(query.order_by(LlmCall.id.desc()).limit(1)).first()
         if row is None or not row.response:
             return None
         try:
@@ -301,14 +303,15 @@ class LlmClient:
 
     async def structured(self, *, model: str, messages: list[dict], response_model: type[T], params: dict,
                          prompt_hash: str, schema_ver: str, inputs: dict, document_id: int | None = None,
-                         use_cache: bool = True, context: dict | None = None) -> StructuredResult:
+                         use_cache: bool = True, cache_since: dt.datetime | None = None,
+                         context: dict | None = None) -> StructuredResult:
         """Fill `response_model` via a forced tool call. `inputs` fingerprints the input (file hash, pages,
         preprocessing) for the cache key; `params` are the request parameters (max_tokens, reasoning, ...).
         `context` is passed to validation on live calls (stricter checks that earn one retry); cached answers are
         validated without it."""
         key = cache_key(model, prompt_hash, schema_ver, inputs, params)
         if use_cache:
-            hit = await asyncio.to_thread(self._cached, key, response_model)
+            hit = await asyncio.to_thread(self._cached, key, response_model, cache_since)
             if hit:
                 return StructuredResult(hit[0], True, hit[1], 0)
         request_sha = hashlib.sha256(rfc8785.dumps({"model": model, "messages": messages, "params": params}))

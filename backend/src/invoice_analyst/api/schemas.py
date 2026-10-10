@@ -130,3 +130,56 @@ class DocumentDetail(BaseModel):
     invoices: list[InvoiceOut]
     events: list[EventOut]
     llm_calls: int
+
+
+class WorkspaceOut(BaseModel):
+    id: int
+    name: str
+    kind: str
+    dataset: str
+    created_at: dt.datetime
+    documents: int
+    states: dict[str, int]
+
+
+class ClockOut(BaseModel):
+    """The simulated clock: simulated date = start_sim + (now - start_real) / seconds_per_day days."""
+    start_real: dt.datetime
+    start_sim: dt.date
+    seconds_per_day: float
+
+
+class CardOut(BaseModel):
+    document_id: int
+    seq: int | None
+    ref: str | None
+    filename: str
+    state: str
+    route: str | None
+    received_at: dt.datetime
+    invoices: int
+    vendor: str | None
+    invoice_number: str | None
+    total: Decimal | None
+    currency: str | None
+    tier: str | None
+    invoice_state: str | None
+    findings: dict[str, int]
+    codes: list[str]
+
+
+class BoardOut(BaseModel):
+    workspace: WorkspaceOut
+    clock: ClockOut | None
+    run_status: str | None
+    expected: int | None
+    llm_paused_until: dt.datetime | None
+    worker_online: bool
+    cards: list[CardOut]
+
+
+class UploadOut(BaseModel):
+    filename: str
+    document_id: int | None = None
+    workspace_id: int | None = None
+    error: str | None = None

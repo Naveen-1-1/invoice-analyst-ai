@@ -5,6 +5,110 @@
   "version": "0.1"
  },
  "paths": {
+  "/api/workspaces": {
+   "get": {
+    "summary": "Listworkspaces",
+    "operationId": "listWorkspaces",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/WorkspaceOut"
+         },
+         "type": "array",
+         "title": "Response Listworkspaces"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/board": {
+   "get": {
+    "summary": "Getboard",
+    "operationId": "getBoard",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/BoardOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/uploads": {
+   "post": {
+    "summary": "Uploaddocuments",
+    "description": "Upload invoices (PDF, JPEG, PNG, TIFF, WebP, HEIC) into the manual workspace; the worker reads and checks them.",
+    "operationId": "uploadDocuments",
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_uploadDocuments"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/UploadOut"
+         },
+         "type": "array",
+         "title": "Response Uploaddocuments"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/api/runs": {
    "get": {
     "summary": "Listruns",
@@ -176,6 +280,254 @@
  },
  "components": {
   "schemas": {
+   "BoardOut": {
+    "properties": {
+     "workspace": {
+      "$ref": "#/components/schemas/WorkspaceOut"
+     },
+     "clock": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/ClockOut"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "run_status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Run Status"
+     },
+     "expected": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Expected"
+     },
+     "llm_paused_until": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Llm Paused Until"
+     },
+     "worker_online": {
+      "type": "boolean",
+      "title": "Worker Online"
+     },
+     "cards": {
+      "items": {
+       "$ref": "#/components/schemas/CardOut"
+      },
+      "type": "array",
+      "title": "Cards"
+     }
+    },
+    "type": "object",
+    "required": [
+     "workspace",
+     "clock",
+     "run_status",
+     "expected",
+     "llm_paused_until",
+     "worker_online",
+     "cards"
+    ],
+    "title": "BoardOut"
+   },
+   "Body_uploadDocuments": {
+    "properties": {
+     "files": {
+      "items": {
+       "type": "string",
+       "contentMediaType": "application/octet-stream"
+      },
+      "type": "array",
+      "title": "Files"
+     }
+    },
+    "type": "object",
+    "required": [
+     "files"
+    ],
+    "title": "Body_uploadDocuments"
+   },
+   "CardOut": {
+    "properties": {
+     "document_id": {
+      "type": "integer",
+      "title": "Document Id"
+     },
+     "seq": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Seq"
+     },
+     "ref": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Ref"
+     },
+     "filename": {
+      "type": "string",
+      "title": "Filename"
+     },
+     "state": {
+      "type": "string",
+      "title": "State"
+     },
+     "route": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Route"
+     },
+     "received_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Received At"
+     },
+     "invoices": {
+      "type": "integer",
+      "title": "Invoices"
+     },
+     "vendor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vendor"
+     },
+     "invoice_number": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Number"
+     },
+     "total": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Total"
+     },
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     },
+     "tier": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Tier"
+     },
+     "invoice_state": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice State"
+     },
+     "findings": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "type": "object",
+      "title": "Findings"
+     },
+     "codes": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Codes"
+     }
+    },
+    "type": "object",
+    "required": [
+     "document_id",
+     "seq",
+     "ref",
+     "filename",
+     "state",
+     "route",
+     "received_at",
+     "invoices",
+     "vendor",
+     "invoice_number",
+     "total",
+     "currency",
+     "tier",
+     "invoice_state",
+     "findings",
+     "codes"
+    ],
+    "title": "CardOut"
+   },
    "CheckOut": {
     "properties": {
      "id": {
@@ -231,6 +583,32 @@
      "related_invoice_id"
     ],
     "title": "CheckOut"
+   },
+   "ClockOut": {
+    "properties": {
+     "start_real": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Start Real"
+     },
+     "start_sim": {
+      "type": "string",
+      "format": "date",
+      "title": "Start Sim"
+     },
+     "seconds_per_day": {
+      "type": "number",
+      "title": "Seconds Per Day"
+     }
+    },
+    "type": "object",
+    "required": [
+     "start_real",
+     "start_sim",
+     "seconds_per_day"
+    ],
+    "title": "ClockOut",
+    "description": "The simulated clock: simulated date = start_sim + (now - start_real) / seconds_per_day days."
    },
    "DocumentDetail": {
     "properties": {
@@ -1014,6 +1392,52 @@
     ],
     "title": "RunOut"
    },
+   "UploadOut": {
+    "properties": {
+     "filename": {
+      "type": "string",
+      "title": "Filename"
+     },
+     "document_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Document Id"
+     },
+     "workspace_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Workspace Id"
+     },
+     "error": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Error"
+     }
+    },
+    "type": "object",
+    "required": [
+     "filename"
+    ],
+    "title": "UploadOut"
+   },
    "ValidationError": {
     "properties": {
      "loc": {
@@ -1053,6 +1477,53 @@
      "type"
     ],
     "title": "ValidationError"
+   },
+   "WorkspaceOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name"
+     },
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "dataset": {
+      "type": "string",
+      "title": "Dataset"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "documents": {
+      "type": "integer",
+      "title": "Documents"
+     },
+     "states": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "type": "object",
+      "title": "States"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "name",
+     "kind",
+     "dataset",
+     "created_at",
+     "documents",
+     "states"
+    ],
+    "title": "WorkspaceOut"
    }
   }
  }

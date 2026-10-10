@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+import contextlib
 from collections import Counter
-from collections.abc import Iterator
 from pathlib import Path
 
 from fastapi import Depends, FastAPI, HTTPException
@@ -13,22 +13,26 @@ from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session
 
 from ..config import settings
-from ..db.engine import session_factory
 from ..db.models import (AuditEvent, CheckResult, Document, FieldValue, Invoice, InvoiceLine, LlmCall, Page, Run,
                          Workspace)
+from ..worker.app import app as queue
+from . import board
 from . import schemas as out
+from .deps import db
 
 
 def _operation_id(route: APIRoute) -> str:
     return route.name  # clean names for the generated client: listRuns, getDocument, ...
 
 
-app = FastAPI(title="invoice-analyst-ai", version="0.1", generate_unique_id_function=_operation_id)
+@contextlib.asynccontextmanager
+async def lifespan(_app: FastAPI):
+    async with queue.open_async():  # uploads schedule their reading on the job queue
+        yield
 
 
-def db() -> Iterator[Session]:
-    with session_factory()() as s:
-        yield s
+app = FastAPI(title="invoice-analyst-ai", version="0.1", generate_unique_id_function=_operation_id, lifespan=lifespan)
+app.include_router(board.router)
 
 
 def _inside_storage(path: str) -> Path:

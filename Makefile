@@ -4,7 +4,7 @@ BENCH_PY := bench/.venv/bin/python
 APBENCH := PYTHONPATH=bench/src $(BENCH_PY) -m apbench
 IA := PYTHONPATH=backend/src $(BACKEND_PY) -m invoice_analyst
 
-.PHONY: help venv lock install submodule db-up db-down verify-specs heldout-generate heldout-verify migrate test bench-smoke bench-dev score api web gen-api companion inbox-dev ap-eval
+.PHONY: help venv lock install submodule db-up db-down verify-specs heldout-generate heldout-verify migrate test bench-smoke bench-dev score api web gen-api companion inbox-dev ap-eval worker inbox-live
 
 help:
 	@echo "venv       create backend/.venv and bench/.venv (Python 3.12)"
@@ -21,7 +21,9 @@ help:
 	@echo "web        run the web app on http://127.0.0.1:5173 (needs make api)"
 	@echo "gen-api    regenerate the frontend's typed API client from the backend"
 	@echo "companion  generate dev vendors, POs, deliveries, history, inbox stream and planted problems"
-	@echo "inbox-dev  run the dev inbox (read every arrival, check in arrival order), then score the checks"
+	@echo "worker     process the job queue (arrivals, reading, checks); run exactly one"
+	@echo "inbox-live start a dev inbox replayed in simulated time (needs make worker); watch it on the board"
+	@echo "inbox-dev  run the whole dev inbox at once in this process, then score the checks"
 	@echo "ap-eval RUN=n  score inbox run n's checks against the labels"
 	@echo "verify-specs  check the generator specs (seed 42) reproduce the published answer keys"
 	@echo "heldout-generate  render and seal the held-out set from HELDOUT_SEED (once)"
@@ -97,8 +99,14 @@ gen-api:
 companion:
 	$(APBENCH) companion --set dev
 
+worker:
+	$(IA) worker
+
+inbox-live:
+	$(IA) inbox run --set dev --label live --speed $(or $(SPEED),2)
+
 inbox-dev:
-	$(IA) inbox run --set dev --label dev
+	$(IA) inbox run --set dev --label dev --speed 0 --worker
 	$(MAKE) ap-eval RUN=latest
 
 ap-eval:

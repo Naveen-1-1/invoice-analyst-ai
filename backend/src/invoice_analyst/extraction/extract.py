@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Any
 
 from PIL import Image
+from sqlalchemy import func, select, text
 from sqlalchemy.orm import Session, sessionmaker
 
 from ..audit import chain
@@ -186,43 +187,84 @@ def _save_extraction(s: Session, doc: Document, route: str, model: str, params: 
             s.add_all(_field_rows(row.id, line_ids, evidence[idx], route))
 
 
-async def extract_document(*, path: Path, workspace_id: int, run_id: int | None, settings: Settings,
-                           sessions: sessionmaker[Session], llm: LlmClient, bench_doc_id: str | None = None,
-                           use_cache: bool = True, overrides: dict | None = None, ocr_hint: bool = False,
-                           feed_seq: int | None = None, received_at: dt.datetime | None = None) -> Outcome:
-    started = time.monotonic()
-    data = path.read_bytes()
+TERMINAL_STATES = ("EXTRACTED", "SPLIT", "NOT_INVOICE", "FAILED")
+
+
+def receive(*, data: bytes, filename: str, workspace_id: int, run_id: int | None, settings: Settings,
+            sessions: sessionmaker[Session], ref: str | None = None, feed_seq: int | None = None,
+            received_at: dt.datetime | None = None, next_seq: bool = False) -> int:
+    """Store an arrived file and record it as a RECEIVED document. Returns the document id.
+    next_seq: give it the workspace's next arrival number (uploads), under a lock so two at once never collide."""
     stored = files.store(data, settings.storage_dir)
     with sessions.begin() as s:
-        doc = Document(workspace_id=workspace_id, run_id=run_id, sha256=stored.sha256, filename=path.name,
-                       mime=stored.mime, bytes=stored.bytes, bench_doc_id=bench_doc_id, feed_seq=feed_seq,
+        if next_seq:
+            s.execute(text("SELECT pg_advisory_xact_lock(:k)"), {"k": 1_000_000 + workspace_id})
+            feed_seq = (s.scalar(select(func.max(Document.feed_seq)).where(Document.workspace_id == workspace_id))
+                        or 0) + 1
+        doc = Document(workspace_id=workspace_id, run_id=run_id, sha256=stored.sha256, filename=filename,
+                       mime=stored.mime, bytes=stored.bytes, bench_doc_id=ref, feed_seq=feed_seq,
                        received_at=received_at or dt.datetime.now(dt.timezone.utc), state="RECEIVED",
                        storage_path=str(stored.path))
         s.add(doc)
         s.flush()
         chain.record(s, workspace_id, "system", "document.received", "document", doc.id,
-                     {"filename": path.name, "sha256": stored.sha256, "mime": stored.mime})
-        route, payload = _prepare(s, doc, stored, settings.storage_dir / "pages" / stored.sha256)
+                     {"filename": filename, "sha256": stored.sha256, "mime": stored.mime, "feed_seq": feed_seq})
+        return doc.id
+
+
+def _input(s: Session, doc: Document, settings: Settings) -> tuple[str, Any]:
+    """The model input for a document: prepares it the first time (pages, text layer, OCR), and rebuilds the same
+    input from the stored pages if a previous attempt stopped after preparing (so reading is safe to repeat)."""
+    stored = files.StoredFile(doc.sha256, doc.mime, Path(doc.storage_path).suffix.lstrip("."), doc.bytes,
+                              Path(doc.storage_path))
+    if doc.state == "RECEIVED":
+        route, payload = _prepare(s, doc, stored, settings.storage_dir / "pages" / doc.sha256)
         doc.route = route
         _transition(s, doc, "PREPARED", {"route": route, "text_layer": doc.text_layer, "pages": doc.page_count})
-        doc_id = doc.id
+        return route, payload
+    if doc.route == "text_llm":
+        return "text_llm", pdf.read_text(stored.path).marked_text()
+    pages = s.query(Page).filter(Page.document_id == doc.id).order_by(Page.page_no).all()
+    if doc.mime == "application/pdf":
+        return "image_llm", [Image.open(p.image_path).convert("RGB") for p in pages]
+    return "image_llm", images.load_pages(stored.path)
+
+
+async def read(document_id: int, *, settings: Settings, sessions: sessionmaker[Session], llm: LlmClient,
+               use_cache: bool = True, cache_since: dt.datetime | None = None, overrides: dict | None = None,
+               ocr_hint: bool = False) -> Outcome:
+    """Prepare a received document, have the model read it, locate every value and save it all.
+    Safe to call again after an interruption: a finished document is left as it is, and a prepared one goes
+    straight to the model (whose earlier answer, if any, comes from the cache)."""
+    started = time.monotonic()
+    with sessions.begin() as s:
+        doc = s.get(Document, document_id)
+        if doc.state in TERMINAL_STATES:
+            ext = s.query(Extraction).filter(Extraction.document_id == doc.id).order_by(Extraction.id.desc()).first()
+            value = FileExtraction.model_validate(ext.raw) if ext and ext.raw else None
+            return Outcome(doc.id, doc.route or "?", ext.model if ext else "?", value, True, 0.0,
+                           ext.error if ext else None)
+        route, payload = _input(s, doc, settings)
+        sha, source = doc.sha256, Path(doc.storage_path).read_bytes()
     model = settings.text_model if route == "text_llm" else settings.image_model
     params = {**(TEXT_PARAMS if route == "text_llm" else IMAGE_PARAMS), **(overrides or {})}
-    messages, fingerprint = await asyncio.to_thread(_messages, route, payload, data, ocr_hint)
-    inputs = {"file_sha256": stored.sha256, "route": route, **fingerprint}
+    messages, fingerprint = await asyncio.to_thread(_messages, route, payload, source, ocr_hint)
+    inputs = {"file_sha256": sha, "route": route, **fingerprint}
     value, error, hit, partial = None, None, False, False
     try:
         result = await llm.structured(model=model, messages=messages, response_model=FileExtraction, params=params,
                                       prompt_hash=prompts.PROMPT_HASH, schema_ver=SCHEMA_VERSION, inputs=inputs,
-                                      document_id=doc_id, use_cache=use_cache, context=STRICT)
+                                      document_id=document_id, use_cache=use_cache, cache_since=cache_since,
+                                      context=STRICT)
         value, hit = result.value, result.cache_hit  # type: ignore[assignment]
         partial = result.partial
     except CooldownError:
-        raise  # the caller waits for the cooldown and retries this document
+        raise  # the caller waits for the cooldown and reads this document again
     except Exception as exc:  # anything else is recorded on the document as a failed extraction
         error = f"{type(exc).__name__}: {exc}"[:2000]
-    evidence = await asyncio.to_thread(_finish, sessions, doc_id, route, model, params, value, error, hit, partial)
-    return Outcome(doc_id, route, model, value, hit, round(time.monotonic() - started, 2), error,
+    evidence = await asyncio.to_thread(_finish, sessions, document_id, route, model, params, value, error, hit,
+                                       partial)
+    return Outcome(document_id, route, model, value, hit, round(time.monotonic() - started, 2), error,
                    ["partial"] if partial else [], evidence)
 
 
