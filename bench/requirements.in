@@ -1,0 +1,8 @@
+# Kept separate from the backend so the benchmark generator gets its exact pins
+# (from third_party/invoice-extraction-benchmark/requirements.txt).
+reportlab==5.0.1
+pillow==12.3.0
+python-dateutil>=2.9.0
+
+typer
+pytest

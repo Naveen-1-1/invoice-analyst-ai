@@ -1,0 +1,3 @@
+[submodule "third_party/invoice-extraction-benchmark"]
+	path = third_party/invoice-extraction-benchmark
+	url = https://github.com/DrewKraken/invoice-extraction-benchmark.git

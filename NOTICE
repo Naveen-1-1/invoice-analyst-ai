@@ -1,0 +1,17 @@
+invoice-analyst-ai
+Copyright (c) 2026 Naveen Shankar — MIT License (see LICENSE)
+
+This project uses the Invoice Extraction Benchmark, included as a git
+submodule under third_party/invoice-extraction-benchmark:
+
+  InvoiceParser Pro, Invoice Extraction Benchmark v1
+  https://github.com/DrewKraken/invoice-extraction-benchmark
+  Code: MIT License, Copyright (c) 2026 InvoiceParser Pro
+  Data (corpus/, examples/): Creative Commons Attribution 4.0 (CC BY 4.0)
+
+The benchmark was produced by InvoiceParser Pro, a vendor of invoice
+extraction software. Results from this project are reported as results
+"on the InvoiceParser Pro Invoice Extraction Benchmark v1".
+
+Held-out and companion data under data/ are generated with that
+benchmark's generator and are derived works of it.
