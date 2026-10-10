@@ -7,7 +7,7 @@ from pathlib import Path
 
 import typer
 
-from . import compare, heldout, score, specs
+from . import calibrate, compare, heldout, score, specs
 
 app = typer.Typer(add_completion=False, no_args_is_help=True)
 heldout_app = typer.Typer(add_completion=False, no_args_is_help=True,
@@ -60,6 +60,14 @@ def compare_runs(a: str = typer.Argument(..., help="Baseline run number or direc
                  b: str = typer.Argument(..., help="Run to compare against it")) -> None:
     """Side-by-side scores of two runs on the documents both contain, and which documents changed."""
     typer.echo(compare.compare(a, b))
+
+
+@app.command("calibrate")
+def calibrate_run(run: str = typer.Argument(..., help="A scored dev run (number or directory)"),
+                  write: bool = typer.Option(True, help="Write backend/.../calibration.json"),
+                  use_defaults: bool = typer.Option(False, help="Keep the default knobs; only measure accuracy")) -> None:
+    """Tune the confidence knobs on a scored dev run and report how often each tier is right."""
+    typer.echo(calibrate.calibrate(run, write, use_defaults))
 
 
 @app.command("hardest")

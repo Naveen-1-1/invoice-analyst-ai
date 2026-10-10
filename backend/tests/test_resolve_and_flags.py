@@ -83,7 +83,7 @@ def test_ambiguous_date_resolved_by_country_with_a_note() -> None:
     r = resolve(inv(vendor={"name": {"text": "Pennine Tyre"}, "country": "GB"}, payment_terms={},
                     invoice_date={"text": "04/03/2026", "value": "2026-04-03"}, due_date={}))
     assert r.invoice_date == "2026-03-04" and r.date_order_source == "country"
-    assert {"invoice_date.ambiguous", "invoice_date.disagrees"} <= {x["code"] for x in r.notes}
+    assert {"invoice_date.ambiguous_country", "invoice_date.disagrees"} <= {x["code"] for x in r.notes}
 
 
 def test_unread_line_amount_is_not_an_inconsistency() -> None:

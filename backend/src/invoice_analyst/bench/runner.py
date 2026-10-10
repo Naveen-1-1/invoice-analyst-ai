@@ -132,6 +132,12 @@ async def run(settings: Settings, dataset: str, docs: list[Path], *, use_cache: 
         "run_date": stamp.date().isoformat(),
         "notes": f"run {run_id}, prompt {prompts.PROMPT_HASH}, git {_git_sha()}",
         "documents": predictions}, indent=1, ensure_ascii=False) + "\n")
+    # Evidence per field (no answers) for calibration in bench/: apbench calibrate joins it with the scores
+    (out_dir / "fields.json").write_text(json.dumps({
+        doc_id: {"route": o.route, "invoices": [[{"field": ev.field, "line_no": ev.line_no, "tier": ev.tier,
+                                                    "grounding": ev.located.grounding, "signals": ev.signals}
+                                                   for ev in inv] for inv in o.evidence]}
+        for doc_id, o in sorted(outcomes.items())}, default=str) + "\n")
     failed = sorted(k for k, o in outcomes.items() if o.error)
     hits = sum(o.cache_hit for o in outcomes.values())
     counts = Counter(o.route for o in outcomes.values())

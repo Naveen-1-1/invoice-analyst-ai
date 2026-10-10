@@ -1,0 +1,101 @@
+{
+ "knobs": {
+  "ocr_conf_min": 0.9,
+  "sharpness_min": 100.0,
+  "brightness_min": 80.0
+ },
+ "knobs_source": "defaults (decision 26)",
+ "tuned_knobs": {
+  "ocr_conf_min": 0.8,
+  "sharpness_min": 0.0,
+  "brightness_min": 0.0
+ },
+ "accuracy": {
+  "all": {
+   "high": {
+    "n": 1450,
+    "right": 1450,
+    "accuracy": 1.0,
+    "wilson_lb": 0.9974
+   },
+   "low": {
+    "n": 40,
+    "right": 31,
+    "accuracy": 0.775,
+    "wilson_lb": 0.625
+   },
+   "medium": {
+    "n": 84,
+    "right": 80,
+    "accuracy": 0.9524,
+    "wilson_lb": 0.8839
+   }
+  },
+  "image_llm": {
+   "high": {
+    "n": 515,
+    "right": 515,
+    "accuracy": 1.0,
+    "wilson_lb": 0.9926
+   },
+   "low": {
+    "n": 26,
+    "right": 17,
+    "accuracy": 0.6538,
+    "wilson_lb": 0.4622
+   },
+   "medium": {
+    "n": 69,
+    "right": 65,
+    "accuracy": 0.942,
+    "wilson_lb": 0.8602
+   }
+  },
+  "text_llm": {
+   "high": {
+    "n": 935,
+    "right": 935,
+    "accuracy": 1.0,
+    "wilson_lb": 0.9959
+   },
+   "low": {
+    "n": 14,
+    "right": 14,
+    "accuracy": 1.0,
+    "wilson_lb": 0.7847
+   },
+   "medium": {
+    "n": 15,
+    "right": 15,
+    "accuracy": 1.0,
+    "wilson_lb": 0.7961
+   }
+  }
+ },
+ "cross_validation": {
+  "folds": 5,
+  "high_n": 1486,
+  "high_right": 1486,
+  "high_accuracy": 1.0,
+  "high_wilson_lb": 0.9974,
+  "high_share": 0.944
+ },
+ "boxes": {
+  "image_llm": {
+   "printed": 1147,
+   "located": 1097,
+   "share": 0.956
+  },
+  "text_llm": {
+   "printed": 3026,
+   "located": 3020,
+   "share": 0.998
+  }
+ },
+ "source": {
+  "run": "0011",
+  "observations": 1574,
+  "created": "2026-10-10",
+  "method": "grid search, Wilson >= 0.97 at >= 99% for 'high', 5-fold CV grouped by base_id"
+ }
+}

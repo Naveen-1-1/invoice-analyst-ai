@@ -25,8 +25,14 @@ def _close(a: float, b: float, base: float = 0.0) -> bool:
 
 
 def arithmetic_issues(inv: InvoiceDoc) -> list[Issue]:
+    return arithmetic_report(inv)[1]
+
+
+def arithmetic_report(inv: InvoiceDoc) -> tuple[list[str], list[Issue]]:
+    """(checks that passed, issues). Check names: lines_vs_subtotal, lines_vs_total, total, tax_rate."""
+    passed: list[str] = []
     if inv.document_type in ("statement", "other"):
-        return []
+        return passed, []
     # A line whose amount wasn't read can't be summed: comparing the rest with the subtotal would call a
     # perfectly consistent invoice inconsistent. (Confidence, from M3, reports the unread amount instead.)
     complete = all(ln.amount is not None for ln in inv.lines)
@@ -44,19 +50,28 @@ def arithmetic_issues(inv: InvoiceDoc) -> list[Issue]:
     issues: list[Issue] = []
 
     if inv.prices_include_tax:
-        if lines and total is not None and not _close(lines_sum + charges, total):
-            issues.append(Issue("arith.lines_vs_total",
-                                f"The lines add up to {lines_sum:,.2f}, but the VAT-inclusive total is {total:,.2f}."))
-        return issues
+        if lines and total is not None:
+            if _close(lines_sum + charges, total):
+                passed.append("lines_vs_total")
+            else:
+                issues.append(Issue("arith.lines_vs_total", f"The lines add up to {lines_sum:,.2f}, but the "
+                                                            f"VAT-inclusive total is {total:,.2f}."))
+        return passed, issues
 
-    if lines and subtotal is not None and not _close(lines_sum, subtotal):
-        issues.append(Issue("arith.lines_vs_subtotal",
-                            f"The lines add up to {lines_sum:,.2f}, but the printed subtotal is {subtotal:,.2f}."))
+    if lines and subtotal is not None:
+        if _close(lines_sum, subtotal):
+            passed.append("lines_vs_subtotal")
+        else:
+            issues.append(Issue("arith.lines_vs_subtotal", f"The lines add up to {lines_sum:,.2f}, but the printed "
+                                                             f"subtotal is {subtotal:,.2f}."))
     base = subtotal if subtotal is not None else (lines_sum if lines else None)
-    if base is not None and total is not None and not _close(base + charges + tax, total):
-        issues.append(Issue("arith.total_mismatch",
-                            f"Subtotal {base:,.2f} + charges {charges:,.2f} + tax {tax:,.2f} = "
-                            f"{base + charges + tax:,.2f}, but the printed total is {total:,.2f}."))
+    if base is not None and total is not None:
+        if _close(base + charges + tax, total):
+            passed.append("total")
+        else:
+            issues.append(Issue("arith.total_mismatch", f"Subtotal {base:,.2f} + charges {charges:,.2f} + tax "
+                                                          f"{tax:,.2f} = {base + charges + tax:,.2f}, but the printed "
+                                                          f"total is {total:,.2f}."))
     if base:
         per_line = any(ln.vat_rate_percent is not None for ln in inv.lines)
         several = len({t.rate_percent for t in tax_lines if t.rate_percent}) > 1
@@ -72,8 +87,11 @@ def arithmetic_issues(inv: InvoiceDoc) -> list[Issue]:
                     continue  # several rates and no per-line rates: can't tell which lines each covers
                 else:
                     candidates = [t.rate_percent / 100 * base, t.rate_percent / 100 * (base + charges)]
-                if not any(_close(c, t.amount, base) for c in candidates):
+                if any(_close(c, t.amount, base) for c in candidates):
+                    if "tax_rate" not in passed:
+                        passed.append("tax_rate")
+                else:
                     issues.append(Issue("arith.tax_rate_mismatch",
                                         f"{t.label or 'Tax'} is printed at {t.rate_percent:g}%, which would be "
                                         f"{candidates[0]:,.2f}, but the amount is {t.amount:,.2f}."))
-    return issues
+    return passed, issues

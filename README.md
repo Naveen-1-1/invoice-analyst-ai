@@ -26,5 +26,12 @@ generated with its generator.
   compares two runs
 - Answers are cached: rerunning the same documents with the same prompt and settings makes no API calls
 
+## Web app
+
+- `make api` (backend on http://127.0.0.1:8000) and `make web` (app on http://127.0.0.1:5173) in two terminals
+- Runs → a run's documents → a document: the page with a box around every value read, and each value's confidence
+  tier with the evidence behind it (hover a value to find it on the page)
+- `make gen-api` regenerates the frontend's typed client after an API change
+
 The held-out set is generated once with `make heldout-generate` from a private `HELDOUT_SEED` in `.env`,
 and sealed in `data/heldout/LOCK.json`; `make heldout-verify` checks the seal.

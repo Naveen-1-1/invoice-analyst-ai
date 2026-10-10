@@ -1,0 +1,995 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "invoice-analyst-ai",
+  "version": "0.1"
+ },
+ "paths": {
+  "/api/runs": {
+   "get": {
+    "summary": "Listruns",
+    "operationId": "listRuns",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/RunOut"
+         },
+         "type": "array",
+         "title": "Response Listruns"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/runs/{run_id}/documents": {
+   "get": {
+    "summary": "Listrundocuments",
+    "operationId": "listRunDocuments",
+    "parameters": [
+     {
+      "name": "run_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Run Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/DocumentRow"
+         },
+         "title": "Response Listrundocuments"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/documents/{document_id}": {
+   "get": {
+    "summary": "Getdocument",
+    "operationId": "getDocument",
+    "parameters": [
+     {
+      "name": "document_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Document Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/DocumentDetail"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/pages/{page_id}/image": {
+   "get": {
+    "summary": "Getpageimage",
+    "operationId": "getPageImage",
+    "parameters": [
+     {
+      "name": "page_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Page Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/documents/{document_id}/file": {
+   "get": {
+    "summary": "Getdocumentfile",
+    "operationId": "getDocumentFile",
+    "parameters": [
+     {
+      "name": "document_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Document Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "schemas": {
+   "DocumentDetail": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "bench_doc_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bench Doc Id"
+     },
+     "filename": {
+      "type": "string",
+      "title": "Filename"
+     },
+     "mime": {
+      "type": "string",
+      "title": "Mime"
+     },
+     "route": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Route"
+     },
+     "text_layer": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Text Layer"
+     },
+     "state": {
+      "type": "string",
+      "title": "State"
+     },
+     "received_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Received At"
+     },
+     "file_url": {
+      "type": "string",
+      "title": "File Url"
+     },
+     "pages": {
+      "items": {
+       "$ref": "#/components/schemas/PageOut"
+      },
+      "type": "array",
+      "title": "Pages"
+     },
+     "invoices": {
+      "items": {
+       "$ref": "#/components/schemas/InvoiceOut"
+      },
+      "type": "array",
+      "title": "Invoices"
+     },
+     "events": {
+      "items": {
+       "$ref": "#/components/schemas/EventOut"
+      },
+      "type": "array",
+      "title": "Events"
+     },
+     "llm_calls": {
+      "type": "integer",
+      "title": "Llm Calls"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "bench_doc_id",
+     "filename",
+     "mime",
+     "route",
+     "text_layer",
+     "state",
+     "received_at",
+     "file_url",
+     "pages",
+     "invoices",
+     "events",
+     "llm_calls"
+    ],
+    "title": "DocumentDetail"
+   },
+   "DocumentRow": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "bench_doc_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bench Doc Id"
+     },
+     "filename": {
+      "type": "string",
+      "title": "Filename"
+     },
+     "route": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Route"
+     },
+     "state": {
+      "type": "string",
+      "title": "State"
+     },
+     "page_count": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Page Count"
+     },
+     "tier": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Tier"
+     },
+     "vendor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vendor"
+     },
+     "invoice_number": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Number"
+     },
+     "total": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Total"
+     },
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "bench_doc_id",
+     "filename",
+     "route",
+     "state",
+     "page_count",
+     "tier",
+     "vendor",
+     "invoice_number",
+     "total",
+     "currency"
+    ],
+    "title": "DocumentRow"
+   },
+   "EventOut": {
+    "properties": {
+     "seq": {
+      "type": "integer",
+      "title": "Seq"
+     },
+     "occurred_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Occurred At"
+     },
+     "actor": {
+      "type": "string",
+      "title": "Actor"
+     },
+     "action": {
+      "type": "string",
+      "title": "Action"
+     },
+     "data": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Data"
+     }
+    },
+    "type": "object",
+    "required": [
+     "seq",
+     "occurred_at",
+     "actor",
+     "action",
+     "data"
+    ],
+    "title": "EventOut"
+   },
+   "FieldOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "field": {
+      "type": "string",
+      "title": "Field"
+     },
+     "line_no": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Line No"
+     },
+     "value": {
+      "title": "Value"
+     },
+     "raw_text": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Raw Text"
+     },
+     "page_no": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Page No"
+     },
+     "bbox": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "number"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bbox"
+     },
+     "evidence_text": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Evidence Text"
+     },
+     "grounding": {
+      "type": "string",
+      "title": "Grounding"
+     },
+     "source": {
+      "type": "string",
+      "title": "Source"
+     },
+     "tier": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Tier"
+     },
+     "confidence": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Confidence"
+     },
+     "reasons": {
+      "items": {
+       "$ref": "#/components/schemas/Reason"
+      },
+      "type": "array",
+      "title": "Reasons"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "field",
+     "line_no",
+     "value",
+     "raw_text",
+     "page_no",
+     "bbox",
+     "evidence_text",
+     "grounding",
+     "source",
+     "tier",
+     "confidence",
+     "reasons"
+    ],
+    "title": "FieldOut"
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "type": "array",
+      "title": "Detail"
+     }
+    },
+    "type": "object",
+    "title": "HTTPValidationError"
+   },
+   "InvoiceOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "child_index": {
+      "type": "integer",
+      "title": "Child Index"
+     },
+     "doc_type": {
+      "type": "string",
+      "title": "Doc Type"
+     },
+     "state": {
+      "type": "string",
+      "title": "State"
+     },
+     "conf_tier": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Conf Tier"
+     },
+     "vendor_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vendor Name"
+     },
+     "invoice_number": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Number"
+     },
+     "invoice_date": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Date"
+     },
+     "due_date": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Due Date"
+     },
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     },
+     "subtotal": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Subtotal"
+     },
+     "tax": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Tax"
+     },
+     "total": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Total"
+     },
+     "fields": {
+      "items": {
+       "$ref": "#/components/schemas/FieldOut"
+      },
+      "type": "array",
+      "title": "Fields"
+     },
+     "lines": {
+      "items": {
+       "$ref": "#/components/schemas/LineOut"
+      },
+      "type": "array",
+      "title": "Lines"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "child_index",
+     "doc_type",
+     "state",
+     "conf_tier",
+     "vendor_name",
+     "invoice_number",
+     "invoice_date",
+     "due_date",
+     "currency",
+     "subtotal",
+     "tax",
+     "total",
+     "fields",
+     "lines"
+    ],
+    "title": "InvoiceOut"
+   },
+   "LineOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "line_no": {
+      "type": "integer",
+      "title": "Line No"
+     },
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "qty": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Qty"
+     },
+     "unit_price": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unit Price"
+     },
+     "amount": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Amount"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "line_no",
+     "kind",
+     "description",
+     "qty",
+     "unit_price",
+     "amount"
+    ],
+    "title": "LineOut"
+   },
+   "PageOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "page_no": {
+      "type": "integer",
+      "title": "Page No"
+     },
+     "width": {
+      "type": "number",
+      "title": "Width"
+     },
+     "height": {
+      "type": "number",
+      "title": "Height"
+     },
+     "unit": {
+      "type": "string",
+      "title": "Unit"
+     },
+     "image_url": {
+      "type": "string",
+      "title": "Image Url"
+     },
+     "quality": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Quality"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "page_no",
+     "width",
+     "height",
+     "unit",
+     "image_url",
+     "quality"
+    ],
+    "title": "PageOut"
+   },
+   "Reason": {
+    "properties": {
+     "code": {
+      "type": "string",
+      "title": "Code"
+     },
+     "text": {
+      "type": "string",
+      "title": "Text"
+     },
+     "effect": {
+      "type": "string",
+      "title": "Effect"
+     }
+    },
+    "type": "object",
+    "required": [
+     "code",
+     "text",
+     "effect"
+    ],
+    "title": "Reason"
+   },
+   "RunOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "workspace_id": {
+      "type": "integer",
+      "title": "Workspace Id"
+     },
+     "mode": {
+      "type": "string",
+      "title": "Mode"
+     },
+     "label": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Label"
+     },
+     "dataset": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Dataset"
+     },
+     "status": {
+      "type": "string",
+      "title": "Status"
+     },
+     "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Started At"
+     },
+     "finished_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Finished At"
+     },
+     "documents": {
+      "type": "integer",
+      "title": "Documents"
+     },
+     "tiers": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "type": "object",
+      "title": "Tiers"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "workspace_id",
+     "mode",
+     "label",
+     "dataset",
+     "status",
+     "started_at",
+     "finished_at",
+     "documents",
+     "tiers"
+    ],
+    "title": "RunOut"
+   },
+   "ValidationError": {
+    "properties": {
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "type": "array",
+      "title": "Location"
+     },
+     "msg": {
+      "type": "string",
+      "title": "Message"
+     },
+     "type": {
+      "type": "string",
+      "title": "Error Type"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "ctx": {
+      "type": "object",
+      "title": "Context"
+     }
+    },
+    "type": "object",
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError"
+   }
+  }
+ }
+}

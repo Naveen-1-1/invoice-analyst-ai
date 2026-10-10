@@ -1,12 +1,14 @@
 """Local OCR (RapidOCR, bundled PP-OCRv6 models): the words on a page image with boxes and confidence.
 
-Used to find where the model's quoted text sits on photos and scans (M3) and, if the A/B test says it helps, to
-give the vision model the OCR text as a hint. Runs on the CPU; no network.
+Used to find where the model's quoted text sits on photos and scans, which also cross-checks the model's reading
+(decision 25). text_lines() backs the optional --ocr-hint A/B mode, which is off by default. CPU only; no network.
 """
 
 from __future__ import annotations
 
+import json
 from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
 from PIL import Image
@@ -45,6 +47,22 @@ def words(image: Image.Image) -> list[dict]:
             results.append({"t": text, "bbox": _quad_to_box(box, w, h), "conf": round(float(score), 3),
                             "src": "ocr"})
     return results
+
+
+OCR_VERSION = "rapidocr-3.10-ppocrv6-words-1"  # part of the on-disk cache name; bump if words() changes
+
+
+def cached_words(image: Image.Image, cache_dir: Path, page_no: int) -> list[dict]:
+    """words(image), stored next to the page renders so reruns skip the ~3 s of OCR per page."""
+    path = cache_dir / f"ocr-{OCR_VERSION}-p{page_no}.json"
+    if path.exists():
+        return json.loads(path.read_text())
+    result = words(image)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".part")
+    tmp.write_text(json.dumps(result))
+    tmp.replace(path)
+    return result
 
 
 def text_lines(image: Image.Image) -> list[str]:

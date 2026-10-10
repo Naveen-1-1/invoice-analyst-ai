@@ -69,8 +69,12 @@ def resolve(inv: InvoiceDoc) -> Resolved:
             return model_value
         iso = parsed.isoformat()
         if ambiguous:
-            notes.append({"code": f"{field_name}.ambiguous",
-                          "text": f"{printed.text!r} can be read two ways; read as {iso} ({how} rule)."})
+            # settled by another date on the document or by the terms = evidence; by country alone = a guess
+            settled = "resolved" if how in ("document", "terms") else "country"
+            why = {"document": "another date on the document", "terms": "the payment terms",
+                   "country": "the vendor country's usual date order"}[how]
+            notes.append({"code": f"{field_name}.ambiguous_{settled}",
+                          "text": f"{printed.text!r} can be read two ways; read as {iso} from {why}."})
         if model_value and model_value != iso:
             notes.append({"code": f"{field_name}.disagrees",
                           "text": f"The model read {printed.text!r} as {model_value}; the rules give {iso}."})

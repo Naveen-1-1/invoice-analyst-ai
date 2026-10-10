@@ -22,11 +22,15 @@ from sqlalchemy.orm import Session, sessionmaker
 
 from ..audit import chain
 from ..config import Settings
-from ..db.models import Document, Extraction, Invoice, InvoiceLine, Page
+from ..db.models import Document, Extraction, FieldValue, Invoice, InvoiceLine, Page
 from ..ingest import files, images, pdf
+from ..ingest.quality import measure as quality_measure
 from ..ocr import rapid
 from ..llm.client import CooldownError, LlmClient
 from . import prompts
+from .confidence import calibrated_accuracy
+from .evidence import FieldEvidence, gather, invoice_tier
+from .grounding import PageIndex
 from .resolve import resolve
 from .schemas import SCHEMA_VERSION, STRICT, FileExtraction
 
@@ -49,6 +53,7 @@ class Outcome:
     seconds: float = 0.0
     error: str | None = None
     notes: list[str] = field(default_factory=list)
+    evidence: list[list[FieldEvidence]] = field(default_factory=list)  # per invoice in the file
 
 
 def _transition(s: Session, doc: Document, state: str, data: dict | None = None) -> None:
@@ -63,12 +68,16 @@ def _prepare(s: Session, doc: Document, stored: files.StoredFile, pages_dir: Pat
         text = pdf.read_text(stored.path)
         rendered = pdf.render_pages(stored.path, pages_dir)
         doc.text_layer, doc.page_count = text.layer, len(text.pages)
-        for p, img_path in zip(text.pages, rendered, strict=True):
-            s.add(Page(document_id=doc.id, page_no=p.page_no, width=p.width_pt, height=p.height_pt, unit="pt",
-                       image_path=str(img_path), words=p.words, quality={}))
         if text.layer == "full":
+            for p, img_path in zip(text.pages, rendered, strict=True):
+                s.add(Page(document_id=doc.id, page_no=p.page_no, width=p.width_pt, height=p.height_pt, unit="pt",
+                           image_path=str(img_path), words=p.words, quality={}))
             return "text_llm", text.marked_text()
-        return "image_llm", [Image.open(pth).convert("RGB") for pth in rendered]
+        # Scanned or partly scanned: the page renders go to the vision model, and OCR supplies the words
+        imgs = [Image.open(pth).convert("RGB") for pth in rendered]
+        for n, (img, img_path) in enumerate(zip(imgs, rendered, strict=True), 1):
+            s.add(_image_page(doc.id, n, img, img_path, pages_dir))
+        return "image_llm", imgs
     pages = images.load_pages(stored.path)
     doc.text_layer, doc.page_count = "n/a", len(pages)
     for i, img in enumerate(pages, 1):
@@ -79,9 +88,18 @@ def _prepare(s: Session, doc: Document, stored: files.StoredFile, pages_dir: Pat
             pages_dir.mkdir(parents=True, exist_ok=True)
             if not img_path.exists():
                 img.save(img_path, "PNG")
-        s.add(Page(document_id=doc.id, page_no=i, width=img.width, height=img.height, unit="px",
-                   image_path=str(img_path), words=[], quality={}))
+        s.add(_image_page(doc.id, i, img, img_path, pages_dir))
     return "image_llm", pages
+
+
+def _image_page(document_id: int, page_no: int, img: Image.Image, img_path: Path, pages_dir: Path) -> Page:
+    """A photo/scan page: OCR words (to locate values) and readability measures (for confidence)."""
+    words = rapid.cached_words(img, pages_dir, page_no)
+    confs = [w["conf"] for w in words]
+    quality = {**quality_measure(img), "ocr_words": len(words),
+               "ocr_conf": round(sum(confs) / len(confs), 3) if confs else 0.0}
+    return Page(document_id=document_id, page_no=page_no, width=img.width, height=img.height, unit="px",
+                image_path=str(img_path), words=words, quality=quality)
 
 
 def _messages(route: str, payload: Any, source: bytes, ocr_hint: bool = False) -> tuple[list[dict], dict]:
@@ -111,8 +129,25 @@ def _dec(x: float | None) -> Decimal | None:
     return None if x is None else Decimal(str(x))
 
 
+def _jsonable(x: Any) -> Any:
+    return x if x is None or isinstance(x, (str, int, float, bool)) else str(x)
+
+
+def _field_rows(invoice_id: int, line_ids: dict[int, int], evidence: list[FieldEvidence], route: str) -> list[FieldValue]:
+    rows = []
+    for ev in evidence:
+        loc = ev.located
+        source = ("pdf_text" if route == "text_llm" else "ocr") if loc.grounding in ("exact", "fuzzy") else "llm"
+        rows.append(FieldValue(invoice_id=invoice_id, invoice_line_id=line_ids.get(ev.line_no) if ev.line_no else None,
+                               field=ev.field, raw_text=ev.raw_text, value=_jsonable(ev.value), page_no=loc.page_no,
+                               bbox=loc.bbox, evidence_text=loc.matched, grounding=loc.grounding, source=source,
+                               tier=ev.tier, confidence=calibrated_accuracy(route, ev.tier), reasons=ev.reasons))
+    return rows
+
+
 def _save_extraction(s: Session, doc: Document, route: str, model: str, params: dict,
-                     value: FileExtraction | None, error: str | None) -> None:
+                     value: FileExtraction | None, error: str | None,
+                     evidence: list[list[FieldEvidence]] | None = None) -> None:
     resolved = [dataclasses.asdict(resolve(inv)) for inv in value.invoices] if value else None
     ext = Extraction(document_id=doc.id, route=route, model=model, prompt_hash=prompts.PROMPT_HASH,
                      schema_ver=SCHEMA_VERSION, preprocess_ver=TEXT_PREPROCESS if route == "text_llm"
@@ -131,16 +166,23 @@ def _save_extraction(s: Session, doc: Document, route: str, model: str, params: 
                       due_date=dt.date.fromisoformat(r["due_date"]) if r["due_date"] else None,
                       due_date_source="printed" if r["due_date"] else None, subtotal=_dec(r["subtotal"]),
                       tax=_dec(r["tax"]), total=_dec(r["total"]), payable_amount=_dec(r["total"]),
-                      payable_currency=r["currency"])
+                      payable_currency=r["currency"],
+                      conf_tier=invoice_tier(evidence[idx]) if evidence else None)
         s.add(row)
         s.flush()
+        line_ids: dict[int, int] = {}
         for n, ln in enumerate(inv.lines, 1):
-            s.add(InvoiceLine(invoice_id=row.id, line_no=n, kind="item", description=ln.description,
-                              item_code=ln.item_code, qty=_dec(ln.quantity), unit_price=_dec(ln.unit_price),
-                              amount=_dec(ln.amount), vat_rate=_dec(ln.vat_rate_percent)))
+            line_row = InvoiceLine(invoice_id=row.id, line_no=n, kind="item", description=ln.description,
+                                   item_code=ln.item_code, qty=_dec(ln.quantity), unit_price=_dec(ln.unit_price),
+                                   amount=_dec(ln.amount), vat_rate=_dec(ln.vat_rate_percent))
+            s.add(line_row)
+            s.flush()
+            line_ids[n] = line_row.id
         for n, ch in enumerate(inv.charges, len(inv.lines) + 1):
             s.add(InvoiceLine(invoice_id=row.id, line_no=n, kind="discount" if ch.kind == "discount" else "charge",
                               description=ch.description, amount=_dec(ch.amount)))
+        if evidence:
+            s.add_all(_field_rows(row.id, line_ids, evidence[idx], route))
 
 
 async def extract_document(*, path: Path, workspace_id: int, run_id: int | None, settings: Settings,
@@ -176,16 +218,28 @@ async def extract_document(*, path: Path, workspace_id: int, run_id: int | None,
         raise  # the caller waits for the cooldown and retries this document
     except Exception as exc:  # anything else is recorded on the document as a failed extraction
         error = f"{type(exc).__name__}: {exc}"[:2000]
+    evidence = await asyncio.to_thread(_finish, sessions, doc_id, route, model, params, value, error, hit, partial)
+    return Outcome(doc_id, route, model, value, hit, round(time.monotonic() - started, 2), error,
+                   ["partial"] if partial else [], evidence)
+
+
+def _finish(sessions: sessionmaker[Session], doc_id: int, route: str, model: str, params: dict,
+            value: FileExtraction | None, error: str | None, hit: bool, partial: bool) -> list[list[FieldEvidence]]:
+    """Locate every value on the page, assess confidence, and save the extraction (in a worker thread)."""
     with sessions.begin() as s:
         doc = s.get(Document, doc_id)
-        _save_extraction(s, doc, route, model, params, value, error)
+        pages = sorted(s.query(Page).filter(Page.document_id == doc_id).all(), key=lambda p: p.page_no)
+        index = [PageIndex(p.page_no, p.words) for p in pages]
+        quality = {p.page_no: p.quality for p in pages}
+        evidence = [gather(inv, resolve(inv), index, route, quality) for inv in value.invoices] if value else []
+        _save_extraction(s, doc, route, model, params, value, error, evidence)
         if error:
             _transition(s, doc, "FAILED", {"error": error[:300]})
         else:
             kinds = {inv.document_type for inv in value.invoices}  # type: ignore[union-attr]
             state = ("SPLIT" if len(value.invoices) > 1  # type: ignore[union-attr]
                      else "NOT_INVOICE" if kinds <= {"statement", "other"} else "EXTRACTED")
+            tiers = [invoice_tier(ev) for ev in evidence]
             _transition(s, doc, state, {"model": model, "cache_hit": hit, "partial": partial,  # type: ignore[union-attr]
-                                        "invoices": len(value.invoices)})
-    return Outcome(doc_id, route, model, value, hit, round(time.monotonic() - started, 2), error,
-                   ["partial"] if partial else [])
+                                        "invoices": len(value.invoices), "tiers": tiers})
+    return evidence
