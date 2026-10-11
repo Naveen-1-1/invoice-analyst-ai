@@ -20,9 +20,12 @@ from ..db.models import Run, Workspace
 from ..extraction import prompts
 from ..extraction.extract import IMAGE_PARAMS, TEXT_PARAMS, Outcome, read, receive
 from ..llm.client import CooldownError, LlmClient
-from .predictions import flag_reasons, to_prediction
+from .predictions import flag_reasons, to_extended, to_prediction
 
-DATASETS = {"dev": ROOT / "third_party" / "invoice-extraction-benchmark" / "corpus" / "v1" / "documents"}
+DATASETS = {"dev": ROOT / "third_party" / "invoice-extraction-benchmark" / "corpus" / "v1" / "documents",
+            # the sealed held-out documents (never their answers): read only by the final run (decision 47)
+            "heldout": ROOT / "data" / "heldout" / "corpus" / "documents"}
+FINAL_ONLY = {"heldout"}
 RUNS_DIR = ROOT / "data" / "runs"
 DOC_CONCURRENCY = 8  # documents prepared/in progress at once; the LLM client caps calls in flight separately
 MAX_COOLDOWN_WAITS = 3
@@ -40,9 +43,11 @@ class RunSummary:
 
 
 def select_documents(dataset: str, *, smoke: bool = False, only: set[str] | None = None,
-                     limit: int | None = None) -> list[Path]:
+                     limit: int | None = None, final: bool = False) -> list[Path]:
     if dataset not in DATASETS:
         raise SystemExit(f"unknown dataset {dataset!r}; benchmark mode runs on: {', '.join(DATASETS)}")
+    if dataset in FINAL_ONLY and not (final and not smoke and not only and not limit):
+        raise SystemExit("the held-out set is read once, whole, by the final run (make final)")
     docs = sorted(p for p in DATASETS[dataset].iterdir() if p.is_file() and not p.name.startswith("."))
     if only:
         docs = [p for p in docs if p.stem in only]
@@ -142,6 +147,9 @@ async def run(settings: Settings, dataset: str, docs: list[Path], *, use_cache: 
         "run_date": stamp.date().isoformat(),
         "notes": f"run {run_id}, prompt {prompts.PROMPT_HASH}, git {_git_sha()}",
         "documents": predictions}, indent=1, ensure_ascii=False) + "\n")
+    (out_dir / "extended.json").write_text(json.dumps(
+        {doc_id: to_extended(o.extraction) if o.extraction else {} for doc_id, o in sorted(outcomes.items())},
+        indent=1, ensure_ascii=False) + "\n")
     # Evidence per field (no answers) for calibration in bench/: apbench calibrate joins it with the scores
     (out_dir / "fields.json").write_text(json.dumps({
         doc_id: {"route": o.route, "invoices": [[{"field": ev.field, "line_no": ev.line_no, "tier": ev.tier,

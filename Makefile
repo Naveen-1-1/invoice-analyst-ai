@@ -4,7 +4,7 @@ BENCH_PY := bench/.venv/bin/python
 APBENCH := PYTHONPATH=bench/src $(BENCH_PY) -m apbench
 IA := PYTHONPATH=backend/src $(BACKEND_PY) -m invoice_analyst
 
-.PHONY: help venv lock install submodule db-up db-down verify-specs heldout-generate heldout-verify migrate test bench-smoke bench-dev score api web gen-api companion inbox-dev ap-eval worker inbox-live e2e audit-verify pay-due
+.PHONY: help venv lock install submodule db-up db-down verify-specs heldout-generate heldout-verify migrate test bench-smoke bench-dev score api web gen-api companion inbox-dev ap-eval worker inbox-live e2e audit-verify pay-due final eval-dev
 
 help:
 	@echo "venv       create backend/.venv and bench/.venv (Python 3.12)"
@@ -27,6 +27,8 @@ help:
 	@echo "ap-eval RUN=n  score inbox run n's checks and decisions against the labels"
 	@echo "audit-verify  recompute every workspace's audit chain (fails if any event was altered)"
 	@echo "pay-due WS=n  pay every planned payment run up to workspace n's today"
+	@echo "eval-dev BENCH=n INBOX=m  log dev runs n (benchmark) and m (inbox) as the reference on the Evaluation page"
+	@echo "final      THE final evaluation on the sealed held-out set: once, on a clean committed tree (~8 min of model calls)"
 	@echo "e2e        web tests of the review flow (Playwright, installed Chrome; starts api/web if needed)"
 	@echo "verify-specs  check the generator specs (seed 42) reproduce the published answer keys"
 	@echo "heldout-generate  render and seal the held-out set from HELDOUT_SEED (once)"
@@ -90,7 +92,7 @@ score:
 	$(APBENCH) score $(if $(filter latest,$(RUN)),$$(ls -d data/runs/[0-9]* | tail -1),$(RUN))
 
 api:
-	PYTHONPATH=backend/src $(BACKEND_PY) -m uvicorn invoice_analyst.api.main:app --host 127.0.0.1 --port 8000 --reload --reload-dir backend/src
+	PYTHONPATH=backend/src $(BACKEND_PY) -m uvicorn invoice_analyst.api.main:app --host 127.0.0.1 --port 8000 --reload --reload-dir backend/src --timeout-graceful-shutdown 2
 
 web:
 	cd frontend && npm run dev
@@ -117,6 +119,12 @@ audit-verify:
 
 pay-due:
 	$(IA) payments run-due $(WS)
+
+eval-dev:
+	$(APBENCH) eval-log --bench-run $(BENCH) --inbox-run $(INBOX)
+
+final:
+	$(APBENCH) final
 
 e2e:
 	cd frontend && npx playwright test

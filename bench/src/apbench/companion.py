@@ -20,6 +20,7 @@ import dataclasses
 import datetime as dt
 import hashlib
 import json
+import os
 import random
 import re
 import statistics
@@ -99,14 +100,28 @@ def _gl(spec) -> str:
     return "5100" if spec.category == "freight" else "5200"
 
 
+def _inputs(set_name: str) -> tuple[int, dict[str, Any], Path]:
+    """(companion seed, specs, documents folder) for a set."""
+    if set_name == "dev":
+        return COMPANION_SEEDS["dev"], specs.load(specs.DEV_SEED), specs.DEV_CORPUS / "documents"
+    if set_name == "heldout":
+        from . import heldout  # noqa: PLC0415
+        if heldout.companion_sealed():
+            raise SystemExit("the held-out companion data is already generated and sealed (decision 44)")
+        if problems := heldout.verify():
+            raise SystemExit("the held-out set doesn't check out: " + "; ".join(problems))
+        os.environ["INVOICE_BENCH_HAND_FONT"] = heldout.HAND_FONT  # re-rendered photos use the sealed set's font
+        return heldout.companion_seed(), specs.load(heldout._seed()), heldout.CORPUS_DIR / "documents"
+    raise SystemExit(f"unknown set {set_name!r}: dev or heldout")
+
+
 def build(set_name: str = "dev") -> dict[str, Any]:
-    if set_name != "dev":
-        raise SystemExit("only the dev set for now (held-out companion data comes with the final evaluation)")
-    seed = COMPANION_SEEDS[set_name]
-    corpus = specs.load(specs.DEV_SEED)
+    """Write the set's companion data. For the held-out set (decision 44) also its extended answer keys, then the
+    whole lot is added to the seal; only counts are returned, never contents."""
+    seed, corpus, docs_dir = _inputs(set_name)
     root = specs.ROOT / "data" / set_name
     corpus_v1, gen, layout = specs.generator_modules()
-    files = {p.stem: p for p in (specs.DEV_CORPUS / "documents").iterdir() if p.is_file() and not p.name.startswith(".")}
+    files = {p.stem: p for p in docs_dir.iterdir() if p.is_file() and not p.name.startswith(".")}
 
     # --- master data from the specs ------------------------------------------------------------------------
     vendors: dict[str, dict] = {}
@@ -319,7 +334,8 @@ def build(set_name: str = "dev") -> dict[str, Any]:
                                           if not vendors_by_code(vendors).get(code, {}).get("_remove")},
         "inbox/stream.json": [{"seq": s["seq"], "ref": s["ref"], "path": s["path"], "received_date": s["received_date"]}
                               for s in stream],
-        "labels/ap_labels.json": {"set": set_name, "companion_seed": seed, "planted": dict(sorted(planted.items())),
+        "labels/ap_labels.json": {"set": set_name, "companion_seed": seed if set_name == "dev" else
+                                  "derived from HELDOUT_SEED", "planted": dict(sorted(planted.items())),
                                   "resubmissions": {x["ref"]: x["of"] for x in resubmissions}, "items": labels},
     }
     for rel, payload in out.items():
@@ -329,9 +345,15 @@ def build(set_name: str = "dev") -> dict[str, Any]:
     counts = defaultdict(int)
     for kind in planted.values():
         counts[kind] += 1
+    sealed = None
+    if set_name == "heldout":
+        from . import extended, heldout  # noqa: PLC0415
+        extended.write_keys("heldout", corpus)
+        sealed = heldout.seal_companion()
     return {"vendors": len(out["companion/vendors.json"]), "entities": len(out["companion/entities.json"]),
             "purchase_orders": len(out["companion/purchase_orders.json"]), "stream": len(stream),
-            "planted": dict(counts), "resubmissions": len(resubmissions)}
+            "planted": dict(counts), "resubmissions": len(resubmissions),
+            **({"sealed_files": sealed} if sealed is not None else {})}
 
 
 def vendors_by_code(vendors: dict[str, dict]) -> dict[str, dict]:

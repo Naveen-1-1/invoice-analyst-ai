@@ -7,7 +7,7 @@ from pathlib import Path
 
 import typer
 
-from . import ap_eval, calibrate, companion, compare, heldout, score, specs
+from . import ap_eval, calibrate, companion, compare, evallog, extended, final, heldout, score, specs
 
 app = typer.Typer(add_completion=False, no_args_is_help=True)
 heldout_app = typer.Typer(add_completion=False, no_args_is_help=True,
@@ -81,6 +81,8 @@ def companion_data(set_name: str = typer.Option("dev", "--set", help="Which corp
 def ap_evaluate(run: str = typer.Argument(..., help="An inbox run (number or directory)"),
                 set_name: str = typer.Option("dev", "--set", help="Which labels")) -> None:
     """Score an inbox run's checks against the planted and natural problems in the labels."""
+    if set_name == "heldout":
+        raise typer.BadParameter("the held-out labels are used only by the final run (make final)")
     typer.echo(ap_eval.evaluate(run, set_name)[0])
 
 
@@ -109,6 +111,50 @@ def hardest(n: int = typer.Option(20, help="How many documents"),
 @app.callback()
 def main() -> None:
     """Companion data, held-out set and AP evaluation for invoice-analyst-ai."""
+
+
+
+@app.command("extended-keys")
+def extended_keys(set_name: str = typer.Option("dev", "--set", help="dev (the held-out keys come with its companion)")) -> None:
+    """Write the extended answer keys (PO, tax ID, bank, terms, addressee, line qty/price/code) from the specs."""
+    if set_name != "dev":
+        raise typer.BadParameter("only dev here; the held-out keys are written and sealed with its companion data")
+    path = extended.write_keys("dev", specs.load(specs.DEV_SEED))
+    docs = json.loads(path.read_text())["documents"]
+    counts = {f: sum(1 for d in docs.values() if f in d) for f in ("po_number", "vendor_tax_id", "bank_account",
+                                                                     "terms_days", "bill_to")}
+    counts.update({f"line_{k}": sum(1 for d in docs.values() for ln in d["lines"] if ln[k] is not None)
+                   for k in ("qty", "unit_price", "code")})
+    typer.echo(f"{len(docs)} documents keyed in {path}: {counts}")
+
+
+@app.command("ext-score")
+def ext_score(run: str = typer.Argument(..., help="Run number or directory"),
+              set_name: str = typer.Option("dev", "--set", help="Which extended answer keys")) -> None:
+    """Score a run's extended.json against the extended answer keys (writes ext_scores.json / ext_scores.md)."""
+    if set_name == "heldout":
+        raise typer.BadParameter("held-out scoring happens only in the final run (make final)")
+    text, _ = extended.score_run(run, set_name)
+    typer.echo(text)
+
+
+@app.command("eval-log")
+def eval_log(bench_run: str = typer.Option(..., help="A full dev benchmark run (scored)"),
+             inbox_run: str = typer.Option(..., help="A full dev inbox run")) -> None:
+    """Log a dev reference entry (official, extended, confidence and AP results) for the Evaluation page."""
+    entry = evallog.summarize("dev", "dev", bench_run, inbox_run)
+    path = evallog.append(entry)
+    o = entry["official"]
+    typer.echo(f"logged dev runs {entry['bench_run']}/{entry['inbox_run']} in {path.relative_to(specs.ROOT)}: "
+               f"{o['fully_correct']}/{o['documents']} fully right")
+
+
+@app.command("final")
+def final_run(after_final: bool = typer.Option(False, "--after-final",
+                                               help="A held-out run after the final one (logged as such)")) -> None:
+    """The final evaluation on the sealed held-out set (decision 47): once, on a clean committed tree."""
+    entry = final.run(after_final)
+    typer.echo("\n" + final.report(entry))
 
 
 if __name__ == "__main__":

@@ -322,8 +322,8 @@ function ReviewScreen({ id }: { id: number }) {
                 </label>
                 <div className="flex flex-wrap gap-2">
                   {buttons.map((b) => (
+                    <span key={b.action} className="contents">
                     <Button
-                      key={b.action}
                       size="sm"
                       variant={b.action === 'approve' ? 'default' : b.action === 'reject' ? 'destructive' : 'outline'}
                       className={cn(pending === b.action && 'ring-2 ring-ring ring-offset-1')}
@@ -333,8 +333,9 @@ function ReviewScreen({ id }: { id: number }) {
                       onClick={() => run(b.action)}
                     >
                       {b.label} <kbd aria-hidden className="ml-1 opacity-60">{b.key}</kbd>
-                      <span id={`hint-${b.action}`} className="sr-only">{b.hint}</span>
                     </Button>
+                    <span id={`hint-${b.action}`} className="sr-only">{b.hint}</span>
+                    </span>
                   ))}
                 </div>
               </CardContent>

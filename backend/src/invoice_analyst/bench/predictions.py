@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from ..checks.arithmetic import arithmetic_issues
+from ..checks.normalize import norm_account
 from ..extraction.resolve import primary, resolve
 from ..extraction.schemas import FileExtraction
 
@@ -34,4 +35,22 @@ def to_prediction(extraction: FileExtraction) -> dict[str, Any]:
         "line_items": r.lines,
         "flagged": bool(flag_reasons(extraction)),
         "references": r.references,
+    }
+
+
+def to_extended(extraction: FileExtraction) -> dict[str, Any]:
+    """The AP fields beyond the official ones, as the system uses them (scored in bench/ by apbench ext-score)."""
+    inv = primary(extraction)
+    po = inv.po_number.text
+    if po and not any(ch.isdigit() for ch in po):
+        po = None  # as the three-way match treats it: letters alone are a logo or initials
+    bank = inv.vendor.bank
+    return {
+        "po_number": po,
+        "vendor_tax_id": inv.vendor.tax_id.text,
+        "bank_account": norm_account(bank.iban, bank.account_number, bank.sort_code) if bank else None,
+        "payment_terms": inv.payment_terms.text,
+        "bill_to": inv.bill_to.name.text,
+        "lines": [{"description": ln.description, "amount": ln.amount, "quantity": ln.quantity,
+                   "unit_price": ln.unit_price, "item_code": ln.item_code} for ln in inv.lines],
     }

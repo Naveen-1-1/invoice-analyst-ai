@@ -382,5 +382,20 @@
   "documents/tax-zero-rated-za.pdf": "8d4abd78d958eb86112ac62b70cbe3022ee1badc46395d4b39953323535f2704",
   "manifest.json": "c611bb00f925329afdd372b6e35eef1020ed00c5ea917f0c12bb6fc8b64b93b9",
   "metadata.jsonl": "acb140964ea9f58c21dbd49d1dc74ee2469d87c4b3c6262e115d92507a1317b6"
+ },
+ "companion": {
+  "created_at": "2026-10-10T23:08:48+00:00",
+  "files": {
+   "companion/entities.json": "83678afc5fda5d1ba1f6345add87e1b2e8d8310cf14d6094affca5b749c1638f",
+   "companion/purchase_orders.json": "c5a8c14c0928d95596e4a83960e2012dd95a3ea13a10fa488bbe0981f1f7ba55",
+   "companion/vendor_history.json": "6c6b817d9bb24352f48508ff0fdac93c10715c602e7b315cf862dc09e10b04ee",
+   "companion/vendors.json": "d756b6fe1babbe12fe3ddce86eb4e30a5757425e00fd43ed70136ef96bf3631b",
+   "inbox/documents/resubmit-clean-us-clean-simple.jpg": "b0e847cc3706d73ca3f35cd70ef87872aafd8ceedcfe7b7c58bfea46e25a873f",
+   "inbox/documents/resubmit-clean-us-freight-alias.jpg": "b119538a940e3535d88e17a2fcd3d1da43d230bae20a00edc73daf4defefaa26",
+   "inbox/documents/resubmit-tax-withholding-na.jpg": "a0bc12d6e10ed87aefb3e6c3c0977d12aa39957daaea342f353da27ff195a28e",
+   "inbox/stream.json": "cc9afd0f86751e744c5925e242d3b531c835c9408468d5d694167787197a37b3",
+   "labels/ap_labels.json": "5eca67a42816f91d886d1966311f3a72d6e227c07a2be03ddfb425db7a2a180b",
+   "labels/extended_answers.json": "8df0c7694123ec78bcd5ae74b3c1293c280bce98594fea4fa4453bc18443caf0"
+  }
  }
 }

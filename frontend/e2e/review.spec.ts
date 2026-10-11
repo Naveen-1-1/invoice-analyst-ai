@@ -93,13 +93,16 @@ test('pay the planned runs, and the books balance', async ({ page }) => {
   // after the approvals above: the automatic one, the bank-change override, and the partial one and its rest
   await page.goto(`/payments/${workspace()}`)
   const next = page.getByRole('button', { name: /^Pay the next run/ })
-  for (let k = 0; k < 10 && (await next.isEnabled()); k++) {
+  for (let k = 0; k < 10; k++) {
+    const date = (await next.textContent())?.match(/\((\d{4}-\d{2}-\d{2})\)/)?.[1]
+    if (!date) break // no run left to pay
     await next.click()
-    await expect(status(page)).toContainText('Paid the run of')
+    await expect(status(page)).toContainText(`Paid the run of ${date}`)
+    await expect(next).not.toContainText(date) // the page has moved on to the next run (or none)
   }
   await expect(next).toBeDisabled() // nothing left planned
   await page.goto(`/board/${workspace()}`)
-  const paid = page.getByRole('region', { name: 'Paid' })
+  const paid = page.getByRole('region', { name: 'Paid', exact: true })
   for (const ref of [REFS.auto, REFS.bank, REFS.partial]) await expect(paid).toContainText(ref)
   await page.goto(`/ledger/${workspace()}`)
   await expect(page.getByText(/debits = credits/).first()).toBeVisible()

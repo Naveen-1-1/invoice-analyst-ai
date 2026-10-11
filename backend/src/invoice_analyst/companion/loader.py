@@ -20,7 +20,7 @@ from ..config import ROOT
 from ..db.models import (Entity, GoodsReceipt, GoodsReceiptLine, PoLine, PurchaseOrder, Vendor, VendorBankAccount,
                          VendorHistory)
 
-SETS = {"dev": ROOT / "data" / "dev"}
+SETS = {"dev": ROOT / "data" / "dev", "heldout": ROOT / "data" / "heldout"}  # held-out: only in the final run
 
 
 def _dir(set_name: str) -> Path:

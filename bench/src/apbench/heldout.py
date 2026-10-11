@@ -24,6 +24,7 @@ HELDOUT_DIR = specs.ROOT / "data" / "heldout"
 CORPUS_DIR = HELDOUT_DIR / "corpus"
 LOCK_PATH = HELDOUT_DIR / "LOCK.json"
 HAND_FONT = "/System/Library/Fonts/Supplemental/Bradley Hand Bold.ttf"
+COMPANION_PARTS = ("companion", "inbox", "labels")  # generated before the final run (decision 44), then sealed
 # scrypt cost: ~50 ms per guess, so trying every 6-digit seed takes over half a day
 SCRYPT = {"n": 2**14, "r": 8, "p": 1}
 
@@ -102,6 +103,32 @@ def generate() -> dict[str, Any]:
     return {"documents": manifest["count"], "files": len(lock["files"])}
 
 
+def companion_seed() -> int:
+    """Decision 45: the companion data's seed, derived from HELDOUT_SEED (as private as it); never stored."""
+    digest = hashlib.sha256(f"invoice-analyst-ai heldout companion:{_seed()}".encode()).digest()
+    return int.from_bytes(digest[:6], "big")
+
+
+def _companion_hashes() -> dict[str, str]:
+    return {f"{part}/{k}": v for part in COMPANION_PARTS if (HELDOUT_DIR / part).exists()
+            for k, v in _file_hashes(HELDOUT_DIR / part).items()}
+
+
+def companion_sealed() -> bool:
+    return LOCK_PATH.exists() and "companion" in json.loads(LOCK_PATH.read_text())
+
+
+def seal_companion() -> int:
+    """Add the companion files' hashes to the seal (once)."""
+    lock = json.loads(LOCK_PATH.read_text())
+    if "companion" in lock:
+        raise HeldoutError("the held-out companion data is already sealed; it is generated once")
+    lock["companion"] = {"created_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+                         "files": _companion_hashes()}
+    LOCK_PATH.write_text(json.dumps(lock, indent=1) + "\n")
+    return len(lock["companion"]["files"])
+
+
 def verify() -> list[str]:
     """Problems with the sealed set (empty list = intact). Checks every file hash and the seed fingerprint."""
     if not LOCK_PATH.exists():
@@ -124,4 +151,9 @@ def verify() -> list[str]:
         problems.append(f"{len(extra)} unexpected file(s) added")
     if changed:
         problems.append(f"{len(changed)} file(s) changed since sealing")
+    if "companion" in lock:
+        sealed, now = lock["companion"]["files"], _companion_hashes()
+        if sealed != now:
+            problems.append(f"companion data changed since sealing ({len(set(sealed) ^ set(now))} file(s) added or "
+                            f"missing, {sum(1 for k in set(sealed) & set(now) if sealed[k] != now[k])} changed)")
     return problems

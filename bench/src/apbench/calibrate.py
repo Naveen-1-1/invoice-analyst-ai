@@ -49,13 +49,20 @@ def wilson_lb(right: int, n: int, z: float = 1.96) -> float:
     return (p + z * z / (2 * n) - z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n))) / (1 + z * z / n)
 
 
-def observations(run: str) -> list[dict[str, Any]]:
+def _corpus_dir(corpus: str):
+    if corpus == "heldout":
+        from .heldout import CORPUS_DIR  # noqa: PLC0415
+        return CORPUS_DIR
+    return specs.DEV_CORPUS
+
+
+def observations(run: str, corpus: str = "dev") -> list[dict[str, Any]]:
     """One observation per scored field: its evidence (one signal set, or one per line for line items) and
     whether the scorer marked it right."""
     out_dir = run_dir(run)
     fields = json.loads((out_dir / "fields.json").read_text())
     scores = {d["doc_id"]: d for d in json.loads((out_dir / "scores.json").read_text())["documents"]}
-    manifest = {e["doc_id"]: e for e in json.loads((specs.DEV_CORPUS / "manifest.json").read_text())["documents"]}
+    manifest = {e["doc_id"]: e for e in json.loads((_corpus_dir(corpus) / "manifest.json").read_text())["documents"]}
     obs = []
     for doc_id, d in fields.items():
         if not d["invoices"] or doc_id not in scores:
@@ -177,3 +184,22 @@ def calibrate(run: str, write: bool = True, use_defaults: bool = False) -> str:
     if write:
         lines += ["", f"Wrote {CALIBRATION_PATH.relative_to(specs.ROOT)}"]
     return "\n".join(lines)
+
+
+def check(run: str, corpus: str = "dev") -> dict[str, Any]:
+    """How often each tier was right, with the knobs the backend uses now: a measurement only, nothing is tuned
+    (this is what the final run reports for the held-out set)."""
+    conf = confidence_module()
+    knobs = dict((conf.CALIBRATION or {}).get("knobs") or conf.DEFAULT_KNOBS)
+    obs = observations(run, corpus)
+    counts = tally(obs, knobs, conf)
+    accuracy: dict[str, dict] = defaultdict(dict)
+    for (route, t), (n, right) in sorted(counts.items()):
+        accuracy[route][t] = {"n": n, "right": right, "accuracy": round(right / n, 4) if n else None,
+                              "wilson_lb": round(wilson_lb(right, n), 4)}
+    wrong_high = sorted(f"{ob['doc_id']}: {ob['field']}" for ob in obs
+                        if not ob["correct"] and tier(ob, knobs, conf) == "high")
+    total = sum(1 for _ in obs)
+    high = accuracy.get("all", {}).get("high", {"n": 0})
+    return {"knobs": knobs, "observations": total, "accuracy": dict(accuracy), "wrong_but_high": wrong_high,
+            "high_share": round(high["n"] / total, 3) if total else None, "boxes": box_coverage(run)}

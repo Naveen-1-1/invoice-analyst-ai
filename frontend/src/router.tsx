@@ -3,6 +3,7 @@ import { useListReviewQueue } from '@/api/generated'
 import { AuditPage } from '@/pages/AuditPage'
 import { BoardPage } from '@/pages/BoardPage'
 import { DocumentPage } from '@/pages/DocumentPage'
+import { EvaluationPage } from '@/pages/EvaluationPage'
 import { LedgerPage } from '@/pages/LedgerPage'
 import { PaymentsPage } from '@/pages/PaymentsPage'
 import { ReviewPage } from '@/pages/ReviewPage'
@@ -32,6 +33,7 @@ function Shell() {
             <Link to="/payments" className="hover:text-foreground [&.active]:text-foreground">Payments</Link>
             <Link to="/ledger" className="hover:text-foreground [&.active]:text-foreground">Ledger</Link>
             <Link to="/audit" className="hover:text-foreground [&.active]:text-foreground">Audit</Link>
+            <Link to="/evaluation" className="hover:text-foreground [&.active]:text-foreground">Evaluation</Link>
             <Link to="/" className="hover:text-foreground [&.active]:text-foreground" activeOptions={{ exact: true }}>Runs</Link>
           </nav>
         </div>
@@ -56,6 +58,7 @@ const ledgerRoute = createRoute({ getParentRoute: () => rootRoute, path: '/ledge
 const workspaceLedgerRoute = createRoute({ getParentRoute: () => rootRoute, path: '/ledger/$workspaceId', component: LedgerPage })
 const auditRoute = createRoute({ getParentRoute: () => rootRoute, path: '/audit', component: AuditPage })
 const workspaceAuditRoute = createRoute({ getParentRoute: () => rootRoute, path: '/audit/$workspaceId', component: AuditPage })
+const evaluationRoute = createRoute({ getParentRoute: () => rootRoute, path: '/evaluation', component: EvaluationPage })
 const documentRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/documents/$documentId',
@@ -63,7 +66,7 @@ const documentRoute = createRoute({
 })
 
 export const router = createRouter({ routeTree: rootRoute.addChildren([runsRoute, runRoute, boardRoute, workspaceBoardRoute, reviewQueueRoute, reviewRoute,
-  paymentsRoute, workspacePaymentsRoute, ledgerRoute, workspaceLedgerRoute, auditRoute, workspaceAuditRoute, documentRoute]) })
+  paymentsRoute, workspacePaymentsRoute, ledgerRoute, workspaceLedgerRoute, auditRoute, workspaceAuditRoute, evaluationRoute, documentRoute]) })
 
 declare module '@tanstack/react-router' {
   interface Register {

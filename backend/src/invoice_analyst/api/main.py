@@ -16,7 +16,7 @@ from ..config import settings
 from ..db.models import (AuditEvent, CheckResult, Document, FieldValue, Invoice, InvoiceLine, JournalEntry, LlmCall,
                          Page, PaymentItem, Run, Workspace)
 from ..worker.app import app as queue
-from . import board, money, review
+from . import board, evaluation, money, review
 from . import schemas as out
 from .deps import db
 
@@ -35,6 +35,7 @@ app = FastAPI(title="invoice-analyst-ai", version="0.1", generate_unique_id_func
 app.include_router(board.router)
 app.include_router(review.router)
 app.include_router(money.router)
+app.include_router(evaluation.router)
 
 
 def _inside_storage(path: str) -> Path:

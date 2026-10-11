@@ -319,6 +319,30 @@ export interface EntityOut {
   name: string;
 }
 
+export type EvalEntryOutOfficial = { [key: string]: unknown };
+
+export type EvalEntryOutExtended = { [key: string]: unknown };
+
+export type EvalEntryOutConfidence = { [key: string]: unknown };
+
+export type EvalEntryOutAp = { [key: string]: unknown } | null;
+
+export type EvalEntryOutDocuments = {[key: string]: number};
+
+export interface EvalEntryOut {
+  kind: string;
+  set: string;
+  logged_at: string;
+  commit: string;
+  bench_run: string;
+  inbox_run: string | null;
+  official: EvalEntryOutOfficial;
+  extended: EvalEntryOutExtended;
+  confidence: EvalEntryOutConfidence;
+  ap: EvalEntryOutAp;
+  documents: EvalEntryOutDocuments;
+}
+
 export type ValidationErrorCtx = { [key: string]: unknown };
 
 export interface ValidationError {
@@ -2649,6 +2673,107 @@ export function useVerifyAudit<TData = Awaited<ReturnType<typeof verifyAudit>>, 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getVerifyAuditQueryOptions(workspaceId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getListEvaluationsUrl = () => {
+
+
+
+
+  return `/api/evaluation`
+}
+
+/**
+ * @summary Listevaluations
+ */
+export const listEvaluations = async ( options?: Parameters<typeof customFetch>[1]): Promise<EvalEntryOut[]> => {
+
+  return customFetch<EvalEntryOut[]>(getListEvaluationsUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListEvaluationsQueryKey = () => {
+    return [
+    `/api/evaluation`
+    ] as const;
+    }
+
+
+export const getListEvaluationsQueryOptions = <TData = Awaited<ReturnType<typeof listEvaluations>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listEvaluations>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListEvaluationsQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listEvaluations>>> = ({ signal }) => listEvaluations({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listEvaluations>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ListEvaluationsQueryResult = NonNullable<Awaited<ReturnType<typeof listEvaluations>>>
+export type ListEvaluationsQueryError = unknown
+
+
+export function useListEvaluations<TData = Awaited<ReturnType<typeof listEvaluations>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listEvaluations>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listEvaluations>>,
+          TError,
+          Awaited<ReturnType<typeof listEvaluations>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListEvaluations<TData = Awaited<ReturnType<typeof listEvaluations>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listEvaluations>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listEvaluations>>,
+          TError,
+          Awaited<ReturnType<typeof listEvaluations>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListEvaluations<TData = Awaited<ReturnType<typeof listEvaluations>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listEvaluations>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Listevaluations
+ */
+
+export function useListEvaluations<TData = Awaited<ReturnType<typeof listEvaluations>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listEvaluations>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getListEvaluationsQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

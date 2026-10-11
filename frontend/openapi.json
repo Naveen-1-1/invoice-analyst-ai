@@ -1035,6 +1035,28 @@
     }
    }
   },
+  "/api/evaluation": {
+   "get": {
+    "summary": "Listevaluations",
+    "operationId": "listEvaluations",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/EvalEntryOut"
+         },
+         "type": "array",
+         "title": "Response Listevaluations"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/api/runs": {
    "get": {
     "summary": "Listruns",
@@ -2080,6 +2102,91 @@
      "name"
     ],
     "title": "EntityOut"
+   },
+   "EvalEntryOut": {
+    "properties": {
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "set": {
+      "type": "string",
+      "title": "Set"
+     },
+     "logged_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Logged At"
+     },
+     "commit": {
+      "type": "string",
+      "title": "Commit"
+     },
+     "bench_run": {
+      "type": "string",
+      "title": "Bench Run"
+     },
+     "inbox_run": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Inbox Run"
+     },
+     "official": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Official"
+     },
+     "extended": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Extended"
+     },
+     "confidence": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Confidence"
+     },
+     "ap": {
+      "anyOf": [
+       {
+        "additionalProperties": true,
+        "type": "object"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Ap"
+     },
+     "documents": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "type": "object",
+      "title": "Documents"
+     }
+    },
+    "type": "object",
+    "required": [
+     "kind",
+     "set",
+     "logged_at",
+     "commit",
+     "bench_run",
+     "inbox_run",
+     "official",
+     "extended",
+     "confidence",
+     "ap",
+     "documents"
+    ],
+    "title": "EvalEntryOut"
    },
    "EventOut": {
     "properties": {

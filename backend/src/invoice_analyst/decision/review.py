@@ -252,7 +252,7 @@ def approve_partial(s: Session, invoice: Invoice, note: str, *, override: bool =
     if split is None:
         raise ReviewError("Nothing on this invoice is waiting for delivery: approve it, or reject it.")
     overridden = _overrides(s, invoice, override)
-    text = (f"Received part approved: {split.approved:,.2f} of {split.total:,.2f} {split.currency} "
+    text = (f"Received part approved: {split.currency} {split.approved:,.2f} of {split.total:,.2f} "
             f"(tax {split.approved_tax:,.2f} in proportion); {split.held:,.2f} on hold.")
     approval = _approval(s, invoice, split.approved, note, [*overridden, {"kind": "partial", "text": text,
                                                                          "split": split.as_json()}])
@@ -260,7 +260,7 @@ def approve_partial(s: Session, invoice: Invoice, note: str, *, override: bool =
            {"amount": runs.money(split.approved), "held": runs.money(split.held), "overrode": [o["code"] for o in overridden]})
     rest = ReviewTask(invoice_id=invoice.id, labels=["rest on hold"], status="open", reasons=[
         {"kind": "review", "code": "partial.rest",
-         "text": f"{split.held:,.2f} {split.currency} is on hold until the rest is delivered. Approve it when it "
+         "text": f"{split.currency} {split.held:,.2f} is on hold until the rest is delivered. Approve it when it "
                  "arrives, or reject the rest."}])
     s.add(rest)
     invoice.review_labels = ["rest on hold"]

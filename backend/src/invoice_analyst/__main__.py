@@ -41,12 +41,13 @@ def bench_run(
     reasoning: str | None = typer.Option(None, help="Override reasoning_effort for both models (A/B tests)"),
     label: str | None = typer.Option(None, help="Short name for this run"),
     ocr_hint: bool = typer.Option(False, "--ocr-hint", help="Also give the vision model the local OCR text (A/B)"),
+    final: bool = typer.Option(False, "--final", help="The final run (the only way to read the held-out set)"),
 ) -> None:
     """Extract every selected document and write data/runs/<run>/predictions.json."""
     # imported here so `--help` doesn't load the database and model clients
     from .bench.runner import run, select_documents
 
-    docs = select_documents(dataset, smoke=smoke, only=_ids(only), limit=limit)
+    docs = select_documents(dataset, smoke=smoke, only=_ids(only), limit=limit, final=final)
     overrides = {"reasoning_effort": reasoning} if reasoning else None
     summary = asyncio.run(run(settings(), dataset, docs, use_cache=not no_cache, overrides=overrides, label=label,
                               ocr_hint=ocr_hint))
@@ -66,9 +67,13 @@ def inbox_run(
     limit: int | None = typer.Option(None, help="Only the first N arrivals"),
     only: str | None = typer.Option(None, help="Only these arrivals (comma-separated refs, or @file), renumbered"),
     worker: bool = typer.Option(False, "--worker", help="Also process the run in this process, until it finishes"),
+    final: bool = typer.Option(False, "--final", help="The final run (the only way to replay the held-out inbox)"),
 ) -> None:
     """Start an inbox run: schedule every arrival; the worker (make worker, or --worker) reads and checks them."""
     from .inbox.feed import feed, status
+
+    if set_name == "heldout" and not (final and not only and not limit and speed == 0):
+        raise typer.BadParameter("the held-out inbox is replayed once, whole and at once, by the final run (make final)")
 
     fed = asyncio.run(feed(set_name, label=label, seconds_per_day=speed, fresh=fresh, limit=limit, only=_ids(only)))
     typer.echo(f"Inbox run {fed.run_id} (workspace {fed.workspace_id}): {fed.documents} arrivals from {fed.first_date} "

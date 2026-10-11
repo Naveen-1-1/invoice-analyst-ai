@@ -497,3 +497,17 @@ class AuditOut(BaseModel):
     total: int
     actions: list[str]
     events: list[AuditEventOut]
+
+
+class EvalEntryOut(BaseModel):
+    kind: str  # dev / final / after_final
+    set: str
+    logged_at: dt.datetime
+    commit: str
+    bench_run: str
+    inbox_run: str | None
+    official: dict[str, Any]
+    extended: dict[str, Any]
+    confidence: dict[str, Any]
+    ap: dict[str, Any] | None
+    documents: dict[str, int]  # benchmark doc id -> document id in that run (to link errors)

@@ -72,5 +72,18 @@ generated with its generator.
   the unpaid invoices), what we owe by age, the journal, and CSV downloads; filter by company.
 - **Audit** page: every event in order, and a "chain verified" badge; `make audit-verify` checks every chain.
 
+## Evaluation
+
+- `make score RUN=n` scores a benchmark run with the official scorer; `apbench ext-score n` scores the AP fields it
+  leaves out (PO number, tax ID, bank account, terms, addressee, line quantity, unit price and code), only where
+  they're printed (`apbench extended-keys` builds that key from the generator's specs)
+- `make eval-dev BENCH=n INBOX=m` logs a dev reference to `data/eval/EVAL_LOG.jsonl`; the **Evaluation** page shows
+  it next to the held-out result
+- `make final`: **the** held-out evaluation, once, on a clean committed tree: extraction scored by both
+  scorers, a confidence check, and the held-out inbox (checks, decisions, payment timing). About 185 model calls.
+  If it's interrupted, run it again: it resumes where it stopped, at the same commit
+
 The held-out set is generated once with `make heldout-generate` from a private `HELDOUT_SEED` in `.env`,
-and sealed in `data/heldout/LOCK.json`; `make heldout-verify` checks the seal.
+and sealed in `data/heldout/LOCK.json`, together with its companion data (vendors, POs, deliveries, inbox,
+planted problems and answer keys, from a seed derived from `HELDOUT_SEED`); `make heldout-verify` checks the seal.
+Nothing reads the held-out set except `make final`.
