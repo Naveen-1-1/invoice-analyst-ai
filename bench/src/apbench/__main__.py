@@ -157,5 +157,17 @@ def final_run(after_final: bool = typer.Option(False, "--after-final",
     typer.echo("\n" + final.report(entry))
 
 
+@app.command("scorecards")
+def scorecards() -> None:
+    """Write scorecard.json for every scored run that lacks one (for the app's run comparison)."""
+    n = 0
+    for d in sorted(score.RUNS_DIR.glob("[0-9]*")):
+        if (d / "scores.json").exists() and not (d / "scorecard.json").exists():
+            meta = json.loads((d / "run.json").read_text()).get("config", {}) if (d / "run.json").exists() else {}
+            score.write_scorecard(str(d), meta.get("dataset", "dev"))
+            n += 1
+    typer.echo(f"wrote {n} scorecard(s)")
+
+
 if __name__ == "__main__":
     app()

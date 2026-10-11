@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import type { EvalEntryOut } from '@/api/generated'
 import { useListEvaluations } from '@/api/generated'
+import { CalibrationChart, RunComparison } from '@/components/EvalExtras'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
@@ -191,6 +192,16 @@ export function EvaluationPage() {
             <Breakdown cols={cols} title="Check" keys={checkKeys} get={(e, k) => { const c = (e.ap as Ap | null)?.checks[k]; return [c?.tp, (c?.tp ?? 0) + (c?.fn ?? 0)] }} />
             <p className="mt-2 text-xs text-muted-foreground">False alarms per check are in each run's ap_eval.json; every one still goes to a person.</p>
           </CardContent>
+        </Card>
+      </div>
+      <div className="grid gap-4 xl:grid-cols-2">
+        <Card>
+          <CardHeader><CardTitle className="text-base">Calibration: how often each tier was right</CardTitle></CardHeader>
+          <CardContent><CalibrationChart cols={cols} /></CardContent>
+        </Card>
+        <Card>
+          <CardHeader><CardTitle className="text-base">Compare two runs</CardTitle></CardHeader>
+          <CardContent><RunComparison /></CardContent>
         </Card>
       </div>
       {cols.filter((c) => c.e).map((c) => (

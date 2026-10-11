@@ -185,7 +185,11 @@ function ReviewScreen({ id }: { id: number }) {
             {here >= 0 && ` / ${here + 1} of ${items.length}`}
           </p>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-xl font-semibold">{invoice?.vendor_name ?? doc.data?.filename ?? `Invoice ${id}`}</h1>
+            <h1 className="text-xl font-semibold">
+              {invoice?.vendor_id != null
+                ? <Link to="/vendor/$vendorId" params={{ vendorId: String(invoice.vendor_id) }} className="hover:underline">{invoice.vendor_name}</Link>
+                : invoice?.vendor_name ?? doc.data?.filename ?? `Invoice ${id}`}
+            </h1>
             <Badge variant="outline" className={cn('font-medium', STATE_STYLES[r.state])}>{STATE_LABELS[r.state] ?? r.state}</Badge>
             {invoice && <TierBadge tier={invoice.conf_tier} />}
           </div>
@@ -374,7 +378,10 @@ function ReviewScreen({ id }: { id: number }) {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">Purchase order{r.po_number ? ` ${r.po_number}` : ''}</CardTitle>
+              <CardTitle className="text-base">
+                Purchase order{r.po_number ? ' ' : ''}
+                {r.po_id != null && <Link to="/purchase-order/$poId" params={{ poId: String(r.po_id) }} className="hover:underline">{r.po_number}</Link>}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <MatchTable matches={r.matches} poNumber={r.po_number} />

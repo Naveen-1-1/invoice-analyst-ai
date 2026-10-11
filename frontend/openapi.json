@@ -1057,6 +1057,302 @@
     }
    }
   },
+  "/api/evaluation/runs": {
+   "get": {
+    "summary": "Listscoredruns",
+    "operationId": "listScoredRuns",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/RunCardOut"
+         },
+         "type": "array",
+         "title": "Response Listscoredruns"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/evaluation/compare": {
+   "get": {
+    "summary": "Compareruns",
+    "description": "Field by field, and the documents whose fields changed, between two scored runs on the same set.",
+    "operationId": "compareRuns",
+    "parameters": [
+     {
+      "name": "a",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "A"
+      }
+     },
+     {
+      "name": "b",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "B"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CompareOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/vendors": {
+   "get": {
+    "summary": "Listvendors",
+    "operationId": "listVendors",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/VendorRow"
+         },
+         "title": "Response Listvendors"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/vendors/{vendor_id}": {
+   "get": {
+    "summary": "Getvendor",
+    "operationId": "getVendor",
+    "parameters": [
+     {
+      "name": "vendor_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Vendor Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/VendorDetail"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/purchase-orders": {
+   "get": {
+    "summary": "Listpurchaseorders",
+    "operationId": "listPurchaseOrders",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/PoRow"
+         },
+         "title": "Response Listpurchaseorders"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/purchase-orders/{po_id}": {
+   "get": {
+    "summary": "Getpurchaseorder",
+    "operationId": "getPurchaseOrder",
+    "parameters": [
+     {
+      "name": "po_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Po Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PoDetail"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/workspaces/{workspace_id}/deliveries": {
+   "get": {
+    "summary": "Listdeliveries",
+    "operationId": "listDeliveries",
+    "parameters": [
+     {
+      "name": "workspace_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Workspace Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/DeliveryRow"
+         },
+         "title": "Response Listdeliveries"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/settings": {
+   "get": {
+    "summary": "Getsettings",
+    "operationId": "getSettings",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SettingsOut"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/api/runs": {
    "get": {
     "summary": "Listruns",
@@ -1224,6 +1520,50 @@
      }
     }
    }
+  },
+  "/api/documents/{document_id}/model-calls": {
+   "get": {
+    "summary": "Listmodelcalls",
+    "description": "Every model call made for this file: for this document, or for an earlier copy of the same file (whose answer a\ncached reading reuses). Newest first.",
+    "operationId": "listModelCalls",
+    "parameters": [
+     {
+      "name": "document_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "title": "Document Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/ModelCallOut"
+         },
+         "title": "Response Listmodelcalls"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
   }
  },
  "components": {
@@ -1361,6 +1701,98 @@
     ],
     "title": "AuditOut"
    },
+   "BankAccountOut": {
+    "properties": {
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "account": {
+      "type": "string",
+      "title": "Account"
+     },
+     "bank_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bank Name"
+     },
+     "bic": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bic"
+     },
+     "branch": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Branch"
+     },
+     "valid_from": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Valid From"
+     },
+     "valid_to": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Valid To"
+     },
+     "source": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Source"
+     }
+    },
+    "type": "object",
+    "required": [
+     "kind",
+     "account",
+     "bank_name",
+     "bic",
+     "branch",
+     "valid_from",
+     "valid_to",
+     "source"
+    ],
+    "title": "BankAccountOut"
+   },
    "BoardOut": {
     "properties": {
      "workspace": {
@@ -1450,6 +1882,62 @@
      "files"
     ],
     "title": "Body_uploadDocuments"
+   },
+   "CallMessageOut": {
+    "properties": {
+     "role": {
+      "type": "string",
+      "title": "Role"
+     },
+     "parts": {
+      "items": {
+       "$ref": "#/components/schemas/CallPartOut"
+      },
+      "type": "array",
+      "title": "Parts"
+     }
+    },
+    "type": "object",
+    "required": [
+     "role",
+     "parts"
+    ],
+    "title": "CallMessageOut"
+   },
+   "CallPartOut": {
+    "properties": {
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "text": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Text"
+     },
+     "image_bytes": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Image Bytes"
+     }
+    },
+    "type": "object",
+    "required": [
+     "kind"
+    ],
+    "title": "CallPartOut"
    },
    "CapOut": {
     "properties": {
@@ -1753,6 +2241,38 @@
     "title": "ClockOut",
     "description": "The simulated clock: simulated date = start_sim + (now - start_real) / seconds_per_day days."
    },
+   "CompareOut": {
+    "properties": {
+     "a": {
+      "$ref": "#/components/schemas/RunCardOut"
+     },
+     "b": {
+      "$ref": "#/components/schemas/RunCardOut"
+     },
+     "fields": {
+      "items": {
+       "$ref": "#/components/schemas/FieldDiffOut"
+      },
+      "type": "array",
+      "title": "Fields"
+     },
+     "changes": {
+      "items": {
+       "$ref": "#/components/schemas/DocChangeOut"
+      },
+      "type": "array",
+      "title": "Changes"
+     }
+    },
+    "type": "object",
+    "required": [
+     "a",
+     "b",
+     "fields",
+     "changes"
+    ],
+    "title": "CompareOut"
+   },
    "CorrectionIn": {
     "properties": {
      "field": {
@@ -1833,34 +2353,126 @@
     ],
     "title": "DecisionIn"
    },
-   "DecisionOut": {
+   "DeliveryRow": {
     "properties": {
      "id": {
       "type": "integer",
       "title": "Id"
      },
-     "action": {
+     "grn_number": {
       "type": "string",
-      "title": "Action"
+      "title": "Grn Number"
      },
-     "note": {
+     "received_date": {
       "type": "string",
-      "title": "Note"
+      "format": "date",
+      "title": "Received Date"
      },
-     "decided_at": {
+     "po_id": {
+      "type": "integer",
+      "title": "Po Id"
+     },
+     "po_number": {
       "type": "string",
-      "format": "date-time",
-      "title": "Decided At"
+      "title": "Po Number"
+     },
+     "vendor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vendor"
+     },
+     "lines": {
+      "type": "integer",
+      "title": "Lines"
+     },
+     "quantity": {
+      "type": "string",
+      "title": "Quantity"
      }
     },
     "type": "object",
     "required": [
      "id",
-     "action",
-     "note",
-     "decided_at"
+     "grn_number",
+     "received_date",
+     "po_id",
+     "po_number",
+     "vendor",
+     "lines",
+     "quantity"
     ],
-    "title": "DecisionOut"
+    "title": "DeliveryRow"
+   },
+   "DocChangeOut": {
+    "properties": {
+     "doc_id": {
+      "type": "string",
+      "title": "Doc Id"
+     },
+     "category": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Category"
+     },
+     "gained": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Gained"
+     },
+     "lost": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Lost"
+     },
+     "a_document_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "A Document Id"
+     },
+     "b_document_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "B Document Id"
+     }
+    },
+    "type": "object",
+    "required": [
+     "doc_id",
+     "category",
+     "gained",
+     "lost",
+     "a_document_id",
+     "b_document_id"
+    ],
+    "title": "DocChangeOut"
    },
    "DocumentDetail": {
     "properties": {
@@ -2211,6 +2823,21 @@
       "additionalProperties": true,
       "type": "object",
       "title": "Data"
+     },
+     "subject_type": {
+      "type": "string",
+      "title": "Subject Type"
+     },
+     "subject_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Subject Id"
      }
     },
     "type": "object",
@@ -2219,9 +2846,44 @@
      "occurred_at",
      "actor",
      "action",
-     "data"
+     "data",
+     "subject_type",
+     "subject_id"
     ],
     "title": "EventOut"
+   },
+   "FieldDiffOut": {
+    "properties": {
+     "field": {
+      "type": "string",
+      "title": "Field"
+     },
+     "a_right": {
+      "type": "integer",
+      "title": "A Right"
+     },
+     "a_scored": {
+      "type": "integer",
+      "title": "A Scored"
+     },
+     "b_right": {
+      "type": "integer",
+      "title": "B Right"
+     },
+     "b_scored": {
+      "type": "integer",
+      "title": "B Scored"
+     }
+    },
+    "type": "object",
+    "required": [
+     "field",
+     "a_right",
+     "a_scored",
+     "b_right",
+     "b_scored"
+    ],
+    "title": "FieldDiffOut"
    },
    "FieldOut": {
     "properties": {
@@ -2363,6 +3025,42 @@
     "type": "object",
     "title": "HTTPValidationError"
    },
+   "HistoryOut": {
+    "properties": {
+     "invoice_number": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Number"
+     },
+     "invoice_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Invoice Date"
+     },
+     "amount": {
+      "type": "string",
+      "title": "Amount"
+     },
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     }
+    },
+    "type": "object",
+    "required": [
+     "invoice_number",
+     "invoice_date",
+     "amount",
+     "currency"
+    ],
+    "title": "HistoryOut"
+   },
    "InvoiceOut": {
     "properties": {
      "id": {
@@ -2391,6 +3089,17 @@
        }
       ],
       "title": "Conf Tier"
+     },
+     "vendor_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vendor Id"
      },
      "vendor_name": {
       "anyOf": [
@@ -2525,6 +3234,7 @@
      "doc_type",
      "state",
      "conf_tier",
+     "vendor_id",
      "vendor_name",
      "invoice_number",
      "invoice_date",
@@ -2870,6 +3580,167 @@
      "outcome"
     ],
     "title": "MatchOut"
+   },
+   "ModelCallOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "model": {
+      "type": "string",
+      "title": "Model"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "attempt": {
+      "type": "integer",
+      "title": "Attempt"
+     },
+     "ok": {
+      "type": "boolean",
+      "title": "Ok"
+     },
+     "http_status": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Http Status"
+     },
+     "finish_reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Finish Reason"
+     },
+     "latency_ms": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Latency Ms"
+     },
+     "tokens_in": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Tokens In"
+     },
+     "tokens_out": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Tokens Out"
+     },
+     "error": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Error"
+     },
+     "params": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Params"
+     },
+     "this_document": {
+      "type": "boolean",
+      "title": "This Document"
+     },
+     "workspace": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Workspace"
+     },
+     "messages": {
+      "items": {
+       "$ref": "#/components/schemas/CallMessageOut"
+      },
+      "type": "array",
+      "title": "Messages"
+     },
+     "answer": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Answer"
+     },
+     "reasoning": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reasoning"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "model",
+     "created_at",
+     "attempt",
+     "ok",
+     "http_status",
+     "finish_reason",
+     "latency_ms",
+     "tokens_in",
+     "tokens_out",
+     "error",
+     "params",
+     "this_document",
+     "workspace",
+     "messages",
+     "answer",
+     "reasoning"
+    ],
+    "title": "ModelCallOut"
    },
    "OpenItemOut": {
     "properties": {
@@ -3328,6 +4199,333 @@
     ],
     "title": "PaymentsOut"
    },
+   "PoDetail": {
+    "properties": {
+     "po": {
+      "$ref": "#/components/schemas/PoRow"
+     },
+     "lines": {
+      "items": {
+       "$ref": "#/components/schemas/PoLineOut"
+      },
+      "type": "array",
+      "title": "Lines"
+     },
+     "receipts": {
+      "items": {
+       "$ref": "#/components/schemas/ReceiptOut"
+      },
+      "type": "array",
+      "title": "Receipts"
+     },
+     "invoices": {
+      "items": {
+       "$ref": "#/components/schemas/PoInvoiceOut"
+      },
+      "type": "array",
+      "title": "Invoices"
+     }
+    },
+    "type": "object",
+    "required": [
+     "po",
+     "lines",
+     "receipts",
+     "invoices"
+    ],
+    "title": "PoDetail"
+   },
+   "PoInvoiceOut": {
+    "properties": {
+     "invoice_id": {
+      "type": "integer",
+      "title": "Invoice Id"
+     },
+     "document_id": {
+      "type": "integer",
+      "title": "Document Id"
+     },
+     "invoice_number": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Number"
+     },
+     "state": {
+      "type": "string",
+      "title": "State"
+     },
+     "total": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Total"
+     },
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     }
+    },
+    "type": "object",
+    "required": [
+     "invoice_id",
+     "document_id",
+     "invoice_number",
+     "state",
+     "total",
+     "currency"
+    ],
+    "title": "PoInvoiceOut"
+   },
+   "PoLineOut": {
+    "properties": {
+     "line_no": {
+      "type": "integer",
+      "title": "Line No"
+     },
+     "item_code": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Item Code"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "qty": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Qty"
+     },
+     "unit_price": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unit Price"
+     },
+     "amount": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Amount"
+     },
+     "gl_account": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Gl Account"
+     },
+     "received": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Received"
+     },
+     "invoiced": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoiced"
+     },
+     "open": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Open"
+     }
+    },
+    "type": "object",
+    "required": [
+     "line_no",
+     "item_code",
+     "description",
+     "qty",
+     "unit_price",
+     "amount",
+     "gl_account",
+     "received",
+     "invoiced",
+     "open"
+    ],
+    "title": "PoLineOut"
+   },
+   "PoRow": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "po_number": {
+      "type": "string",
+      "title": "Po Number"
+     },
+     "vendor_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vendor Id"
+     },
+     "vendor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vendor"
+     },
+     "entity": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Entity"
+     },
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     },
+     "order_date": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Order Date"
+     },
+     "status": {
+      "type": "string",
+      "title": "Status"
+     },
+     "lines": {
+      "type": "integer",
+      "title": "Lines"
+     },
+     "ordered": {
+      "type": "string",
+      "title": "Ordered"
+     },
+     "received_share": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Received Share"
+     },
+     "invoiced_share": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoiced Share"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "po_number",
+     "vendor_id",
+     "vendor",
+     "entity",
+     "currency",
+     "order_date",
+     "status",
+     "lines",
+     "ordered",
+     "received_share",
+     "invoiced_share"
+    ],
+    "title": "PoRow"
+   },
    "Reason": {
     "properties": {
      "code": {
@@ -3379,6 +4577,68 @@
      "text"
     ],
     "title": "ReasonLine"
+   },
+   "ReceiptLineOut": {
+    "properties": {
+     "line_no": {
+      "type": "integer",
+      "title": "Line No"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "qty": {
+      "type": "string",
+      "title": "Qty"
+     }
+    },
+    "type": "object",
+    "required": [
+     "line_no",
+     "description",
+     "qty"
+    ],
+    "title": "ReceiptLineOut"
+   },
+   "ReceiptOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "grn_number": {
+      "type": "string",
+      "title": "Grn Number"
+     },
+     "received_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Received Date"
+     },
+     "lines": {
+      "items": {
+       "$ref": "#/components/schemas/ReceiptLineOut"
+      },
+      "type": "array",
+      "title": "Lines"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "grn_number",
+     "received_date",
+     "lines"
+    ],
+    "title": "ReceiptOut"
    },
    "ReconciliationOut": {
     "properties": {
@@ -3462,7 +4722,7 @@
      },
      "decisions": {
       "items": {
-       "$ref": "#/components/schemas/DecisionOut"
+       "$ref": "#/components/schemas/invoice_analyst__api__schemas__DecisionOut"
       },
       "type": "array",
       "title": "Decisions"
@@ -3477,6 +4737,17 @@
      "approved_so_far": {
       "type": "string",
       "title": "Approved So Far"
+     },
+     "po_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Po Id"
      },
      "po_number": {
       "anyOf": [
@@ -3553,6 +4824,7 @@
      "decisions",
      "approvals",
      "approved_so_far",
+     "po_id",
      "po_number",
      "matches",
      "partial",
@@ -3716,6 +4988,46 @@
     ],
     "title": "ReviewItemOut"
    },
+   "RunCardOut": {
+    "properties": {
+     "run": {
+      "type": "string",
+      "title": "Run"
+     },
+     "corpus": {
+      "type": "string",
+      "title": "Corpus"
+     },
+     "label": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Label"
+     },
+     "documents": {
+      "type": "integer",
+      "title": "Documents"
+     },
+     "fully_correct": {
+      "type": "integer",
+      "title": "Fully Correct"
+     }
+    },
+    "type": "object",
+    "required": [
+     "run",
+     "corpus",
+     "label",
+     "documents",
+     "fully_correct"
+    ],
+    "title": "RunCardOut"
+   },
    "RunOut": {
     "properties": {
      "id": {
@@ -3824,6 +5136,94 @@
      "message"
     ],
     "title": "RunResultOut"
+   },
+   "SectionOut": {
+    "properties": {
+     "title": {
+      "type": "string",
+      "title": "Title"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/SettingOut"
+      },
+      "type": "array",
+      "title": "Items"
+     }
+    },
+    "type": "object",
+    "required": [
+     "title",
+     "items"
+    ],
+    "title": "SectionOut"
+   },
+   "SettingOut": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "title": "Name"
+     },
+     "value": {
+      "type": "string",
+      "title": "Value"
+     },
+     "explanation": {
+      "type": "string",
+      "title": "Explanation"
+     },
+     "decision": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Decision"
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "value",
+     "explanation",
+     "decision"
+    ],
+    "title": "SettingOut"
+   },
+   "SettingsOut": {
+    "properties": {
+     "sections": {
+      "items": {
+       "$ref": "#/components/schemas/SectionOut"
+      },
+      "type": "array",
+      "title": "Sections"
+     },
+     "workspaces": {
+      "items": {
+       "$ref": "#/components/schemas/WorkspaceTodayOut"
+      },
+      "type": "array",
+      "title": "Workspaces"
+     },
+     "decisions": {
+      "items": {
+       "$ref": "#/components/schemas/invoice_analyst__api__settings__DecisionOut"
+      },
+      "type": "array",
+      "title": "Decisions"
+     }
+    },
+    "type": "object",
+    "required": [
+     "sections",
+     "workspaces",
+     "decisions"
+    ],
+    "title": "SettingsOut"
    },
    "SplitLineOut": {
     "properties": {
@@ -4259,6 +5659,357 @@
     ],
     "title": "ValidationError"
    },
+   "VendorDetail": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "workspace_id": {
+      "type": "integer",
+      "title": "Workspace Id"
+     },
+     "code": {
+      "type": "string",
+      "title": "Code"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name"
+     },
+     "aliases": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Aliases"
+     },
+     "country": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
+     },
+     "address": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Address"
+     },
+     "tax_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Tax Id"
+     },
+     "email": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Email"
+     },
+     "status": {
+      "type": "string",
+      "title": "Status"
+     },
+     "origin": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Origin"
+     },
+     "terms_days": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Terms Days"
+     },
+     "discount": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Discount"
+     },
+     "default_gl": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Default Gl"
+     },
+     "accounts": {
+      "items": {
+       "$ref": "#/components/schemas/BankAccountOut"
+      },
+      "type": "array",
+      "title": "Accounts"
+     },
+     "history": {
+      "items": {
+       "$ref": "#/components/schemas/HistoryOut"
+      },
+      "type": "array",
+      "title": "History"
+     },
+     "invoices": {
+      "items": {
+       "$ref": "#/components/schemas/VendorInvoiceOut"
+      },
+      "type": "array",
+      "title": "Invoices"
+     },
+     "purchase_orders": {
+      "items": {
+       "$ref": "#/components/schemas/PoRow"
+      },
+      "type": "array",
+      "title": "Purchase Orders"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "workspace_id",
+     "code",
+     "name",
+     "aliases",
+     "country",
+     "address",
+     "tax_id",
+     "email",
+     "status",
+     "origin",
+     "terms_days",
+     "discount",
+     "default_gl",
+     "accounts",
+     "history",
+     "invoices",
+     "purchase_orders"
+    ],
+    "title": "VendorDetail"
+   },
+   "VendorInvoiceOut": {
+    "properties": {
+     "invoice_id": {
+      "type": "integer",
+      "title": "Invoice Id"
+     },
+     "document_id": {
+      "type": "integer",
+      "title": "Document Id"
+     },
+     "invoice_number": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Number"
+     },
+     "invoice_date": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invoice Date"
+     },
+     "total": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Total"
+     },
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     },
+     "state": {
+      "type": "string",
+      "title": "State"
+     },
+     "payment": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Payment"
+     }
+    },
+    "type": "object",
+    "required": [
+     "invoice_id",
+     "document_id",
+     "invoice_number",
+     "invoice_date",
+     "total",
+     "currency",
+     "state",
+     "payment"
+    ],
+    "title": "VendorInvoiceOut"
+   },
+   "VendorRow": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "code": {
+      "type": "string",
+      "title": "Code"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name"
+     },
+     "country": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
+     },
+     "status": {
+      "type": "string",
+      "title": "Status"
+     },
+     "origin": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Origin"
+     },
+     "terms_days": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Terms Days"
+     },
+     "discount": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Discount"
+     },
+     "account": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Account"
+     },
+     "invoices": {
+      "type": "integer",
+      "title": "Invoices"
+     },
+     "purchase_orders": {
+      "type": "integer",
+      "title": "Purchase Orders"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "code",
+     "name",
+     "country",
+     "status",
+     "origin",
+     "terms_days",
+     "discount",
+     "account",
+     "invoices",
+     "purchase_orders"
+    ],
+    "title": "VendorRow"
+   },
    "VerdictOut": {
     "properties": {
      "ok": {
@@ -4373,6 +6124,91 @@
      "states"
     ],
     "title": "WorkspaceOut"
+   },
+   "WorkspaceTodayOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name"
+     },
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "today": {
+      "type": "string",
+      "title": "Today"
+     },
+     "live": {
+      "type": "boolean",
+      "title": "Live"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "name",
+     "kind",
+     "today",
+     "live"
+    ],
+    "title": "WorkspaceTodayOut"
+   },
+   "invoice_analyst__api__schemas__DecisionOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "action": {
+      "type": "string",
+      "title": "Action"
+     },
+     "note": {
+      "type": "string",
+      "title": "Note"
+     },
+     "decided_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Decided At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "action",
+     "note",
+     "decided_at"
+    ],
+    "title": "DecisionOut"
+   },
+   "invoice_analyst__api__settings__DecisionOut": {
+    "properties": {
+     "number": {
+      "type": "integer",
+      "title": "Number"
+     },
+     "title": {
+      "type": "string",
+      "title": "Title"
+     },
+     "text": {
+      "type": "string",
+      "title": "Text"
+     }
+    },
+    "type": "object",
+    "required": [
+     "number",
+     "title",
+     "text"
+    ],
+    "title": "DecisionOut"
    }
   }
  }

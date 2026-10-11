@@ -59,6 +59,17 @@ export interface AuditOut {
   events: AuditEventOut[];
 }
 
+export interface BankAccountOut {
+  kind: string;
+  account: string;
+  bank_name: string | null;
+  bic: string | null;
+  branch: string | null;
+  valid_from: string | null;
+  valid_to: string | null;
+  source: string | null;
+}
+
 export type WorkspaceOutStates = {[key: string]: number};
 
 export interface WorkspaceOut {
@@ -118,6 +129,17 @@ export interface BodyUploadDocuments {
   files: (Blob | File)[];
 }
 
+export interface CallPartOut {
+  kind: string;
+  text?: string | null;
+  image_bytes?: number | null;
+}
+
+export interface CallMessageOut {
+  role: string;
+  parts: CallPartOut[];
+}
+
 export interface CapOut {
   usd_estimate: string | null;
   cap_usd: string;
@@ -135,6 +157,38 @@ export interface CheckOut {
   message: string;
   evidence: CheckOutEvidence;
   related_invoice_id: number | null;
+}
+
+export interface RunCardOut {
+  run: string;
+  corpus: string;
+  label: string | null;
+  documents: number;
+  fully_correct: number;
+}
+
+export interface FieldDiffOut {
+  field: string;
+  a_right: number;
+  a_scored: number;
+  b_right: number;
+  b_scored: number;
+}
+
+export interface DocChangeOut {
+  doc_id: string;
+  category: string | null;
+  gained: string[];
+  lost: string[];
+  a_document_id: number | null;
+  b_document_id: number | null;
+}
+
+export interface CompareOut {
+  a: RunCardOut;
+  b: RunCardOut;
+  fields: FieldDiffOut[];
+  changes: DocChangeOut[];
 }
 
 export interface CorrectionIn {
@@ -161,11 +215,15 @@ export interface DecisionIn {
   override?: boolean;
 }
 
-export interface DecisionOut {
+export interface DeliveryRow {
   id: number;
-  action: string;
-  note: string;
-  decided_at: string;
+  grn_number: string;
+  received_date: string;
+  po_id: number;
+  po_number: string;
+  vendor: string | null;
+  lines: number;
+  quantity: string;
 }
 
 export type PageOutQuality = { [key: string]: unknown };
@@ -259,6 +317,7 @@ export interface InvoiceOut {
   doc_type: string;
   state: string;
   conf_tier: string | null;
+  vendor_id: number | null;
   vendor_name: string | null;
   invoice_number: string | null;
   invoice_date: string | null;
@@ -282,6 +341,8 @@ export interface EventOut {
   actor: string;
   action: string;
   data: EventOutData;
+  subject_type: string;
+  subject_id: number | null;
 }
 
 export interface DocumentDetail {
@@ -357,6 +418,13 @@ export interface HTTPValidationError {
   detail?: ValidationError[];
 }
 
+export interface HistoryOut {
+  invoice_number: string | null;
+  invoice_date: string;
+  amount: string;
+  currency: string;
+}
+
 export interface JournalOut {
   total: number;
   entries: JournalEntryOut[];
@@ -373,6 +441,28 @@ export interface MatchOut {
   price_po: string | null;
   variance_pct: string | null;
   outcome: string;
+}
+
+export type ModelCallOutParams = { [key: string]: unknown };
+
+export interface ModelCallOut {
+  id: number;
+  model: string;
+  created_at: string;
+  attempt: number;
+  ok: boolean;
+  http_status: number | null;
+  finish_reason: string | null;
+  latency_ms: number | null;
+  tokens_in: number | null;
+  tokens_out: number | null;
+  error: string | null;
+  params: ModelCallOutParams;
+  this_document: boolean;
+  workspace: string | null;
+  messages: CallMessageOut[];
+  answer: string | null;
+  reasoning: string | null;
 }
 
 export interface OpenItemOut {
@@ -441,6 +531,63 @@ export interface PaymentsOut {
   due_now: number;
 }
 
+export interface PoRow {
+  id: number;
+  po_number: string;
+  vendor_id: number | null;
+  vendor: string | null;
+  entity: string | null;
+  currency: string;
+  order_date: string | null;
+  status: string;
+  lines: number;
+  ordered: string;
+  received_share: number | null;
+  invoiced_share: number | null;
+}
+
+export interface PoLineOut {
+  line_no: number;
+  item_code: string | null;
+  description: string | null;
+  qty: string | null;
+  unit_price: string | null;
+  amount: string | null;
+  gl_account: string | null;
+  received: string | null;
+  invoiced: string | null;
+  open: string | null;
+}
+
+export interface ReceiptLineOut {
+  line_no: number;
+  description: string | null;
+  qty: string;
+}
+
+export interface ReceiptOut {
+  id: number;
+  grn_number: string;
+  received_date: string;
+  lines: ReceiptLineOut[];
+}
+
+export interface PoInvoiceOut {
+  invoice_id: number;
+  document_id: number;
+  invoice_number: string | null;
+  state: string;
+  total: string | null;
+  currency: string | null;
+}
+
+export interface PoDetail {
+  po: PoRow;
+  lines: PoLineOut[];
+  receipts: ReceiptOut[];
+  invoices: PoInvoiceOut[];
+}
+
 export interface ReconciliationOut {
   currency: string;
   ledger: string;
@@ -459,6 +606,13 @@ export interface TaskOut {
   reasons: ReasonLine[];
   created_at: string;
   resolved_at: string | null;
+}
+
+export interface InvoiceAnalystApiSchemasDecisionOut {
+  id: number;
+  action: string;
+  note: string;
+  decided_at: string;
 }
 
 export interface SplitLineOut {
@@ -494,9 +648,10 @@ export interface ReviewDetail {
   doc_type: string;
   labels: string[];
   task: TaskOut | null;
-  decisions: DecisionOut[];
+  decisions: InvoiceAnalystApiSchemasDecisionOut[];
   approvals: ApprovalOut[];
   approved_so_far: string;
+  po_id: number | null;
   po_number: string | null;
   matches: MatchOut[];
   partial: SplitOut | null;
@@ -549,6 +704,38 @@ export interface RunResultOut {
   message: string;
 }
 
+export interface SettingOut {
+  name: string;
+  value: string;
+  explanation: string;
+  decision: number | null;
+}
+
+export interface SectionOut {
+  title: string;
+  items: SettingOut[];
+}
+
+export interface WorkspaceTodayOut {
+  id: number;
+  name: string;
+  kind: string;
+  today: string;
+  live: boolean;
+}
+
+export interface InvoiceAnalystApiSettingsDecisionOut {
+  number: number;
+  title: string;
+  text: string;
+}
+
+export interface SettingsOut {
+  sections: SectionOut[];
+  workspaces: WorkspaceTodayOut[];
+  decisions: InvoiceAnalystApiSettingsDecisionOut[];
+}
+
 export interface TodayIn {
   date: string;
 }
@@ -576,6 +763,52 @@ export interface UploadOut {
   document_id?: number | null;
   workspace_id?: number | null;
   error?: string | null;
+}
+
+export interface VendorInvoiceOut {
+  invoice_id: number;
+  document_id: number;
+  invoice_number: string | null;
+  invoice_date: string | null;
+  total: string | null;
+  currency: string | null;
+  state: string;
+  payment: string | null;
+}
+
+export interface VendorDetail {
+  id: number;
+  workspace_id: number;
+  code: string;
+  name: string;
+  aliases: string[];
+  country: string | null;
+  address: string | null;
+  tax_id: string | null;
+  email: string | null;
+  status: string;
+  origin: string | null;
+  terms_days: number | null;
+  discount: string | null;
+  default_gl: string | null;
+  accounts: BankAccountOut[];
+  history: HistoryOut[];
+  invoices: VendorInvoiceOut[];
+  purchase_orders: PoRow[];
+}
+
+export interface VendorRow {
+  id: number;
+  code: string;
+  name: string;
+  country: string | null;
+  status: string;
+  origin: string | null;
+  terms_days: number | null;
+  discount: string | null;
+  account: string | null;
+  invoices: number;
+  purchase_orders: number;
 }
 
 export interface VerdictOut {
@@ -616,6 +849,11 @@ subject_type?: string | null;
 subject_id?: number | null;
 limit?: number;
 offset?: number;
+};
+
+export type CompareRunsParams = {
+a: string;
+b: string;
 };
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
@@ -2786,6 +3024,822 @@ export function useListEvaluations<TData = Awaited<ReturnType<typeof listEvaluat
 
 
 
+export const getListScoredRunsUrl = () => {
+
+
+
+
+  return `/api/evaluation/runs`
+}
+
+/**
+ * @summary Listscoredruns
+ */
+export const listScoredRuns = async ( options?: Parameters<typeof customFetch>[1]): Promise<RunCardOut[]> => {
+
+  return customFetch<RunCardOut[]>(getListScoredRunsUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListScoredRunsQueryKey = () => {
+    return [
+    `/api/evaluation/runs`
+    ] as const;
+    }
+
+
+export const getListScoredRunsQueryOptions = <TData = Awaited<ReturnType<typeof listScoredRuns>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listScoredRuns>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListScoredRunsQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listScoredRuns>>> = ({ signal }) => listScoredRuns({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listScoredRuns>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ListScoredRunsQueryResult = NonNullable<Awaited<ReturnType<typeof listScoredRuns>>>
+export type ListScoredRunsQueryError = unknown
+
+
+export function useListScoredRuns<TData = Awaited<ReturnType<typeof listScoredRuns>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listScoredRuns>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listScoredRuns>>,
+          TError,
+          Awaited<ReturnType<typeof listScoredRuns>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListScoredRuns<TData = Awaited<ReturnType<typeof listScoredRuns>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listScoredRuns>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listScoredRuns>>,
+          TError,
+          Awaited<ReturnType<typeof listScoredRuns>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListScoredRuns<TData = Awaited<ReturnType<typeof listScoredRuns>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listScoredRuns>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Listscoredruns
+ */
+
+export function useListScoredRuns<TData = Awaited<ReturnType<typeof listScoredRuns>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listScoredRuns>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getListScoredRunsQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getCompareRunsUrl = (params: CompareRunsParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : String(value))
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/evaluation/compare?${stringifiedParams}` : `/api/evaluation/compare`
+}
+
+/**
+ * Field by field, and the documents whose fields changed, between two scored runs on the same set.
+ * @summary Compareruns
+ */
+export const compareRuns = async (params: CompareRunsParams, options?: Parameters<typeof customFetch>[1]): Promise<CompareOut> => {
+
+  return customFetch<CompareOut>(getCompareRunsUrl(params),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getCompareRunsQueryKey = (params?: CompareRunsParams,) => {
+    return [
+    `/api/evaluation/compare`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+
+export const getCompareRunsQueryOptions = <TData = Awaited<ReturnType<typeof compareRuns>>, TError = HTTPValidationError>(params: CompareRunsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof compareRuns>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getCompareRunsQueryKey(params);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof compareRuns>>> = ({ signal }) => compareRuns(params, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof compareRuns>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type CompareRunsQueryResult = NonNullable<Awaited<ReturnType<typeof compareRuns>>>
+export type CompareRunsQueryError = HTTPValidationError
+
+
+export function useCompareRuns<TData = Awaited<ReturnType<typeof compareRuns>>, TError = HTTPValidationError>(
+ params: CompareRunsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof compareRuns>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof compareRuns>>,
+          TError,
+          Awaited<ReturnType<typeof compareRuns>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCompareRuns<TData = Awaited<ReturnType<typeof compareRuns>>, TError = HTTPValidationError>(
+ params: CompareRunsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof compareRuns>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof compareRuns>>,
+          TError,
+          Awaited<ReturnType<typeof compareRuns>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCompareRuns<TData = Awaited<ReturnType<typeof compareRuns>>, TError = HTTPValidationError>(
+ params: CompareRunsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof compareRuns>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Compareruns
+ */
+
+export function useCompareRuns<TData = Awaited<ReturnType<typeof compareRuns>>, TError = HTTPValidationError>(
+ params: CompareRunsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof compareRuns>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getCompareRunsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getListVendorsUrl = (workspaceId: number,) => {
+
+
+
+
+  return `/api/workspaces/${workspaceId}/vendors`
+}
+
+/**
+ * @summary Listvendors
+ */
+export const listVendors = async (workspaceId: number, options?: Parameters<typeof customFetch>[1]): Promise<VendorRow[]> => {
+
+  return customFetch<VendorRow[]>(getListVendorsUrl(workspaceId),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListVendorsQueryKey = (workspaceId: number,) => {
+    return [
+    `/api/workspaces/${workspaceId}/vendors`
+    ] as const;
+    }
+
+
+export const getListVendorsQueryOptions = <TData = Awaited<ReturnType<typeof listVendors>>, TError = HTTPValidationError>(workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listVendors>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListVendorsQueryKey(workspaceId);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listVendors>>> = ({ signal }) => listVendors(workspaceId, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: workspaceId !== null && workspaceId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listVendors>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ListVendorsQueryResult = NonNullable<Awaited<ReturnType<typeof listVendors>>>
+export type ListVendorsQueryError = HTTPValidationError
+
+
+export function useListVendors<TData = Awaited<ReturnType<typeof listVendors>>, TError = HTTPValidationError>(
+ workspaceId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listVendors>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listVendors>>,
+          TError,
+          Awaited<ReturnType<typeof listVendors>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListVendors<TData = Awaited<ReturnType<typeof listVendors>>, TError = HTTPValidationError>(
+ workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listVendors>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listVendors>>,
+          TError,
+          Awaited<ReturnType<typeof listVendors>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListVendors<TData = Awaited<ReturnType<typeof listVendors>>, TError = HTTPValidationError>(
+ workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listVendors>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Listvendors
+ */
+
+export function useListVendors<TData = Awaited<ReturnType<typeof listVendors>>, TError = HTTPValidationError>(
+ workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listVendors>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getListVendorsQueryOptions(workspaceId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getGetVendorUrl = (vendorId: number,) => {
+
+
+
+
+  return `/api/vendors/${vendorId}`
+}
+
+/**
+ * @summary Getvendor
+ */
+export const getVendor = async (vendorId: number, options?: Parameters<typeof customFetch>[1]): Promise<VendorDetail> => {
+
+  return customFetch<VendorDetail>(getGetVendorUrl(vendorId),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetVendorQueryKey = (vendorId: number,) => {
+    return [
+    `/api/vendors/${vendorId}`
+    ] as const;
+    }
+
+
+export const getGetVendorQueryOptions = <TData = Awaited<ReturnType<typeof getVendor>>, TError = HTTPValidationError>(vendorId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getVendor>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetVendorQueryKey(vendorId);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getVendor>>> = ({ signal }) => getVendor(vendorId, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: vendorId !== null && vendorId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getVendor>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetVendorQueryResult = NonNullable<Awaited<ReturnType<typeof getVendor>>>
+export type GetVendorQueryError = HTTPValidationError
+
+
+export function useGetVendor<TData = Awaited<ReturnType<typeof getVendor>>, TError = HTTPValidationError>(
+ vendorId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getVendor>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getVendor>>,
+          TError,
+          Awaited<ReturnType<typeof getVendor>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetVendor<TData = Awaited<ReturnType<typeof getVendor>>, TError = HTTPValidationError>(
+ vendorId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getVendor>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getVendor>>,
+          TError,
+          Awaited<ReturnType<typeof getVendor>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetVendor<TData = Awaited<ReturnType<typeof getVendor>>, TError = HTTPValidationError>(
+ vendorId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getVendor>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Getvendor
+ */
+
+export function useGetVendor<TData = Awaited<ReturnType<typeof getVendor>>, TError = HTTPValidationError>(
+ vendorId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getVendor>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetVendorQueryOptions(vendorId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getListPurchaseOrdersUrl = (workspaceId: number,) => {
+
+
+
+
+  return `/api/workspaces/${workspaceId}/purchase-orders`
+}
+
+/**
+ * @summary Listpurchaseorders
+ */
+export const listPurchaseOrders = async (workspaceId: number, options?: Parameters<typeof customFetch>[1]): Promise<PoRow[]> => {
+
+  return customFetch<PoRow[]>(getListPurchaseOrdersUrl(workspaceId),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListPurchaseOrdersQueryKey = (workspaceId: number,) => {
+    return [
+    `/api/workspaces/${workspaceId}/purchase-orders`
+    ] as const;
+    }
+
+
+export const getListPurchaseOrdersQueryOptions = <TData = Awaited<ReturnType<typeof listPurchaseOrders>>, TError = HTTPValidationError>(workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listPurchaseOrders>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListPurchaseOrdersQueryKey(workspaceId);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listPurchaseOrders>>> = ({ signal }) => listPurchaseOrders(workspaceId, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: workspaceId !== null && workspaceId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listPurchaseOrders>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ListPurchaseOrdersQueryResult = NonNullable<Awaited<ReturnType<typeof listPurchaseOrders>>>
+export type ListPurchaseOrdersQueryError = HTTPValidationError
+
+
+export function useListPurchaseOrders<TData = Awaited<ReturnType<typeof listPurchaseOrders>>, TError = HTTPValidationError>(
+ workspaceId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listPurchaseOrders>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listPurchaseOrders>>,
+          TError,
+          Awaited<ReturnType<typeof listPurchaseOrders>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListPurchaseOrders<TData = Awaited<ReturnType<typeof listPurchaseOrders>>, TError = HTTPValidationError>(
+ workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listPurchaseOrders>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listPurchaseOrders>>,
+          TError,
+          Awaited<ReturnType<typeof listPurchaseOrders>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListPurchaseOrders<TData = Awaited<ReturnType<typeof listPurchaseOrders>>, TError = HTTPValidationError>(
+ workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listPurchaseOrders>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Listpurchaseorders
+ */
+
+export function useListPurchaseOrders<TData = Awaited<ReturnType<typeof listPurchaseOrders>>, TError = HTTPValidationError>(
+ workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listPurchaseOrders>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getListPurchaseOrdersQueryOptions(workspaceId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getGetPurchaseOrderUrl = (poId: number,) => {
+
+
+
+
+  return `/api/purchase-orders/${poId}`
+}
+
+/**
+ * @summary Getpurchaseorder
+ */
+export const getPurchaseOrder = async (poId: number, options?: Parameters<typeof customFetch>[1]): Promise<PoDetail> => {
+
+  return customFetch<PoDetail>(getGetPurchaseOrderUrl(poId),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetPurchaseOrderQueryKey = (poId: number,) => {
+    return [
+    `/api/purchase-orders/${poId}`
+    ] as const;
+    }
+
+
+export const getGetPurchaseOrderQueryOptions = <TData = Awaited<ReturnType<typeof getPurchaseOrder>>, TError = HTTPValidationError>(poId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPurchaseOrder>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetPurchaseOrderQueryKey(poId);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getPurchaseOrder>>> = ({ signal }) => getPurchaseOrder(poId, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: poId !== null && poId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getPurchaseOrder>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetPurchaseOrderQueryResult = NonNullable<Awaited<ReturnType<typeof getPurchaseOrder>>>
+export type GetPurchaseOrderQueryError = HTTPValidationError
+
+
+export function useGetPurchaseOrder<TData = Awaited<ReturnType<typeof getPurchaseOrder>>, TError = HTTPValidationError>(
+ poId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPurchaseOrder>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getPurchaseOrder>>,
+          TError,
+          Awaited<ReturnType<typeof getPurchaseOrder>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetPurchaseOrder<TData = Awaited<ReturnType<typeof getPurchaseOrder>>, TError = HTTPValidationError>(
+ poId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPurchaseOrder>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getPurchaseOrder>>,
+          TError,
+          Awaited<ReturnType<typeof getPurchaseOrder>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetPurchaseOrder<TData = Awaited<ReturnType<typeof getPurchaseOrder>>, TError = HTTPValidationError>(
+ poId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPurchaseOrder>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Getpurchaseorder
+ */
+
+export function useGetPurchaseOrder<TData = Awaited<ReturnType<typeof getPurchaseOrder>>, TError = HTTPValidationError>(
+ poId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPurchaseOrder>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetPurchaseOrderQueryOptions(poId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getListDeliveriesUrl = (workspaceId: number,) => {
+
+
+
+
+  return `/api/workspaces/${workspaceId}/deliveries`
+}
+
+/**
+ * @summary Listdeliveries
+ */
+export const listDeliveries = async (workspaceId: number, options?: Parameters<typeof customFetch>[1]): Promise<DeliveryRow[]> => {
+
+  return customFetch<DeliveryRow[]>(getListDeliveriesUrl(workspaceId),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListDeliveriesQueryKey = (workspaceId: number,) => {
+    return [
+    `/api/workspaces/${workspaceId}/deliveries`
+    ] as const;
+    }
+
+
+export const getListDeliveriesQueryOptions = <TData = Awaited<ReturnType<typeof listDeliveries>>, TError = HTTPValidationError>(workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listDeliveries>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListDeliveriesQueryKey(workspaceId);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listDeliveries>>> = ({ signal }) => listDeliveries(workspaceId, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: workspaceId !== null && workspaceId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listDeliveries>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ListDeliveriesQueryResult = NonNullable<Awaited<ReturnType<typeof listDeliveries>>>
+export type ListDeliveriesQueryError = HTTPValidationError
+
+
+export function useListDeliveries<TData = Awaited<ReturnType<typeof listDeliveries>>, TError = HTTPValidationError>(
+ workspaceId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listDeliveries>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listDeliveries>>,
+          TError,
+          Awaited<ReturnType<typeof listDeliveries>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListDeliveries<TData = Awaited<ReturnType<typeof listDeliveries>>, TError = HTTPValidationError>(
+ workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listDeliveries>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listDeliveries>>,
+          TError,
+          Awaited<ReturnType<typeof listDeliveries>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListDeliveries<TData = Awaited<ReturnType<typeof listDeliveries>>, TError = HTTPValidationError>(
+ workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listDeliveries>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Listdeliveries
+ */
+
+export function useListDeliveries<TData = Awaited<ReturnType<typeof listDeliveries>>, TError = HTTPValidationError>(
+ workspaceId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listDeliveries>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getListDeliveriesQueryOptions(workspaceId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getGetSettingsUrl = () => {
+
+
+
+
+  return `/api/settings`
+}
+
+/**
+ * @summary Getsettings
+ */
+export const getSettings = async ( options?: Parameters<typeof customFetch>[1]): Promise<SettingsOut> => {
+
+  return customFetch<SettingsOut>(getGetSettingsUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetSettingsQueryKey = () => {
+    return [
+    `/api/settings`
+    ] as const;
+    }
+
+
+export const getGetSettingsQueryOptions = <TData = Awaited<ReturnType<typeof getSettings>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetSettingsQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getSettings>>> = ({ signal }) => getSettings({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetSettingsQueryResult = NonNullable<Awaited<ReturnType<typeof getSettings>>>
+export type GetSettingsQueryError = unknown
+
+
+export function useGetSettings<TData = Awaited<ReturnType<typeof getSettings>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getSettings>>,
+          TError,
+          Awaited<ReturnType<typeof getSettings>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetSettings<TData = Awaited<ReturnType<typeof getSettings>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getSettings>>,
+          TError,
+          Awaited<ReturnType<typeof getSettings>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetSettings<TData = Awaited<ReturnType<typeof getSettings>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Getsettings
+ */
+
+export function useGetSettings<TData = Awaited<ReturnType<typeof getSettings>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetSettingsQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
 export const getListRunsUrl = () => {
 
 
@@ -3279,6 +4333,109 @@ export function useGetDocumentFile<TData = Awaited<ReturnType<typeof getDocument
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetDocumentFileQueryOptions(documentId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getListModelCallsUrl = (documentId: number,) => {
+
+
+
+
+  return `/api/documents/${documentId}/model-calls`
+}
+
+/**
+ * Every model call made for this file: for this document, or for an earlier copy of the same file (whose answer a
+ * cached reading reuses). Newest first.
+ * @summary Listmodelcalls
+ */
+export const listModelCalls = async (documentId: number, options?: Parameters<typeof customFetch>[1]): Promise<ModelCallOut[]> => {
+
+  return customFetch<ModelCallOut[]>(getListModelCallsUrl(documentId),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListModelCallsQueryKey = (documentId: number,) => {
+    return [
+    `/api/documents/${documentId}/model-calls`
+    ] as const;
+    }
+
+
+export const getListModelCallsQueryOptions = <TData = Awaited<ReturnType<typeof listModelCalls>>, TError = HTTPValidationError>(documentId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listModelCalls>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListModelCallsQueryKey(documentId);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listModelCalls>>> = ({ signal }) => listModelCalls(documentId, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: documentId !== null && documentId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listModelCalls>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ListModelCallsQueryResult = NonNullable<Awaited<ReturnType<typeof listModelCalls>>>
+export type ListModelCallsQueryError = HTTPValidationError
+
+
+export function useListModelCalls<TData = Awaited<ReturnType<typeof listModelCalls>>, TError = HTTPValidationError>(
+ documentId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listModelCalls>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listModelCalls>>,
+          TError,
+          Awaited<ReturnType<typeof listModelCalls>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListModelCalls<TData = Awaited<ReturnType<typeof listModelCalls>>, TError = HTTPValidationError>(
+ documentId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listModelCalls>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof listModelCalls>>,
+          TError,
+          Awaited<ReturnType<typeof listModelCalls>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useListModelCalls<TData = Awaited<ReturnType<typeof listModelCalls>>, TError = HTTPValidationError>(
+ documentId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listModelCalls>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Listmodelcalls
+ */
+
+export function useListModelCalls<TData = Awaited<ReturnType<typeof listModelCalls>>, TError = HTTPValidationError>(
+ documentId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listModelCalls>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getListModelCallsQueryOptions(documentId,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

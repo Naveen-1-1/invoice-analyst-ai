@@ -42,4 +42,18 @@ def official(run: str, corpus: str = "dev", *, final: bool = False) -> Path:
     if n_pred < n_corpus:  # a subset run (smoke test); failed documents are in the file as empty predictions
         cmd.append("--allow-missing")
     subprocess.run(cmd, cwd=specs.BENCH_DIR, check=True, stdout=subprocess.DEVNULL)
+    write_scorecard(str(out), corpus)
     return out
+
+
+def write_scorecard(run: str, corpus: str) -> Path:
+    """Which fields each document got right, without the expected values: what the app's run comparison reads (the
+    backend never sees answers, so it gets this instead of scores.json)."""
+    out = run_dir(run)
+    scores = json.loads((out / "scores.json").read_text())
+    card = {"run": out.name, "corpus": corpus, "documents": {
+        d["doc_id"]: {"category": d.get("category"), "fully_correct": d.get("fully_correct"),
+                      "fields": {f: r["correct"] for f, r in d["fields"].items()}} for d in scores["documents"]}}
+    path = out / "scorecard.json"
+    path.write_text(json.dumps(card) + "\n")
+    return path

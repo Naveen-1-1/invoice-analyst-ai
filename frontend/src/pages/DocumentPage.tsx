@@ -3,7 +3,9 @@ import { useState } from 'react'
 import { useGetDocument } from '@/api/generated'
 import { CheckList } from '@/components/CheckList'
 import { FieldList } from '@/components/FieldList'
+import { ModelCalls } from '@/components/ModelCalls'
 import { PageViewer } from '@/components/PageViewer'
+import { StepTimeline } from '@/components/StepTimeline'
 import { TierBadge } from '@/components/TierBadge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -38,6 +40,9 @@ export function DocumentPage() {
         </p>
         <div className="flex flex-wrap items-center gap-3">
           <h1 className="text-xl font-semibold">{d.bench_doc_id ?? d.filename}</h1>
+          {invoice?.vendor_id != null && (
+            <Link to="/vendor/$vendorId" params={{ vendorId: String(invoice.vendor_id) }} className="text-sm hover:underline">{invoice.vendor_name}</Link>
+          )}
           {invoice && <TierBadge tier={invoice.conf_tier} />}
           {invoice && (
             <span className="text-sm text-muted-foreground">
@@ -60,6 +65,10 @@ export function DocumentPage() {
             : cacheHit ? 'answer reused from an earlier identical call' : 'no model calls'} ·{' '}
           <a href={d.file_url} className="underline-offset-4 hover:underline">original file</a>
         </p>
+      </div>
+
+      <div className="rounded-md border px-3 py-2.5">
+        <StepTimeline events={d.events} invoiceId={invoice?.id} />
       </div>
 
       {d.invoices.length > 1 && (
@@ -92,6 +101,7 @@ export function DocumentPage() {
                   Checks{invoice ? ` (${invoice.checks.filter((c) => c.outcome === 'fail' || c.outcome === 'warn').length})` : ''}
                 </TabsTrigger>
                 <TabsTrigger value="money">Payment{invoice?.payments.length ? ` (${invoice.payments.length})` : ''}</TabsTrigger>
+                <TabsTrigger value="calls">Model calls</TabsTrigger>
                 <TabsTrigger value="trail">Audit trail ({d.events.length})</TabsTrigger>
               </TabsList>
               <TabsContent value="fields" className="pt-2">
@@ -137,6 +147,9 @@ export function DocumentPage() {
                     </ul>
                   </section>
                 )}
+              </TabsContent>
+              <TabsContent value="calls" className="pt-2">
+                <ModelCalls documentId={d.id} />
               </TabsContent>
               <TabsContent value="trail" className="pt-2">
                 <ol className="space-y-2 text-sm">

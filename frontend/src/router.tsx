@@ -8,6 +8,9 @@ import { LedgerPage } from '@/pages/LedgerPage'
 import { PaymentsPage } from '@/pages/PaymentsPage'
 import { ReviewPage } from '@/pages/ReviewPage'
 import { ReviewQueuePage } from '@/pages/ReviewQueuePage'
+import { SettingsPage } from '@/pages/SettingsPage'
+import { PurchaseOrderPage, VendorPage } from '@/pages/VendorPage'
+import { VendorsPage } from '@/pages/VendorsPage'
 import { RunPage } from '@/pages/RunPage'
 import { RunsPage } from '@/pages/RunsPage'
 
@@ -31,9 +34,11 @@ function Shell() {
             <Link to="/board" className="hover:text-foreground [&.active]:text-foreground">Board</Link>
             <ReviewLink />
             <Link to="/payments" className="hover:text-foreground [&.active]:text-foreground">Payments</Link>
+            <Link to="/vendors" className="hover:text-foreground [&.active]:text-foreground">Vendors</Link>
             <Link to="/ledger" className="hover:text-foreground [&.active]:text-foreground">Ledger</Link>
             <Link to="/audit" className="hover:text-foreground [&.active]:text-foreground">Audit</Link>
             <Link to="/evaluation" className="hover:text-foreground [&.active]:text-foreground">Evaluation</Link>
+            <Link to="/settings" className="hover:text-foreground [&.active]:text-foreground">Settings</Link>
             <Link to="/" className="hover:text-foreground [&.active]:text-foreground" activeOptions={{ exact: true }}>Runs</Link>
           </nav>
         </div>
@@ -58,6 +63,11 @@ const ledgerRoute = createRoute({ getParentRoute: () => rootRoute, path: '/ledge
 const workspaceLedgerRoute = createRoute({ getParentRoute: () => rootRoute, path: '/ledger/$workspaceId', component: LedgerPage })
 const auditRoute = createRoute({ getParentRoute: () => rootRoute, path: '/audit', component: AuditPage })
 const workspaceAuditRoute = createRoute({ getParentRoute: () => rootRoute, path: '/audit/$workspaceId', component: AuditPage })
+const vendorsRoute = createRoute({ getParentRoute: () => rootRoute, path: '/vendors', component: VendorsPage })
+const workspaceVendorsRoute = createRoute({ getParentRoute: () => rootRoute, path: '/vendors/$workspaceId', component: VendorsPage })
+const vendorRoute = createRoute({ getParentRoute: () => rootRoute, path: '/vendor/$vendorId', component: VendorPage })
+const poRoute = createRoute({ getParentRoute: () => rootRoute, path: '/purchase-order/$poId', component: PurchaseOrderPage })
+const settingsRoute = createRoute({ getParentRoute: () => rootRoute, path: '/settings', component: SettingsPage })
 const evaluationRoute = createRoute({ getParentRoute: () => rootRoute, path: '/evaluation', component: EvaluationPage })
 const documentRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -66,7 +76,8 @@ const documentRoute = createRoute({
 })
 
 export const router = createRouter({ routeTree: rootRoute.addChildren([runsRoute, runRoute, boardRoute, workspaceBoardRoute, reviewQueueRoute, reviewRoute,
-  paymentsRoute, workspacePaymentsRoute, ledgerRoute, workspaceLedgerRoute, auditRoute, workspaceAuditRoute, evaluationRoute, documentRoute]) })
+  paymentsRoute, workspacePaymentsRoute, ledgerRoute, workspaceLedgerRoute, auditRoute, workspaceAuditRoute, vendorsRoute,
+  workspaceVendorsRoute, vendorRoute, poRoute, evaluationRoute, settingsRoute, documentRoute]) })
 
 declare module '@tanstack/react-router' {
   interface Register {

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from '@tanstack/react-router'
 import { useListWorkspaces } from '@/api/generated'
 
-type Section = '/payments' | '/ledger' | '/audit'
+type Section = '/payments' | '/ledger' | '/audit' | '/vendors'
 
 // The workspace a page shows: from the address (/payments/12), else the first one; and a picker to switch.
 export function useWorkspace(): number | undefined {

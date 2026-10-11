@@ -16,7 +16,7 @@ from ..config import settings
 from ..db.models import (AuditEvent, CheckResult, Document, FieldValue, Invoice, InvoiceLine, JournalEntry, LlmCall,
                          Page, PaymentItem, Run, Workspace)
 from ..worker.app import app as queue
-from . import board, evaluation, money, review
+from . import board, evaluation, master, money, review, settings as settings_api
 from . import schemas as out
 from .deps import db
 
@@ -36,6 +36,8 @@ app.include_router(board.router)
 app.include_router(review.router)
 app.include_router(money.router)
 app.include_router(evaluation.router)
+app.include_router(master.router)
+app.include_router(settings_api.router)
 
 
 def _inside_storage(path: str) -> Path:
@@ -96,7 +98,7 @@ def get_document(document_id: int, s: Session = Depends(db)) -> out.DocumentDeta
         checks = s.scalars(select(CheckResult).where(CheckResult.invoice_id == inv.id).order_by(CheckResult.id)).all()
         inv_out.append(out.InvoiceOut(
             id=inv.id, child_index=inv.child_index, doc_type=inv.doc_type, state=inv.state, conf_tier=inv.conf_tier,
-            vendor_name=vendor, invoice_number=inv.invoice_number, invoice_date=inv.invoice_date,
+            vendor_id=inv.vendor_id, vendor_name=vendor, invoice_number=inv.invoice_number, invoice_date=inv.invoice_date,
             due_date=inv.due_date, currency=inv.currency, subtotal=inv.subtotal, tax=inv.tax, total=inv.total,
             fields=[out.FieldOut(id=f.id, field=f.field, line_no=line_no.get(f.invoice_line_id), value=f.value,
                                  raw_text=f.raw_text, page_no=f.page_no, bbox=f.bbox, evidence_text=f.evidence_text,
@@ -123,8 +125,8 @@ def get_document(document_id: int, s: Session = Depends(db)) -> out.DocumentDeta
         pages=[out.PageOut(id=p.id, page_no=p.page_no, width=p.width, height=p.height, unit=p.unit,
                            image_url=f"/api/pages/{p.id}/image", quality=p.quality) for p in pages],
         invoices=inv_out,
-        events=[out.EventOut(seq=e.seq, occurred_at=e.occurred_at, actor=e.actor, action=e.action, data=e.data)
-                for e in events],
+        events=[out.EventOut(seq=e.seq, occurred_at=e.occurred_at, actor=e.actor, action=e.action, data=e.data,
+                             subject_type=e.subject_type, subject_id=e.subject_id) for e in events],
         llm_calls=calls)
 
 
@@ -142,3 +144,50 @@ def get_document_file(document_id: int, s: Session = Depends(db)) -> FileRespons
     if doc is None:
         raise HTTPException(404, "no such document")
     return FileResponse(_inside_storage(doc.storage_path), media_type=doc.mime, filename=doc.filename)
+
+
+def _parts(content) -> list[out.CallPartOut]:
+    if isinstance(content, str):
+        return [out.CallPartOut(kind="text", text=content)]
+    parts = []
+    for part in content or []:
+        if part.get("type") == "text":
+            parts.append(out.CallPartOut(kind="text", text=part.get("text")))
+        else:
+            image = part.get("image_url") or {}
+            parts.append(out.CallPartOut(kind="image", image_bytes=int(image.get("bytes") or 0) or None))
+    return parts
+
+
+def _answer(call: LlmCall) -> str | None:
+    import json  # noqa: PLC0415
+
+    try:
+        message = (call.response or {})["choices"][0]["message"]
+        tool_calls = message.get("tool_calls") or []
+        if tool_calls:
+            return json.dumps(json.loads(tool_calls[0]["function"]["arguments"]), indent=1, ensure_ascii=False)
+        return message.get("content") or call.content
+    except (KeyError, IndexError, TypeError, ValueError):
+        return call.content
+
+
+@app.get("/api/documents/{document_id}/model-calls", response_model=list[out.ModelCallOut], name="listModelCalls")
+def list_model_calls(document_id: int, s: Session = Depends(db)) -> list[out.ModelCallOut]:
+    """Every model call made for this file: for this document, or for an earlier copy of the same file (whose answer a
+    cached reading reuses). Newest first."""
+    doc = s.get(Document, document_id)
+    if doc is None:
+        raise HTTPException(404, "no such document")
+    copies = {d.id: d.workspace_id for d in s.scalars(select(Document).where(Document.sha256 == doc.sha256))}
+    names = {w.id: w.name for w in s.scalars(select(Workspace).where(Workspace.id.in_(set(copies.values()))))}
+    calls = s.scalars(select(LlmCall).where(LlmCall.document_id.in_(copies)).order_by(LlmCall.id.desc())).all()
+    keep = ("max_tokens", "reasoning_effort", "temperature", "extra_body", "tool_choice")
+    return [out.ModelCallOut(
+        id=c.id, model=c.model, created_at=c.created_at, attempt=c.attempt, ok=c.ok, http_status=c.http_status,
+        finish_reason=c.finish_reason, latency_ms=c.latency_ms, tokens_in=c.tokens_in, tokens_out=c.tokens_out,
+        error=c.error, params={k: v for k, v in (c.request or {}).items() if k in keep},
+        this_document=c.document_id == doc.id, workspace=names.get(copies.get(c.document_id)),
+        messages=[out.CallMessageOut(role=m.get("role", "?"), parts=_parts(m.get("content")))
+                  for m in (c.request or {}).get("messages", [])],
+        answer=_answer(c), reasoning=c.reasoning) for c in calls]

@@ -28,9 +28,14 @@ generated with its generator.
 
 ## Web app
 
-- `make api` (backend on http://127.0.0.1:8000) and `make web` (app on http://127.0.0.1:5173) in two terminals
+- `make api` (backend on http://127.0.0.1:8000) and `make web` (app on http://127.0.0.1:5180) in two terminals
 - Runs → a run's documents → a document: the page with a box around every value read, and each value's confidence
   tier with the evidence behind it (hover a value to find it on the page)
+- Each document's page also shows its steps (received, read, checked, matched, decided, booked, paid) and every model
+  call behind its reading: what was sent, the answer, the model's reasoning, tokens and time
+- **Vendors**: the vendor list (bank accounts, terms, past invoices), purchase orders (ordered, received, invoiced and
+  open per line) and deliveries; view-only. **Settings**: every threshold, cap, tolerance, rate and model in use, each
+  with the decision that set it; view-only
 - `make gen-api` regenerates the frontend's typed client after an API change
 
 ## AP checks (inbox mode)
@@ -77,6 +82,9 @@ generated with its generator.
 - `make score RUN=n` scores a benchmark run with the official scorer; `apbench ext-score n` scores the AP fields it
   leaves out (PO number, tax ID, bank account, terms, addressee, line quantity, unit price and code), only where
   they're printed (`apbench extended-keys` builds that key from the generator's specs)
+- The Evaluation page also compares any two scored runs on the same set (from each run's `scorecard.json`, which
+  records which fields were right without the answers; `apbench scorecards` writes any missing) and charts how often
+  each confidence tier was right
 - `make eval-dev BENCH=n INBOX=m` logs a dev reference to `data/eval/EVAL_LOG.jsonl`; the **Evaluation** page shows
   it next to the held-out result
 - `make final`: **the** held-out evaluation, once, on a clean committed tree: extraction scored by both

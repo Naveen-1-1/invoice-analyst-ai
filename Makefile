@@ -18,7 +18,7 @@ help:
 	@echo "bench-dev    extract all 181 dev documents and score them"
 	@echo "score RUN=n  score run n with the official scorer"
 	@echo "api        run the backend API on http://127.0.0.1:8000 (reloads on change)"
-	@echo "web        run the web app on http://127.0.0.1:5173 (needs make api)"
+	@echo "web        run the web app on http://127.0.0.1:5180 (needs make api)"
 	@echo "gen-api    regenerate the frontend's typed API client from the backend"
 	@echo "companion  generate dev vendors, POs, deliveries, history, inbox stream and planted problems"
 	@echo "worker     process the job queue (arrivals, reading, checks); run exactly one"

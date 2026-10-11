@@ -95,6 +95,7 @@ class InvoiceOut(BaseModel):
     doc_type: str
     state: str
     conf_tier: str | None
+    vendor_id: int | None
     vendor_name: str | None
     invoice_number: str | None
     invoice_date: dt.date | None
@@ -116,6 +117,8 @@ class EventOut(BaseModel):
     actor: str
     action: str
     data: dict[str, Any]
+    subject_type: str
+    subject_id: int | None
 
 
 class DocumentDetail(BaseModel):
@@ -298,6 +301,7 @@ class ReviewDetail(BaseModel):
     decisions: list[DecisionOut]
     approvals: list[ApprovalOut]
     approved_so_far: Decimal
+    po_id: int | None
     po_number: str | None
     matches: list[MatchOut]
     partial: SplitOut | None
@@ -511,3 +515,166 @@ class EvalEntryOut(BaseModel):
     confidence: dict[str, Any]
     ap: dict[str, Any] | None
     documents: dict[str, int]  # benchmark doc id -> document id in that run (to link errors)
+
+
+class BankAccountOut(BaseModel):
+    kind: str
+    account: str  # last digits only
+    bank_name: str | None
+    bic: str | None
+    branch: str | None
+    valid_from: dt.date | None
+    valid_to: dt.date | None  # set when replaced; payments go to the open one
+    source: str | None
+
+
+class VendorRow(BaseModel):
+    id: int
+    code: str
+    name: str
+    country: str | None
+    status: str
+    origin: str | None
+    terms_days: int | None
+    discount: str | None  # e.g. "2% in 10 days"
+    account: str | None  # the open account's last digits
+    invoices: int
+    purchase_orders: int
+
+
+class HistoryOut(BaseModel):
+    invoice_number: str | None
+    invoice_date: dt.date
+    amount: Decimal
+    currency: str
+
+
+class VendorInvoiceOut(BaseModel):
+    invoice_id: int
+    document_id: int
+    invoice_number: str | None
+    invoice_date: dt.date | None
+    total: Decimal | None
+    currency: str | None
+    state: str
+    payment: str | None
+
+
+class PoRow(BaseModel):
+    id: int
+    po_number: str
+    vendor_id: int | None
+    vendor: str | None
+    entity: str | None
+    currency: str
+    order_date: dt.date | None
+    status: str
+    lines: int
+    ordered: Decimal  # amount
+    received_share: float | None  # of ordered quantity
+    invoiced_share: float | None
+
+
+class VendorDetail(BaseModel):
+    id: int
+    workspace_id: int
+    code: str
+    name: str
+    aliases: list[str]
+    country: str | None
+    address: str | None
+    tax_id: str | None
+    email: str | None
+    status: str
+    origin: str | None
+    terms_days: int | None
+    discount: str | None
+    default_gl: str | None
+    accounts: list[BankAccountOut]
+    history: list[HistoryOut]
+    invoices: list[VendorInvoiceOut]
+    purchase_orders: list[PoRow]
+
+
+class PoLineOut(BaseModel):
+    line_no: int
+    item_code: str | None
+    description: str | None
+    qty: Decimal | None  # ordered; none for services (matched on amount)
+    unit_price: Decimal | None
+    amount: Decimal | None
+    gl_account: str | None
+    received: Decimal | None
+    invoiced: Decimal | None  # quantity invoices have used up (rejected invoices excluded)
+    open: Decimal | None  # received and not yet invoiced
+
+
+class ReceiptLineOut(BaseModel):
+    line_no: int
+    description: str | None
+    qty: Decimal
+
+
+class ReceiptOut(BaseModel):
+    id: int
+    grn_number: str
+    received_date: dt.date
+    lines: list[ReceiptLineOut]
+
+
+class PoInvoiceOut(BaseModel):
+    invoice_id: int
+    document_id: int
+    invoice_number: str | None
+    state: str
+    total: Decimal | None
+    currency: str | None
+
+
+class PoDetail(BaseModel):
+    po: PoRow
+    lines: list[PoLineOut]
+    receipts: list[ReceiptOut]
+    invoices: list[PoInvoiceOut]
+
+
+class DeliveryRow(BaseModel):
+    id: int
+    grn_number: str
+    received_date: dt.date
+    po_id: int
+    po_number: str
+    vendor: str | None
+    lines: int
+    quantity: Decimal
+
+
+class CallPartOut(BaseModel):
+    kind: str  # text / image
+    text: str | None = None
+    image_bytes: int | None = None  # images aren't stored with the call: their size and fingerprint are
+
+
+class CallMessageOut(BaseModel):
+    role: str
+    parts: list[CallPartOut]
+
+
+class ModelCallOut(BaseModel):
+    id: int
+    model: str
+    created_at: dt.datetime
+    attempt: int
+    ok: bool
+    http_status: int | None
+    finish_reason: str | None
+    latency_ms: int | None
+    tokens_in: int | None
+    tokens_out: int | None
+    error: str | None
+    params: dict[str, Any]  # reasoning effort, max tokens, ...
+    this_document: bool  # made for this document (else for an earlier copy of the same file)
+    workspace: str | None
+    messages: list[CallMessageOut]
+    answer: str | None  # the tool-call arguments (or text), pretty-printed
+    reasoning: str | None

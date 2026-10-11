@@ -113,3 +113,6 @@ export function eventText(e: { action: string; data: Record<string, unknown> }):
       return { title: e.action }
   }
 }
+
+export const formatShare = (x: number | null | undefined) => (x == null ? '—' : `${Math.round(x * 100)}%`)
+export const formatQty = (v: string | null | undefined) => (v == null ? '—' : String(Number(v)))
