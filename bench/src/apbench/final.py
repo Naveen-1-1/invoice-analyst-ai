@@ -6,7 +6,7 @@
   3. scores: the official scorer, the extended scorer, and the confidence check (measured, nothing tuned)
   4. inbox mode: the held-out inbox against its vendors, POs and deliveries (readings reused from step 2), then the
      AP evaluation: planted problems, decisions, false automatic approvals, payment timing
-  5. one entry in data/eval/EVAL_LOG.jsonl and docs/results/heldout-final.md
+  5. one entry in data/eval/EVAL_LOG.jsonl, and a local report in docs/results/heldout-final.md (not tracked)
 
 Progress is kept in data/eval/final-run.json, so an interrupted run (an API outage, say) picks up where it
 stopped; it can only resume at the commit it started from. Once a final entry is logged, a later held-out run needs

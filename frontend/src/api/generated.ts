@@ -215,6 +215,13 @@ export interface DecisionIn {
   override?: boolean;
 }
 
+export interface DecisionOut {
+  id: number;
+  action: string;
+  note: string;
+  decided_at: string;
+}
+
 export interface DeliveryRow {
   id: number;
   grn_number: string;
@@ -608,13 +615,6 @@ export interface TaskOut {
   resolved_at: string | null;
 }
 
-export interface InvoiceAnalystApiSchemasDecisionOut {
-  id: number;
-  action: string;
-  note: string;
-  decided_at: string;
-}
-
 export interface SplitLineOut {
   line_no: number;
   description: string | null;
@@ -648,7 +648,7 @@ export interface ReviewDetail {
   doc_type: string;
   labels: string[];
   task: TaskOut | null;
-  decisions: InvoiceAnalystApiSchemasDecisionOut[];
+  decisions: DecisionOut[];
   approvals: ApprovalOut[];
   approved_so_far: string;
   po_id: number | null;
@@ -708,7 +708,6 @@ export interface SettingOut {
   name: string;
   value: string;
   explanation: string;
-  decision: number | null;
 }
 
 export interface SectionOut {
@@ -724,16 +723,9 @@ export interface WorkspaceTodayOut {
   live: boolean;
 }
 
-export interface InvoiceAnalystApiSettingsDecisionOut {
-  number: number;
-  title: string;
-  text: string;
-}
-
 export interface SettingsOut {
   sections: SectionOut[];
   workspaces: WorkspaceTodayOut[];
-  decisions: InvoiceAnalystApiSettingsDecisionOut[];
 }
 
 export interface TodayIn {

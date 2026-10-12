@@ -2353,6 +2353,35 @@
     ],
     "title": "DecisionIn"
    },
+   "DecisionOut": {
+    "properties": {
+     "id": {
+      "type": "integer",
+      "title": "Id"
+     },
+     "action": {
+      "type": "string",
+      "title": "Action"
+     },
+     "note": {
+      "type": "string",
+      "title": "Note"
+     },
+     "decided_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Decided At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "action",
+     "note",
+     "decided_at"
+    ],
+    "title": "DecisionOut"
+   },
    "DeliveryRow": {
     "properties": {
      "id": {
@@ -4722,7 +4751,7 @@
      },
      "decisions": {
       "items": {
-       "$ref": "#/components/schemas/invoice_analyst__api__schemas__DecisionOut"
+       "$ref": "#/components/schemas/DecisionOut"
       },
       "type": "array",
       "title": "Decisions"
@@ -5171,25 +5200,13 @@
      "explanation": {
       "type": "string",
       "title": "Explanation"
-     },
-     "decision": {
-      "anyOf": [
-       {
-        "type": "integer"
-       },
-       {
-        "type": "null"
-       }
-      ],
-      "title": "Decision"
      }
     },
     "type": "object",
     "required": [
      "name",
      "value",
-     "explanation",
-     "decision"
+     "explanation"
     ],
     "title": "SettingOut"
    },
@@ -5208,20 +5225,12 @@
       },
       "type": "array",
       "title": "Workspaces"
-     },
-     "decisions": {
-      "items": {
-       "$ref": "#/components/schemas/invoice_analyst__api__settings__DecisionOut"
-      },
-      "type": "array",
-      "title": "Decisions"
      }
     },
     "type": "object",
     "required": [
      "sections",
-     "workspaces",
-     "decisions"
+     "workspaces"
     ],
     "title": "SettingsOut"
    },
@@ -6157,58 +6166,6 @@
      "live"
     ],
     "title": "WorkspaceTodayOut"
-   },
-   "invoice_analyst__api__schemas__DecisionOut": {
-    "properties": {
-     "id": {
-      "type": "integer",
-      "title": "Id"
-     },
-     "action": {
-      "type": "string",
-      "title": "Action"
-     },
-     "note": {
-      "type": "string",
-      "title": "Note"
-     },
-     "decided_at": {
-      "type": "string",
-      "format": "date-time",
-      "title": "Decided At"
-     }
-    },
-    "type": "object",
-    "required": [
-     "id",
-     "action",
-     "note",
-     "decided_at"
-    ],
-    "title": "DecisionOut"
-   },
-   "invoice_analyst__api__settings__DecisionOut": {
-    "properties": {
-     "number": {
-      "type": "integer",
-      "title": "Number"
-     },
-     "title": {
-      "type": "string",
-      "title": "Title"
-     },
-     "text": {
-      "type": "string",
-      "title": "Text"
-     }
-    },
-    "type": "object",
-    "required": [
-     "number",
-     "title",
-     "text"
-    ],
-    "title": "DecisionOut"
    }
   }
  }

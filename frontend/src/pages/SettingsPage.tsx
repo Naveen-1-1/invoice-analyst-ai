@@ -5,21 +5,20 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { errorText } from '@/lib/format'
 
-// Decision 49: what the system uses now, each with the decision behind it. View-only.
+// Decision 49: what the system uses now. View-only.
 export function SettingsPage() {
   const settings = useGetSettings()
   if (settings.isPending) return <Skeleton className="h-96 w-full" />
   if (settings.isError) return <p className="text-sm text-red-700">Couldn't load the settings: {errorText(settings.error)}</p>
   const s = settings.data
-  const decisions = Object.fromEntries(s.decisions.map((d) => [d.number, d]))
   return (
     <div className="space-y-4">
       <div>
         <h1 className="text-xl font-semibold">Settings</h1>
         <p className="text-sm text-muted-foreground">
-          Every threshold, cap, tolerance, rate and model as the system uses it now, read from the code that uses it,
-          with the decision that set it. View-only, so the system stays as it was evaluated; each workspace's current
-          date is set on the Payments page.
+          Every threshold, cap, tolerance, rate and model as the system uses it now, read from the code that uses it.
+          View-only, so the system stays as it was evaluated; each workspace's current date is set on the Payments
+          page.
         </p>
       </div>
       <div className="grid gap-4 xl:grid-cols-2">
@@ -29,21 +28,15 @@ export function SettingsPage() {
             <CardContent>
               <Table>
                 <TableBody>
-                  {sec.items.map((i) => {
-                    const d = i.decision != null ? decisions[i.decision] : undefined
-                    return (
-                      <TableRow key={i.name}>
-                        <TableCell className="w-48 align-top text-muted-foreground whitespace-normal">{i.name}</TableCell>
-                        <TableCell className="align-top whitespace-normal">
-                          <div className="font-medium break-words">{i.value}</div>
-                          {i.explanation && <div className="text-xs text-muted-foreground">{i.explanation}</div>}
-                        </TableCell>
-                        <TableCell className="w-24 align-top text-right text-xs">
-                          {d && <span className="cursor-help rounded border px-1 whitespace-nowrap" title={`${d.title}: ${d.text}`}>decision {d.number}</span>}
-                        </TableCell>
-                      </TableRow>
-                    )
-                  })}
+                  {sec.items.map((i) => (
+                    <TableRow key={i.name}>
+                      <TableCell className="w-48 align-top text-muted-foreground whitespace-normal">{i.name}</TableCell>
+                      <TableCell className="align-top whitespace-normal">
+                        <div className="font-medium break-words">{i.value}</div>
+                        {i.explanation && <div className="text-xs text-muted-foreground">{i.explanation}</div>}
+                      </TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </CardContent>
@@ -67,19 +60,6 @@ export function SettingsPage() {
           </CardContent>
         </Card>
       </div>
-      <Card>
-        <CardHeader><CardTitle className="text-base">The decisions referred to</CardTitle></CardHeader>
-        <CardContent>
-          <dl className="space-y-2 text-sm">
-            {s.decisions.map((d) => (
-              <div key={d.number}>
-                <dt className="font-medium">{d.number}. {d.title}</dt>
-                <dd className="text-muted-foreground">{d.text}</dd>
-              </div>
-            ))}
-          </dl>
-        </CardContent>
-      </Card>
     </div>
   )
 }

@@ -18,11 +18,9 @@ test('vendors, a PO with its lines and deliveries, and back to the vendor', asyn
   await expect(page.getByText('Bank accounts')).toBeVisible()
 })
 
-test('settings show each value with its decision', async ({ page }) => {
+test('settings show each value', async ({ page }) => {
   await page.goto('/settings')
   await expect(page.getByText(/at most USD 10,000/)).toBeVisible()
-  await expect(page.getByText('decision 11').first()).toBeVisible()
-  await expect(page.getByText('11. Auto-approval')).toBeVisible()
 })
 
 test('a document shows its steps and the model calls behind its reading', async ({ page }) => {

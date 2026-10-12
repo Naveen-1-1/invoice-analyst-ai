@@ -34,8 +34,8 @@ generated with its generator.
 - Each document's page also shows its steps (received, read, checked, matched, decided, booked, paid) and every model
   call behind its reading: what was sent, the answer, the model's reasoning, tokens and time
 - **Vendors**: the vendor list (bank accounts, terms, past invoices), purchase orders (ordered, received, invoiced and
-  open per line) and deliveries; view-only. **Settings**: every threshold, cap, tolerance, rate and model in use, each
-  with the decision that set it; view-only
+  open per line) and deliveries; view-only. **Settings**: every threshold, cap, tolerance, rate and model in use,
+  view-only
 - `make gen-api` regenerates the frontend's typed client after an API change
 
 ## AP checks (inbox mode)

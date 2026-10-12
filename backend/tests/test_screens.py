@@ -51,8 +51,7 @@ def test_vendor_po_and_settings_screens(ws) -> None:
         titles = [sec["title"] for sec in settings["sections"]]
         assert titles == ["Models", "Confidence", "Checks", "Three-way match", "Approval", "Payments and books"]
         cap = next(i for sec in settings["sections"] for i in sec["items"] if i["name"] == "Approved automatically when")
-        assert "USD 10,000" in cap["value"] and cap["decision"] == 11
-        assert {d["number"] for d in settings["decisions"]} >= {11, 26, 28, 34}
+        assert "USD 10,000" in cap["value"]
         assert any(w["id"] == wid for w in settings["workspaces"])
 
         assert api.get(f"/api/documents/{doc_id}/model-calls").json() == []  # a hand-built document: no calls
